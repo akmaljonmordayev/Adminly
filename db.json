@@ -1,0 +1,46 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "name": "Akmal Manager",
+      "email": "manager@gmail.com",
+      "password": "1234",
+      "role": "manager"
+    },
+    {
+      "id": 2,
+      "name": "Ali",
+      "email": "ali@gmail.com",
+      "password": "1234",
+      "role": "employee"
+    },
+    {
+      "id": 3,
+      "name": "Vali",
+      "email": "vali@gmail.com",
+      "password": "1234",
+      "role": "employee"
+    }
+  ],
+
+  "employees": [
+    {
+      "id": 1,
+      "userId": 2,
+      "baseSalary": 3000000,
+      "kpi": 20,
+      "bonus": 500000,
+      "penalty": 200000,
+      "month": "2025-12"
+    },
+    {
+      "id": 2,
+      "userId": 3,
+      "baseSalary": 3500000,
+      "kpi": 15,
+      "bonus": 300000,
+      "penalty": 0,
+      "month": "2025-12"
+    }
+  ]
+}
