@@ -4,10 +4,10 @@ import { Route, Routes } from "react-router-dom";
 import MainLayOut from "./layouts/MainLayOut";
 import React, { Suspense } from "react";
 
-const Home = React.lazy(() => import("./pages/Home"));
-const Users = React.lazy(() => import("./pages/Users"));
-const Products = React.lazy(() => import("./pages/Products"));
-const NotFound = React.lazy(() => import("./pages/NotFound"));
+const Home = React.lazy(() => import("./role/Employee/Home"));
+const Users = React.lazy(() => import("./role/Manager/Employees"));
+const Products = React.lazy(() => import("./role/Employee/Products"));
+const NotFound = React.lazy(() => import("./role/Employee/NotFound"));
 
 function App() {
   return (
