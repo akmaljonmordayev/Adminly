@@ -1,15 +1,18 @@
 import React from "react";
 import TopBar from "../components/TopBar";
 import Sidebar from "../components/Sidebar";
+
 function MainLayOut({ children }) {
   return (
-    <div className="flex items-center justify-between">
-      <div>
-        <Sidebar />
-      </div>
-      <div>
+    <div className="flex min-h-screen bg-gray-100">
+      
+      <Sidebar />
+
+      <div className="flex-1 flex flex-col">
         <TopBar />
-        {children}
+        <main className="p-4">
+          {children}
+        </main>
       </div>
     </div>
   );
