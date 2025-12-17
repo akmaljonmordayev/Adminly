@@ -1,12 +1,12 @@
-import { useState } from "react";
-import "./App.css";
-import { Route, Routes } from "react-router-dom";
-import MainLayOut from "./layouts/MainLayOut";
-import React, { Suspense } from "react";
+import { useState } from 'react'
+import './App.css'
+import { Route, Routes } from 'react-router-dom'
+import MainLayOut from './layouts/MainLayOut'
+import React, { Suspense } from 'react'
 
-const Home = React.lazy(() => import("./role/Employee/Home"));
-const Users = React.lazy(() => import("./role/Manager/Employees"));
-const NotFound = React.lazy(() => import("./role/Employee/NotFound"));
+const Home = React.lazy(() => import('./role/Employee/Home'))
+const Users = React.lazy(() => import('./role/Manager/Employees'))
+const NotFound = React.lazy(() => import('./role/Employee/NotFound'))
 
 function App() {
   return (
@@ -17,7 +17,7 @@ function App() {
             path="/"
             element={
               <MainLayOut>
-                {" "}
+                {' '}
                 <Home />
               </MainLayOut>
             }
@@ -26,7 +26,7 @@ function App() {
             path="/users"
             element={
               <MainLayOut>
-                {" "}
+                {' '}
                 <Users />
               </MainLayOut>
             }
@@ -42,7 +42,7 @@ function App() {
         </Routes>
       </Suspense>
     </>
-  );
+  )
 }
 
-export default App;
+export default App
