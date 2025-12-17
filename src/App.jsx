@@ -1,14 +1,14 @@
-import { useState } from 'react'
-import './App.css'
-import { Route, Routes } from 'react-router-dom'
-import MainLayOut from './layouts/MainLayOut'
-import React, { Suspense } from 'react'
-import ProtectedRoute from './components/ProtectedRoute'
+import { useState } from "react";
+import "./App.css";
+import { Route, Routes } from "react-router-dom";
+import MainLayOut from "./layouts/MainLayOut";
+import React, { Suspense } from "react";
+import ProtectedRoute from "./components/ProtectedRoute";
 
-const Home = React.lazy(() => import('./role/Employee/Home'))
-const Users = React.lazy(() => import('./role/Manager/Employees'))
-const NotFound = React.lazy(() => import('./role/Employee/NotFound'))
-const Login = React.lazy(() => import('./auth/Login'))
+const Home = React.lazy(() => import("./role/Employee/Home"));
+const Users = React.lazy(() => import("./role/Manager/Employees"));
+const NotFound = React.lazy(() => import("./role/Employee/NotFound"));
+const Login = React.lazy(() => import("./auth/Login"));
 
 function App() {
   return (
@@ -20,7 +20,7 @@ function App() {
             element={
               <ProtectedRoute>
                 <MainLayOut>
-                  {' '}
+                  {" "}
                   <Home />
                 </MainLayOut>
               </ProtectedRoute>
@@ -31,7 +31,7 @@ function App() {
             element={
               <ProtectedRoute>
                 <MainLayOut>
-                  {' '}
+                  {" "}
                   <Users />
                 </MainLayOut>
               </ProtectedRoute>
@@ -41,9 +41,7 @@ function App() {
             path="*"
             element={
               <ProtectedRoute>
-                <MainLayOut>
-                  <NotFound />
-                </MainLayOut>
+                <NotFound />
               </ProtectedRoute>
             }
           />
@@ -51,7 +49,7 @@ function App() {
         </Routes>
       </Suspense>
     </>
-  )
+  );
 }
 
-export default App
+export default App;

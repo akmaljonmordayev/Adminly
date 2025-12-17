@@ -3,23 +3,58 @@
     {
       "id": 1,
       "name": "Akmal Manager",
-      "email": "manager@gmail.com",
+      "email": "akmal@gmail.com",
       "password": "1234",
       "role": "manager"
     },
     {
       "id": 2,
-      "name": "Ali",
-      "email": "ali@gmail.com",
+      "name": "Mohinur Manager",
+      "email": "mohinur@gmail.com",
       "password": "1234",
-      "role": "employee"
+      "role": "manager"
     },
     {
       "id": 3,
-      "name": "Vali",
-      "email": "vali@gmail.com",
+      "name": "Xojarxon Manager",
+      "email": "xojarxon@gmail.com",
       "password": "1234",
-      "role": "employee"
+      "role": "manager"
+    },
+    {
+      "id": 4,
+      "name": "Bilol Manager",
+      "email": "bilol@gmail.com",
+      "password": "1234",
+      "role": "manager"
+    },
+    {
+      "id": 5,
+      "name": "Akrom Manager",
+      "email": "akrom@gmail.com",
+      "password": "1234",
+      "role": "manager"
+    },
+    {
+      "id": 6,
+      "name": "Abdulaziz Manager",
+      "email": "abdulaziz@gmail.com",
+      "password": "1234",
+      "role": "manager"
+    },
+    {
+      "id": 7,
+      "name": "Muhammadali Manager",
+      "email": "muhammadali@gmail.com",
+      "password": "1234",
+      "role": "manager"
+    },
+    {
+      "id": 8,
+      "name": "Muhammadqodir Manager",
+      "email": "muhammadqodir@gmail.com",
+      "password": "1234",
+      "role": "manager"
     }
   ],
 

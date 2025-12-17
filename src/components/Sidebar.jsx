@@ -15,6 +15,7 @@ import {
 } from "react-icons/md";
 import { FaUserCircle } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import Logo from "./Logo";
 
 function Sidebar() {
   const [active, setActive] = useState("dashboard");
@@ -35,20 +36,20 @@ function Sidebar() {
     { id: "codeeditors", label: "Code editors", icon: <MdCode /> },
   ];
 
+  let user = JSON.parse(localStorage.getItem("user"));
+
   return (
     <aside className="w-[260px] bg-white p-4 flex flex-col rounded-2xl shadow-lg">
-      {/* Title */}
       <h1 className="text-2xl font-bold text-violet-600 flex items-center gap-2">
         <MdDashboard />
         Adminly
       </h1>
 
-      {/* User */}
       <div className="flex items-center gap-3 mt-4">
         <FaUserCircle className="text-4xl text-purple-500" />
         <div>
-          <p className="font-semibold text-gray-700">David Grey. H</p>
-          <p className="text-sm text-gray-400">Project Manager</p>
+          <p className="font-semibold text-gray-700">{user.name}</p>
+          <p className="text-sm text-gray-400">{user.role}</p>
         </div>
       </div>
 
