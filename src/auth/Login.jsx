@@ -1,31 +1,71 @@
-import { useState } from 'react'
-import React from 'react'
-import { FaUser } from 'react-icons/fa'
-import { FaLock } from 'react-icons/fa'
-import { FaLockOpen } from 'react-icons/fa'
-import { useNavigate } from 'react-router-dom'
+import { useState, useEffect } from "react";
+import React from "react";
+import { FaUser } from "react-icons/fa";
+import { FaLock } from "react-icons/fa";
+import { FaLockOpen } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import { toast, ToastContainer } from "react-toastify";
 
 function Login() {
-  const [email, setEmail] = useState(''),
-    [password, setPassword] = useState(''),
-    [open, setOpen] = useState(false)
+  const [email, setEmail] = useState(""),
+    [password, setPassword] = useState(""),
+    [open, setOpen] = useState(false);
+  const navigate = useNavigate();
+  const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
 
-  const navigate = useNavigate()
+  useEffect(() => {
+    const getData = async () => {
+      setLoading(true);
+      try {
+        let res = await axios.get("http://localhost:5000/users");
+        setData(res.data);
+      } catch (err) {
+        setError(err.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+    getData();
+  }, []);
 
   const onSubmitted = (e) => {
-    e.preventDefault()
+    e.preventDefault();
+    const getData = async () => {
+      setLoading(true);
+      try {
+        let res = await axios.get("http://localhost:5000/users");
+        setData(res.data);
+      } catch (err) {
+        setError(err.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+    getData();
 
-    if (email == 'manager@gmail.com' && password == 1234) {
-      const token = crypto.randomUUID()
-      localStorage.setItem('token', token)
-      navigate('/')
+    let filterData = data?.filter(
+      (item) => item.email == email && item.password == password
+    );
+
+    if (filterData.length == 0) {
+      toast.error("Bunaqa foydalanuvchi topilmadi!");
     } else {
-      alert('email or password error')
+      toast.success("Successful login!");
+      const token = crypto.randomUUID();
+      localStorage.setItem("user", JSON.stringify(filterData[0]));
+      localStorage.setItem("token", token);
+      setTimeout(() => {
+        navigate("/");
+      }, 1500);
     }
-  }
+  };
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-[#050b14]">
+      <ToastContainer />
       <div
         className="relative w-[900px] h-[420px] rounded-xl overflow-hidden 
     bg-linear-to-br from-[#0b1220] to-[#050b14]
@@ -33,7 +73,6 @@ function Login() {
     border border-cyan-400/30
     flex"
       >
-        {/* LEFT – LOGIN */}
         <div className="w-1/2 p-10 flex flex-col justify-center">
           <h2 className="text-center text-4xl font-semibold text-white mb-8">
             Login
@@ -74,7 +113,7 @@ function Login() {
             <span className="relative block mt-8">
               <input
                 onChange={(e) => setPassword(e.target.value)}
-                type={open ? 'text' : 'password'}
+                type={open ? "text" : "password"}
                 required
                 value={password}
                 className="
@@ -118,7 +157,7 @@ function Login() {
          font-semibold text-white
           hover:opacity-90 transition cursor-pointer"
             >
-              Login
+              {loading ? "loading..." : "Login"}
             </button>
           </form>
         </div>
@@ -134,7 +173,7 @@ function Login() {
         </div>
       </div>
     </div>
-  )
+  );
 }
 
-export default Login
+export default Login;
