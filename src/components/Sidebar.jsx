@@ -21,9 +21,66 @@ function Sidebar() {
   const [active, setActive] = useState("dashboard");
 
   const menu = [
-    { id: "dashboard", label: "Dashboard", icon: <MdDashboard />, link: "/" },
-    { id: "pagelayouts", label: "Page Layouts", icon: <MdApps /> },
-    { id: "apps", label: "Apps", icon: <MdWidgets /> },
+    {
+      id: "dashboard",
+      label: "Dashboard",
+      icon: <MdDashboard />,
+      link: "/manager/dashboard",
+    },
+    {
+      id: "Employees",
+      label: "Employees",
+      icon: <MdApps />,
+      link: "/manager/employees",
+    },
+    {
+      id: "Tasks",
+      label: "Tasks",
+      icon: <MdWidgets />,
+      link: "/manager/tasks",
+    },
+    {
+      id: "Complaints",
+      label: "Complaints",
+      icon: <MdWidgets />,
+      link: "/manager/complaints",
+    },
+    {
+      id: "Finance",
+      label: "Finance",
+      icon: <MdWidgets />,
+      link: "/manager/finance",
+    },
+    {
+      id: "Settings",
+      label: "Settings",
+      icon: <MdWidgets />,
+      link: "/manager/settings",
+    },
+    {
+      id: "Archieve",
+      label: "Archieve",
+      icon: <MdWidgets />,
+      link: "/manager/archieve",
+    },
+    {
+      id: "Announcements",
+      label: "Announcements",
+      icon: <MdWidgets />,
+      link: "/manager/announcemenets",
+    },
+    {
+      id: "Leaves / Vacations",
+      label: "Leaves / Vacations",
+      icon: <MdWidgets />,
+      link: "/manager/vacations",
+    },
+    {
+      id: "Audit Logs",
+      label: "Audit Logs",
+      icon: <MdWidgets />,
+      link: "/manager/logs",
+    },
   ];
 
   let user = JSON.parse(localStorage.getItem("user"));
@@ -43,23 +100,24 @@ function Sidebar() {
         </div>
       </div>
 
-      {/* Menu */}
       <nav className="flex flex-col gap-2 mt-6">
         {menu.map((item) => {
           const content = (
-            <div
-              onClick={() => setActive(item.id)}
-              className={`px-3 py-2 flex items-center gap-3 rounded-lg cursor-pointer transition
+            <Link to={`${item.link}`}>
+              <div
+                onClick={() => setActive(item.id)}
+                className={`px-3 py-2 flex items-center gap-3 rounded-lg cursor-pointer transition
                 ${
                   active === item.id
                     ? "bg-violet-600/15 text-violet-600 font-semibold"
                     : "text-gray-600 hover:bg-violet-600/10 hover:text-violet-600"
                 }
               `}
-            >
-              <span className="text-xl">{item.icon}</span>
-              <span>{item.label}</span>
-            </div>
+              >
+                <span className="text-xl">{item.icon}</span>
+                <span>{item.label}</span>
+              </div>
+            </Link>
           );
 
           return item.link ? (
