@@ -17,7 +17,7 @@ function NotFound() {
         </p>
 
         <Link
-          to="/"
+          to="/manager/dashboard"
           className="mt-8 block w-full rounded-2xl bg-blue-600 py-3
                      text-base  text-white hover:bg-blue-700"
         >
