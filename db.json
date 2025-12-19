@@ -62,6 +62,13 @@
       "email": "abdulloh@gmail.com",
       "password": "1234",
       "role": "manager"
+    },
+    {
+      "id": "10",
+      "name": "Humoyun Berdiyev",
+      "email": "humoyun@gmail.com",
+      "password": "1234",
+      "role": "manager"
     }
   ],
   "employees": [

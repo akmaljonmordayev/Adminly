@@ -35,7 +35,6 @@ function Register() {
     e.preventDefault()
     setLoading(true)
     setError('')
-
     try {
       const res = await axios.get('http://localhost:5000/users')
       const users = res.data
@@ -90,7 +89,6 @@ function Register() {
           shadow-[0_0_40px_rgba(0,255,255,0.25)]
           border border-cyan-400/30 flex"
         >
-          {/* LEFT */}
           <div
             className="rotate-20 w-150 h-200 relative -top-50 -left-35 flex items-center justify-center
             bg-linear-to-br from-cyan-500/20 to-blue-600/20 clip-path-diagonal"
@@ -100,14 +98,12 @@ function Register() {
             </h1>
           </div>
 
-          {/* RIGHT */}
           <div className="w-1/2 p-10 flex flex-col justify-center">
             <h2 className="text-center text-4xl font-semibold text-white mb-8">
               Sign Up
             </h2>
 
             <form onSubmit={onSubmitted} className="space-y-6">
-              {/* EMAIL */}
               <span className="relative block">
                 <input
                   type="email"
@@ -127,7 +123,6 @@ function Register() {
                 <MdEmail className="absolute right-2 top-1/2 -translate-y-1/2 text-cyan-400" />
               </span>
 
-              {/* PASSWORD */}
               <span className="relative block">
                 <input
                   type={open ? 'text' : 'password'}
@@ -158,7 +153,6 @@ function Register() {
                 )}
               </span>
 
-              {/* NAME */}
               <span className="relative block">
                 <input
                   type="text"
