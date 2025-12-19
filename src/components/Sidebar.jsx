@@ -24,16 +24,6 @@ function Sidebar() {
     { id: "dashboard", label: "Dashboard", icon: <MdDashboard />, link: "/" },
     { id: "pagelayouts", label: "Page Layouts", icon: <MdApps /> },
     { id: "apps", label: "Apps", icon: <MdWidgets /> },
-    { id: "widgets", label: "Widgets", icon: <MdViewSidebar /> },
-    { id: "sidebarlayouts", label: "Sidebar Layouts", icon: <MdSettings /> },
-    { id: "basicui", label: "Basic UI Elements", icon: <MdCropSquare /> },
-    { id: "advancedui", label: "Advanced UI", icon: <MdOutlineCategory /> },
-    { id: "popups", label: "Popups", icon: <MdWidgets /> },
-    { id: "notifications", label: "Notifications", icon: <MdNotifications /> },
-    { id: "icons", label: "Icons", icon: <MdFormatListBulleted /> },
-    { id: "forms", label: "Forms", icon: <MdEdit /> },
-    { id: "texteditors", label: "Text editors", icon: <MdEdit /> },
-    { id: "codeeditors", label: "Code editors", icon: <MdCode /> },
   ];
 
   let user = JSON.parse(localStorage.getItem("user"));
