@@ -79,12 +79,11 @@
   ],
   "tasks": [
     {
-      "id": "e1f9",
-      "taskName": "asdv",
-      "employeeName": "asdv",
+      "id": "3a62",
+      "taskName": "Designerlar bilan birgalikda ishlab headerni yasab kelish kere!",
+      "employeeName": "Bilol",
       "status": "pending",
-      "deadline": "1211-12-12",
-      "managerName": "Akmal Mordayev"
+      "deadline": "2024-12-12"
     }
   ]
 }
