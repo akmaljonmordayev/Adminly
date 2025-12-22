@@ -12,7 +12,7 @@ import { FaBell } from "react-icons/fa";
 
 function TopBar({ image, name, username }) {
   return (
-    <div className="bg-[black] w-full h-16 flex items-center px-6 gap-4
+    <div className="bg-[#0b1220] w-full h-16 flex items-center px-6 gap-4
     from-[#020617] via-[#020b1c] to-[#031c2e]
       border-b border-cyan-500/30 shadow-[0_0_20px_rgba(34,211,238,0.15)]">
 
