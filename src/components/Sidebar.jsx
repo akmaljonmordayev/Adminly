@@ -15,6 +15,7 @@ import {
 import { FaUserCircle } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
+
 function Sidebar() {
   const [active, setActive] = useState("dashboard");
 
@@ -76,20 +77,25 @@ function Sidebar() {
     },
   ];
 
-  const user = JSON.parse(localStorage.getItem("user")) || { name: "Guest", role: "Manager" };
+  const user = JSON.parse(localStorage.getItem("user")) || {
+    name: "Guest",
+    role: "Manager",
+  };
 
   return (
-    <aside className="w-[280px] bg-[#0b1220] text-white p-6 flex flex-col shadow-[0_0_50px_rgba(0,255,255,0.2)]">
-      <h1 className="text-3xl font-bold text-cyan-400 flex items-center gap-3 mb-8">
-        <MdDashboard className="text-cyan-300" />
-        Adminly
-      </h1>
+    <aside className="w-[280px]  bg-[#0b1220] text-white p-6 flex flex-col shadow-[0_0_50px_rgba(0,255,255,0.2)]">
+      <div>
+        <h1 className="text-3xl font-bold text-cyan-400 flex items-center gap-3 mb-8">
+          <MdDashboard className="text-cyan-300" />
+          Adminly
+        </h1>
 
-      <div className="flex items-center gap-3 mb-10 p-3 rounded-xl bg-cyan-500/10 shadow-[0_0_15px_rgba(0,255,255,0.1)]">
-        <FaUserCircle className="text-5xl text-cyan-400" />
-        <div>
-          <p className="font-semibold text-white">{user.name}</p>
-          <p className="text-sm text-cyan-200">{user.role}</p>
+        <div className="flex items-center gap-3 mb-10 p-3 rounded-xl bg-cyan-500/10 shadow-[0_0_15px_rgba(0,255,255,0.1)]">
+          <FaUserCircle className="text-5xl text-cyan-400" />
+          <div>
+            <p className="font-semibold text-white">{user.name}</p>
+            <p className="text-sm text-cyan-200">{user.role}</p>
+          </div>
         </div>
       </div>
 
@@ -97,12 +103,17 @@ function Sidebar() {
         {menu.map((item) => {
           const isActive = active === item.id;
           return (
-            <Link key={item.id} to={item.link} onClick={() => setActive(item.id)}>
+            <Link
+              key={item.id}
+              to={item.link}
+              onClick={() => setActive(item.id)}
+            >
               <div
                 className={`flex items-center gap-4 px-5 py-3 cursor-pointer transition-all duration-300
-                  ${isActive
-                    ? "bg-cyan-400/20 text-cyan-400 shadow-[0_0_10px_rgba(0,255,255,0.3)] font-semibold rounded-xl"
-                    : "text-gray-300 hover:bg-cyan-400/10 hover:text-cyan-300 rounded-xl hover:translate-x-1"
+                  ${
+                    isActive
+                      ? "bg-cyan-400/20 text-cyan-400 shadow-[0_0_10px_rgba(0,255,255,0.3)] font-semibold rounded-xl"
+                      : "text-gray-300 hover:bg-cyan-400/10 hover:text-cyan-300 rounded-xl hover:translate-x-1"
                   }
                 `}
               >

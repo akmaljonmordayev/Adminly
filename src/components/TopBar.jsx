@@ -5,21 +5,31 @@ import { FaUserCircle } from "react-icons/fa";
 import { IoLogOutOutline } from "react-icons/io5";
 import { MdOutlineMailOutline } from "react-icons/md";
 import { FaBell } from "react-icons/fa";
-
-
-
-
+import { useNavigate } from "react-router-dom";
+import { toast, ToastContainer } from "react-toastify";
 
 function TopBar({ image, name, username }) {
-  return (
-    <div className="bg-[#0b1220] w-full h-16 flex items-center px-6 gap-4
-    from-[#020617] via-[#020b1c] to-[#031c2e]
-      border-b border-cyan-500/30 shadow-[0_0_20px_rgba(34,211,238,0.15)]">
+  const navigate = useNavigate();
+  const SignOut = () => {
+    toast.info("Siz tizimdan chiqdingiz!");
+    setTimeout(() => {
+      localStorage.clear();
+      navigate("/auth/singin");
+    }, 1500);
+  };
 
+  return (
+    <div
+      className="bg-[#0b1220] w-full h-16 flex items-center px-6 gap-4
+    from-[#020617] via-[#020b1c] to-[#031c2e]
+      border-b border-cyan-500/30 shadow-[0_0_20px_rgba(34,211,238,0.15)]"
+    >
       <FaBars className="text-cyan-400 text-2xl cursor-pointer hover:text-cyan-300" />
 
-      <div className="flex items-center bg-[#020617] border border-cyan-400/30
-        rounded-xl px-4 py-1 w-72 shadow-inner">
+      <div
+        className="flex items-center bg-[#020617] border border-cyan-400/30
+        rounded-xl px-4 py-1 w-72 shadow-inner"
+      >
         <input
           placeholder="Search projects"
           type="text"
@@ -37,9 +47,13 @@ function TopBar({ image, name, username }) {
 
       <div className="flex items-center gap-5 ml-6 text-cyan-400 text-xl cursor-pointer">
         <MdOutlineMailOutline className=" text-[25px] hover:text-red-600" />
-        <IoLogOutOutline className=" text-[25px] hover:text-red-600" />
+        <IoLogOutOutline
+          onClick={SignOut}
+          className=" text-[25px] hover:text-red-600"
+        />
         <FaBell className=" text-[25px] hover:text-red-600" />
       </div>
+      <ToastContainer position="top-right" autoClose={2000} theme="dark" />
     </div>
   );
 }

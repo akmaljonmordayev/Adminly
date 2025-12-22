@@ -2,71 +2,57 @@
   "users": [
     {
       "id": "1",
-      "name": "Akmal Manager",
+      "name": "Akmal Mordayev",
       "email": "akmal@gmail.com",
       "password": "1234",
       "role": "manager"
     },
     {
       "id": "2",
-      "name": "Mohinur Manager",
+      "name": "Mohinur Sulaymonqulova",
       "email": "mohinur@gmail.com",
       "password": "1234",
       "role": "manager"
     },
     {
       "id": "3",
-      "name": "Xojarxon Manager",
+      "name": "Xojarxon Xaydarova",
       "email": "xojarxon@gmail.com",
       "password": "1234",
       "role": "manager"
     },
     {
       "id": "4",
-      "name": "Bilol Manager",
+      "name": "Bilol Komiljonov",
       "email": "bilol@gmail.com",
       "password": "1234",
       "role": "manager"
     },
     {
       "id": "5",
-      "name": "Akrom Manager",
+      "name": "Akrom Ziyayev",
       "email": "akrom@gmail.com",
       "password": "1234",
       "role": "manager"
     },
     {
       "id": "6",
-      "name": "Abdulaziz Manager",
+      "name": "Abdulaziz Xasanov",
       "email": "abdulaziz@gmail.com",
       "password": "1234",
       "role": "manager"
     },
     {
       "id": "7",
-      "name": "Muhammadali Manager",
+      "name": "Muhammadali Baxtiyorov",
       "email": "muhammadali@gmail.com",
       "password": "1234",
       "role": "manager"
     },
     {
       "id": "8",
-      "name": "Muhammadqodir Manager",
+      "name": "Muhammadqodir Shukriddinov",
       "email": "muhammadqodir@gmail.com",
-      "password": "1234",
-      "role": "manager"
-    },
-    {
-      "id": "9",
-      "name": "Abdulloh Abdumalikov",
-      "email": "abdulloh@gmail.com",
-      "password": "1234",
-      "role": "manager"
-    },
-    {
-      "id": "10",
-      "name": "Humoyun Berdiyev",
-      "email": "humoyun@gmail.com",
       "password": "1234",
       "role": "manager"
     }
@@ -89,6 +75,16 @@
       "bonus": 300000,
       "penalty": 0,
       "month": "2025-12"
+    }
+  ],
+  "tasks": [
+    {
+      "id": "e1f9",
+      "taskName": "asdv",
+      "employeeName": "asdv",
+      "status": "pending",
+      "deadline": "1211-12-12",
+      "managerName": "Akmal Mordayev"
     }
   ]
 }
