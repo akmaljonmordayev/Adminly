@@ -19,16 +19,61 @@ function Sidebar() {
   const [active, setActive] = useState("dashboard");
 
   const menu = [
-    { id: "dashboard", label: "Dashboard", icon: <MdDashboard />, link: "/manager/dashboard" },
-    { id: "employees", label: "Employees", icon: <MdPeople />, link: "/manager/employees" },
+    {
+      id: "dashboard",
+      label: "Dashboard",
+      icon: <MdDashboard />,
+      link: "/manager/dashboard",
+    },
+    {
+      id: "employees",
+      label: "Employees",
+      icon: <MdPeople />,
+      link: "/manager/employees",
+    },
     { id: "tasks", label: "Tasks", icon: <MdTask />, link: "/manager/tasks" },
-    { id: "complaints", label: "Complaints", icon: <MdReport />, link: "/manager/complaints" },
-    { id: "finance", label: "Finance", icon: <MdAttachMoney />, link: "/manager/finance" },
-    { id: "settings", label: "Settings", icon: <MdSettings />, link: "/manager/settings" },
-    { id: "archive", label: "Archive", icon: <MdArchive />, link: "/manager/archive" },
-    { id: "announcements", label: "Announcements", icon: <MdAnnouncement />, link: "/manager/announcements" },
-    { id: "vacations", label: "Leaves / Vacations", icon: <MdBeachAccess />, link: "/manager/vacations" },
-    { id: "logs", label: "Audit Logs", icon: <MdHistory />, link: "/manager/logs" },
+    {
+      id: "complaints",
+      label: "Complaints",
+      icon: <MdReport />,
+      link: "/manager/complaints",
+    },
+    {
+      id: "finance",
+      label: "Finance",
+      icon: <MdAttachMoney />,
+      link: "/manager/finance",
+    },
+    {
+      id: "settings",
+      label: "Settings",
+      icon: <MdSettings />,
+      link: "/manager/settings",
+    },
+    {
+      id: "archive",
+      label: "Archive",
+      icon: <MdArchive />,
+      link: "/manager/archieve",
+    },
+    {
+      id: "announcements",
+      label: "Announcements",
+      icon: <MdAnnouncement />,
+      link: "/manager/announcemenets",
+    },
+    {
+      id: "vacations",
+      label: "Leaves / Vacations",
+      icon: <MdBeachAccess />,
+      link: "/manager/vacations",
+    },
+    {
+      id: "logs",
+      label: "Audit Logs",
+      icon: <MdHistory />,
+      link: "/manager/logs",
+    },
   ];
 
   const user = JSON.parse(localStorage.getItem("user")) || { name: "Guest", role: "Manager" };
