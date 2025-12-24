@@ -1,55 +1,6 @@
 {
   "users": [
     {
-      "id": "1",
-      "name": "Akmal Mordayev",
-      "email": "akmal@gmail.com",
-      "password": "1234",
-      "role": "manager"
-    },
-    {
-      "id": "2",
-      "name": "Mohinur Sulaymonqulova",
-      "email": "mohinur@gmail.com",
-      "password": "1234",
-      "role": "manager"
-    },
-    {
-      "id": "3",
-      "name": "Xojarxon Xaydarova",
-      "email": "xojarxon@gmail.com",
-      "password": "1234",
-      "role": "manager"
-    },
-    {
-      "id": "4",
-      "name": "Bilol Komiljonov",
-      "email": "bilol@gmail.com",
-      "password": "1234",
-      "role": "manager"
-    },
-    {
-      "id": "5",
-      "name": "Akrom Ziyayev",
-      "email": "akrom@gmail.com",
-      "password": "1234",
-      "role": "manager"
-    },
-    {
-      "id": "6",
-      "name": "Abdulaziz Xasanov",
-      "email": "abdulaziz@gmail.com",
-      "password": "1234",
-      "role": "manager"
-    },
-    {
-      "id": "7",
-      "name": "Muhammadali Baxtiyorov",
-      "email": "muhammadali@gmail.com",
-      "password": "1234",
-      "role": "manager"
-    },
-    {
       "id": "8",
       "name": "Muhammadqodir Shukriddinov",
       "email": "muhammadqodir@gmail.com",
@@ -60,6 +11,13 @@
       "id": "9",
       "name": "Abdulloh Abdumalikov",
       "email": "abdulloh@gmail.com",
+      "password": "1234",
+      "role": "manager"
+    },
+    {
+      "id": "10",
+      "name": "bilol",
+      "email": "bilol@gmail.com",
       "password": "1234",
       "role": "manager"
     }
@@ -116,13 +74,13 @@
   "logs": [
     {
       "id": "1",
-      "userId": "2",
+      "userId": null,
       "userName": "Akmal Mordayev",
       "action": "UPDATE"
     },
     {
       "id": "2",
-      "userId": "3",
+      "userId": null,
       "userName": "Abdulloh Abdumalikov",
       "action": "CREATE"
     }
