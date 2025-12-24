@@ -77,14 +77,5 @@
       "month": "2025-12"
     }
   ],
-  "tasks": [
-    {
-      "id": "e1f9",
-      "taskName": "asdv",
-      "employeeName": "asdv",
-      "status": "pending",
-      "deadline": "1211-12-12",
-      "managerName": "Akmal Mordayev"
-    }
-  ]
+  "tasks": []
 }
