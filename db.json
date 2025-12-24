@@ -1,6 +1,55 @@
 {
   "users": [
     {
+      "id": "1",
+      "name": "Akmal Mordayev",
+      "email": "akmal@gmail.com",
+      "password": "1234",
+      "role": "manager"
+    },
+    {
+      "id": "2",
+      "name": "Mohinur Sulaymonqulova",
+      "email": "mohinur@gmail.com",
+      "password": "1234",
+      "role": "manager"
+    },
+    {
+      "id": "3",
+      "name": "Xojarxon Xaydarova",
+      "email": "xojarxon@gmail.com",
+      "password": "1234",
+      "role": "manager"
+    },
+    {
+      "id": "4",
+      "name": "Bilol Komiljonov",
+      "email": "bilol@gmail.com",
+      "password": "1234",
+      "role": "manager"
+    },
+    {
+      "id": "5",
+      "name": "Akrom Ziyayev",
+      "email": "akrom@gmail.com",
+      "password": "1234",
+      "role": "manager"
+    },
+    {
+      "id": "6",
+      "name": "Abdulaziz Xasanov",
+      "email": "abdulaziz@gmail.com",
+      "password": "1234",
+      "role": "manager"
+    },
+    {
+      "id": "7",
+      "name": "Muhammadali Baxtiyorov",
+      "email": "muhammadali@gmail.com",
+      "password": "1234",
+      "role": "manager"
+    },
+    {
       "id": "8",
       "name": "Muhammadqodir Shukriddinov",
       "email": "muhammadqodir@gmail.com",
@@ -11,13 +60,6 @@
       "id": "9",
       "name": "Abdulloh Abdumalikov",
       "email": "abdulloh@gmail.com",
-      "password": "1234",
-      "role": "manager"
-    },
-    {
-      "id": "10",
-      "name": "bilol",
-      "email": "bilol@gmail.com",
       "password": "1234",
       "role": "manager"
     }
@@ -60,38 +102,27 @@
       "createdBy": 1,
       "createdAt": "2025-12-01T10:00:00Z",
       "updatedAt": "2025-12-30T14:12:00Z"
-    },
-    {
-      "id": "uuid-123",
-      "userId": 2,
-      "fullName": "Adulaziz Xasanov",
-      "baseSalary": 3000000,
-      "kpiPercent": 20,
-      "kpiAmount": 600000,
-      "bonus": 500000,
-      "penalty": 200000,
-      "totalSalary": 3900000,
-      "month": "2025-12",
-      "status": "paid",
-      "paymentDate": "2025-12-30",
-      "paymentMethod": "bank",
-      "comment": "December salary paid",
-      "createdBy": 1,
-      "createdAt": "2025-12-01T10:00:00Z",
-      "updatedAt": "2025-12-30T14:12:00Z"
     }
   ],
-  "tasks": [],
+  "tasks": [
+    {
+      "id": "e579",
+      "taskName": "dsavasdv",
+      "employeeName": "1212",
+      "status": "done",
+      "deadline": "0012-12-12"
+    }
+  ],
   "logs": [
     {
       "id": "1",
-      "userId": null,
+      "userId": "2",
       "userName": "Akmal Mordayev",
       "action": "UPDATE"
     },
     {
       "id": "2",
-      "userId": null,
+      "userId": "3",
       "userName": "Abdulloh Abdumalikov",
       "action": "CREATE"
     }
