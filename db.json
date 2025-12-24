@@ -8,13 +8,6 @@
       "role": "manager"
     },
     {
-      "id": "2",
-      "name": "Mohinur Sulaymonqulova",
-      "email": "mohinur@gmail.com",
-      "password": "1234",
-      "role": "manager"
-    },
-    {
       "id": "3",
       "name": "Xojarxon Xaydarova",
       "email": "xojarxon@gmail.com",
@@ -104,19 +97,11 @@
       "updatedAt": "2025-12-30T14:12:00Z"
     }
   ],
-  "tasks": [
-    {
-      "id": "e579",
-      "taskName": "dsavasdv",
-      "employeeName": "1212",
-      "status": "done",
-      "deadline": "0012-12-12"
-    }
-  ],
+  "tasks": [],
   "logs": [
     {
       "id": "1",
-      "userId": "2",
+      "userId": null,
       "userName": "Akmal Mordayev",
       "action": "UPDATE"
     },
