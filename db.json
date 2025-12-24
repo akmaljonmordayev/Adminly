@@ -102,17 +102,28 @@
       "createdBy": 1,
       "createdAt": "2025-12-01T10:00:00Z",
       "updatedAt": "2025-12-30T14:12:00Z"
-    }
-  ],
-  "tasks": [
+    },
     {
-      "id": "e579",
-      "taskName": "dsavasdv",
-      "employeeName": "1212",
-      "status": "done",
-      "deadline": "0012-12-12"
+      "id": "uuid-123",
+      "userId": 2,
+      "fullName": "Adulaziz Xasanov",
+      "baseSalary": 3000000,
+      "kpiPercent": 20,
+      "kpiAmount": 600000,
+      "bonus": 500000,
+      "penalty": 200000,
+      "totalSalary": 3900000,
+      "month": "2025-12",
+      "status": "paid",
+      "paymentDate": "2025-12-30",
+      "paymentMethod": "bank",
+      "comment": "December salary paid",
+      "createdBy": 1,
+      "createdAt": "2025-12-01T10:00:00Z",
+      "updatedAt": "2025-12-30T14:12:00Z"
     }
   ],
+  "tasks": [],
   "logs": [
     {
       "id": "1",

@@ -5,6 +5,7 @@ const API_URL = "http://localhost:5000/tasks";
 
 function Tasks() {
   const [tasks, setTasks] = useState([]);
+  const [employee, setEmployee] = useState([]);
   const [taskName, setTaskName] = useState("");
   const [employeeName, setEmployeeName] = useState("");
   const [deadline, setDeadline] = useState("");
@@ -18,6 +19,21 @@ function Tasks() {
   useEffect(() => {
     fetchTasks();
   }, []);
+  const fetchEmployees = async () => {
+    const res = await fetch("http://localhost:5000/employees");
+    const data = await res.json();
+    setEmployee(data);
+  };
+
+  useEffect(() => {
+    fetchEmployees();
+  }, []);
+
+  let fullnames = [];
+
+  employee.forEach((item) => {
+    fullnames.push(item.fullName);
+  });
 
   const addTask = async () => {
     if (!taskName || !employeeName || !deadline) {
@@ -89,12 +105,15 @@ function Tasks() {
               className="px-4 py-3 rounded-xl bg-[#020617] border border-slate-700"
             />
 
-            <input
-              placeholder="Employee"
-              value={employeeName}
+            <select
               onChange={(e) => setEmployeeName(e.target.value)}
-              className="px-4 py-3 rounded-xl bg-[#020617] border border-slate-700"
-            />
+              name=""
+              id=""
+            >
+              {fullnames.map((item) => (
+                <option value={item}>{item}</option>
+              ))}
+            </select>
 
             <input
               type="date"
