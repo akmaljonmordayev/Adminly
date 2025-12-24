@@ -221,3 +221,138 @@
     }
   ]
 }
+
+"id": "ANN002",
+"title": "New Health Insurance Plan",
+"text": "A new health insurance plan will be effective starting January 1, 2026. Please review the plan details in your email.",
+"date": "2025-12-18",
+"author": "Admin Department"
+},
+{
+"id": "ANN003",
+"title": "Year-End Meeting",
+"text": "The year-end meeting will be held on December 28 at 3 PM in the main conference hall. Attendance is mandatory.",
+"date": "2025-12-15",
+"author": "Management"
+}
+],
+"complaints": [
+{
+"id": "CPL001",
+"employeeId": "EMP005",
+"employeeName": "Ali R.",
+"title": "Air Conditioner Not Working",
+"description": "The air conditioner in the 3rd-floor office is not functioning properly.",
+"date": "2025-12-21",
+"status": "pending"
+},
+{
+"id": "CPL002",
+"employeeId": "EMP006",
+"employeeName": "Sabina M.",
+"title": "Internet Connectivity Issue",
+"description": "Internet connection keeps dropping in the design department.",
+"date": "2025-12-20",
+"status": "reviewed"
+},
+{
+"id": "CPL003",
+"employeeId": "EMP007",
+"employeeName": "Jasur T.",
+"title": "Request for New Chair",
+"description": "My office chair is broken and needs replacement.",
+"date": "2025-12-19",
+"status": "resolved"
+}
+]
+}
+
+"id": "ANN002",
+"title": "New Health Insurance Plan",
+"text": "A new health insurance plan will be effective starting January 1, 2026. Please review the plan details in your email.",
+"date": "2025-12-18",
+"author": "Admin Department"
+},
+{
+"id": "ANN003",
+"title": "Year-End Meeting",
+"text": "The year-end meeting will be held on December 28 at 3 PM in the main conference hall. Attendance is mandatory.",
+"date": "2025-12-15",
+"author": "Management"
+}
+],
+"complaints": [
+{
+"id": "CPL001",
+"employeeId": "EMP005",
+"employeeName": "Ali R.",
+"title": "Air Conditioner Not Working",
+"description": "The air conditioner in the 3rd-floor office is not functioning properly.",
+"date": "2025-12-21",
+"status": "pending"
+},
+{
+"id": "CPL002",
+"employeeId": "EMP006",
+"employeeName": "Sabina M.",
+"title": "Internet Connectivity Issue",
+"description": "Internet connection keeps dropping in the design department.",
+"date": "2025-12-20",
+"status": "reviewed"
+},
+{
+"id": "CPL003",
+"employeeId": "EMP007",
+"employeeName": "Jasur T.",
+"title": "Request for New Chair",
+"description": "My office chair is broken and needs replacement.",
+"date": "2025-12-19",
+"status": "resolved"
+}
+]
+}
+
+      "id": "ANN002",
+      "title": "New Health Insurance Plan",
+      "text": "A new health insurance plan will be effective starting January 1, 2026. Please review the plan details in your email.",
+      "date": "2025-12-18",
+      "author": "Admin Department"
+    },
+    {
+      "id": "ANN003",
+      "title": "Year-End Meeting",
+      "text": "The year-end meeting will be held on December 28 at 3 PM in the main conference hall. Attendance is mandatory.",
+      "date": "2025-12-15",
+      "author": "Management"
+    }
+  ],
+  "complaints": [
+    {
+      "id": "CPL001",
+      "employeeId": "EMP005",
+      "employeeName": "Ali R.",
+      "title": "Air Conditioner Not Working",
+      "description": "The air conditioner in the 3rd-floor office is not functioning properly.",
+      "date": "2025-12-21",
+      "status": "pending"
+    },
+    {
+      "id": "CPL002",
+      "employeeId": "EMP006",
+      "employeeName": "Sabina M.",
+      "title": "Internet Connectivity Issue",
+      "description": "Internet connection keeps dropping in the design department.",
+      "date": "2025-12-20",
+      "status": "reviewed"
+    },
+    {
+      "id": "CPL003",
+      "employeeId": "EMP007",
+      "employeeName": "Jasur T.",
+      "title": "Request for New Chair",
+      "description": "My office chair is broken and needs replacement.",
+      "date": "2025-12-19",
+      "status": "resolved"
+    }
+  ]
+}
