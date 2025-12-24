@@ -7,7 +7,6 @@ import ProtectedRoute from "./components/ProtectedRoute";
 const Login = React.lazy(() => import("./auth/Login"));
 const Register = React.lazy(() => import("./auth/Register"));
 const NotFound = React.lazy(() => import("./role/Employee/NotFound"));
-
 const Announcements = React.lazy(() => import("./role/Manager/Announcements"));
 const Archieve = React.lazy(() => import("./role/Manager/Archieve"));
 const Complaints = React.lazy(() => import("./role/Manager/Complaints"));

@@ -77,13 +77,5 @@
       "month": "2025-12"
     }
   ],
-  "tasks": [
-    {
-      "id": "3a62",
-      "taskName": "Designerlar bilan birgalikda ishlab headerni yasab kelish kere!",
-      "employeeName": "Bilol",
-      "status": "pending",
-      "deadline": "2024-12-12"
-    }
-  ]
+  "tasks": []
 }
