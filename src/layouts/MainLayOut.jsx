@@ -1,6 +1,6 @@
-import React from "react";
-import TopBar from "../components/TopBar";
-import Sidebar from "../components/Sidebar";
+import React from 'react'
+import TopBar from '../components/TopBar'
+import Sidebar from '../components/Sidebar'
 
 function MainLayOut({ children }) {
   return (
@@ -22,7 +22,7 @@ function MainLayOut({ children }) {
 
         <main
           className="
-        flex-1 p-1 overflow-y-auto
+        flex-1 overflow-y-auto
         [&::-webkit-scrollbar]:hidden
         [-ms-overflow-style:none]
         [scrollbar-width:none]
@@ -32,7 +32,7 @@ function MainLayOut({ children }) {
         </main>
       </div>
     </div>
-  );
+  )
 }
 
-export default MainLayOut;
+export default MainLayOut
