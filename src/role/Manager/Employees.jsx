@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
+import { toast, ToastContainer } from "react-toastify";
 
 function Employees() {
   const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch("http://localhost:5000/users")
+    fetch("http://localhost:5000/employees")
       .then((res) => res.json())
       .then((data) => {
         setUsers(data);
@@ -19,8 +20,8 @@ function Employees() {
 
   const handleDelete = (id) => {
     if (!window.confirm("Delete this employee?")) return;
-
-    fetch(`http://localhost:5000/users/${id}`, {
+   toast.info("Siz tizimdan chiqdingiz!")
+    fetch(`http://localhost:5000/employees/${id}`, {
       method: "DELETE",
     }).then(() => {
       setUsers(users.filter((u) => u.id !== id));
@@ -31,7 +32,7 @@ function Employees() {
     const newName = prompt("New name:", user.name);
     if (!newName) return;
 
-    fetch(`http://localhost:5000/users/${user.id}`, {
+    fetch(`http://localhost:5000/employees/${user.id}`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ ...user, name: newName }),
@@ -61,8 +62,8 @@ function Employees() {
           {users.map((user) => (
             <tr key={user.id} style={tr}>
               <td style={td}>{user.id}</td>
-              <td style={td}>{user.name}</td>
-              <td style={td}>{user.email}</td>
+              <td style={td}>{user.fullName}</td>
+              <td style={td}>?</td>
               <td style={td}>
                 <button
                   onClick={() => handleEdit(user)}
@@ -81,6 +82,7 @@ function Employees() {
           ))}
         </tbody>
       </table>
+      <ToastContainer position="top-right" autoClose={2000} theme="dark" />
     </div>
   );
 }
