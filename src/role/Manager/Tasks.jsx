@@ -90,6 +90,7 @@ function Tasks() {
             />
 
             <select
+              className="text-white bg-[#020617] rounded-xl py-3 border border-slate-700"
               onChange={(e) => setEmployeeName(e.target.value)}
               name=""
               id=""
