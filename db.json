@@ -55,27 +55,176 @@
       "email": "muhammadqodir@gmail.com",
       "password": "1234",
       "role": "manager"
+    },
+    {
+      "id": "9",
+      "name": "Abdulloh Abdumalikov",
+      "email": "abdulloh@gmail.com",
+      "password": "1234",
+      "role": "manager"
     }
   ],
   "employees": [
     {
-      "id": "1",
+      "id": "uuid-123",
       "userId": 2,
+      "fullName": "Akmal Mordayev",
       "baseSalary": 3000000,
-      "kpi": 20,
+      "kpiPercent": 20,
+      "kpiAmount": 600000,
       "bonus": 500000,
       "penalty": 200000,
-      "month": "2025-12"
+      "totalSalary": 3900000,
+      "month": "2025-12",
+      "status": "paid",
+      "paymentDate": "2025-12-30",
+      "paymentMethod": "bank",
+      "comment": "December salary paid",
+      "createdBy": 1,
+      "createdAt": "2025-12-01T10:00:00Z",
+      "updatedAt": "2025-12-30T14:12:00Z"
+    },
+    {
+      "id": "uuid-123",
+      "userId": 2,
+      "fullName": "Abdulloh Abdumalikov",
+      "baseSalary": 3000000,
+      "kpiPercent": 20,
+      "kpiAmount": 600000,
+      "bonus": 500000,
+      "penalty": 200000,
+      "totalSalary": 3900000,
+      "month": "2025-12",
+      "status": "paid",
+      "paymentDate": "2025-12-30",
+      "paymentMethod": "bank",
+      "comment": "December salary paid",
+      "createdBy": 1,
+      "createdAt": "2025-12-01T10:00:00Z",
+      "updatedAt": "2025-12-30T14:12:00Z"
+    }
+  ],
+<<<<<<< HEAD
+  "tasks": []
+}
+=======
+  "tasks": [
+    {
+      "id": "e579",
+      "taskName": "dsavasdv",
+      "employeeName": "1212",
+      "status": "done",
+      "deadline": "0012-12-12"
+    }
+  ],
+  "logs": [
+    {
+      "id": "1",
+      "userId": "2",
+      "userName": "Akmal Mordayev",
+      "action": "UPDATE"
     },
     {
       "id": "2",
-      "userId": 3,
-      "baseSalary": 3500000,
-      "kpi": 15,
-      "bonus": 300000,
-      "penalty": 0,
-      "month": "2025-12"
+      "userId": "3",
+      "userName": "Abdulloh Abdumalikov",
+      "action": "CREATE"
     }
   ],
-  "tasks": []
+  "leaves": [
+    {
+      "employeeId": "EMP001",
+      "employeeName": "Akmal T.",
+      "type": "sick leave",
+      "startDate": "2025-12-25",
+      "endDate": "2025-12-26",
+      "reason": "flu",
+      "status": "pending"
+    },
+    {
+      "employeeId": "EMP002",
+      "employeeName": "Laylo S.",
+      "type": "personal leave",
+      "startDate": "2025-12-28",
+      "endDate": "2025-12-28",
+      "reason": "personal work",
+      "status": "approved"
+    }
+  ],
+  "vacations": [
+    {
+      "employeeId": "EMP003",
+      "employeeName": "Rustam K.",
+      "destination": "Italy",
+      "startDate": "2026-01-05",
+      "endDate": "2026-01-15",
+      "purpose": "tourism",
+      "status": "pending"
+    },
+    {
+      "employeeId": "EMP004",
+      "employeeName": "Nilufar A.",
+      "destination": "Maldives",
+      "startDate": "2026-02-10",
+      "endDate": "2026-02-20",
+      "purpose": "relaxation",
+      "status": "approved"
+    }
+  ],
+  "announcements": [
+    {
+      "id": "ANN001",
+      "title": "Company Holiday Schedule",
+      "text": "Please note that the company will be closed from December 31 to January 2 for New Year holidays.",
+      "date": "2025-12-20",
+      "author": "HR Department"
+    },
+    {
+
+      "id": "ANN002",
+      "title": "New Health Insurance Plan",
+      "text": "A new health insurance plan will be effective starting January 1, 2026. Please review the plan details in your email.",
+      "date": "2025-12-18",
+      "author": "Admin Department"
+    },
+    {
+      "id": "ANN003",
+      "title": "Year-End Meeting",
+      "text": "The year-end meeting will be held on December 28 at 3 PM in the main conference hall. Attendance is mandatory.",
+      "date": "2025-12-15",
+      "author": "Management"
+    }
+  ],
+  "complaints": [
+    {
+      "id": "CPL001",
+      "employeeId": "EMP005",
+      "employeeName": "Ali R.",
+      "title": "Air Conditioner Not Working",
+      "description": "The air conditioner in the 3rd-floor office is not functioning properly.",
+      "date": "2025-12-21",
+      "status": "pending"
+    },
+    {
+      "id": "CPL002",
+      "employeeId": "EMP006",
+      "employeeName": "Sabina M.",
+      "title": "Internet Connectivity Issue",
+      "description": "Internet connection keeps dropping in the design department.",
+      "date": "2025-12-20",
+      "status": "reviewed"
+    },
+    {
+      "id": "CPL003",
+      "employeeId": "EMP007",
+      "employeeName": "Jasur T.",
+      "title": "Request for New Chair",
+      "description": "My office chair is broken and needs replacement.",
+      "date": "2025-12-19",
+      "status": "resolved"
+    }
+  ]
 }
+
+
+>>>>>>> a7b861042a4690852a084b25b18720f0008b2db5
