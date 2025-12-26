@@ -15,7 +15,6 @@ import {
 import { FaUserCircle } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
-
 function Sidebar() {
   const [active, setActive] = useState("dashboard");
 
@@ -65,9 +64,15 @@ function Sidebar() {
     },
     {
       id: "vacations",
-      label: "Leaves / Vacations",
+      label: "Vacations",
       icon: <MdBeachAccess />,
       link: "/manager/vacations",
+    },
+    {
+      id: "leaves",
+      label: "Leaves",
+      icon: <MdBeachAccess />,
+      link: "/manager/leaves",
     },
     {
       id: "logs",
