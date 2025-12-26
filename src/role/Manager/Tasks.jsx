@@ -1,77 +1,98 @@
-import React, { useEffect, useState } from 'react'
-import { toast, ToastContainer } from 'react-toastify'
+import React, { useEffect, useState } from "react";
+import { toast, ToastContainer } from "react-toastify";
+import { DatePicker } from "antd";
 
-const API_URL = 'http://localhost:5000/tasks'
+const API_URL = "http://localhost:5000/tasks";
 
 function Tasks() {
-  const [tasks, setTasks] = useState([])
-  const [taskName, setTaskName] = useState('')
-  const [employeeName, setEmployeeName] = useState('')
-  const [deadline, setDeadline] = useState('')
+  const [tasks, setTasks] = useState([]);
+  const [employee, setEmployee] = useState([]);
+  const [taskName, setTaskName] = useState("");
+  const [employeeName, setEmployeeName] = useState("");
+  const [deadline, setDeadline] = useState("");
 
   const fetchTasks = async () => {
-    const res = await fetch(API_URL)
-    const data = await res.json()
-    setTasks(data)
-  }
+    const res = await fetch(API_URL);
+    const data = await res.json();
+    setTasks(data);
+  };
 
   useEffect(() => {
-    fetchTasks()
-  }, [])
+    fetchTasks();
+  }, []);
+  const fetchEmployees = async () => {
+    const res = await fetch("http://localhost:5000/employees");
+    const data = await res.json();
+    setEmployee(data);
+  };
+
+  useEffect(() => {
+    fetchEmployees();
+  }, []);
+
+  let fullnames = [];
+
+  employee.forEach((item) => {
+    fullnames.push(item.fullName);
+  });
 
   const addTask = async () => {
     if (!taskName || !employeeName || !deadline) {
-      toast.error('Iltimos task kirgizing!!')
-      return
+      toast.error("Iltimos task kirgizing!!");
+      return;
     }
     await fetch(API_URL, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         taskName,
         employeeName,
-        status: 'pending',
+        status: "pending",
         deadline,
       }),
-    })
+    });
 
-    toast.success('Task successfully added')
+    toast.success("Task successfully added");
 
-    setTaskName('')
-    setEmployeeName('')
-    setDeadline('')
-    fetchTasks()
-  }
+    setTaskName("");
+    setEmployeeName("");
+    setDeadline("");
+    fetchTasks();
+  };
 
   const updateStatus = async (id, status) => {
-    const task = tasks.find((t) => t.id === id)
+    const task = tasks.find((t) => t.id === id);
 
     await fetch(`${API_URL}/${id}`, {
-      method: 'PUT',
-      headers: { 'Content-Type': 'application/json' },
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ ...task, status }),
-    })
+    });
 
-    fetchTasks()
-  }
+    fetchTasks();
+  };
 
   const deleteTask = async (id) => {
     let res = await fetch(`${API_URL}/${id}`, {
-      method: 'DELETE',
-    })
+      method: "DELETE",
+    });
 
     if (res.ok) {
-      toast.success('Task successfully deleted')
+      toast.success("Task successfully deleted");
     }
 
-    fetchTasks()
-  }
+    fetchTasks();
+  };
 
   const statusColors = {
-    pending: 'text-yellow-400',
-    'in progress': 'text-blue-400',
-    done: 'text-green-400',
-  }
+    pending: "text-yellow-400",
+    "in progress": "text-blue-400",
+    done: "text-green-400",
+  };
+
+  const onChange = (date, dateString) => {
+    setDeadline(dateString);
+  };
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-[#020617] to-[#0b1220] p-8 text-slate-200">
@@ -90,7 +111,8 @@ function Tasks() {
             />
 
             <select
-              className="text-white bg-[#020617] rounded-xl py-3 border border-slate-700"
+              className="text-white bg-[#020617] rounded-xl py-3 border border-slate-700
+"
               onChange={(e) => setEmployeeName(e.target.value)}
               name=""
               id=""
@@ -100,11 +122,10 @@ function Tasks() {
               ))}
             </select>
 
-            <input
-              type="date"
-              value={deadline}
-              onChange={(e) => setDeadline(e.target.value)}
-              className="px-4 py-3 rounded-xl bg-[#020617] border border-slate-700"
+            <DatePicker
+              className="bg-[#020617] border border-slate-700 rounded-xl h-14 px-4"
+              popupClassName="bg-[#020617] text-white"
+              onChange={onChange}
             />
 
             <button
@@ -162,7 +183,7 @@ function Tasks() {
         </div>
       </div>
     </div>
-  )
+  );
 }
 
-export default Tasks
+export default Tasks;
