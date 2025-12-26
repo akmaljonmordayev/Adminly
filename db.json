@@ -104,17 +104,13 @@
       "updatedAt": "2025-12-30T14:12:00Z"
     }
   ],
-<<<<<<< HEAD
-  "tasks": []
-}
-=======
   "tasks": [
     {
-      "id": "e579",
-      "taskName": "dsavasdv",
-      "employeeName": "1212",
-      "status": "done",
-      "deadline": "0012-12-12"
+      "id": "1f40",
+      "taskName": "finance",
+      "employeeName": "Abdulloh Abdumalikov",
+      "status": "pending",
+      "deadline": "2025-12-31"
     }
   ],
   "logs": [
@@ -139,7 +135,8 @@
       "startDate": "2025-12-25",
       "endDate": "2025-12-26",
       "reason": "flu",
-      "status": "pending"
+      "status": "pending",
+      "id": "103b"
     },
     {
       "employeeId": "EMP002",
@@ -148,7 +145,8 @@
       "startDate": "2025-12-28",
       "endDate": "2025-12-28",
       "reason": "personal work",
-      "status": "approved"
+      "status": "approved",
+      "id": "3c2a"
     }
   ],
   "vacations": [
@@ -159,7 +157,8 @@
       "startDate": "2026-01-05",
       "endDate": "2026-01-15",
       "purpose": "tourism",
-      "status": "pending"
+      "status": "pending",
+      "id": "20c0"
     },
     {
       "employeeId": "EMP004",
@@ -168,7 +167,8 @@
       "startDate": "2026-02-10",
       "endDate": "2026-02-20",
       "purpose": "relaxation",
-      "status": "approved"
+      "status": "approved",
+      "id": "e4b3"
     }
   ],
   "announcements": [
@@ -180,7 +180,6 @@
       "author": "HR Department"
     },
     {
-
       "id": "ANN002",
       "title": "New Health Insurance Plan",
       "text": "A new health insurance plan will be effective starting January 1, 2026. Please review the plan details in your email.",
@@ -226,5 +225,3 @@
   ]
 }
 
-
->>>>>>> a7b861042a4690852a084b25b18720f0008b2db5
