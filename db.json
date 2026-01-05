@@ -66,7 +66,7 @@
   ],
   "employees": [
     {
-      "id": 1,
+      "id": "1",
       "userId": 101,
       "fullName": "Akmal Mordayev",
       "email": "akmal.mordayev@example.com",
@@ -101,7 +101,7 @@
       "updatedAt": "2025-12-30T14:12:00Z"
     },
     {
-      "id": 2,
+      "id": "2",
       "userId": 102,
       "fullName": "Abdulloh Abdumalikov",
       "email": "abdulloh.abdumalikov@example.com",
@@ -130,7 +130,7 @@
       "updatedAt": "2025-12-28T16:00:00Z"
     },
     {
-      "id": 3,
+      "id": "3",
       "userId": 103,
       "fullName": "Dilshod Karimov",
       "email": "dilshod.karimov@example.com",
@@ -152,7 +152,7 @@
       "updatedAt": "2025-12-30T15:00:00Z"
     },
     {
-      "id": 4,
+      "id": "4",
       "userId": 104,
       "fullName": "Jasmina Aliyeva",
       "email": "jasmina.aliyeva@example.com",
@@ -181,7 +181,7 @@
       "updatedAt": "2025-12-27T13:40:00Z"
     },
     {
-      "id": 5,
+      "id": "5",
       "userId": 105,
       "fullName": "Sherzod Rasulov",
       "email": "sherzod.rasulov@example.com",
@@ -210,7 +210,7 @@
       "updatedAt": "2025-12-30T17:10:00Z"
     },
     {
-      "id": 6,
+      "id": "6",
       "userId": 106,
       "fullName": "Malika Tursunova",
       "email": "malika.tursunova@example.com",
@@ -232,7 +232,7 @@
       "updatedAt": "2025-12-26T14:00:00Z"
     },
     {
-      "id": 7,
+      "id": "7",
       "userId": 107,
       "fullName": "Islombek Qodirov",
       "email": "islombek.qodirov@example.com",
@@ -261,7 +261,7 @@
       "updatedAt": "2025-12-29T18:00:00Z"
     },
     {
-      "id": 8,
+      "id": "8",
       "userId": 108,
       "fullName": "Nodira Usmonova",
       "email": "nodira.usmonova@example.com",
@@ -283,7 +283,7 @@
       "updatedAt": "2025-12-30T16:40:00Z"
     },
     {
-      "id": 9,
+      "id": "9",
       "userId": 109,
       "fullName": "Bekzod Shokirov",
       "email": "bekzod.shokirov@example.com",
@@ -312,7 +312,7 @@
       "updatedAt": "2025-12-27T15:20:00Z"
     },
     {
-      "id": 10,
+      "id": "10",
       "userId": 110,
       "fullName": "Aziza Mahmudova",
       "email": "aziza.mahmudova@example.com",
@@ -341,15 +341,7 @@
       "updatedAt": "2025-12-28T16:30:00Z"
     }
   ],
-  "tasks": [
-    {
-      "id": "05d1",
-      "taskName": "dvsaasd",
-      "employeeName": "Abdulloh Abdumalikov",
-      "status": "done",
-      "deadline": "2025-12-12"
-    }
-  ],
+  "tasks": [],
   "logs": [
     {
       "id": "1",
@@ -463,29 +455,7 @@
       "id": "e4b3"
     }
   ],
-  "announcements": [
-    {
-      "id": "ANN001",
-      "title": "Company Holiday Schedule",
-      "text": "Please note that the company will be closed from December 31 to January 2 for New Year holidays.",
-      "date": "2025-12-20",
-      "author": "HR Department"
-    },
-    {
-      "id": "ANN002",
-      "title": "New Health Insurance Plan",
-      "text": "A new health insurance plan will be effective starting January 1, 2026. Please review the plan details in your email.",
-      "date": "2025-12-18",
-      "author": "Admin Department"
-    },
-    {
-      "id": "ANN003",
-      "title": "Year-End Meeting",
-      "text": "The year-end meeting will be held on December 28 at 3 PM in the main conference hall. Attendance is mandatory.",
-      "date": "2025-12-15",
-      "author": "Management"
-    }
-  ],
+  "announcements": [],
   "complaints": [
     {
       "id": "CPL001",
