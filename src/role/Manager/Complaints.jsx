@@ -1,97 +1,147 @@
-import React, { useState } from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
 
-const complaintsData = [
-  { id: 1, title: "Internet ishlamayapti", desc: "Tez-tez uzilib qoladi" },
-  { id: 2, title: "Elektr muammosi", desc: "Tok o‘chib qolmoqda" },
-  { id: 3, title: "Suv bosimi past", desc: "Ertalab suv yo‘q" },
-  { id: 4, title: "Yo‘l yomon holatda", desc: "Chuqurlar ko‘p" },
-  { id: 5, title: "Gaz bosimi past", desc: "Ovqat pishmayapti" },
-  { id: 6, title: "Axlat olib ketilmayapti", desc: "Bir haftadan beri" },
-  { id: 7, title: "Lift ishlamayapti", desc: "5 kundan beri nosoz" },
-  { id: 8, title: "Issiq suv yo‘q", desc: "Qozonxona o‘chgan" },
-  { id: 9, title: "Sovuq xona", desc: "Isitish tizimi ishlamayapti" },
-  { id: 10, title: "Chiroqlar o‘chiq", desc: "Ko‘chada qorong‘i" },
-];
-
-export default function ComplaintsAdmin() {
+function ComplaintsAdmin() {
   const [search, setSearch] = useState("");
   const [sort, setSort] = useState("a-z");
+  const [statusFilter, setStatusFilter] = useState("all");
+  const [data, setData] = useState([]);
+  const [err, setErr] = useState(null);
+  const [loading, setLoading] = useState(true);
 
-  const filtered = complaintsData.filter((item) =>
-    item.title.toLowerCase().includes(search.toLowerCase())
+  useEffect(() => {
+    const getData = async () => {
+      try {
+        const res = await axios.get("http://localhost:5000/complaints");
+        if (!Array.isArray(res.data)) throw new Error("Ma'lumot array emas");
+        setData(res.data);
+      } catch (error) {
+        setErr(error.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+    getData();
+  }, []);
+
+  const handleStatusChange = async (id, newStatus) => {
+    try {
+      await axios.patch(`http://localhost:5000/complaints/${id}`, {
+        status: newStatus,
+      });
+
+      setData((prev) =>
+        prev.map((item) =>
+          item.id === id ? { ...item, status: newStatus } : item
+        )
+      );
+    } catch (err) {
+      alert("Status o‘zgartirishda xatolik");
+    }
+  };
+
+  const filteredData = data.filter(
+    (c) =>
+      (c.title?.toLowerCase().includes(search.toLowerCase()) ||
+        c.description?.toLowerCase().includes(search.toLowerCase())) &&
+      (statusFilter === "all" ||
+        c.status?.toLowerCase() === statusFilter.toLowerCase())
   );
 
-  const sorted = [...filtered].sort((a, b) =>
+  const sortedData = [...filteredData].sort((a, b) =>
     sort === "a-z"
       ? a.title.localeCompare(b.title)
       : b.title.localeCompare(a.title)
   );
 
+  const statusColors = {
+    pending: "bg-yellow-500/20 text-yellow-300",
+    reviewed: "bg-blue-500/20 text-blue-300",
+    resolved: "bg-green-500/20 text-green-300",
+  };
+
   return (
-    <div className="min-h-screen bg-[#0b1220]  text-white">
-      {/* Header */}
-      <div className="sticky top-0 z-10 bg-[#0b1220]  border-b border-white/10">
-        <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
-          <div>
-            <h1 className="text-2xl font-semibold">Admin Dashboard</h1>
-            <p className="text-sm text-slate-300">
-              Complaints management
-            </p>
-          </div>
+    <div className="min-h-screen p-6 bg-[#0b1220] text-gray-200">
+      <div className="max-w-5xl mx-auto">
+        <h2 className="text-2xl font-bold mb-6">Complaints Admin</h2>
 
-          <div className="flex gap-3">
-            <input
-              type="text"
-              placeholder="Search complaints..."
-              value={search}
-              onChange={(e) => setSearch(e.target.value)}
-              className="w-56 rounded-xl bg-white/10 border border-white/20 px-4 py-2 text-sm placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
-            />
+        {err && <p className="text-red-400 mb-2">{err}</p>}
+        {loading && <p className="text-gray-400 mb-2">Yuklanmoqda...</p>}
 
-            <select
-              value={sort}
-              onChange={(e) => setSort(e.target.value)}
-              className="rounded-xl bg-white/10 border border-white/20 px-3 py-2 text-sm focus:ring-2 focus:ring-blue-500"
-            >
-              <option value="a-z">A – Z</option>
-              <option value="z-a">Z – A</option>
-            </select>
-          </div>
+        <div className="flex flex-col sm:flex-row gap-4 mb-6">
+          <input
+            type="text"
+            placeholder="Search..."
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+            className="flex-1 p-2 rounded bg-[#111827] border border-gray-700 focus:outline-none"
+          />
+
+          <select
+            value={sort}
+            onChange={(e) => setSort(e.target.value)}
+            className="p-2 rounded bg-[#111827] border border-gray-700"
+          >
+            <option value="a-z">A-Z</option>
+            <option value="z-a">Z-A</option>
+          </select>
+
+          <select
+            value={statusFilter}
+            onChange={(e) => setStatusFilter(e.target.value)}
+            className="p-2 rounded bg-[#111827] border border-gray-700"
+          >
+            <option value="all">All</option>
+            <option value="pending">Pending</option>
+            <option value="reviewed">Reviewed</option>
+            <option value="resolved">Resolved</option>
+          </select>
         </div>
-      </div>
-
-      {/* Content */}
-      <div className="max-w-7xl mx-auto px-6 py-8">
-        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
-          {sorted.map((item) => (
+        <div className="space-y-4">
+          {sortedData.map((c) => (
             <div
-              key={item.id}
-              className="group relative rounded-2xl bg-white/10 backdrop-blur border border-white/10 p-5 transition hover:scale-[1.02] hover:bg-white/15"
+              key={c.id}
+              className="p-4 rounded-lg bg-[#111827] border border-gray-700"
             >
-              <div className="absolute inset-x-0 top-0 h-1 rounded-t-2xl bg-gradient-to-r from-blue-500 to-purple-500" />
+              <div className="flex justify-between items-center mb-2">
+                <h3 className="text-lg font-semibold">{c.title}</h3>
 
-              <div className="flex items-start justify-between mb-3">
-                <h2 className="font-semibold text-lg">
-                  {item.title}
-                </h2>
-                <span className="text-xs bg-white/20 px-2 py-1 rounded-full">
-                  #{item.id}
+                <span
+                  className={`px-2 py-1 text-sm rounded ${
+                    statusColors[c.status?.toLowerCase()] ||
+                    "bg-gray-500/20 text-gray-300"
+                  }`}
+                >
+                  {c.status || "Unknown"}
                 </span>
               </div>
 
-              <p className="text-sm text-slate-300 leading-relaxed">
-                {item.desc}
-              </p>
+              <p className="text-gray-400 mb-2">{c.description}</p>
+
+              <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+                <p className="text-sm text-gray-500">
+                  Employee: {c.employeeName || "N/A"} | Date: {c.date || "N/A"}
+                </p>
+                <select
+                  value={c.status || "pending"}
+                  onChange={(e) => handleStatusChange(c.id, e.target.value)}
+                  className="p-1 rounded bg-[#0b1220] border border-gray-600 text-sm"
+                >
+                  <option value="pending">Pending</option>
+                  <option value="reviewed">Reviewed</option>
+                  <option value="resolved">Resolved</option>
+                </select>
+              </div>
             </div>
           ))}
-        </div>
 
-        {sorted.length === 0 && (
-          <p className="text-center text-slate-400 mt-10">
-            No complaints found
-          </p>
-        )}
+          {!loading && sortedData.length === 0 && (
+            <p className="text-gray-400">Hech narsa topilmadi</p>
+          )}
+        </div>
       </div>
     </div>
   );
 }
+
+export default ComplaintsAdmin;

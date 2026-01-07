@@ -175,6 +175,17 @@ function App() {
               </ProtectedRoute>
             }
           />
+          <Route
+            path="/manager/leaves"
+            element={
+              <ProtectedRoute>
+                <MainLayOut>
+                  {" "}
+                  <Leaves />
+                </MainLayOut>
+              </ProtectedRoute>
+            }
+          />
 
           <Route
             path="*"
