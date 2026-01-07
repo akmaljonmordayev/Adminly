@@ -165,7 +165,6 @@
       "comment": "New employee",
       "leaves": [],
       "createdBy": 1,
-
       "createdAt": "2025-12-01T12:00:00Z",
       "updatedAt": "2025-12-26T14:00:00Z"
     },
@@ -327,7 +326,6 @@
     },
     {
       "id": "RES002",
-
       "employeeId": "EMP002",
       "employeeName": "Laylo Saidova",
       "position": "HR Specialist",
@@ -440,7 +438,7 @@
       "title": "Air Conditioner Not Working",
       "description": "The air conditioner in the 3rd-floor office is not functioning properly.",
       "date": "2025-12-21",
-      "status": "pending"
+      "status": "resolved"
     },
     {
       "id": "CPL002",
