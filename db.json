@@ -285,6 +285,13 @@
       "employeeName": "Bekzod Shokirov",
       "status": "done",
       "deadline": "2026-02-07"
+    },
+    {
+      "id": "79a5",
+      "taskName": "leaves",
+      "employeeName": "Islombek Qodirov",
+      "status": "pending",
+      "deadline": "2026-01-23"
     }
   ],
   "logs": [
