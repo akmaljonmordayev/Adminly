@@ -4,10 +4,11 @@ import { Route, Routes } from 'react-router-dom'
 import MainLayOut from './layouts/MainLayOut'
 import React, { Suspense } from 'react'
 import ProtectedRoute from './components/ProtectedRoute'
+
+
 const Login = React.lazy(() => import('./auth/Login'))
 const Register = React.lazy(() => import('./auth/Register'))
 const NotFound = React.lazy(() => import('./role/Employee/NotFound'))
-
 const Announcements = React.lazy(() => import('./role/Manager/Announcements'))
 const Archieve = React.lazy(() => import('./role/Manager/Archieve'))
 const Complaints = React.lazy(() => import('./role/Manager/Complaints'))
@@ -18,6 +19,7 @@ const Logs = React.lazy(() => import('./role/Manager/Logs'))
 const Settings = React.lazy(() => import('./role/Manager/Settings'))
 const Tasks = React.lazy(() => import('./role/Manager/Tasks'))
 const Vacations = React.lazy(() => import('./role/Manager/Vacations'))
+const Leaves = React.lazy(() => import('./role/Manager/Leaves'))
 
 function App() {
   return (
@@ -180,7 +182,7 @@ function App() {
             element={
               <ProtectedRoute>
                 <MainLayOut>
-                  {" "}
+                  {' '}
                   <Leaves />
                 </MainLayOut>
               </ProtectedRoute>
