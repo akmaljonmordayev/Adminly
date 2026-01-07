@@ -66,7 +66,7 @@
   ],
   "employees": [
     {
-      "id": 1,
+      "id": "1",
       "userId": 101,
       "fullName": "Akmal Mordayev",
       "email": "akmal.mordayev@example.com",
@@ -101,7 +101,7 @@
       "updatedAt": "2025-12-30T14:12:00Z"
     },
     {
-      "id": 2,
+      "id": "2",
       "userId": 102,
       "fullName": "Abdulloh Abdumalikov",
       "email": "abdulloh.abdumalikov@example.com",
@@ -130,7 +130,7 @@
       "updatedAt": "2025-12-28T16:00:00Z"
     },
     {
-      "id": 3,
+      "id": "3",
       "userId": 103,
       "fullName": "Dilshod Karimov",
       "email": "dilshod.karimov@example.com",
@@ -152,7 +152,7 @@
       "updatedAt": "2025-12-30T15:00:00Z"
     },
     {
-      "id": 4,
+      "id": "4",
       "userId": 104,
       "fullName": "Jasmina Aliyeva",
       "email": "jasmina.aliyeva@example.com",
@@ -181,7 +181,7 @@
       "updatedAt": "2025-12-27T13:40:00Z"
     },
     {
-      "id": 5,
+      "id": "5",
       "userId": 105,
       "fullName": "Sherzod Rasulov",
       "email": "sherzod.rasulov@example.com",
@@ -210,7 +210,7 @@
       "updatedAt": "2025-12-30T17:10:00Z"
     },
     {
-      "id": 6,
+      "id": "6",
       "userId": 106,
       "fullName": "Malika Tursunova",
       "email": "malika.tursunova@example.com",
@@ -232,7 +232,7 @@
       "updatedAt": "2025-12-26T14:00:00Z"
     },
     {
-      "id": 7,
+      "id": "7",
       "userId": 107,
       "fullName": "Islombek Qodirov",
       "email": "islombek.qodirov@example.com",
@@ -261,7 +261,7 @@
       "updatedAt": "2025-12-29T18:00:00Z"
     },
     {
-      "id": 8,
+      "id": "8",
       "userId": 108,
       "fullName": "Nodira Usmonova",
       "email": "nodira.usmonova@example.com",
@@ -283,7 +283,7 @@
       "updatedAt": "2025-12-30T16:40:00Z"
     },
     {
-      "id": 9,
+      "id": "9",
       "userId": 109,
       "fullName": "Bekzod Shokirov",
       "email": "bekzod.shokirov@example.com",
@@ -312,7 +312,7 @@
       "updatedAt": "2025-12-27T15:20:00Z"
     },
     {
-      "id": 10,
+      "id": "10",
       "userId": 110,
       "fullName": "Aziza Mahmudova",
       "email": "aziza.mahmudova@example.com",
@@ -494,7 +494,7 @@
       "title": "Air Conditioner Not Working",
       "description": "The air conditioner in the 3rd-floor office is not functioning properly.",
       "date": "2025-12-21",
-      "status": "pending"
+      "status": "resolved"
     },
     {
       "id": "CPL002",
@@ -503,7 +503,7 @@
       "title": "Internet Connectivity Issue",
       "description": "Internet connection keeps dropping in the design department.",
       "date": "2025-12-20",
-      "status": "reviewed"
+      "status": "resolved"
     },
     {
       "id": "CPL003",
@@ -512,7 +512,7 @@
       "title": "Request for New Chair",
       "description": "My office chair is broken and needs replacement.",
       "date": "2025-12-19",
-      "status": "resolved"
+      "status": "pending"
     }
   ]
 }
