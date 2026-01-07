@@ -66,6 +66,70 @@
   ],
   "employees": [
     {
+      "id": "1",
+      "userId": 101,
+      "fullName": "Akmal Mordayev",
+      "email": "akmal.mordayev@example.com",
+      "hireDate": "2021-01-15",
+      "baseSalary": 3000000,
+      "kpiPercent": 20,
+      "kpiAmount": 600000,
+      "bonus": 500000,
+      "penalty": 200000,
+      "totalSalary": 3900000,
+      "month": "2025-12",
+      "status": "paid",
+      "paymentDate": "2025-12-30",
+      "paymentMethod": "bank",
+      "comment": "December salary paid",
+      "leaves": [
+        {
+          "leaveType": "Unpaid Leave",
+          "startDate": "2021-12-08",
+          "endDate": "2021-12-12",
+          "status": "Approved"
+        },
+        {
+          "leaveType": "Sick Leave",
+          "startDate": "2022-05-23",
+          "endDate": "2022-05-28",
+          "status": "Approved"
+        }
+      ],
+      "createdBy": 1,
+      "createdAt": "2025-12-01T10:00:00Z",
+      "updatedAt": "2025-12-30T14:12:00Z"
+    },
+    {
+      "id": "2",
+      "userId": 102,
+      "fullName": "Abdulloh Abdumalikov",
+      "email": "abdulloh.abdumalikov@example.com",
+      "hireDate": "2022-03-10",
+      "baseSalary": 2800000,
+      "kpiPercent": 15,
+      "kpiAmount": 420000,
+      "bonus": 300000,
+      "penalty": 100000,
+      "totalSalary": 3420000,
+      "month": "2025-12",
+      "status": "paid",
+      "paymentDate": "2025-12-28",
+      "paymentMethod": "cash",
+      "comment": "Salary paid",
+      "leaves": [
+        {
+          "leaveType": "Annual Leave",
+          "startDate": "2023-07-01",
+          "endDate": "2023-07-10",
+          "status": "Approved"
+        }
+      ],
+      "createdBy": 1,
+      "createdAt": "2025-12-01T09:00:00Z",
+      "updatedAt": "2025-12-28T16:00:00Z"
+    },
+    {
       "id": "3",
       "userId": 103,
       "fullName": "Dilshod Karimov",
@@ -284,7 +348,14 @@
       "taskName": "Dashboard full tugatish",
       "employeeName": "Bekzod Shokirov",
       "status": "done",
-      "deadline": "2026-02-07"
+      "deadline": "2025-12-12"
+    },
+    {
+      "id": "a2f8",
+      "taskName": "olma yasab kel",
+      "employeeName": "Nodira Usmonova",
+      "status": "pending",
+      "deadline": "2026-01-24"
     }
   ],
   "logs": [
