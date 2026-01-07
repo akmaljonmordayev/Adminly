@@ -18,6 +18,7 @@ const Logs = React.lazy(() => import('./role/Manager/Logs'))
 const Settings = React.lazy(() => import('./role/Manager/Settings'))
 const Tasks = React.lazy(() => import('./role/Manager/Tasks'))
 const Vacations = React.lazy(() => import('./role/Manager/Vacations'))
+const Leaves = React.lazy(() => import("./role/Manager/Leaves"));
 
 function App() {
   return (
