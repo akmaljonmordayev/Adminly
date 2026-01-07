@@ -67,6 +67,70 @@
   "employees": [
     {
       "id": "1",
+      "userId": 101,
+      "fullName": "Akmal Mordayev",
+      "email": "akmal.mordayev@example.com",
+      "hireDate": "2021-01-15",
+      "baseSalary": 3000000,
+      "kpiPercent": 20,
+      "kpiAmount": 600000,
+      "bonus": 500000,
+      "penalty": 200000,
+      "totalSalary": 3900000,
+      "month": "2025-12",
+      "status": "paid",
+      "paymentDate": "2025-12-30",
+      "paymentMethod": "bank",
+      "comment": "December salary paid",
+      "leaves": [
+        {
+          "leaveType": "Unpaid Leave",
+          "startDate": "2021-12-08",
+          "endDate": "2021-12-12",
+          "status": "Approved"
+        },
+        {
+          "leaveType": "Sick Leave",
+          "startDate": "2022-05-23",
+          "endDate": "2022-05-28",
+          "status": "Approved"
+        }
+      ],
+      "createdBy": 1,
+      "createdAt": "2025-12-01T10:00:00Z",
+      "updatedAt": "2025-12-30T14:12:00Z"
+    },
+    {
+      "id": "2",
+      "userId": 102,
+      "fullName": "Abdulloh Abdumalikov",
+      "email": "abdulloh.abdumalikov@example.com",
+      "hireDate": "2022-03-10",
+      "baseSalary": 2800000,
+      "kpiPercent": 15,
+      "kpiAmount": 420000,
+      "bonus": 300000,
+      "penalty": 100000,
+      "totalSalary": 3420000,
+      "month": "2025-12",
+      "status": "paid",
+      "paymentDate": "2025-12-28",
+      "paymentMethod": "cash",
+      "comment": "Salary paid",
+      "leaves": [
+        {
+          "leaveType": "Annual Leave",
+          "startDate": "2023-07-01",
+          "endDate": "2023-07-10",
+          "status": "Approved"
+        }
+      ],
+      "createdBy": 1,
+      "createdAt": "2025-12-01T09:00:00Z",
+      "updatedAt": "2025-12-28T16:00:00Z"
+    },
+    {
+      "id": "1",
       "userId": 1,
       "fullName": "Akmal Mordayev",
       "baseSalary": "100000000",
@@ -176,8 +240,9 @@
       "paymentMethod": "cash",
       "comment": "Good work",
       "createdBy": 1,
-      "createdAt": "2025-12-01T10:00:00Z",
-      "updatedAt": "2025-12-26T12:30:00Z"
+
+      "createdAt": "2025-12-01T12:00:00Z",
+      "updatedAt": "2025-12-26T14:00:00Z"
     },
     {
       "id": "7",
@@ -310,6 +375,8 @@
       "id": "ec20"
     },
     {
+      "id": "RES002",
+
       "employeeId": "EMP002",
       "employeeName": "Laylo S.",
       "type": "personal leave",
@@ -344,25 +411,11 @@
   ],
   "announcements": [
     {
-      "id": "ANN001",
-      "title": "Company Holiday Schedule",
-      "text": "Please note that the company will be closed from December 31 to January 2 for New Year holidays.",
-      "date": "2025-12-20",
-      "author": "HR Department"
-    },
-    {
-      "id": "ANN002",
-      "title": "New Health Insurance Plan",
-      "text": "A new health insurance plan will be effective starting January 1, 2026. Please review the plan details in your email.",
-      "date": "2025-12-18",
-      "author": "Admin Department"
-    },
-    {
-      "id": "ANN003",
-      "title": "Year-End Meeting",
-      "text": "The year-end meeting will be held on December 28 at 3 PM in the main conference hall. Attendance is mandatory.",
-      "date": "2025-12-15",
-      "author": "Management"
+      "id": "987a",
+      "title": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "text": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "date": "Jan 25, 2026",
+      "status": "Active"
     }
   ],
   "complaints": [
@@ -373,7 +426,7 @@
       "title": "Air Conditioner Not Working",
       "description": "The air conditioner in the 3rd-floor office is not functioning properly.",
       "date": "2025-12-21",
-      "status": "pending"
+      "status": "resolved"
     },
     {
       "id": "CPL002",
