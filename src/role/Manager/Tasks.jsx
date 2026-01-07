@@ -6,32 +6,18 @@ const API_URL = "http://localhost:5000/tasks";
 
 function Tasks() {
   const [tasks, setTasks] = useState([]);
-  const [employee, setEmployee] = useState([]);
+  const [employees, setEmployees] = useState([]);
+
   const [taskName, setTaskName] = useState("");
   const [employeeName, setEmployeeName] = useState("");
   const [deadline, setDeadline] = useState("");
+
   const [editingId, setEditingId] = useState(null);
   const [editTaskName, setEditTaskName] = useState("");
   const [editEmployeeName, setEditEmployeeName] = useState("");
   const [editDeadline, setEditDeadline] = useState("");
 
-  const saveEdit = async (id) => {
-    const task = tasks.find((t) => t.id === id);
-
-    await fetch(`${API_URL}/${id}`, {
-      method: "PUT",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        ...task,
-        taskName: editTaskName,
-        employeeName: editEmployeeName,
-        deadline: editDeadline,
-      }),
-    });
-    toast.success("Task updated");
-    setEditingId(null);
-    fetchTasks();
-  };
+  /* ================= FETCH ================= */
 
   const fetchTasks = async () => {
     const res = await fetch(API_URL);
@@ -39,74 +25,89 @@ function Tasks() {
     setTasks(data);
   };
 
-  useEffect(() => {
-    fetchTasks();
-  }, []);
+
   const fetchEmployees = async () => {
     const res = await fetch("http://localhost:5000/employees");
     const data = await res.json();
-    setEmployee(data);
+    setEmployees(data);
   };
 
   useEffect(() => {
+    fetchTasks();
     fetchEmployees();
   }, []);
 
-  let fullnames = [];
+  const fullnames = employees.map((e) => e.fullName);
 
-  employee.forEach((item) => {
-    fullnames.push(item.fullName);
-  });
+  /* ================= ADD ================= */
 
   const addTask = async () => {
     if (!taskName || !employeeName || !deadline) {
-      toast.error("Iltimos task kirgizing!!");
+      toast.error("Iltimos barcha maydonlarni to‘ldiring");
       return;
     }
+
     await fetch(API_URL, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         taskName,
         employeeName,
-        status: "pending",
         deadline,
+        status: "pending",
+        
       }),
     });
 
-    toast.success("Task successfully added");
-
+    toast.success("Task qo‘shildi");
     setTaskName("");
     setEmployeeName("");
     setDeadline("");
     fetchTasks();
   };
 
+  /* ================= DELETE ================= */
+
   const deleteTask = async (id) => {
-    let res = await fetch(`${API_URL}/${id}`, {
-      method: "DELETE",
-    });
-
-    if (res.ok) {
-      toast.error("Task successfully deleted");
-    }
-
+    await fetch(`${API_URL}/${id}`, { method: "DELETE" });
+    toast.error("Task o‘chirildi");
     fetchTasks();
   };
 
+  /* ================= STATUS ================= */
+
   const updateStatus = async (id, status) => {
-    const task = tasks.find((t) => t.id === id);
+    const currentTask = tasks.find((t) => t.id === id);
 
     await fetch(`${API_URL}/${id}`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ ...task, status }),
+      body: JSON.stringify({ ...currentTask, status }),
     });
 
     fetchTasks();
   };
 
+  /* ================= EDIT ================= */
 
+  const saveEdit = async (id) => {
+    const currentTask = tasks.find((t) => t.id === id);
+
+    await fetch(`${API_URL}/${id}`, {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        ...currentTask,
+        taskName: editTaskName,
+        employeeName: editEmployeeName,
+        deadline: editDeadline,
+      }),
+    });
+
+    toast.success("Task yangilandi");
+    setEditingId(null);
+    fetchTasks();
+  };
 
   const statusColors = {
     pending: "text-yellow-400",
@@ -114,9 +115,7 @@ function Tasks() {
     done: "text-green-400",
   };
 
-  const onChange = (date, dateString) => {
-    setDeadline(dateString);
-  };
+  /* ================= UI ================= */
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-[#020617] to-[#0b1220] p-8 text-slate-200">
@@ -125,25 +124,34 @@ function Tasks() {
           Task Management
         </h1>
 
-        <div className="bg-[#0f172a] p-6 rounded-3xl mb-10 shadow-lg">
+        {/* ADD TASK */}
+        <div className="bg-[#0f172a] p-6 rounded-3xl mb-10">
           <div className="grid md:grid-cols-4 gap-4">
             <input
               placeholder="Task nomi"
               value={taskName}
               onChange={(e) => setTaskName(e.target.value)}
-              className="px-4 py-3 rounded-xl bg-[#020617] border border-slate-700"
+              className="input"
             />
 
-            <input
-              type="date"
-              value={deadline}
-              onChange={(e) => setDeadline(e.target.value)}
-              className="px-4 py-3 rounded-xl bg-[#020617] border border-slate-700"
+            <select
+              onChange={(e) => setEmployeeName(e.target.value)}
+              className="input"
+            >
+              <option value="">Employee tanlang</option>
+              {fullnames.map((n) => (
+                <option key={n} value={n}>{n}</option>
+              ))}
+            </select>
+
+            <DatePicker
+              className="input h-12"
+              onChange={(d, ds) => setDeadline(ds)}
             />
 
             <button
               onClick={addTask}
-              className="bg-cyan-500 text-black rounded-xl font-semibold hover:bg-cyan-400"
+              className="bg-cyan-500 text-black rounded-xl font-semibold"
             >
               Add Task
             </button>
@@ -152,58 +160,53 @@ function Tasks() {
 
         <ToastContainer position="top-right" autoClose={2000} theme="dark" />
 
+        {/* TASK LIST */}
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
           {tasks.map((task) => (
-            <div
-              key={task.id}
-              className="bg-[#0f172a] p-6 rounded-3xl shadow-md"
-            >
-              {editingId === task.id ? (
-                <input
-                  value={editTaskName}
-                  onChange={(e) => setEditTaskName(e.target.value)}
-                  className="w-full bg-[#020617] border border-slate-700 rounded-lg px-3 py-2"
-                />
-              ) : (
-                <h3 className="text-lg font-semibold text-cyan-300">
-                  📝 {task.taskName}
-                </h3>
-              )}
+            <div key={task.id} className="bg-[#0f172a] p-6 rounded-3xl">
 
+              {/* EDIT / VIEW */}
               {editingId === task.id ? (
-                <select
-                  value={editEmployeeName}
-                  onChange={(e) => setEditEmployeeName(e.target.value)}
-                  className="w-full bg-[#020617] border border-slate-700 rounded-lg px-3 py-2"
-                >
-                  {fullnames.map((item) => (
-                    <option key={item} value={item}>
-                      {item}
-                    </option>
-                  ))}
-                </select>
-              ) : (
-                <p className="text-slate-400 text-sm">👤 {task.employeeName}</p>
-              )}
+                <div className="space-y-3">
+                  <input
+                    value={editTaskName}
+                    onChange={(e) => setEditTaskName(e.target.value)}
+                    className="input"
+                  />
 
-              {editingId === task.id ? (
-                <DatePicker
-                  className="w-full"
-                  onChange={(d, ds) => setEditDeadline(ds)}
-                />
+                  <select
+                    value={editEmployeeName}
+                    onChange={(e) => setEditEmployeeName(e.target.value)}
+                    className="input"
+                  >
+                    {fullnames.map((n) => (
+                      <option key={n} value={n}>{n}</option>
+                    ))}
+                  </select>
+
+                  <DatePicker
+                    className="input"
+                    onChange={(d, ds) => setEditDeadline(ds)}
+                  />
+                </div>
               ) : (
-                <p className="text-slate-400 text-sm">📅 {task.deadline}</p>
+                <div className="space-y-1">
+                  <h3 className="text-lg text-cyan-300">📝 {task.taskName}</h3>
+                  <p className="text-sm text-slate-400">👤 {task.employeeName}</p>
+                  <p className="text-sm text-slate-400">📅 {task.deadline}</p>
+                </div>
               )}
 
               <p className={`mt-2 font-semibold ${statusColors[task.status]}`}>
                 {task.status}
               </p>
 
+              {/* ACTIONS */}
               <div className="flex gap-2 mt-4">
                 <select
                   value={task.status}
                   onChange={(e) => updateStatus(task.id, e.target.value)}
-                  className="bg-[#020617] border border-slate-700 rounded-lg px-2 mr-12 py-1"
+                  className="input py-1"
                 >
                   <option value="pending">Pending</option>
                   <option value="in progress">In Progress</option>
@@ -213,7 +216,7 @@ function Tasks() {
                 {editingId === task.id ? (
                   <button
                     onClick={() => saveEdit(task.id)}
-                    className="px-3 py-1 bg-green-500/20 text-green-400 rounded-lg"
+                    className="btn-green"
                   >
                     Save
                   </button>
@@ -225,7 +228,7 @@ function Tasks() {
                       setEditEmployeeName(task.employeeName);
                       setEditDeadline(task.deadline);
                     }}
-                    className="px-3 py-1 bg-blue-500/20 text-blue-400 rounded-lg w-18"
+                    className="btn-blue"
                   >
                     Edit
                   </button>
@@ -233,7 +236,7 @@ function Tasks() {
 
                 <button
                   onClick={() => deleteTask(task.id)}
-                  className="px-3 py-1 bg-red-500/20 text-red-400 rounded-lg"
+                  className="btn-red"
                 >
                   Delete
                 </button>
