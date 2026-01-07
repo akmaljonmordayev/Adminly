@@ -66,173 +66,7 @@
   ],
   "employees": [
     {
-      "id": 1,
-      "userId": 101,
-      "fullName": "Akmal Mordayev",
-      "email": "akmal.mordayev@example.com",
-      "hireDate": "2021-01-15",
-      "baseSalary": 3000000,
-      "kpiPercent": 20,
-      "kpiAmount": 600000,
-      "bonus": 500000,
-      "penalty": 200000,
-      "totalSalary": 3900000,
-      "month": "2025-12",
-      "status": "paid",
-      "paymentDate": "2025-12-30",
-      "paymentMethod": "bank",
-      "comment": "December salary paid",
-      "leaves": [
-        {
-          "leaveType": "Unpaid Leave",
-          "startDate": "2021-12-08",
-          "endDate": "2021-12-12",
-          "status": "Approved"
-        },
-        {
-          "leaveType": "Sick Leave",
-          "startDate": "2022-05-23",
-          "endDate": "2022-05-28",
-          "status": "Approved"
-        }
-      ],
-      "createdBy": 1,
-      "createdAt": "2025-12-01T10:00:00Z",
-      "updatedAt": "2025-12-30T14:12:00Z"
-    },
-    {
-      "id": 2,
-      "userId": 102,
-      "fullName": "Abdulloh Abdumalikov",
-      "email": "abdulloh.abdumalikov@example.com",
-      "hireDate": "2022-03-10",
-      "baseSalary": 2800000,
-      "kpiPercent": 15,
-      "kpiAmount": 420000,
-      "bonus": 300000,
-      "penalty": 100000,
-      "totalSalary": 3420000,
-      "month": "2025-12",
-      "status": "paid",
-      "paymentDate": "2025-12-28",
-      "paymentMethod": "cash",
-      "comment": "Salary paid",
-      "leaves": [
-        {
-          "leaveType": "Annual Leave",
-          "startDate": "2023-07-01",
-          "endDate": "2023-07-10",
-          "status": "Approved"
-        }
-      ],
-      "createdBy": 1,
-      "createdAt": "2025-12-01T09:00:00Z",
-      "updatedAt": "2025-12-28T16:00:00Z"
-    },
-    {
-      "id": 3,
-      "userId": 103,
-      "fullName": "Dilshod Karimov",
-      "email": "dilshod.karimov@example.com",
-      "hireDate": "2020-06-20",
-      "baseSalary": 3500000,
-      "kpiPercent": 25,
-      "kpiAmount": 875000,
-      "bonus": 400000,
-      "penalty": 0,
-      "totalSalary": 4775000,
-      "month": "2025-12",
-      "status": "paid",
-      "paymentDate": "2025-12-30",
-      "paymentMethod": "bank",
-      "comment": "Excellent performance",
-      "leaves": [],
-      "createdBy": 1,
-      "createdAt": "2025-12-01T08:30:00Z",
-      "updatedAt": "2025-12-30T15:00:00Z"
-    },
-    {
-      "id": 4,
-      "userId": 104,
-      "fullName": "Jasmina Aliyeva",
-      "email": "jasmina.aliyeva@example.com",
-      "hireDate": "2023-02-01",
-      "baseSalary": 2500000,
-      "kpiPercent": 10,
-      "kpiAmount": 250000,
-      "bonus": 200000,
-      "penalty": 50000,
-      "totalSalary": 2900000,
-      "month": "2025-12",
-      "status": "paid",
-      "paymentDate": "2025-12-27",
-      "paymentMethod": "bank",
-      "comment": "Salary processed",
-      "leaves": [
-        {
-          "leaveType": "Sick Leave",
-          "startDate": "2024-11-10",
-          "endDate": "2024-11-12",
-          "status": "Approved"
-        }
-      ],
-      "createdBy": 1,
-      "createdAt": "2025-12-01T11:00:00Z",
-      "updatedAt": "2025-12-27T13:40:00Z"
-    },
-    {
-      "id": 5,
-      "userId": 105,
-      "fullName": "Sherzod Rasulov",
-      "email": "sherzod.rasulov@example.com",
-      "hireDate": "2019-09-12",
-      "baseSalary": 4000000,
-      "kpiPercent": 30,
-      "kpiAmount": 1200000,
-      "bonus": 600000,
-      "penalty": 100000,
-      "totalSalary": 5700000,
-      "month": "2025-12",
-      "status": "paid",
-      "paymentDate": "2025-12-30",
-      "paymentMethod": "bank",
-      "comment": "Top performer",
-      "leaves": [
-        {
-          "leaveType": "Annual Leave",
-          "startDate": "2022-08-05",
-          "endDate": "2022-08-15",
-          "status": "Approved"
-        }
-      ],
-      "createdBy": 1,
-      "createdAt": "2025-12-01T07:45:00Z",
-      "updatedAt": "2025-12-30T17:10:00Z"
-    },
-    {
-      "id": 6,
-      "userId": 106,
-      "fullName": "Malika Tursunova",
-      "email": "malika.tursunova@example.com",
-      "hireDate": "2024-01-08",
-      "baseSalary": 2200000,
-      "kpiPercent": 10,
-      "kpiAmount": 220000,
-      "bonus": 150000,
-      "penalty": 0,
-      "totalSalary": 2570000,
-      "month": "2025-12",
-      "status": "paid",
-      "paymentDate": "2025-12-26",
-      "paymentMethod": "cash",
-      "comment": "New employee",
-      "leaves": [],
-      "createdBy": 1,
-      "createdAt": "2025-12-01T12:00:00Z",
-      "updatedAt": "2025-12-26T14:00:00Z"
-    },
-    {
-      "id": 7,
+      "id": "7",
       "userId": 107,
       "fullName": "Islombek Qodirov",
       "email": "islombek.qodirov@example.com",
@@ -261,7 +95,7 @@
       "updatedAt": "2025-12-29T18:00:00Z"
     },
     {
-      "id": 8,
+      "id": "8",
       "userId": 108,
       "fullName": "Nodira Usmonova",
       "email": "nodira.usmonova@example.com",
@@ -283,36 +117,7 @@
       "updatedAt": "2025-12-30T16:40:00Z"
     },
     {
-      "id": 9,
-      "userId": 109,
-      "fullName": "Bekzod Shokirov",
-      "email": "bekzod.shokirov@example.com",
-      "hireDate": "2022-10-21",
-      "baseSalary": 2700000,
-      "kpiPercent": 12,
-      "kpiAmount": 324000,
-      "bonus": 200000,
-      "penalty": 50000,
-      "totalSalary": 3174000,
-      "month": "2025-12",
-      "status": "paid",
-      "paymentDate": "2025-12-27",
-      "paymentMethod": "cash",
-      "comment": "Salary paid",
-      "leaves": [
-        {
-          "leaveType": "Sick Leave",
-          "startDate": "2024-01-14",
-          "endDate": "2024-01-18",
-          "status": "Approved"
-        }
-      ],
-      "createdBy": 1,
-      "createdAt": "2025-12-01T13:00:00Z",
-      "updatedAt": "2025-12-27T15:20:00Z"
-    },
-    {
-      "id": 10,
+      "id": "10",
       "userId": 110,
       "fullName": "Aziza Mahmudova",
       "email": "aziza.mahmudova@example.com",
