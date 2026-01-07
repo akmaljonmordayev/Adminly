@@ -2,7 +2,7 @@
   "users": [
     {
       "id": "1",
-      "name": "Akmal Mordayev",
+      "name": "Akmajonl Mordayev",
       "email": "akmal@gmail.com",
       "password": "1234",
       "role": "manager"
@@ -66,51 +66,222 @@
   ],
   "employees": [
     {
-      "id": "uuid-123",
-      "userId": 2,
+      "id": "1",
+      "userId": 1,
       "fullName": "Akmal Mordayev",
-      "baseSalary": 3000000,
-      "kpiPercent": 20,
-      "kpiAmount": 600000,
-      "bonus": 500000,
-      "penalty": 200000,
-      "totalSalary": 3900000,
+      "baseSalary": "90",
+      "kpiPercent": "1",
+      "kpiAmount": "",
+      "bonus": "80",
+      "penalty": "10",
+      "totalSalary": 160,
       "month": "2025-12",
       "status": "paid",
       "paymentDate": "2025-12-30",
       "paymentMethod": "bank",
-      "comment": "December salary paid",
+      "comment": "Yaxshi ish!",
       "createdBy": 1,
       "createdAt": "2025-12-01T10:00:00Z",
       "updatedAt": "2025-12-30T14:12:00Z"
     },
     {
-      "id": "uuid-123",
+      "id": "2",
       "userId": 2,
       "fullName": "Abdulloh Abdumalikov",
-      "baseSalary": 3000000,
-      "kpiPercent": 20,
-      "kpiAmount": 600000,
-      "bonus": 500000,
-      "penalty": 200000,
-      "totalSalary": 3900000,
+      "baseSalary": "10000",
+      "kpiPercent": 15,
+      "kpiAmount": "10",
+      "bonus": "8",
+      "penalty": "0",
+      "totalSalary": 10018,
       "month": "2025-12",
       "status": "paid",
-      "paymentDate": "2025-12-30",
+      "paymentDate": "2025-12-29",
       "paymentMethod": "bank",
       "comment": "December salary paid",
       "createdBy": 1,
       "createdAt": "2025-12-01T10:00:00Z",
-      "updatedAt": "2025-12-30T14:12:00Z"
+      "updatedAt": "2025-12-29T13:40:00Z"
+    },
+    {
+      "id": "3",
+      "userId": 3,
+      "fullName": "Jasur Karimov",
+      "baseSalary": 2800000,
+      "kpiPercent": 25,
+      "kpiAmount": 700000,
+      "bonus": 300000,
+      "penalty": 0,
+      "totalSalary": 3800000,
+      "month": "2025-12",
+      "status": "paid",
+      "paymentDate": "2025-12-28",
+      "paymentMethod": "cash",
+      "comment": "Excellent performance",
+      "createdBy": 1,
+      "createdAt": "2025-12-01T10:00:00Z",
+      "updatedAt": "2025-12-28T15:20:00Z"
+    },
+    {
+      "id": "4",
+      "userId": 4,
+      "fullName": "Dilshod Raxmonov",
+      "baseSalary": "0",
+      "kpiPercent": 10,
+      "kpiAmount": "0",
+      "bonus": "1",
+      "penalty": "1",
+      "totalSalary": 0,
+      "month": "2025-12",
+      "status": "paid",
+      "paymentDate": "2025-12-30",
+      "paymentMethod": "bank",
+      "comment": "On time",
+      "createdBy": 1,
+      "createdAt": "2025-12-01T10:00:00Z",
+      "updatedAt": "2025-12-30T11:10:00Z"
+    },
+    {
+      "id": "5",
+      "userId": 5,
+      "fullName": "Aziza Yuldasheva",
+      "baseSalary": "0",
+      "kpiPercent": 30,
+      "kpiAmount": "0",
+      "bonus": "0",
+      "penalty": "0",
+      "totalSalary": 0,
+      "month": "2025-12",
+      "status": "paid",
+      "paymentDate": "2025-12-27",
+      "paymentMethod": "bank",
+      "comment": "Top performer",
+      "createdBy": 1,
+      "createdAt": "2025-12-01T10:00:00Z",
+      "updatedAt": "2025-12-27T16:00:00Z"
+    },
+    {
+      "id": "6",
+      "userId": 6,
+      "fullName": "Sardor Tursunov",
+      "baseSalary": 2700000,
+      "kpiPercent": 20,
+      "kpiAmount": 540000,
+      "bonus": 200000,
+      "penalty": 50000,
+      "totalSalary": 3390000,
+      "month": "2025-12",
+      "status": "paid",
+      "paymentDate": "2025-12-26",
+      "paymentMethod": "cash",
+      "comment": "Good work",
+      "createdBy": 1,
+      "createdAt": "2025-12-01T10:00:00Z",
+      "updatedAt": "2025-12-26T12:30:00Z"
+    },
+    {
+      "id": "7",
+      "userId": 7,
+      "fullName": "Madina Qodirova",
+      "baseSalary": 3100000,
+      "kpiPercent": 18,
+      "kpiAmount": 558000,
+      "bonus": 300000,
+      "penalty": 0,
+      "totalSalary": 3958000,
+      "month": "2025-12",
+      "status": "paid",
+      "paymentDate": "2025-12-30",
+      "paymentMethod": "bank",
+      "comment": "December salary",
+      "createdBy": 1,
+      "createdAt": "2025-12-01T10:00:00Z",
+      "updatedAt": "2025-12-30T09:45:00Z"
+    },
+    {
+      "id": "8",
+      "userId": 8,
+      "fullName": "Islom Bekmurodov",
+      "baseSalary": 2900000,
+      "kpiPercent": 22,
+      "kpiAmount": 638000,
+      "bonus": 250000,
+      "penalty": 100000,
+      "totalSalary": 3688000,
+      "month": "2025-12",
+      "status": "paid",
+      "paymentDate": "2025-12-29",
+      "paymentMethod": "bank",
+      "comment": "Standard payout",
+      "createdBy": 1,
+      "createdAt": "2025-12-01T10:00:00Z",
+      "updatedAt": "2025-12-29T14:00:00Z"
+    },
+    {
+      "id": "9",
+      "userId": 9,
+      "fullName": "Nodira Alimuhamedova",
+      "baseSalary": 3300000,
+      "kpiPercent": 20,
+      "kpiAmount": 660000,
+      "bonus": 400000,
+      "penalty": 0,
+      "totalSalary": 4360000,
+      "month": "2025-12",
+      "status": "paid",
+      "paymentDate": "2025-12-30",
+      "paymentMethod": "bank",
+      "comment": "Excellent KPI",
+      "createdBy": 1,
+      "createdAt": "2025-12-01T10:00:00Z",
+      "updatedAt": "2025-12-30T17:10:00Z"
+    },
+    {
+      "id": "10",
+      "userId": 10,
+      "fullName": "Farrux Sobirov",
+      "baseSalary": 2600000,
+      "kpiPercent": 15,
+      "kpiAmount": 390000,
+      "bonus": 150000,
+      "penalty": 50000,
+      "totalSalary": 3090000,
+      "month": "2025-12",
+      "status": "paid",
+      "paymentDate": "2025-12-28",
+      "paymentMethod": "cash",
+      "comment": "December payout",
+      "createdBy": 1,
+      "createdAt": "2025-12-01T10:00:00Z",
+      "updatedAt": "2025-12-28T11:55:00Z"
+    },
+    {
+      "id": "11",
+      "userId": 11,
+      "fullName": "Azamat Murodjonov",
+      "baseSalary": 2600000,
+      "kpiPercent": 15,
+      "kpiAmount": 390000,
+      "bonus": 150000,
+      "penalty": 50000,
+      "totalSalary": 3090000,
+      "month": "2025-12",
+      "status": "paid",
+      "paymentDate": "2025-12-28",
+      "paymentMethod": "cash",
+      "comment": "December payout",
+      "createdBy": 1,
+      "createdAt": "2025-12-01T10:00:00Z",
+      "updatedAt": "2025-12-28T11:55:00Z"
     }
   ],
   "tasks": [
     {
-      "id": "cab1",
-      "taskName": "Mashina Sotib Olish",
-      "employeeName": "QWERTYbb",
-      "status": "done",
-      "deadline": "2078-07-25"
+      "id": "fb54",
+      "taskName": "GitHub ga joylash",
+      "employeeName": "xamma",
+      "status": "in progress",
+      "deadline": "2026-01-05"
     }
   ],
   "logs": [
@@ -135,7 +306,8 @@
       "startDate": "2025-12-25",
       "endDate": "2025-12-26",
       "reason": "flu",
-      "status": "pending"
+      "status": "pending",
+      "id": "ec20"
     },
     {
       "employeeId": "EMP002",
@@ -144,7 +316,8 @@
       "startDate": "2025-12-28",
       "endDate": "2025-12-28",
       "reason": "personal work",
-      "status": "approved"
+      "status": "approved",
+      "id": "836a"
     }
   ],
   "vacations": [
@@ -155,7 +328,8 @@
       "startDate": "2026-01-05",
       "endDate": "2026-01-15",
       "purpose": "tourism",
-      "status": "pending"
+      "status": "pending",
+      "id": "274f"
     },
     {
       "employeeId": "EMP004",
@@ -164,7 +338,8 @@
       "startDate": "2026-02-10",
       "endDate": "2026-02-20",
       "purpose": "relaxation",
-      "status": "approved"
+      "status": "approved",
+      "id": "4148"
     }
   ],
   "announcements": [
@@ -176,7 +351,6 @@
       "author": "HR Department"
     },
     {
-
       "id": "ANN002",
       "title": "New Health Insurance Plan",
       "text": "A new health insurance plan will be effective starting January 1, 2026. Please review the plan details in your email.",
@@ -221,5 +395,3 @@
     }
   ]
 }
-
-

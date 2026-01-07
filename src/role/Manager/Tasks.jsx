@@ -89,16 +89,6 @@ function Tasks() {
               className="px-4 py-3 rounded-xl bg-[#020617] border border-slate-700"
             />
 
-            <select
-              onChange={(e) => setEmployeeName(e.target.value)}
-              name=""
-              id=""
-            >
-              {fullnames.map((item) => (
-                <option value={item}>{item}</option>
-              ))}
-            </select>
-
             <input
               type="date"
               value={deadline}
