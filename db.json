@@ -342,7 +342,22 @@
       "updatedAt": "2025-12-28T16:30:00Z"
     }
   ],
-  "tasks": [],
+  "tasks": [
+    {
+      "id": "16fe",
+      "taskName": "Dashboard full tugatish",
+      "employeeName": "Bekzod Shokirov",
+      "status": "done",
+      "deadline": "2026-02-07"
+    },
+    {
+      "id": "79a5",
+      "taskName": "leaves",
+      "employeeName": "Islombek Qodirov",
+      "status": "pending",
+      "deadline": "2026-01-23"
+    }
+  ],
   "logs": [
     {
       "id": "1",
