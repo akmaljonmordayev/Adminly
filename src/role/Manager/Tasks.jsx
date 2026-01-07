@@ -134,21 +134,11 @@ function Tasks() {
               className="px-4 py-3 rounded-xl bg-[#020617] border border-slate-700"
             />
 
-            <select
-              className="text-white bg-[#020617] rounded-xl py-3 border border-slate-700"
-              onChange={(e) => setEmployeeName(e.target.value)}
-              name=""
-              id=""
-            >
-              {fullnames.map((item) => (
-                <option value={item}>{item}</option>
-              ))}
-            </select>
-
-            <DatePicker
-              className="bg-[#020617] border border-slate-700 rounded-xl h-14 px-4"
-              ClassName="bg-[#020617] text-white"
-              onChange={onChange}
+            <input
+              type="date"
+              value={deadline}
+              onChange={(e) => setDeadline(e.target.value)}
+              className="px-4 py-3 rounded-xl bg-[#020617] border border-slate-700"
             />
 
             <button
