@@ -66,6 +66,64 @@
   ],
   "employees": [
     {
+      "id": "1",
+      "userId": 101,
+      "fullName": "Akmal Mordayev",
+      "email": "Akmal Mordayev@example.com",
+      "hireDate": "2022-03-10",
+      "baseSalary": 2800000,
+      "kpiPercent": 15,
+      "kpiAmount": 420000,
+      "bonus": 300000,
+      "penalty": 100000,
+      "totalSalary": 3420000,
+      "month": "2025-12",
+      "status": "paid",
+      "paymentDate": "2025-12-28",
+      "paymentMethod": "cash",
+      "comment": "Salary paid",
+      "leaves": [
+        {
+          "leaveType": "Annual Leave",
+          "startDate": "2023-07-01",
+          "endDate": "2023-07-10",
+          "status": "Approved"
+        }
+      ],
+      "createdBy": 1,
+      "createdAt": "2025-12-01T09:00:00Z",
+      "updatedAt": "2025-12-28T16:00:00Z"
+    },
+    {
+      "id": "2",
+      "userId": 102,
+      "fullName": "Abdulloh Abdumalikov",
+      "email": "abdulloh.abdumalikov@example.com",
+      "hireDate": "2022-03-10",
+      "baseSalary": 2800000,
+      "kpiPercent": 15,
+      "kpiAmount": 420000,
+      "bonus": 300000,
+      "penalty": 100000,
+      "totalSalary": 3420000,
+      "month": "2025-12",
+      "status": "paid",
+      "paymentDate": "2025-12-28",
+      "paymentMethod": "cash",
+      "comment": "Salary paid",
+      "leaves": [
+        {
+          "leaveType": "Annual Leave",
+          "startDate": "2023-07-01",
+          "endDate": "2023-07-10",
+          "status": "Approved"
+        }
+      ],
+      "createdBy": 1,
+      "createdAt": "2025-12-01T09:00:00Z",
+      "updatedAt": "2025-12-28T16:00:00Z"
+    },
+    {
       "id": "3",
       "userId": 103,
       "fullName": "Dilshod Karimov",
@@ -85,8 +143,7 @@
       "leaves": [],
       "createdBy": 1,
       "createdAt": "2025-12-01T08:30:00Z",
-      "updatedAt": "2025-12-30T15:00:00Z",
-      "name": "yeaa"
+      "updatedAt": "2025-12-30T15:00:00Z"
     },
     {
       "id": "4",
@@ -165,7 +222,6 @@
       "comment": "New employee",
       "leaves": [],
       "createdBy": 1,
-
       "createdAt": "2025-12-01T12:00:00Z",
       "updatedAt": "2025-12-26T14:00:00Z"
     },
@@ -279,22 +335,7 @@
       "updatedAt": "2025-12-28T16:30:00Z"
     }
   ],
-  "tasks": [
-    {
-      "id": "16fe",
-      "taskName": "Dashboard full tugatish",
-      "employeeName": "Bekzod Shokirov",
-      "status": "done",
-      "deadline": "2026-02-07"
-    },
-    {
-      "id": "79a5",
-      "taskName": "leaves",
-      "employeeName": "Islombek Qodirov",
-      "status": "pending",
-      "deadline": "2026-01-23"
-    }
-  ],
+  "tasks": [],
   "logs": [
     {
       "id": "1",
@@ -327,7 +368,6 @@
     },
     {
       "id": "RES002",
-
       "employeeId": "EMP002",
       "employeeName": "Laylo Saidova",
       "position": "HR Specialist",
