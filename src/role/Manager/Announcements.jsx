@@ -14,8 +14,7 @@ const Announcements = () => {
   useEffect(() => {
     fetch(API)
       .then((res) => res.json())
-      .then((data) => setAnnouncements(data))
-      .catch((err) => console.error(err));
+      .then((data) => setAnnouncements(data));
   }, []);
 
   const handleSelect = (day) => {
@@ -24,80 +23,73 @@ const Announcements = () => {
   };
 
   const addAnnouncement = async () => {
-    if (!newTitle || !newText) {
-      alert("Please enter title and text!");
-      return;
-    }
-
-    const selectedDate = date || `Jan ${new Date().getDate()}, 2026`;
+    if (!newTitle || !newText) return alert("Fill all fields");
 
     const newAnn = {
       title: newTitle,
       text: newText,
-      date: selectedDate,
+      date: date || "Jan 1, 2026",
       status: "Active",
     };
 
-    try {
-      const res = await fetch(API, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(newAnn),
-      });
+    const res = await fetch(API, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(newAnn),
+    });
 
-      if (!res.ok) throw new Error("Failed to add announcement");
+    const saved = await res.json();
+    setAnnouncements([...announcements, saved]);
 
-      const saved = await res.json();
-      setAnnouncements((prev) => [...prev, saved]);
-
-      setNewTitle("");
-      setNewText("");
-      setDate(null);
-    } catch (err) {
-      console.error(err);
-      alert("Error adding announcement. Check console.");
-    }
+    setNewTitle("");
+    setNewText("");
+    setDate(null);
   };
 
   const deleteAnnouncement = async (id) => {
-    try {
-      await fetch(`${API}/${id}`, { method: "DELETE" });
-      setAnnouncements((prev) => prev.filter((ann) => ann.id !== id));
-    } catch (err) {
-      console.error(err);
-      alert("Error deleting announcement. Check console.");
-    }
+    const ok = window.confirm("Are you sure?");
+    if (!ok) return;
+
+    await fetch(`${API}/${id}`, {
+      method: "DELETE",
+    });
+
+    setAnnouncements(announcements.filter((a) => a.id !== id));
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[#0B1220] via-[#0E1628] to-black p-8 text-white">
+    <div className="min-h-screen bg-gradient-to-br from-[#050A18] via-[#0B1225] to-black p-10 text-white">
 
-      <div className="rounded-2xl border border-white/10 bg-white/5 p-5">
-        <div className="flex flex-col md:flex-row gap-4">
-          <textarea
-            placeholder="Title..."
+      <div className="mb-10 rounded-3xl border border-white/10 bg-white/10 backdrop-blur-xl p-6 shadow-2xl">
+        <h1 className="mb-4 text-2xl font-bold text-cyan-400">
+          📢 New Announcement
+        </h1>
+
+        <div className="grid md:grid-cols-4 gap-4">
+          <input
+            placeholder="Title"
             value={newTitle}
             onChange={(e) => setNewTitle(e.target.value)}
-            className="flex-1 rounded-xl border border-white/20 bg-transparent p-3 text-white"
+            className="rounded-xl bg-black/30 border border-white/20 px-4 py-3 outline-none focus:border-cyan-400"
           />
 
-          <textarea
-            placeholder="Text..."
+          <input
+            placeholder="Text"
             value={newText}
             onChange={(e) => setNewText(e.target.value)}
-            className="flex-1 rounded-xl border border-white/20 bg-transparent p-3 text-white"
+            className="rounded-xl bg-black/30 border border-white/20 px-4 py-3 outline-none focus:border-cyan-400"
           />
 
-          <div
+          <button
             onClick={() => setOpen(!open)}
-            className="w-56 cursor-pointer rounded-xl border border-blue-500 bg-white px-4 py-3 text-gray-600 text-center"
+            className="rounded-xl bg-white text-black font-semibold hover:bg-cyan-400 transition"
           >
-            {date || "Select date"} 📅
-          </div>
+            {date || "📅 Select date"}
+          </button>
 
           <button
             onClick={addAnnouncement}
-            className="rounded-xl bg-gradient-to-r from-blue-600 to-cyan-500 px-6 py-3 text-white font-semibold hover:opacity-90"
+            className="rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 font-semibold hover:scale-105 transition"
           >
             Add
           </button>
@@ -105,19 +97,19 @@ const Announcements = () => {
       </div>
 
       {open && (
-        <div className="mt-3 w-80 rounded-2xl bg-white p-4 text-black shadow-xl">
-          <div className="mb-3 text-center font-semibold">Jan 2026</div>
+        <div className="absolute z-50 rounded-2xl bg-white text-black p-4 shadow-xl">
+          <p className="mb-3 font-bold text-center">January 2026</p>
 
           <div className="grid grid-cols-7 gap-2 text-center text-sm">
             {days.map((d) => (
-              <span key={d} className="text-gray-500">{d}</span>
+              <span key={d} className="text-gray-400">{d}</span>
             ))}
 
             {[...Array(31)].map((_, i) => (
               <button
                 key={i}
                 onClick={() => handleSelect(i + 1)}
-                className="rounded-lg py-1 hover:bg-blue-500 hover:text-white"
+                className="rounded-lg py-1 hover:bg-cyan-500 hover:text-white transition"
               >
                 {i + 1}
               </button>
@@ -126,21 +118,27 @@ const Announcements = () => {
         </div>
       )}
 
-      <div className="mt-8 space-y-4">
+      <div className="space-y-4">
         {announcements.map((a) => (
           <div
             key={a.id}
-            className="flex flex-col md:flex-row justify-between rounded-2xl border border-white/10 bg-white/5 p-5"
+            className="group rounded-3xl border border-white/10 bg-white/5 backdrop-blur-xl p-6"
           >
-            <div>
-              <h2 className="text-xl font-bold">{a.title}</h2>
-              <p className="text-gray-400">{a.text}</p>
-              <p className="text-sm text-blue-400">{a.date}</p>
+            <div className="flex justify-between items-start">
+              <div>
+                <h2 className="text-xl font-bold">{a.title}</h2>
+                <p className="text-gray-400">{a.text}</p>
+                <p className="mt-2 text-sm text-cyan-400">{a.date}</p>
+              </div>
+
+              <span className="rounded-full bg-green-500/20 px-3 py-1 text-sm text-green-400">
+                {a.status}
+              </span>
             </div>
 
             <button
               onClick={() => deleteAnnouncement(a.id)}
-              className="mt-3 md:mt-0 h-fit rounded-lg border border-red-500/30 bg-red-600/20 px-4 py-2 text-red-400 hover:bg-red-600 hover:text-white"
+              className="mt-4 rounded-lg bg-red-500/20 px-4 py-2 text-red-400 hover:bg-red-600 hover:text-white transition"
             >
               Delete
             </button>

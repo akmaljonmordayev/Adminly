@@ -470,29 +470,7 @@
       "id": "e4b3"
     }
   ],
-  "announcements": [
-    {
-      "id": "ANN001",
-      "title": "Company Holiday Schedule",
-      "text": "Please note that the company will be closed from December 31 to January 2 for New Year holidays.",
-      "date": "2025-12-20",
-      "author": "HR Department"
-    },
-    {
-      "id": "ANN002",
-      "title": "New Health Insurance Plan",
-      "text": "A new health insurance plan will be effective starting January 1, 2026. Please review the plan details in your email.",
-      "date": "2025-12-18",
-      "author": "Admin Department"
-    },
-    {
-      "id": "ANN003",
-      "title": "Year-End Meeting",
-      "text": "The year-end meeting will be held on December 28 at 3 PM in the main conference hall. Attendance is mandatory.",
-      "date": "2025-12-15",
-      "author": "Management"
-    }
-  ],
+  "announcements": [],
   "complaints": [
     {
       "id": "CPL001",
