@@ -1,24 +1,43 @@
-import { useState } from 'react'
-import './App.css'
-import { Route, Routes } from 'react-router-dom'
-import MainLayOut from './layouts/MainLayOut'
-import React, { Suspense } from 'react'
-import ProtectedRoute from './components/ProtectedRoute'
+import { useState } from "react";
+import "./App.css";
+import { Route, Routes } from "react-router-dom";
+import MainLayOut from "./layouts/MainLayOut";
+import React, { Suspense } from "react";
+import ProtectedRoute from "./components/ProtectedRoute";
 
-const Login = React.lazy(() => import('./auth/Login'))
-const Register = React.lazy(() => import('./auth/Register'))
-const NotFound = React.lazy(() => import('./role/Employee/NotFound'))
-const Announcements = React.lazy(() => import('./role/Manager/Announcements'))
-const Archieve = React.lazy(() => import('./role/Manager/Archieve'))
-const Complaints = React.lazy(() => import('./role/Manager/Complaints'))
-const Dashboard = React.lazy(() => import('./role/Manager/Dashboard'))
-const Employees = React.lazy(() => import('./role/Manager/Employees'))
-const Finance = React.lazy(() => import('./role/Manager/Finance'))
-const Logs = React.lazy(() => import('./role/Manager/Logs'))
-const Settings = React.lazy(() => import('./role/Manager/Settings'))
-const Tasks = React.lazy(() => import('./role/Manager/Tasks'))
-const Vacations = React.lazy(() => import('./role/Manager/Vacations'))
-const Leaves = React.lazy(() => import('./role/Manager/Leaves'))
+const Login = React.lazy(() => import("./auth/Login"));
+const Register = React.lazy(() => import("./auth/Register"));
+const NotFound = React.lazy(() => import("./role/Employee/NotFound"));
+const Announcements = React.lazy(() => import("./role/Manager/Announcements"));
+const Archieve = React.lazy(() => import("./role/Manager/Archieve"));
+const Complaints = React.lazy(() => import("./role/Manager/Complaints"));
+const Dashboard = React.lazy(() => import("./role/Manager/Dashboard"));
+const Employees = React.lazy(() => import("./role/Manager/Employees"));
+const Finance = React.lazy(() => import("./role/Manager/Finance"));
+const Logs = React.lazy(() => import("./role/Manager/Logs"));
+const Settings = React.lazy(() => import("./role/Manager/Settings"));
+const Tasks = React.lazy(() => import("./role/Manager/Tasks"));
+const Vacations = React.lazy(() => import("./role/Manager/Vacations"));
+const Leaves = React.lazy(() => import("./role/Manager/Leaves"));
+const LeavesArchieve = React.lazy(() =>
+  import("./role/Manager/LeavesArchieve")
+);
+const VacationsArchieve = React.lazy(() =>
+  import("./role/Manager/VacationsArchieve")
+);
+const TasksArchieve = React.lazy(() => import("./role/Manager/TasksArchieve"));
+const AnnouncementsArchieve = React.lazy(() =>
+  import("./role/Manager/AnnouncementsArchieve")
+);
+const ComplaintsArchieve = React.lazy(() =>
+  import("./role/Manager/ComplaintsArchieve")
+);
+const EmployeesArchieve = React.lazy(() =>
+  import("./role/Manager/EmployeesArchieve")
+);
+const FinanceArchieve = React.lazy(() =>
+  import("./role/Manager/FinanceArchieve")
+);
 
 function App() {
   return (
@@ -70,7 +89,7 @@ function App() {
             element={
               <ProtectedRoute>
                 <MainLayOut>
-                  {' '}
+                  {" "}
                   <Dashboard />
                 </MainLayOut>
               </ProtectedRoute>
@@ -81,7 +100,7 @@ function App() {
             element={
               <ProtectedRoute>
                 <MainLayOut>
-                  {' '}
+                  {" "}
                   <Finance />
                 </MainLayOut>
               </ProtectedRoute>
@@ -92,7 +111,7 @@ function App() {
             element={
               <ProtectedRoute>
                 <MainLayOut>
-                  {' '}
+                  {" "}
                   <Tasks />
                 </MainLayOut>
               </ProtectedRoute>
@@ -103,7 +122,7 @@ function App() {
             element={
               <ProtectedRoute>
                 <MainLayOut>
-                  {' '}
+                  {" "}
                   <Logs />
                 </MainLayOut>
               </ProtectedRoute>
@@ -114,7 +133,7 @@ function App() {
             element={
               <ProtectedRoute>
                 <MainLayOut>
-                  {' '}
+                  {" "}
                   <Vacations />
                 </MainLayOut>
               </ProtectedRoute>
@@ -125,7 +144,7 @@ function App() {
             element={
               <ProtectedRoute>
                 <MainLayOut>
-                  {' '}
+                  {" "}
                   <Settings />
                 </MainLayOut>
               </ProtectedRoute>
@@ -137,7 +156,7 @@ function App() {
             element={
               <ProtectedRoute>
                 <MainLayOut>
-                  {' '}
+                  {" "}
                   <Complaints />
                 </MainLayOut>
               </ProtectedRoute>
@@ -148,7 +167,7 @@ function App() {
             element={
               <ProtectedRoute>
                 <MainLayOut>
-                  {' '}
+                  {" "}
                   <Employees />
                 </MainLayOut>
               </ProtectedRoute>
@@ -159,18 +178,32 @@ function App() {
             element={
               <ProtectedRoute>
                 <MainLayOut>
-                  {' '}
+                  {" "}
                   <Archieve />
                 </MainLayOut>
               </ProtectedRoute>
             }
-          />
+          >
+            <Route element={<TasksArchieve />} path="tasksArchieve" />
+            <Route
+              element={<ComplaintsArchieve />}
+              path="complaintsArchieve"
+            />
+            <Route
+              element={<AnnouncementsArchieve />}
+              path="announcementsArchieve"
+            />
+            <Route element={<LeavesArchieve />} path="leavesArchieve" />
+            <Route element={<VacationsArchieve />} path="vacationsArchieve" />
+            <Route element={<FinanceArchieve />} path="financeArchieve" />
+            <Route element={<EmployeesArchieve />} path="employeesArchieve" />
+          </Route>
           <Route
             path="/manager/announcemenets"
             element={
               <ProtectedRoute>
                 <MainLayOut>
-                  {' '}
+                  {" "}
                   <Announcements />
                 </MainLayOut>
               </ProtectedRoute>
@@ -181,7 +214,7 @@ function App() {
             element={
               <ProtectedRoute>
                 <MainLayOut>
-                  {' '}
+                  {" "}
                   <Leaves />
                 </MainLayOut>
               </ProtectedRoute>
@@ -201,7 +234,7 @@ function App() {
         </Routes>
       </Suspense>
     </>
-  )
+  );
 }
 
-export default App
+export default App;

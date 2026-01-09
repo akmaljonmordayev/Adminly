@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useLocation } from "react-router-dom";
 import React from "react";
 import {
   MdDashboard,
@@ -16,7 +17,16 @@ import { FaUserCircle } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
 function Sidebar() {
-  const [active, setActive] = useState("dashboard");
+  const location = useLocation();
+  const [active, setActive] = useState(location.pathname.slice(9));
+
+
+  console.log(location.pathname);
+
+  useEffect(() => {
+    const url = location.pathname.slice(9);
+    setActive(url);
+  }, [location.pathname]);
 
   const menu = [
     {
