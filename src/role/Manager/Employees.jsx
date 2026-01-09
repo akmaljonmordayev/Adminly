@@ -14,7 +14,6 @@ function Employees() {
     fullName: "",
     email: "",
   });
-
   useEffect(() => {
     fetch("http://localhost:5000/employees")
       .then((res) => res.json())
@@ -33,7 +32,6 @@ function Employees() {
       user.fullName.toLowerCase().includes(search.toLowerCase()) ||
       user.email.toLowerCase().includes(search.toLowerCase())
   );
-
   const handleDelete = (id) => {
     if (!window.confirm("Delete this employee?")) return;
 
