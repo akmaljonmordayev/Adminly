@@ -17,14 +17,11 @@ function Tasks() {
   const [editEmployeeName, setEditEmployeeName] = useState("");
   const [editDeadline, setEditDeadline] = useState("");
 
-  /* ================= FETCH ================= */
-
   const fetchTasks = async () => {
     const res = await fetch(API_URL);
     const data = await res.json();
     setTasks(data);
   };
-
 
   const fetchEmployees = async () => {
     const res = await fetch("http://localhost:5000/employees");
@@ -38,8 +35,6 @@ function Tasks() {
   }, []);
 
   const fullnames = employees.map((e) => e.fullName);
-
-  /* ================= ADD ================= */
 
   const addTask = async () => {
     if (!taskName || !employeeName || !deadline) {
@@ -55,27 +50,26 @@ function Tasks() {
         employeeName,
         deadline,
         status: "pending",
-        
+
       }),
     });
 
-    toast.success("Task qo‘shildi");
+    toast.success("Task successfully added");
+
     setTaskName("");
     setEmployeeName("");
     setDeadline("");
     fetchTasks();
   };
 
-  /* ================= DELETE ================= */
+
 
   const deleteTask = async (id) => {
     await fetch(`${API_URL}/${id}`, { method: "DELETE" });
-    toast.error("Task o‘chirildi");
+    toast.error("Task successfully deleted");
     fetchTasks();
   };
-
-  /* ================= STATUS ================= */
-
+  
   const updateStatus = async (id, status) => {
     const currentTask = tasks.find((t) => t.id === id);
 
@@ -87,8 +81,6 @@ function Tasks() {
 
     fetchTasks();
   };
-
-  /* ================= EDIT ================= */
 
   const saveEdit = async (id) => {
     const currentTask = tasks.find((t) => t.id === id);
@@ -104,7 +96,7 @@ function Tasks() {
       }),
     });
 
-    toast.success("Task yangilandi");
+    toast.success("Task updated");
     setEditingId(null);
     fetchTasks();
   };
@@ -115,8 +107,6 @@ function Tasks() {
     done: "text-green-400",
   };
 
-  /* ================= UI ================= */
-
   return (
     <div className="min-h-screen bg-gradient-to-br from-[#020617] to-[#0b1220] p-8 text-slate-200">
       <div className="max-w-7xl mx-auto">
@@ -124,23 +114,24 @@ function Tasks() {
           Task Management
         </h1>
 
-        {/* ADD TASK */}
         <div className="bg-[#0f172a] p-6 rounded-3xl mb-10">
           <div className="grid md:grid-cols-4 gap-4">
             <input
               placeholder="Task nomi"
               value={taskName}
               onChange={(e) => setTaskName(e.target.value)}
-              className="input"
+              className="px-4 py-3 rounded-xl bg-[#020617] border border-slate-700"
             />
 
             <select
               onChange={(e) => setEmployeeName(e.target.value)}
-              className="input"
+              className="bg-[#020617] border border-slate-700 rounded-lg px-2 mr-12 py-1 w-full"
             >
               <option value="">Employee tanlang</option>
               {fullnames.map((n) => (
-                <option key={n} value={n}>{n}</option>
+                <option key={n} value={n}>
+                  {n}
+                </option>
               ))}
             </select>
 
@@ -160,27 +151,26 @@ function Tasks() {
 
         <ToastContainer position="top-right" autoClose={2000} theme="dark" />
 
-        {/* TASK LIST */}
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
           {tasks.map((task) => (
             <div key={task.id} className="bg-[#0f172a] p-6 rounded-3xl">
-
-              {/* EDIT / VIEW */}
               {editingId === task.id ? (
                 <div className="space-y-3">
                   <input
                     value={editTaskName}
                     onChange={(e) => setEditTaskName(e.target.value)}
-                    className="input"
+                    className="w-full bg-[#020617] border border-slate-700 rounded-lg px-3 py-2"
                   />
 
                   <select
                     value={editEmployeeName}
                     onChange={(e) => setEditEmployeeName(e.target.value)}
-                    className="input"
+                    className="w-full bg-[#020617] border border-slate-700 rounded-lg px-3 py-2"
                   >
                     {fullnames.map((n) => (
-                      <option key={n} value={n}>{n}</option>
+                      <option key={n} value={n}>
+                        {n}
+                      </option>
                     ))}
                   </select>
 
@@ -192,7 +182,9 @@ function Tasks() {
               ) : (
                 <div className="space-y-1">
                   <h3 className="text-lg text-cyan-300">📝 {task.taskName}</h3>
-                  <p className="text-sm text-slate-400">👤 {task.employeeName}</p>
+                  <p className="text-sm text-slate-400">
+                    👤 {task.employeeName}
+                  </p>
                   <p className="text-sm text-slate-400">📅 {task.deadline}</p>
                 </div>
               )}
@@ -201,12 +193,11 @@ function Tasks() {
                 {task.status}
               </p>
 
-              {/* ACTIONS */}
               <div className="flex gap-2 mt-4">
                 <select
                   value={task.status}
                   onChange={(e) => updateStatus(task.id, e.target.value)}
-                  className="input py-1"
+                  className="bg-[#020617] border border-slate-700 rounded-lg px-2 mr-12 py-1"
                 >
                   <option value="pending">Pending</option>
                   <option value="in progress">In Progress</option>
@@ -216,7 +207,7 @@ function Tasks() {
                 {editingId === task.id ? (
                   <button
                     onClick={() => saveEdit(task.id)}
-                    className="btn-green"
+                    className="px-3 py-1 bg-green-500/20 text-green-400 rounded-lg"
                   >
                     Save
                   </button>
@@ -228,20 +219,16 @@ function Tasks() {
                       setEditEmployeeName(task.employeeName);
                       setEditDeadline(task.deadline);
                     }}
-                    className="btn-blue"
+                    className="px-3 py-1 bg-blue-500/20 text-blue-400 rounded-lg w-20"
                   >
                     Edit
                   </button>
                 )}
 
-                <button
-                  onClick={() => deleteTask(task.id)}
-                  className="btn-red"
-                >
+                <button onClick={() => deleteTask(task.id)} className="px-3 py-1 bg-red-500/20 text-red-400 rounded-lg">
                   Delete
                 </button>
               </div>
-
             </div>
           ))}
         </div>
