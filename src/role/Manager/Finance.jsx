@@ -268,7 +268,6 @@ function Finance() {
                     </div>
                   </div>
 
-                  {/* VIZUAL FORMULA QISMI */}
                   <div className="bg-[#0b1221] rounded-2xl p-4 border border-white/10 space-y-3">
                     <div className="flex items-center justify-around text-[10px] md:text-xs font-mono">
                       <div className="text-center">
