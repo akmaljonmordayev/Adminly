@@ -163,7 +163,6 @@
       "bonus": 200000,
       "penalty": 50000,
       "totalSalary": 2900000,
-
       "month": "2025-12",
       "status": "paid",
       "paymentDate": "2025-12-27",
@@ -317,7 +316,6 @@
       "userId": 110,
       "fullName": "Aziza Mahmudova",
       "email": "aziza.mahmudova@example.com",
-
       "hireDate": "2023-06-30",
       "baseSalary": 2900000,
       "kpiPercent": 15,
@@ -345,13 +343,19 @@
   ],
   "tasks": [
     {
-      "id": "16fe",
-      "taskName": "Dashboard full tugatish",
-      "employeeName": "Bekzod Shokirov",
-      "status": "done",
-      "deadline": "2026-02-07"
+      "id": "d755",
+      "taskName": "devrf",
+      "employeeName": "Dilshod Karimov",
+      "deadline": "2025-12-10",
+      "status": "pending"
+    },
+    {
+      "id": "a742",
+      "taskName": "cfev",
+      "employeeName": "Dilshod Karimov",
+      "deadline": "2026-01-13",
+      "status": "pending"
     }
-    
   ],
   "logs": [
     {
