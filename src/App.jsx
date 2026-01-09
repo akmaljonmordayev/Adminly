@@ -5,7 +5,6 @@ import MainLayOut from './layouts/MainLayOut'
 import React, { Suspense } from 'react'
 import ProtectedRoute from './components/ProtectedRoute'
 
-
 const Login = React.lazy(() => import('./auth/Login'))
 const Register = React.lazy(() => import('./auth/Register'))
 const NotFound = React.lazy(() => import('./role/Employee/NotFound'))

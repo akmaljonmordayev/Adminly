@@ -75,7 +75,7 @@ function Finance() {
       const kpi = Number(editData.kpiAmount)
       const bonus = Number(editData.bonus)
       const penalty = Number(editData.penalty)
-      const finalTotal = base + kpi + bonus - penalty
+      const finalTotal = base / kpi + bonus - penalty
 
       const updatedData = { ...editData, totalSalary: finalTotal }
 
@@ -113,16 +113,12 @@ function Finance() {
           {loading && (
             <div className="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-[#0f172a]/90 backdrop-blur-md">
               <div className="relative flex items-center justify-center">
-                {/* Tashqi aylanuvchi halqa */}
                 <div className="absolute w-32 h-32 border-4 border-t-cyan-500 border-b-cyan-500 border-l-transparent border-r-transparent rounded-full animate-spin"></div>
 
-                {/* O'rtadagi pulsatsiya qiluvchi halqa */}
                 <div className="absolute w-24 h-24 border-2 border-cyan-400/30 rounded-full animate-ping"></div>
 
-                {/* Ichki qarama-qarshi aylanuvchi halqa */}
                 <div className="absolute w-20 h-20 border-2 border-r-cyan-300 border-l-cyan-300 border-t-transparent border-b-transparent rounded-full animate-[spin_1.5s_linear_infinite_reverse]"></div>
 
-                {/* Markaziy nuqta va nur */}
                 <div className="relative w-4 h-4 bg-cyan-400 rounded-full shadow-[0_0_20px_rgba(34,211,238,0.8)] animate-pulse"></div>
               </div>
 
@@ -131,13 +127,11 @@ function Finance() {
                 <span className="text-cyan-400 font-mono text-sm tracking-[0.3em] uppercase animate-pulse">
                   Loading Data
                 </span>
-                {/* Yuklanish chizig'i (progress bar ko'rinishida) */}
                 <div className="w-32 h-[2px] bg-slate-800 overflow-hidden rounded-full">
                   <div className="w-full h-full bg-cyan-500 -translate-x-full animate-[shimmer_1.5s_infinite]"></div>
                 </div>
               </div>
 
-              {/* Tailwind configga qo'shimcha shimmer animatsiyasi kerak bo'lsa yoki inline style bilan: */}
               <style
                 dangerouslySetInnerHTML={{
                   __html: `
@@ -207,6 +201,71 @@ function Finance() {
                         className="bg-red-500/5 border border-red-500/20 rounded-xl px-3 py-2 text-red-200 outline-none"
                       />
                     </div>
+                    <div>
+                      <textarea
+                        placeholder="Comment"
+                        value={editData.comment || ''}
+                        onChange={(e) =>
+                          setEditData({
+                            ...editData,
+                            comment: e.target.value,
+                          })
+                        }
+                        className="w-[435px] mb-3 px-3 py-2 rounded-lg bg-slate-900 border border-white/10 resize-none"
+                      />
+
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-30 pt-4">
+                        {/* Payment Method - To'lov usuli */}
+                        <div className="flex flex-col gap-1.5">
+                          <label
+                            htmlFor="paymentMethod"
+                            className="text-[10px] font-bold text-slate-500 uppercase tracking-widest ml-1"
+                          >
+                            Payment Method
+                          </label>
+                          <select
+                            name="paymentMethod"
+                            id="paymentMethod"
+                            className="bg-slate-900/50 border border-white/10 rounded-xl px-3 py-2.5 text-sm text-white outline-none w-30 focus:border-cyan-500 transition-all cursor-pointer appearance-none hover:bg-slate-800"
+                          >
+                            <option value="bank" className="bg-[#0f172a]">
+                              Bank Transfer
+                            </option>
+                            <option value="cash" className="bg-[#0f172a]">
+                              Cash
+                            </option>
+                          </select>
+                        </div>
+
+                        {/* Payment Status - To'lov holati */}
+                        <div className="flex flex-col gap-1.5">
+                          <label
+                            htmlFor="paymentStatus"
+                            className="text-[10px] font-bold text-slate-500 uppercase tracking-widest ml-1"
+                          >
+                            Payment Status
+                          </label>
+                          <select
+                            name="paymentStatus"
+                            id="paymentStatus"
+                            className=" w-30 bg-slate-900/50 border border-white/10 rounded-xl px-3 py-2.5 text-sm text-cyan-400 font-medium outline-none focus:border-cyan-500 transition-all cursor-pointer appearance-none hover:bg-slate-800"
+                          >
+                            <option
+                              value="paid"
+                              className="bg-[#0f172a] text-emerald-400"
+                            >
+                              Paid
+                            </option>
+                            <option
+                              value="unpaid"
+                              className="bg-[#0f172a] text-red-400"
+                            >
+                              Unpaid
+                            </option>
+                          </select>
+                        </div>
+                      </div>
+                    </div>
                   </div>
 
                   {/* VIZUAL FORMULA QISMI */}
@@ -214,28 +273,28 @@ function Finance() {
                     <div className="flex items-center justify-around text-[10px] md:text-xs font-mono">
                       <div className="text-center">
                         <p className="text-emerald-400 font-bold">
-                          ${Number(editData.baseSalary) || 0}
+                          ${Number(editData.baseSalary)}
                         </p>
                         <p className="text-slate-600">BASE</p>
                       </div>
                       <span className="text-slate-600">+</span>
                       <div className="text-center">
                         <p className="text-emerald-400 font-bold">
-                          ${Number(editData.kpiAmount) || 0}
+                          ${Number(editData.kpiAmount)}
                         </p>
                         <p className="text-slate-600">KPI</p>
                       </div>
                       <span className="text-slate-600">+</span>
                       <div className="text-center">
                         <p className="text-emerald-400 font-bold">
-                          ${Number(editData.bonus) || 0}
+                          ${Number(editData.bonus)}
                         </p>
                         <p className="text-slate-600">BONUS</p>
                       </div>
                       <span className="text-slate-600">-</span>
                       <div className="text-center">
                         <p className="text-red-400 font-bold">
-                          ${Number(editData.penalty) || 0}
+                          ${Number(editData.penalty)}
                         </p>
                         <p className="text-slate-600">PENALTY</p>
                       </div>
@@ -249,7 +308,7 @@ function Finance() {
                       </span>
                       <span className="text-2xl font-black text-cyan-400">
                         $
-                        {Number(editData.baseSalary) +
+                        {Number(editData.baseSalary) /
                           Number(editData.kpiAmount) +
                           Number(editData.bonus) -
                           Number(editData.penalty)}
