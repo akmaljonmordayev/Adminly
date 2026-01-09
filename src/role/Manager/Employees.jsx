@@ -7,12 +7,13 @@ function Employees() {
   const [loading, setLoading] = useState(true);
 
   const [open, setOpen] = useState(false);
+  const [search, setSearch] = useState("");
+
   const [currentUser, setCurrentUser] = useState({
     id: "",
     fullName: "",
     email: "",
   });
-
   useEffect(() => {
     fetch("http://localhost:5000/employees")
       .then((res) => res.json())
@@ -26,42 +27,85 @@ function Employees() {
       });
   }, []);
 
+  const filteredUsers = users.filter(
+    (user) =>
+      user.fullName.toLowerCase().includes(search.toLowerCase()) ||
+      user.email.toLowerCase().includes(search.toLowerCase())
+  );
   const handleDelete = (id) => {
     if (!window.confirm("Delete this employee?")) return;
 
     fetch(`http://localhost:5000/employees/${id}`, {
       method: "DELETE",
     }).then(() => {
-      setUsers(users.filter((u) => u.id !== id));
-      toast.success("Employee deleted successfully ✅");
+      setUsers((prev) => prev.filter((u) => u.id !== id));
+      toast.success("Employee deleted ✅");
     });
   };
 
   const handleEditOpen = (user) => {
-    setCurrentUser(user);
+    setCurrentUser({ ...user });
     setOpen(true);
   };
 
   const handleSave = () => {
-    fetch(`http://localhost:5000/employees/${currentUser.id}`, {
-      method: "PUT",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(currentUser),
-    }).then(() => {
-      setUsers(
-        users.map((u) =>
-          u.id === currentUser.id ? currentUser : u
-        )
-      );
-      setOpen(false);
-      toast.info("Employee updated ✨");
-    });
+    if (!currentUser.fullName || !currentUser.email) {
+      toast.warn("All fields are required");
+      return;
+    }
+
+    if (!currentUser.id) {
+      fetch("http://localhost:5000/employees", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(currentUser),
+      })
+        .then((res) => res.json())
+        .then((newUser) => {
+          setUsers((prev) => [...prev, newUser]);
+          setOpen(false);
+          toast.success("Employee added ✅");
+        });
+    }
+    else {
+      fetch(`http://localhost:5000/employees/${currentUser.id}`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(currentUser),
+      }).then(() => {
+        setUsers((prev) =>
+          prev.map((u) =>
+            u.id === currentUser.id ? currentUser : u
+          )
+        );
+        setOpen(false);
+        toast.info("Employee updated ✨");
+      });
+    }
   };
 
   if (loading) return <p style={{ color: "#22d3ee" }}>Loading...</p>;
 
   return (
     <div style={{ padding: "20px" }}>
+      <div style={topBar}>
+        <input
+          style={searchInput}
+          placeholder="Search employee..."
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+        />
+
+        <button
+          style={addBtn}
+          onClick={() => {
+            setCurrentUser({ id: "", fullName: "", email: "" });
+            setOpen(true);
+          }}
+        >
+          + Add Employee
+        </button>
+      </div>
 
       <table style={tableStyle}>
         <thead>
@@ -73,7 +117,7 @@ function Employees() {
           </tr>
         </thead>
         <tbody>
-          {users.map((user) => (
+          {filteredUsers.map((user) => (
             <tr key={user.id} style={tr}>
               <td style={td}>{user.id}</td>
               <td style={td}>{user.fullName}</td>
@@ -97,14 +141,16 @@ function Employees() {
         </tbody>
       </table>
 
-      {/* MODAL */}
       {open && (
         <div style={overlay}>
           <div style={modal}>
-            <h3 style={{ color: "#22d3ee" }}>Edit Employee</h3>
+            <h3 style={{ color: "#22d3ee" }}>
+              {currentUser.id ? "Edit Employee" : "Add Employee"}
+            </h3>
 
             <input
               style={input}
+              placeholder="Full Name"
               value={currentUser.fullName}
               onChange={(e) =>
                 setCurrentUser({
@@ -112,11 +158,11 @@ function Employees() {
                   fullName: e.target.value,
                 })
               }
-              placeholder="Full Name"
             />
 
             <input
               style={input}
+              placeholder="Email"
               value={currentUser.email}
               onChange={(e) =>
                 setCurrentUser({
@@ -124,7 +170,6 @@ function Employees() {
                   email: e.target.value,
                 })
               }
-              placeholder="Email"
             />
 
             <div style={{ textAlign: "right" }}>
@@ -150,6 +195,33 @@ function Employees() {
   );
 }
 
+
+const topBar = {
+  display: "flex",
+  alignItems: "center",
+  gap: "16px",
+  marginBottom: "16px",
+};
+
+const searchInput = {
+  flex: 1,
+  padding: "10px 14px",
+  borderRadius: "10px",
+  border: "1px solid #1e293b",
+  background: "#020617",
+  color: "#e5e7eb",
+  fontSize: "15px",
+};
+
+const addBtn = {
+  border: "none",
+  padding: "10px 18px",
+  borderRadius: "10px",
+  cursor: "pointer",
+  fontWeight: "600",
+  background: "#22d3ee",
+  color: "#020617",
+};
 
 const tableStyle = {
   width: "100%",
