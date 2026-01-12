@@ -1,6 +1,6 @@
-import { useState, useEffect } from 'react'
-import { useLocation } from 'react-router-dom'
-import React from 'react'
+import { useState, useEffect } from "react";
+import { useLocation, Link } from "react-router-dom";
+import React from "react";
 import {
   MdDashboard,
   MdPeople,
@@ -12,110 +12,129 @@ import {
   MdAnnouncement,
   MdBeachAccess,
   MdHistory,
-} from 'react-icons/md'
-import { FaUserCircle } from 'react-icons/fa'
-import { Link } from 'react-router-dom'
+  MdEventBusy,
+  MdPersonOff,
+} from "react-icons/md";
+import { FaUserCircle } from "react-icons/fa";
 
 function Sidebar() {
-  const location = useLocation()
-  const [active, setActive] = useState(location.pathname.slice(9))
-
-  console.log(location.pathname)
+  const location = useLocation();
+  const [active, setActive] = useState(location.pathname.slice(9));
 
   useEffect(() => {
-    const url = location.pathname.slice(9)
-    setActive(url)
-  }, [location.pathname])
+    setActive(location.pathname.slice(9));
+  }, [location.pathname]);
 
   const menu = [
     {
-      id: 'dashboard',
-      label: 'Dashboard',
+      id: "dashboard",
+      label: "Dashboard",
       icon: <MdDashboard />,
-      link: '/manager/dashboard',
+      link: "/manager/dashboard",
     },
     {
-      id: 'employees',
-      label: 'Employees',
+      id: "employees",
+      label: "Employees",
       icon: <MdPeople />,
-      link: '/manager/employees',
-    },
-    { id: 'tasks', label: 'Tasks', icon: <MdTask />, link: '/manager/tasks' },
-    {
-      id: 'complaints',
-      label: 'Complaints',
-      icon: <MdReport />,
-      link: '/manager/complaints',
+      link: "/manager/employees",
     },
     {
-      id: 'finance',
-      label: 'Finance',
+      id: "finance",
+      label: "Finance",
       icon: <MdAttachMoney />,
-      link: '/manager/finance',
+      link: "/manager/finance",
+    },
+    { id: "tasks", label: "Tasks", icon: <MdTask />, link: "/manager/tasks" },
+    {
+      id: "complaints",
+      label: "Complaints",
+      icon: <MdReport />,
+      link: "/manager/complaints",
     },
     {
-      id: 'settings',
-      label: 'Settings',
-      icon: <MdSettings />,
-      link: '/manager/settings',
-    },
-    {
-      id: 'archieve',
-      label: 'Archieve',
-      icon: <MdArchive />,
-      link: '/manager/archieve',
-    },
-    {
-      id: 'announcemenets',
-      label: 'Announcemenets',
+      id: "announcemenets",
+      label: "Announcements",
       icon: <MdAnnouncement />,
-      link: '/manager/announcemenets',
+      link: "/manager/announcemenets",
     },
     {
-      id: 'vacations',
-      label: 'Vacations',
+      id: "vacations",
+      label: "Vacations",
       icon: <MdBeachAccess />,
-      link: '/manager/vacations',
+      link: "/manager/vacations",
     },
     {
-      id: 'leaves',
-      label: 'Leaves',
-      icon: <MdBeachAccess />,
-      link: '/manager/leaves',
+      id: "leaves",
+      label: "Leaves",
+      icon: <MdPersonOff />,
+      link: "/manager/leaves",
     },
     {
-      id: 'logs',
-      label: 'Audit Logs',
+      id: "archieve",
+      label: "Archieve",
+      icon: <MdArchive />,
+      link: "/manager/archieve",
+    },
+    {
+      id: "settings",
+      label: "Settings",
+      icon: <MdSettings />,
+      link: "/manager/settings",
+    },
+    {
+      id: "logs",
+      label: "Audit Logs",
       icon: <MdHistory />,
-      link: '/manager/logs',
+      link: "/manager/logs",
     },
-  ]
+  ];
 
-  const user = JSON.parse(localStorage.getItem('user')) || {
-    name: 'Guest',
-    role: 'Manager',
-  }
+  const user = JSON.parse(localStorage.getItem("user")) || {
+    name: "Guest",
+    role: "Manager",
+  };
 
   return (
-    <aside className="w-[280px]  bg-[#0b1220] text-white p-6 flex flex-col shadow-[0_0_50px_rgba(0,255,255,0.2)]">
-      <div>
-        <h1 className="text-3xl font-bold text-cyan-400 flex items-center gap-3 mb-8">
-          <MdDashboard className="text-cyan-300" />
-          Adminly
-        </h1>
+    <aside
+      className="
+        w-[280px]
+        min-h-screen
+        bg-gradient-to-b from-[#020617] to-[#020617ee]
+        text-white
+        p-6
+        flex
+        flex-col
+        border-r border-white/5
+        shadow-[6px_0_30px_rgba(2,6,23,0.9)]
+      "
+    >
+      <h1 className="text-3xl font-bold text-cyan-400 flex items-center gap-3 mb-10 tracking-wide">
+        <MdDashboard className="text-cyan-300 drop-shadow-[0_0_8px_rgba(34,211,238,0.8)]" />
+        Adminly
+      </h1>
 
-        <div className="flex items-center gap-3 mb-10 p-3 rounded-xl bg-cyan-500/10 shadow-[0_0_15px_rgba(0,255,255,0.1)]">
+      <Link to={"/manager/settings"}>
+        <div
+          className="
+          pointer
+          flex items-center gap-3 mb-12 p-4 rounded-2xl
+          bg-white/5
+          border border-white/10
+          shadow-[0_0_20px_rgba(0,0,0,0.6)]
+        "
+        >
           <FaUserCircle className="text-5xl text-cyan-400" />
           <div>
-            <p className="font-semibold text-white">{user.name}</p>
-            <p className="text-sm text-cyan-200">{user.role}</p>
+            <p className="font-semibold">{user.name}</p>
+            <p className="text-sm text-cyan-300">{user.role}</p>
           </div>
         </div>
-      </div>
+      </Link>
 
-      <nav className="flex flex-col gap-3">
+      <nav className="flex flex-col gap-2">
         {menu.map((item) => {
-          const isActive = active === item.id
+          const isActive = active === item.id;
+
           return (
             <Link
               key={item.id}
@@ -123,23 +142,34 @@ function Sidebar() {
               onClick={() => setActive(item.id)}
             >
               <div
-                className={`flex items-center gap-4 px-5 py-3 cursor-pointer transition-all duration-300
+                className={`
+                  relative flex items-center gap-4 px-5 py-3 transition-all duration-300
                   ${
                     isActive
-                      ? 'bg-cyan-400/20 text-cyan-400 shadow-[0_0_10px_rgba(0,255,255,0.3)] font-semibold rounded-xl'
-                      : 'text-gray-300 hover:bg-cyan-400/10 hover:text-cyan-300 rounded-xl hover:translate-x-1'
+                      ? "bg-gradient-to-r from-cyan-400/20 to-transparent text-cyan-300 font-semibold rounded-xl border-l-4 border-cyan-400"
+                      : "text-gray-400 hover:bg-white/5 hover:text-cyan-300 rounded-xl hover:translate-x-1"
                   }
                 `}
               >
-                <span className="text-2xl">{item.icon}</span>
-                <span className="text-md">{item.label}</span>
+                {isActive && (
+                  <span className="absolute inset-0 rounded-xl blur-md bg-cyan-400/10"></span>
+                )}
+
+                <span
+                  className={`relative text-2xl ${
+                    isActive ? "text-cyan-300" : "text-gray-500"
+                  }`}
+                >
+                  {item.icon}
+                </span>
+                <span className="relative text-md">{item.label}</span>
               </div>
             </Link>
-          )
+          );
         })}
       </nav>
     </aside>
-  )
+  );
 }
 
-export default Sidebar
+export default Sidebar;
