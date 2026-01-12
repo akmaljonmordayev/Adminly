@@ -1,6 +1,6 @@
-import { useState, useEffect } from "react";
-import { useLocation } from "react-router-dom";
-import React from "react";
+import { useState, useEffect } from 'react'
+import { useLocation } from 'react-router-dom'
+import React from 'react'
 import {
   MdDashboard,
   MdPeople,
@@ -12,90 +12,89 @@ import {
   MdAnnouncement,
   MdBeachAccess,
   MdHistory,
-} from "react-icons/md";
-import { FaUserCircle } from "react-icons/fa";
-import { Link } from "react-router-dom";
+} from 'react-icons/md'
+import { FaUserCircle } from 'react-icons/fa'
+import { Link } from 'react-router-dom'
 
 function Sidebar() {
-  const location = useLocation();
-  const [active, setActive] = useState(location.pathname.slice(9));
+  const location = useLocation()
+  const [active, setActive] = useState(location.pathname.slice(9))
 
-
-  console.log(location.pathname);
+  console.log(location.pathname)
 
   useEffect(() => {
-    const url = location.pathname.slice(9);
-    setActive(url);
-  }, [location.pathname]);
+    const url = location.pathname.slice(9)
+    setActive(url)
+  }, [location.pathname])
 
   const menu = [
     {
-      id: "dashboard",
-      label: "Dashboard",
+      id: 'dashboard',
+      label: 'Dashboard',
       icon: <MdDashboard />,
-      link: "/manager/dashboard",
+      link: '/manager/dashboard',
     },
     {
-      id: "employees",
-      label: "Employees",
+      id: 'employees',
+      label: 'Employees',
       icon: <MdPeople />,
-      link: "/manager/employees",
+      link: '/manager/employees',
     },
-    { id: "tasks", label: "Tasks", icon: <MdTask />, link: "/manager/tasks" },
+    { id: 'tasks', label: 'Tasks', icon: <MdTask />, link: '/manager/tasks' },
     {
-      id: "complaints",
-      label: "Complaints",
+      id: 'complaints',
+      label: 'Complaints',
       icon: <MdReport />,
-      link: "/manager/complaints",
+      link: '/manager/complaints',
     },
     {
-      id: "finance",
-      label: "Finance",
+      id: 'finance',
+      label: 'Finance',
       icon: <MdAttachMoney />,
-      link: "/manager/finance",
+      link: '/manager/finance',
     },
     {
-      id: "settings",
-      label: "Settings",
+      id: 'settings',
+      label: 'Settings',
       icon: <MdSettings />,
-      link: "/manager/settings",
+      link: '/manager/settings',
     },
     {
-      id: "archive",
-      label: "Archive",
+      id: 'archieve',
+      label: 'Archieve',
       icon: <MdArchive />,
-      link: "/manager/archieve",
+      link: '/manager/archieve',
     },
     {
-      id: "announcements",
-      label: "Announcements",
+      id: 'announcemenets',
+      label: 'Announcemenets',
       icon: <MdAnnouncement />,
-      link: "/manager/announcemenets",
+      link: '/manager/announcemenets',
     },
     {
-      id: "vacations",
-      label: "Vacations",
+      id: 'vacations',
+      label: 'Vacations',
       icon: <MdBeachAccess />,
-      link: "/manager/vacations",
+      link: '/manager/vacations',
     },
     {
-      id: "leaves",
-      label: "Leaves",
+      id: 'leaves',
+      label: 'Leaves',
       icon: <MdBeachAccess />,
-      link: "/manager/leaves",
+      link: '/manager/leaves',
     },
     {
-      id: "logs",
-      label: "Audit Logs",
+      id: 'logs',
+      label: 'Audit Logs',
       icon: <MdHistory />,
-      link: "/manager/logs",
+      link: '/manager/logs',
     },
-  ];
+  ]
 
-  const user = JSON.parse(localStorage.getItem("user")) || {
-    name: "Guest",
-    role: "Manager",
-  };
+  const user = JSON.parse(localStorage.getItem('user')) || {
+    name: 'Guest',
+    role: 'Manager',
+  }
 
   return (
     <aside className="w-[280px]  bg-[#0b1220] text-white p-6 flex flex-col shadow-[0_0_50px_rgba(0,255,255,0.2)]">
@@ -116,7 +115,7 @@ function Sidebar() {
 
       <nav className="flex flex-col gap-3">
         {menu.map((item) => {
-          const isActive = active === item.id;
+          const isActive = active === item.id
           return (
             <Link
               key={item.id}
@@ -127,8 +126,8 @@ function Sidebar() {
                 className={`flex items-center gap-4 px-5 py-3 cursor-pointer transition-all duration-300
                   ${
                     isActive
-                      ? "bg-cyan-400/20 text-cyan-400 shadow-[0_0_10px_rgba(0,255,255,0.3)] font-semibold rounded-xl"
-                      : "text-gray-300 hover:bg-cyan-400/10 hover:text-cyan-300 rounded-xl hover:translate-x-1"
+                      ? 'bg-cyan-400/20 text-cyan-400 shadow-[0_0_10px_rgba(0,255,255,0.3)] font-semibold rounded-xl'
+                      : 'text-gray-300 hover:bg-cyan-400/10 hover:text-cyan-300 rounded-xl hover:translate-x-1'
                   }
                 `}
               >
@@ -136,11 +135,11 @@ function Sidebar() {
                 <span className="text-md">{item.label}</span>
               </div>
             </Link>
-          );
+          )
         })}
       </nav>
     </aside>
-  );
+  )
 }
 
-export default Sidebar;
+export default Sidebar

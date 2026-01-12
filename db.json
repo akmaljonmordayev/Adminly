@@ -502,5 +502,71 @@
       "date": "2025-12-19",
       "status": "resolved"
     }
+  ],
+  "employeesDeleted": [
+    {
+      "id": "1",
+      "userId": 101,
+      "fullName": "Akmal Mordayev",
+      "email": "akmal.mordayev@example.com",
+      "hireDate": "2021-01-15",
+      "baseSalary": "1000",
+      "kpiPercent": "23",
+      "kpiAmount": 230,
+      "bonus": "200",
+      "penalty": "10",
+      "totalSalary": 1420,
+      "month": "January",
+      "status": "unpaid",
+      "paymentDate": "2026-01-31",
+      "paymentMethod": "bank",
+      "comment": "tolaymiz!",
+      "leaves": [
+        {
+          "leaveType": "Unpaid Leave",
+          "startDate": "2021-12-08",
+          "endDate": "2021-12-12",
+          "status": "Approved"
+        },
+        {
+          "leaveType": "Sick Leave",
+          "startDate": "2022-05-23",
+          "endDate": "2022-05-28",
+          "status": "Approved"
+        }
+      ],
+      "createdBy": 1,
+      "createdAt": "2025-12-01T10:00:00Z",
+      "updatedAt": "2025-12-30T14:12:00Z"
+    }
+  ],
+  "tasksDeleted": [
+    {
+      "id": "d9fc",
+      "taskName": "asdcas",
+      "employeeName": "Akmal Mordayev",
+      "deadline": "2026-01-30",
+      "status": "pending"
+    }
+  ],
+  "complaintsDeleted": [
+    {
+      "id": "CPL001",
+      "employeeId": "EMP005",
+      "employeeName": "Ali R.",
+      "title": "Air Conditioner Not Working",
+      "description": "The air conditioner in the 3rd-floor office is not functioning properly.",
+      "date": "2025-12-21",
+      "status": "resolved"
+    }
+  ],
+  "announcementsDeleted": [
+    {
+      "id": "7bca",
+      "title": "uxlash ",
+      "text": "hammeng uxla",
+      "date": "Jan 28, 2026",
+      "status": "Active"
+    }
   ]
 }
