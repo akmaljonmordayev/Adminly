@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { toast, ToastContainer } from "react-toastify";
 import { DatePicker } from "antd";
 import { FaMagnifyingGlass } from "react-icons/fa6";
+import axios from "axios";
 
 const API_URL = "http://localhost:5000/tasks";
 
@@ -70,8 +71,10 @@ function Tasks() {
   };
 
   const deleteTask = async (id) => {
+    let res = await axios.get(`http://localhost:5000/tasks/${id}`);
+    await axios.post(`http://localhost:5000/tasksDeleted`, res.data);
     await fetch(`${API_URL}/${id}`, { method: "DELETE" });
-    toast.error("Task successfully deleted");
+    toast.error("Task successfully deleted and achieved");
     fetchTasks();
   };
 
