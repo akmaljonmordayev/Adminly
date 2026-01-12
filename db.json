@@ -2,9 +2,9 @@
   "users": [
     {
       "id": "1",
-      "name": "Akmal Mordayev",
-      "email": "akmal@gmail.com",
-      "password": "1234",
+      "name": "Akmal Mordaye",
+      "email": "",
+      "password": "",
       "role": "manager"
     },
     {
@@ -345,41 +345,6 @@
   ],
   "tasks": [
     {
-      "id": "eea5",
-      "taskName": "abu",
-      "employeeName": "Akmal Mordayev",
-      "deadline": "2025-12-28",
-      "status": "pending"
-    },
-    {
-      "id": "7f43",
-      "taskName": "ali",
-      "employeeName": "Abdulloh Abdumalikov",
-      "deadline": "2025-11-30",
-      "status": "pending"
-    },
-    {
-      "id": "7702",
-      "taskName": "bilol",
-      "employeeName": "Dilshod Karimov",
-      "deadline": "2025-10-31",
-      "status": "pending"
-    },
-    {
-      "id": "1073",
-      "taskName": "dilshod",
-      "employeeName": "Jasmina Aliyeva",
-      "deadline": "2025-11-06",
-      "status": "pending"
-    },
-    {
-      "id": "f964",
-      "taskName": "elshod",
-      "employeeName": "Sherzod Rasulov",
-      "deadline": "2025-12-02",
-      "status": "pending"
-    },
-    {
       "id": "b546",
       "taskName": "firdavs",
       "employeeName": "Malika Tursunova",
@@ -530,10 +495,10 @@
   ],
   "announcements": [
     {
-      "id": "7bca",
-      "title": "uxlash ",
-      "text": "hammeng uxla",
-      "date": "Jan 28, 2026",
+      "id": "91b2",
+      "title": "fghbjnk",
+      "text": "gfvhbjnk",
+      "date": "Jan 21, 2026",
       "status": "Active"
     }
   ],
@@ -545,7 +510,7 @@
       "title": "Air Conditioner Not Working",
       "description": "The air conditioner in the 3rd-floor office is not functioning properly.",
       "date": "2025-12-21",
-      "status": "resolved"
+      "status": "pending"
     },
     {
       "id": "CPL002",
@@ -609,6 +574,20 @@
       "taskName": "asdcas",
       "employeeName": "Akmal Mordayev",
       "deadline": "2026-01-30",
+      "status": "pending"
+    },
+    {
+      "id": "1073",
+      "taskName": "dilshod",
+      "employeeName": "Jasmina Aliyeva",
+      "deadline": "2025-11-06",
+      "status": "pending"
+    },
+    {
+      "id": "f964",
+      "taskName": "elshod",
+      "employeeName": "Sherzod Rasulov",
+      "deadline": "2025-12-02",
       "status": "pending"
     }
   ],
