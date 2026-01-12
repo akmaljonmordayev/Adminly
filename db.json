@@ -344,10 +344,73 @@
   ],
   "tasks": [
     {
-      "id": "d9fc",
-      "taskName": "asdcas",
+      "id": "eea5",
+      "taskName": "abu",
       "employeeName": "Akmal Mordayev",
+      "deadline": "2025-12-28",
+      "status": "pending"
+    },
+    {
+      "id": "7f43",
+      "taskName": "ali",
+      "employeeName": "Abdulloh Abdumalikov",
+      "deadline": "2025-11-30",
+      "status": "pending"
+    },
+    {
+      "id": "7702",
+      "taskName": "bilol",
+      "employeeName": "Dilshod Karimov",
+      "deadline": "2025-10-31",
+      "status": "pending"
+    },
+    {
+      "id": "1073",
+      "taskName": "dilshod",
+      "employeeName": "Jasmina Aliyeva",
+      "deadline": "2025-11-06",
+      "status": "pending"
+    },
+    {
+      "id": "f964",
+      "taskName": "elshod",
+      "employeeName": "Sherzod Rasulov",
+      "deadline": "2025-12-02",
+      "status": "pending"
+    },
+    {
+      "id": "b546",
+      "taskName": "firdavs",
+      "employeeName": "Malika Tursunova",
+      "deadline": "2026-01-08",
+      "status": "pending"
+    },
+    {
+      "id": "65cd",
+      "taskName": "guli",
+      "employeeName": "Islombek Qodirov",
+      "deadline": "2026-01-23",
+      "status": "pending"
+    },
+    {
+      "id": "5582",
+      "taskName": "hoshim",
+      "employeeName": "Nodira Usmonova",
       "deadline": "2026-01-30",
+      "status": "pending"
+    },
+    {
+      "id": "5396",
+      "taskName": "ilon",
+      "employeeName": "Bekzod Shokirov",
+      "deadline": "2026-02-03",
+      "status": "pending"
+    },
+    {
+      "id": "3703",
+      "taskName": "joxon",
+      "employeeName": "Aziza Mahmudova",
+      "deadline": "2026-02-26",
       "status": "pending"
     }
   ],
