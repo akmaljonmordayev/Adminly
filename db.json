@@ -359,13 +359,6 @@
       "status": "pending"
     },
     {
-      "id": "5582",
-      "taskName": "hoshim",
-      "employeeName": "Nodira Usmonova",
-      "deadline": "2026-01-30",
-      "status": "pending"
-    },
-    {
       "id": "5396",
       "taskName": "ilon",
       "employeeName": "Bekzod Shokirov",
@@ -377,6 +370,27 @@
       "taskName": "joxon",
       "employeeName": "Aziza Mahmudova",
       "deadline": "2026-02-26",
+      "status": "pending"
+    },
+    {
+      "id": "d0c5",
+      "taskName": "defrg",
+      "employeeName": "Dilshod Karimov",
+      "deadline": "2026-01-13",
+      "status": "pending"
+    },
+    {
+      "id": "8a0c",
+      "taskName": "adeveb",
+      "employeeName": "Bekzod Shokirov",
+      "deadline": "2026-01-30",
+      "status": "pending"
+    },
+    {
+      "id": "2944",
+      "taskName": "asdeftrhyuki",
+      "employeeName": "Sherzod Rasulov",
+      "deadline": "2026-01-29",
       "status": "pending"
     }
   ],
@@ -588,6 +602,13 @@
       "taskName": "elshod",
       "employeeName": "Sherzod Rasulov",
       "deadline": "2025-12-02",
+      "status": "pending"
+    },
+    {
+      "id": "5582",
+      "taskName": "hoshim",
+      "employeeName": "Nodira Usmonova",
+      "deadline": "2026-01-30",
       "status": "pending"
     }
   ],
