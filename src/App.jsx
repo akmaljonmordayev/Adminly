@@ -1,6 +1,6 @@
 import { useState } from "react";
 import "./App.css";
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, Navigate } from "react-router-dom";
 import MainLayOut from "./layouts/MainLayOut";
 import React, { Suspense } from "react";
 import ProtectedRoute from "./components/ProtectedRoute";
@@ -19,12 +19,7 @@ const Settings = React.lazy(() => import("./role/Manager/Settings"));
 const Tasks = React.lazy(() => import("./role/Manager/Tasks"));
 const Vacations = React.lazy(() => import("./role/Manager/Vacations"));
 const Leaves = React.lazy(() => import("./role/Manager/Leaves"));
-const LeavesArchieve = React.lazy(() =>
-  import("./role/Manager/LeavesArchieve")
-);
-const VacationsArchieve = React.lazy(() =>
-  import("./role/Manager/VacationsArchieve")
-);
+
 const TasksArchieve = React.lazy(() => import("./role/Manager/TasksArchieve"));
 const AnnouncementsArchieve = React.lazy(() =>
   import("./role/Manager/AnnouncementsArchieve")
@@ -34,9 +29,6 @@ const ComplaintsArchieve = React.lazy(() =>
 );
 const EmployeesArchieve = React.lazy(() =>
   import("./role/Manager/EmployeesArchieve")
-);
-const FinanceArchieve = React.lazy(() =>
-  import("./role/Manager/FinanceArchieve")
 );
 
 function App() {
@@ -84,6 +76,10 @@ function App() {
         }
       >
         <Routes>
+          <Route
+            path="/"
+            element={<Navigate to="/manager/dashboard" replace />}
+          />
           <Route
             path="/manager/dashboard"
             element={
@@ -185,17 +181,11 @@ function App() {
             }
           >
             <Route element={<TasksArchieve />} path="tasksArchieve" />
-            <Route
-              element={<ComplaintsArchieve />}
-              path="complaintsArchieve"
-            />
+            <Route element={<ComplaintsArchieve />} path="complaintsArchieve" />
             <Route
               element={<AnnouncementsArchieve />}
               path="announcementsArchieve"
             />
-            <Route element={<LeavesArchieve />} path="leavesArchieve" />
-            <Route element={<VacationsArchieve />} path="vacationsArchieve" />
-            <Route element={<FinanceArchieve />} path="financeArchieve" />
             <Route element={<EmployeesArchieve />} path="employeesArchieve" />
           </Route>
           <Route

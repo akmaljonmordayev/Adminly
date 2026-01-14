@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Modal } from "antd";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -6,14 +7,33 @@ function Employees() {
   const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  const [open, setOpen] = useState(false);
-  const [search, setSearch] = useState("");
+  const [addOpen, setAddOpen] = useState(false);
+  const [editOpen, setEditOpen] = useState(false);
 
-  const [currentUser, setCurrentUser] = useState({
+  const [newUser, setNewUser] = useState({
+    fullName: "",
+    email: "",
+    phone: "",
+    BaseSalary: "",
+    createdAt: "",
+  });
+
+  const [editUser, setEditUser] = useState({
     id: "",
     fullName: "",
     email: "",
   });
+
+  const [search, setSearch] = useState("");
+
+  const getNow = () => {
+    const now = new Date();
+    const year = now.getFullYear();
+    const month = String(now.getMonth() );
+    const day = String(now.getDate());
+    return `${year}-${month}-${day}`;
+  };
+
   useEffect(() => {
     fetch("http://localhost:5000/employees")
       .then((res) => res.json())
@@ -28,10 +48,44 @@ function Employees() {
   }, []);
 
   const filteredUsers = users.filter(
-    (user) =>
-      user.fullName.toLowerCase().includes(search.toLowerCase()) ||
-      user.email.toLowerCase().includes(search.toLowerCase())
+    (u) =>
+      u.fullName.toLowerCase().includes(search.toLowerCase()) ||
+      u.email.toLowerCase().includes(search.toLowerCase())
   );
+
+  const handleAdd = () => {
+    if (!newUser.fullName || !newUser.email) {
+      toast.warn("Required fields missing");
+      return;
+    }
+
+    fetch("http://localhost:5000/employees", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(newUser),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        setUsers((prev) => [...prev, data]);
+        setAddOpen(false);
+        toast.success("Employee added ✅");
+      });
+  };
+
+  const handleEdit = () => {
+    fetch(`http://localhost:5000/employees/${editUser.id}`, {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(editUser),
+    }).then(() => {
+      setUsers((prev) =>
+        prev.map((u) => (u.id === editUser.id ? editUser : u))
+      );
+      setEditOpen(false);
+      toast.info("Employee updated ✨");
+    });
+  };
+
   const handleDelete = (id) => {
     if (!window.confirm("Delete this employee?")) return;
 
@@ -39,49 +93,8 @@ function Employees() {
       method: "DELETE",
     }).then(() => {
       setUsers((prev) => prev.filter((u) => u.id !== id));
-      toast.success("Employee deleted ✅");
+      toast.success("Employee deleted ❌");
     });
-  };
-
-  const handleEditOpen = (user) => {
-    setCurrentUser({ ...user });
-    setOpen(true);
-  };
-
-  const handleSave = () => {
-    if (!currentUser.fullName || !currentUser.email) {
-      toast.warn("All fields are required");
-      return;
-    }
-
-    if (!currentUser.id) {
-      fetch("http://localhost:5000/employees", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(currentUser),
-      })
-        .then((res) => res.json())
-        .then((newUser) => {
-          setUsers((prev) => [...prev, newUser]);
-          setOpen(false);
-          toast.success("Employee added ✅");
-        });
-    }
-    else {
-      fetch(`http://localhost:5000/employees/${currentUser.id}`, {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(currentUser),
-      }).then(() => {
-        setUsers((prev) =>
-          prev.map((u) =>
-            u.id === currentUser.id ? currentUser : u
-          )
-        );
-        setOpen(false);
-        toast.info("Employee updated ✨");
-      });
-    }
   };
 
   if (loading) return <p style={{ color: "#22d3ee" }}>Loading...</p>;
@@ -99,8 +112,14 @@ function Employees() {
         <button
           style={addBtn}
           onClick={() => {
-            setCurrentUser({ id: "", fullName: "", email: "" });
-            setOpen(true);
+            setNewUser({
+              fullName: "",
+              email: "",
+              phone: "",
+              BaseSalary: "",
+              createdAt: getNow(), 
+            });
+            setAddOpen(true);
           }}
         >
           + Add Employee
@@ -117,21 +136,24 @@ function Employees() {
           </tr>
         </thead>
         <tbody>
-          {filteredUsers.map((user) => (
-            <tr key={user.id} style={tr}>
-              <td style={td}>{user.id}</td>
-              <td style={td}>{user.fullName}</td>
-              <td style={td}>{user.email}</td>
+          {filteredUsers.map((u) => (
+            <tr key={u.id} style={tr}>
+              <td style={td}>{u.id}</td>
+              <td style={td}>{u.fullName}</td>
+              <td style={td}>{u.email}</td>
               <td style={td}>
                 <button
-                  onClick={() => handleEditOpen(user)}
                   style={{ ...btn, background: "#22d3ee" }}
+                  onClick={() => {
+                    setEditUser(u);
+                    setEditOpen(true);
+                  }}
                 >
                   Edit
                 </button>
                 <button
-                  onClick={() => handleDelete(user.id)}
                   style={{ ...btn, background: "#ef4444" }}
+                  onClick={() => handleDelete(u.id)}
                 >
                   Delete
                 </button>
@@ -141,133 +163,120 @@ function Employees() {
         </tbody>
       </table>
 
-      {open && (
-        <div style={overlay}>
-          <div style={modal}>
-            <h3 style={{ color: "#22d3ee" }}>
-              {currentUser.id ? "Edit Employee" : "Add Employee"}
-            </h3>
+      <Modal
+        title="Add Employee"
+        open={addOpen}
+        onOk={handleAdd}
+        onCancel={() => setAddOpen(false)}
+        okText="Add"
+      >
+        <input
+          style={input}
+          placeholder="Full name"
+          value={newUser.fullName}
+          onChange={(e) =>
+            setNewUser({ ...newUser, fullName: e.target.value })
+          }
+        />
 
-            <input
-              style={input}
-              placeholder="Full Name"
-              value={currentUser.fullName}
-              onChange={(e) =>
-                setCurrentUser({
-                  ...currentUser,
-                  fullName: e.target.value,
-                })
-              }
-            />
+        <input
+          style={input}
+          placeholder="Email"
+          value={newUser.email}
+          onChange={(e) =>
+            setNewUser({ ...newUser, email: e.target.value })
+          }
+        />
 
-            <input
-              style={input}
-              placeholder="Email"
-              value={currentUser.email}
-              onChange={(e) =>
-                setCurrentUser({
-                  ...currentUser,
-                  email: e.target.value,
-                })
-              }
-            />
+        <input
+          style={input}
+          placeholder="BaseSalary"
+          value={newUser.BaseSalary}
+          onChange={(e) =>
+            setNewUser({ ...newUser, BaseSalary: e.target.value })
+          }
+        />
 
-            <div style={{ textAlign: "right" }}>
-              <button
-                onClick={() => setOpen(false)}
-                style={{ ...btn, background: "#64748b" }}
-              >
-                Cancel
-              </button>
-              <button
-                onClick={handleSave}
-                style={{ ...btn, background: "#22d3ee" }}
-              >
-                Save
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
+        <input
+          type="datetime-local"
+          style={input}
+          value={newUser.createdAt}
+          disabled
+        />
+      </Modal>
+
+      <Modal
+        title="Edit Employee"
+        open={editOpen}
+        onOk={handleEdit}
+        onCancel={() => setEditOpen(false)}
+        okText="Save"
+      >
+        <input
+          style={input}
+          placeholder="Full name"
+          value={editUser.fullName}
+          onChange={(e) =>
+            setEditUser({ ...editUser, fullName: e.target.value })
+          }
+        />
+
+        <input
+          style={input}
+          placeholder="Email"
+          value={editUser.email}
+          onChange={(e) =>
+            setEditUser({ ...editUser, email: e.target.value })
+          }
+        />
+      </Modal>
 
       <ToastContainer position="top-right" autoClose={2000} theme="dark" />
     </div>
   );
 }
 
-
 const topBar = {
   display: "flex",
-  alignItems: "center",
   gap: "16px",
   marginBottom: "16px",
 };
 
 const searchInput = {
   flex: 1,
-  padding: "10px 14px",
+  padding: "10px",
   borderRadius: "10px",
-  border: "1px solid #1e293b",
   background: "#020617",
+  border: "1px solid #1e293b",
   color: "#e5e7eb",
-  fontSize: "15px",
 };
 
 const addBtn = {
-  border: "none",
   padding: "10px 18px",
   borderRadius: "10px",
+  border: "none",
   cursor: "pointer",
-  fontWeight: "600",
   background: "#22d3ee",
-  color: "#020617",
+  fontWeight: "600",
 };
 
 const tableStyle = {
   width: "100%",
   borderCollapse: "collapse",
   background: "#020617",
-  borderRadius: "12px",
 };
 
-const th = {
-  padding: "12px",
-  color: "#22d3ee",
-  textAlign: "left",
-};
-
-const td = {
-  padding: "12px",
-  color: "#e5e7eb",
-};
-
-const tr = {
-  borderBottom: "1px solid #1e293b",
-};
+const th = { padding: "12px", color: "#22d3ee" };
+const td = { padding: "12px", color: "#e5e7eb" };
+const tr = { borderBottom: "1px solid #1e293b" };
 
 const btn = {
-  border: "none",
   padding: "6px 12px",
   borderRadius: "6px",
+  border: "none",
   cursor: "pointer",
-  marginRight: "8px",
+  marginRight: "6px",
   fontWeight: "600",
-};
-
-const overlay = {
-  position: "fixed",
-  inset: 0,
-  background: "rgba(0,0,0,0.6)",
-  display: "flex",
-  justifyContent: "center",
-  alignItems: "center",
-};
-
-const modal = {
-  background: "#020617",
-  padding: "20px",
-  borderRadius: "12px",
-  width: "350px",
 };
 
 const input = {
