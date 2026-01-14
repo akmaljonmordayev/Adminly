@@ -345,13 +345,6 @@
   ],
   "tasks": [
     {
-      "id": "b546",
-      "taskName": "firdavs",
-      "employeeName": "Malika Tursunova",
-      "deadline": "2026-01-08",
-      "status": "pending"
-    },
-    {
       "id": "65cd",
       "taskName": "guli",
       "employeeName": "Islombek Qodirov",
@@ -589,6 +582,13 @@
       "employeeName": "Sherzod Rasulov",
       "deadline": "2025-12-02",
       "status": "pending"
+    },
+    {
+      "id": "b546",
+      "taskName": "firdavs",
+      "employeeName": "Malika Tursunova",
+      "deadline": "2026-01-08",
+      "status": "pending"
     }
   ],
   "complaintsDeleted": [
@@ -604,10 +604,10 @@
   ],
   "announcementsDeleted": [
     {
-      "id": "7bca",
-      "title": "uxlash ",
-      "text": "hammeng uxla",
-      "date": "Jan 28, 2026",
+      "id": "91b2",
+      "title": "DAM",
+      "text": "14-yanvar vatan himoyachilari kuni uchun hammaga dam",
+      "date": "Jan 21, 2026",
       "status": "Active"
     }
   ]
