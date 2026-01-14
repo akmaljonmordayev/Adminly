@@ -2,9 +2,9 @@
   "users": [
     {
       "id": "1",
-      "name": "Akmal Mordayev",
-      "email": "akmal@gmail.com",
-      "password": "1234",
+      "name": "Akmal Mordaye",
+      "email": "",
+      "password": "",
       "role": "manager"
     },
     {
@@ -345,59 +345,10 @@
   ],
   "tasks": [
     {
-      "id": "eea5",
-      "taskName": "abu",
-      "employeeName": "Akmal Mordayev",
-      "deadline": "2025-12-28",
-      "status": "pending"
-    },
-    {
-      "id": "7f43",
-      "taskName": "ali",
-      "employeeName": "Abdulloh Abdumalikov",
-      "deadline": "2025-11-30",
-      "status": "pending"
-    },
-    {
-      "id": "7702",
-      "taskName": "bilol",
-      "employeeName": "Dilshod Karimov",
-      "deadline": "2025-10-31",
-      "status": "pending"
-    },
-    {
-      "id": "1073",
-      "taskName": "dilshod",
-      "employeeName": "Jasmina Aliyeva",
-      "deadline": "2025-11-06",
-      "status": "pending"
-    },
-    {
-      "id": "f964",
-      "taskName": "elshod",
-      "employeeName": "Sherzod Rasulov",
-      "deadline": "2025-12-02",
-      "status": "pending"
-    },
-    {
-      "id": "b546",
-      "taskName": "firdavs",
-      "employeeName": "Malika Tursunova",
-      "deadline": "2026-01-08",
-      "status": "pending"
-    },
-    {
       "id": "65cd",
       "taskName": "guli",
       "employeeName": "Islombek Qodirov",
       "deadline": "2026-01-23",
-      "status": "pending"
-    },
-    {
-      "id": "5582",
-      "taskName": "hoshim",
-      "employeeName": "Nodira Usmonova",
-      "deadline": "2026-01-30",
       "status": "pending"
     },
     {
@@ -412,6 +363,27 @@
       "taskName": "joxon",
       "employeeName": "Aziza Mahmudova",
       "deadline": "2026-02-26",
+      "status": "pending"
+    },
+    {
+      "id": "d0c5",
+      "taskName": "defrg",
+      "employeeName": "Dilshod Karimov",
+      "deadline": "2026-01-13",
+      "status": "pending"
+    },
+    {
+      "id": "8a0c",
+      "taskName": "adeveb",
+      "employeeName": "Bekzod Shokirov",
+      "deadline": "2026-01-30",
+      "status": "pending"
+    },
+    {
+      "id": "2944",
+      "taskName": "asdeftrhyuki",
+      "employeeName": "Sherzod Rasulov",
+      "deadline": "2026-01-29",
       "status": "pending"
     }
   ],
@@ -530,10 +502,10 @@
   ],
   "announcements": [
     {
-      "id": "7bca",
-      "title": "uxlash ",
-      "text": "hammeng uxla",
-      "date": "Jan 28, 2026",
+      "id": "91b2",
+      "title": "fghbjnk",
+      "text": "gfvhbjnk",
+      "date": "Jan 21, 2026",
       "status": "Active"
     }
   ],
@@ -545,7 +517,7 @@
       "title": "Air Conditioner Not Working",
       "description": "The air conditioner in the 3rd-floor office is not functioning properly.",
       "date": "2025-12-21",
-      "status": "resolved"
+      "status": "pending"
     },
     {
       "id": "CPL002",
@@ -610,25 +582,36 @@
       "employeeName": "Akmal Mordayev",
       "deadline": "2026-01-30",
       "status": "pending"
-    }
-  ],
-  "complaintsDeleted": [
+    },
     {
-      "id": "CPL001",
-      "employeeId": "EMP005",
-      "employeeName": "Ali R.",
-      "title": "Air Conditioner Not Working",
-      "description": "The air conditioner in the 3rd-floor office is not functioning properly.",
-      "date": "2025-12-21",
-      "status": "resolved"
+      "id": "1073",
+      "taskName": "dilshod",
+      "employeeName": "Jasmina Aliyeva",
+      "deadline": "2025-11-06",
+      "status": "pending"
+    },
+    {
+      "id": "f964",
+      "taskName": "elshod",
+      "employeeName": "Sherzod Rasulov",
+      "deadline": "2025-12-02",
+      "status": "pending"
+    },
+    {
+      "id": "5582",
+      "taskName": "hoshim",
+      "employeeName": "Nodira Usmonova",
+      "deadline": "2026-01-30",
+      "status": "pending"
     }
   ],
+  "complaintsDeleted": [],
   "announcementsDeleted": [
     {
-      "id": "7bca",
-      "title": "uxlash ",
-      "text": "hammeng uxla",
-      "date": "Jan 28, 2026",
+      "id": "91b2",
+      "title": "DAM",
+      "text": "14-yanvar vatan himoyachilari kuni uchun hammaga dam",
+      "date": "Jan 21, 2026",
       "status": "Active"
     }
   ]

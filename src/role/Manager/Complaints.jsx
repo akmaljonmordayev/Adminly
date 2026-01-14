@@ -35,8 +35,19 @@ function ComplaintsAdmin() {
           item.id === id ? { ...item, status: newStatus } : item
         )
       );
-    } catch (err) {
+    } catch {
       alert("Status o‘zgartirishda xatolik");
+    }
+  };
+
+  const handleDelete = async (id) => {
+    try {
+      await axios.delete(
+        `http://localhost:5000/complaintsDeleted/${id}`
+      );
+      setData((prev) => prev.filter((item) => item.id !== id));
+    } catch {
+      alert("Delete ishlamadi");
     }
   };
 
@@ -74,7 +85,7 @@ function ComplaintsAdmin() {
             placeholder="Search..."
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            className="flex-1 p-2 rounded bg-[#111827] border border-gray-700 focus:outline-none"
+            className="flex-1 p-2 rounded bg-[#111827] border border-gray-700"
           />
 
           <select
@@ -97,6 +108,7 @@ function ComplaintsAdmin() {
             <option value="resolved">Resolved</option>
           </select>
         </div>
+
         <div className="space-y-4">
           {sortedData.map((c) => (
             <div
@@ -122,15 +134,27 @@ function ComplaintsAdmin() {
                 <p className="text-sm text-gray-500">
                   Employee: {c.employeeName || "N/A"} | Date: {c.date || "N/A"}
                 </p>
-                <select
-                  value={c.status || "pending"}
-                  onChange={(e) => handleStatusChange(c.id, e.target.value)}
-                  className="p-1 rounded bg-[#0b1220] border border-gray-600 text-sm"
-                >
-                  <option value="pending">Pending</option>
-                  <option value="reviewed">Reviewed</option>
-                  <option value="resolved">Resolved</option>
-                </select>
+
+                <div className="flex items-center gap-2">
+                  <select
+                    value={c.status || "pending"}
+                    onChange={(e) =>
+                      handleStatusChange(c.id, e.target.value)
+                    }
+                    className="p-1 rounded bg-[#0b1220] border border-gray-600 text-sm"
+                  >
+                    <option value="pending">Pending</option>
+                    <option value="reviewed">Reviewed</option>
+                    <option value="resolved">Resolved</option>
+                  </select>
+
+                  <button
+                    onClick={() => handleDelete(c.id)}
+                    className="px-3 py-1 text-sm rounded bg-red-600/20 text-red-400 border border-red-600"
+                  >
+                    Delete
+                  </button>
+                </div>
               </div>
             </div>
           ))}

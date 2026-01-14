@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import { toast, ToastContainer } from "react-toastify";
 import { DatePicker } from "antd";
 import { FaMagnifyingGlass } from "react-icons/fa6";
+import axios from "axios";
+import dayjs from "dayjs";
 
 const API_URL = "http://localhost:5000/tasks";
 
@@ -21,9 +23,26 @@ function Tasks() {
   const [search, setSearch] = useState("");
   const [sortOrder, setSortOrder] = useState("");
 
-  const filteredTasks = tasks.filter((task) =>
-    task.taskName.toLowerCase().includes(search.toLowerCase())
-  );
+  const filteredTasks = [...tasks]
+    .filter((task) =>
+      task.taskName.toLowerCase().includes(search.toLowerCase())
+    )
+    .sort((a, b) => {
+      if (sortOrder === "A-Z") {
+        return a.taskName.localeCompare(b.taskName);
+      }
+      if (sortOrder === "Z-A") {
+        return b.taskName.localeCompare(a.taskName);
+      }
+
+      if (sortOrder === "DATE-ASC") {
+        return dayjs(a.deadline).valueOf() - dayjs(b.deadline).valueOf();
+      }
+      if (sortOrder === "DATE-DESC") {
+        return dayjs(b.deadline).valueOf() - dayjs(a.deadline).valueOf();
+      }
+      return 0;
+    });
 
   const fetchTasks = async () => {
     const res = await fetch(API_URL);
@@ -70,8 +89,10 @@ function Tasks() {
   };
 
   const deleteTask = async (id) => {
+    let res = await axios.get(`http://localhost:5000/tasks/${id}`);
+    await axios.post(`http://localhost:5000/tasksDeleted`, res.data);
     await fetch(`${API_URL}/${id}`, { method: "DELETE" });
-    toast.error("Task successfully deleted");
+    toast.error("Task successfully deleted and achieved");
     fetchTasks();
   };
 
@@ -151,35 +172,47 @@ function Tasks() {
             >
               Add Task
             </button>
-
-            <div className="relative w-full">
-              <input
-                className="w-full h-12 px-4 pr-12 rounded-xl bg-[#020617] border border-slate-700"
-                type="search"
-                value={search}
-                onChange={(e) => setSearch(e.target.value)}
-                placeholder="Tasklarni qidirish..."
-              />
-              <FaMagnifyingGlass className="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400" />
-            </div>
-
-            <select
-              value={sortOrder}
-              onChange={(e) => setSortOrder(e.target.value)}
-              className="bg-[#020617] border border-slate-700 rounded-lg px-2 mr-12 py-1 w-full"
-            >
-              <option value="">Sort by name</option>
-              <option value="A-Z">A - Z</option>
-              <option value="Z-A">Z - A</option>
-            </select>
           </div>
+        </div>
+
+        <div className="bg-[#0f172a] p-6 rounded-3xl mb-10 grid md:grid-cols-4 gap-4">
+          <div className="relative w-full">
+            <input
+              className="w-full h-12 px-4 pr-12 rounded-xl bg-[#020617] border border-slate-700"
+              type="search"
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+              placeholder="Tasklarni qidirish..."
+            />
+            <FaMagnifyingGlass className="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400" />
+          </div>
+
+          <select
+            value={sortOrder}
+            onChange={(e) => setSortOrder(e.target.value)}
+            className="bg-[#020617] border border-slate-700 rounded-lg px-2 mr-12 py-1 w-full"
+          >
+            <option value="">Sort by name</option>
+            <option value="A-Z">A - Z</option>
+            <option value="Z-A">Z - A</option>
+          </select>
+
+          <select
+            value={sortOrder}
+            onChange={(e) => setSortOrder(e.target.value)}
+            className="bg-[#020617] border border-slate-700 rounded-lg px-2 mr-12 py-1 w-full"
+          >
+            <option value="">Sort by date</option>
+            <option value="DATE-ASC">Date ⬆️</option>
+            <option value="DATE-DESC">Date ⬇️</option>
+          </select>
         </div>
 
         <ToastContainer position="top-right" autoClose={2000} theme="dark" />
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8 p-4">
           {filteredTasks.length === 0 ? (
-            <h1 className="text-center text-slate-400 col-span-full">
+            <h1 className="text-center col-span-full mt-4 text-xs tracking-[0.3em] text-cyan-400 animate-pulse">
               Task not found
             </h1>
           ) : (
@@ -206,7 +239,7 @@ function Tasks() {
                     </select>
 
                     <DatePicker
-                      className="input"
+                      value={editDeadline ? dayjs(editDeadline) : null}
                       onChange={(d, ds) => setEditDeadline(ds)}
                     />
                   </div>
