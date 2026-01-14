@@ -1,10 +1,10 @@
-import React from 'react'
-import TopBar from '../components/TopBar'
-import Sidebar from '../components/Sidebar'
+import React from "react";
+import TopBar from "../components/TopBar";
+import Sidebar from "../components/Sidebar";
 
 function MainLayOut({ children }) {
   return (
-    <div className="flex h-screen bg-gray-100 overflow-hidden">
+    <div className="flex h-screen  bg-[#020617]  overflow-hidden">
       <div
         className="
     w-70
@@ -19,7 +19,6 @@ function MainLayOut({ children }) {
 
       <div className="flex-1 flex flex-col overflow-hidden">
         <TopBar />
-
         <main
           className="
         flex-1 overflow-y-auto
@@ -32,7 +31,7 @@ function MainLayOut({ children }) {
         </main>
       </div>
     </div>
-  )
+  );
 }
 
-export default MainLayOut
+export default MainLayOut;
