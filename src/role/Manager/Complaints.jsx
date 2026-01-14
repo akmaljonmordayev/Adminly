@@ -41,15 +41,13 @@ function ComplaintsAdmin() {
   };
 
   const handleDelete = async (id) => {
-    if (!window.confirm("Rostdan ham o‘chirmoqchimisiz?")) return;
-
     try {
       await axios.delete(
         `http://localhost:5000/complaintsDeleted/${id}`
       );
       setData((prev) => prev.filter((item) => item.id !== id));
     } catch {
-      alert("O‘chirishda xatolik");
+      alert("Delete ishlamadi");
     }
   };
 
@@ -119,6 +117,7 @@ function ComplaintsAdmin() {
             >
               <div className="flex justify-between items-center mb-2">
                 <h3 className="text-lg font-semibold">{c.title}</h3>
+
                 <span
                   className={`px-2 py-1 text-sm rounded ${
                     statusColors[c.status?.toLowerCase()] ||
@@ -151,7 +150,7 @@ function ComplaintsAdmin() {
 
                   <button
                     onClick={() => handleDelete(c.id)}
-                    className="px-3 py-1 text-sm rounded bg-red-600/20 text-red-400 border border-red-600 hover:bg-red-600/30"
+                    className="px-3 py-1 text-sm rounded bg-red-600/20 text-red-400 border border-red-600"
                   >
                     Delete
                   </button>
