@@ -343,15 +343,7 @@
       "updatedAt": "2025-12-28T16:30:00Z"
     }
   ],
-  "tasks": [
-    {
-      "id": "d9fc",
-      "taskName": "asdcas",
-      "employeeName": "Akmal Mordayev",
-      "deadline": "2026-01-30",
-      "status": "pending"
-    }
-  ],
+  "tasks": [],
   "logs": [
     {
       "id": "1",
