@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { Button, Modal } from "antd";
 import axios from "axios";
+import { useEffect } from "react";
 
 function Settings() {
   const user = JSON.parse(localStorage.getItem("user"));
-
   const [notifications, setNotifications] = useState(true);
   const [emailAlerts, setEmailAlerts] = useState(false);
   const [twoFA, setTwoFA] = useState(false);
@@ -13,27 +13,41 @@ function Settings() {
   const [saveSession, setSaveSession] = useState(true);
   const [devMode, setDevMode] = useState(false);
   const [open, setOpen] = React.useState(false);
-  const [loading, setLoading] = React.useState(true);
-  const [userFullname, setUserFullname] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-
+  const [showPassword, setShowPassword] = useState(false);
   const [newFullname, setNewFullname] = useState("");
   const [newEmail, setNewEmail] = useState("");
   const [newPassword, setNewPassword] = useState("");
+  const [data, setData] = useState([])
+
+
+  const getData = async () => {
+    let user = JSON.parse(localStorage.getItem("user"));
+    try {
+      let res = await axios.get(`http://localhost:5000/users/${user.id}`)
+      setData(res.data)
+    } catch (error) {
+
+    }
+  }
+
+  useEffect(() => {
+    getData()
+  }, [])
+
 
   if (!user) return null;
-  const showLoading = () => {
+  const showLoading = async () => {
     setOpen(true);
-    setLoading(true);
-    setTimeout(() => {
-      setLoading(false);
-    }, 2000);
+    let user = JSON.parse(localStorage.getItem("user"))
+    try {
+      let res = await axios.get(`http://localhost:5000/users/${user.id}`)
+      setNewFullname(res.data.name)
+      setNewEmail(res.data.email)
+      setNewPassword(res.data.password)
+    } catch (error) {
 
-    let user = JSON.parse(localStorage.getItem("user"));
-    setUserFullname(user.name);
-    setPassword(user.password);
-    setEmail(user.email);
+    }
+
   };
 
   const submitData = async (e) => {
@@ -47,13 +61,28 @@ function Settings() {
         password: newPassword,
         role: "manager",
       });
-    } catch (error) {}
+      console.log(res);
+      if (res.status == 200) {
+        alert("done")
+        setOpen(false)
+        getData()
+        localStorage.setItem(
+          "user",
+          JSON.stringify({
+            id: user.id,
+            name: newFullname,
+            email: newEmail,
+            password: newPassword,
+            role: "manager",
+          })
+        )
+      }
+    } catch (error) { }
   };
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-[#071B2D] to-[#0C2B3E] flex justify-center p-4">
       <div className="flex flex-col lg:flex-row gap-6 w-full max-w-[1200px]">
-        {/* Profile Section */}
         <div className="bg-[#0D3146] flex-1 rounded-2xl p-8 flex flex-col shadow-lg">
           <div className="flex items-center gap-5 mb-10">
             <div className="w-16 h-16 rounded-full bg-gradient-to-br from-[#00D1FF] to-[#00A7CC] flex items-center justify-center text-[#071B2D] text-3xl">
@@ -61,18 +90,18 @@ function Settings() {
             </div>
             <div>
               <div className="text-[#EAFBFF] font-semibold text-2xl sm:text-3xl">
-                {user.name}
+                {data?.name}
               </div>
               <div className="text-[#7FCFE3] text-lg sm:text-xl">
-                {user.role}
+                {data.role}
               </div>
             </div>
           </div>
 
           <div className="space-y-4 sm:space-y-6 mt-4">
-            <Row label="Email" value={user.email} />
-            <Row label="Password" value={user.password} />
-            <Row label="Role" value={user.role} highlight />
+            <Row label="Email" value={data.email} />
+            <Row label="Password" value={data.password} />
+            <Row label="Role" value={data.role} highlight />
           </div>
 
           <button
@@ -85,7 +114,6 @@ function Settings() {
           </button>
         </div>
 
-        {/* Settings Section */}
         <div className="bg-[#0D3146] flex-1 rounded-2xl p-6 sm:p-8 flex flex-col justify-center gap-4 sm:gap-6 shadow-lg">
           <Setting
             title="Notifications"
@@ -124,49 +152,147 @@ function Settings() {
           />
         </div>
       </div>
+      <style>
+        {`
+  .custom-dark-modal .ant-modal-content {
+    background-color: #071B2D !important;
+    border-radius: 20px;
+    padding: 0 !important;
+  }
+
+  .custom-dark-modal .ant-modal-header {
+    border-bottom: none !important;
+    padding: 16px 24px;
+  }
+
+  .custom-dark-modal .ant-modal-body {
+    
+    padding: 24px ;
+  }
+
+
+  .custom-dark-modal .ant-modal-close-x {
+    color: #22d3ee !important;
+    font-size: 18px;
+  }
+    .custom-dark-modal {
+        padding: 0px;
+    }
+  .ant-modal-container {
+    background-color: #071B2D !important;
+
+  }
+
+`}
+      </style>
+
+
       <Modal
-        title={<p className="text-lg font-semibold">Loading Modal</p>}
-        footer={
-          <Button
-            type="primary"
-            onClick={showLoading}
-            className="bg-blue-600 hover:bg-blue-700 text-white font-medium px-4 py-2 rounded"
-          >
-            Reload
-          </Button>
-        }
-        loading={loading}
         open={open}
         onCancel={() => setOpen(false)}
+        footer={null}
+        className="custom-dark-modal"
+        title={
+          <p className="text-lg font-semibold text-cyan-400">
+            Edit Profile
+          </p>
+        }
       >
-        <div className="flex flex-col gap-4">
-          <form onSubmit={(e) => submitData(e)} action="">
+        <form onSubmit={(e) => submitData(e)} className="flex flex-col gap-4 ">
+          <input
+            type="text"
+            placeholder="Full Name"
+            value={newFullname}
+            onChange={(e) => setNewFullname(e.target.value)}
+            className="
+            w-full
+            bg-[#07182E]
+        border border-cyan-500/40
+        text-white
+        rounded-lg
+        px-4 py-2
+        placeholder:text-gray-400
+        focus:outline-none
+        focus:ring-2
+        focus:ring-cyan-400
+        "
+          />
+
+          <input
+            type="email"
+            placeholder="Your Email"
+            value={newEmail}
+            onChange={(e) => setNewEmail(e.target.value)}
+            className="
+        w-full
+        bg-[#07182E]
+        border border-cyan-500/40
+        text-white
+        rounded-lg
+        px-4 py-2
+        placeholder:text-gray-400
+        focus:outline-none
+        focus:ring-2
+        focus:ring-cyan-400
+      "
+          />
+
+          <div className="relative">
             <input
-              onChange={(e) => setNewFullname(e.target.value)}
-              value={userFullname}
-              placeholder="Full Name"
-              type="text"
-              className="border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
-            />
-            <input
-              onChange={(e) => setNewEmail(e.target.value)}
-              value={email}
-              placeholder="Your Email"
-              type="email"
-              className="border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
-            />
-            <input
-              onChange={(e) => setNewPassword(e.target.value)}
-              value={password}
+              type={showPassword ? "text" : "password"}
               placeholder="Your Password"
-              type="password"
-              className="border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              value={newPassword}
+              onChange={(e) => setNewPassword(e.target.value)}
+              className="
+              w-full
+              bg-[#07182E]
+              border border-cyan-500/40
+              text-white
+              rounded-lg
+              px-4 py-2 pr-14
+              placeholder:text-gray-400
+              focus:outline-none
+              focus:ring-2
+              focus:ring-cyan-400
+              "
             />
-            <button type="submit">Edit Profile</button>
-          </form>
-        </div>
+
+            <button
+              type="button"
+              onClick={() => setShowPassword(!showPassword)}
+              className="
+          absolute right-3 top-1/2 -translate-y-1/2
+          text-cyan-400
+          hover:text-cyan-300
+          text-sm
+          select-none
+        "
+            >
+              {showPassword ? "Hide" : "Show"}
+            </button>
+          </div>
+
+          <button
+            type="submit"
+            className="
+        mt-2
+        bg-cyan-500
+        hover:bg-cyan-600
+        text-[#07182E]
+        font-semibold
+        py-2
+        rounded-xl
+        transition
+        shadow-lg shadow-cyan-500/30
+      "
+          >
+            Edit Profile
+          </button>
+
+        </form>
       </Modal>
     </div>
+
   );
 }
 
@@ -177,9 +303,8 @@ function Row({ label, value, highlight }) {
         {label}
       </span>
       <span
-        className={`text-base sm:text-xl font-medium ${
-          highlight ? "text-[#00D1FF]" : "text-[#EAFBFF]"
-        }`}
+        className={`text-base sm:text-xl font-medium ${highlight ? "text-[#00D1FF]" : "text-[#EAFBFF]"
+          }`}
       >
         {value}
       </span>
@@ -203,11 +328,10 @@ function Switch({ checked, onClick }) {
     <div
       onClick={onClick}
       className={`w-14 sm:w-16 h-7 sm:h-8 rounded-full flex items-center px-1 cursor-pointer transition-all
-      ${
-        checked
+      ${checked
           ? "bg-gradient-to-r from-[#00D1FF] to-[#00A7CC]"
           : "bg-[#123B52]"
-      }`}
+        }`}
     >
       <div
         className={`w-6 h-6 sm:w-6 sm:h-6 rounded-full bg-white transition-transform transform
