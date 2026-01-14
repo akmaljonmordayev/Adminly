@@ -456,7 +456,7 @@
       "lastWorkingDay": "2025-12-25",
       "noticePeriod": "30 days",
       "reason": "Family reasons",
-      "status": "approved",
+      "status": "rejected",
       "approvedBy": "HR Manager",
       "comment": "Approved without issues"
     },

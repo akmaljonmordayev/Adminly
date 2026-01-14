@@ -32,6 +32,22 @@ function Leaves() {
         (c.status && c.status.toLowerCase() === statusFilter.toLowerCase()))
   );
 
+  const handleStatusChange = async (id, newStatus) => {
+    try {
+      await axios.patch(`http://localhost:5000/resignations/${id}`, {
+        status: newStatus,
+      });
+
+      setData((prev) =>
+        prev.map((item) =>
+          item.id === id ? { ...item, status: newStatus } : item
+        )
+      );
+    } catch (err) {
+      alert("Status o‘zgartirishda xatolik");
+    }
+  };
+
   const sortedData = [...filteredData].sort((a, b) =>
     sort === "a-z"
       ? a.employeeName.localeCompare(b.employeeName)
@@ -40,8 +56,8 @@ function Leaves() {
 
   const statusColors = {
     pending: "bg-yellow-500 text-white",
-    reviewed: "bg-blue-500 text-white",
-    resolved: "bg-green-500 text-white",
+    approved: "bg-blue-500 text-white",
+    rejected: "bg-red-500 text-white",
   };
 
   return (
@@ -78,6 +94,7 @@ function Leaves() {
             <option value="all">All Status</option>
             <option value="pending">Pending</option>
             <option value="approved">Approved</option>
+            <option value="rejected">Rejected</option>
           </select>
         </div>
 
@@ -107,29 +124,29 @@ function Leaves() {
                 <p className="text-cyan-300 mb-1"></p>
 
                 <p className="text-cyan-400 text-sm">
-                  Position: {c.position || "N/A"} | Date: {c.noticePeriod || "N/A"}
+                  Position: {c.position || "N/A"} | Date:{" "}
+                  {c.noticePeriod || "N/A"}
                 </p>
               </div>
-               <div className="flex flex-col gap-5">
+              <div className="flex flex-col gap-5">
                 <span
-                className={`px-2 py-1 text-sm rounded ${
-                  statusColors[c.status?.toLowerCase()] ||
-                "bg-gray-500/20 text-gray-300"
-                }`}
-              >
-                {c.status ||  "Unknown"}
-              </span>
+                  className={`px-2 py-1 text-sm rounded ${
+                    statusColors[c.status?.toLowerCase()] ||
+                    "bg-gray-500/20 text-gray-300"
+                  }`}
+                >
+                  {c.status || "Unknown"}
+                </span>
                 <select
-                value={c.status ||  "pending"}
-                onChange={(e) => handleStatusChange(c.id, e.target.value)}
-                className="p-1 rounded bg-[#0b1220] border border-gray-600 text-sm h-[30px]"
-              >
-                <option value="pending">Pending</option>
-                <option value="approved">Approved</option>
-              </select>
-              
+                  value={c.status || "pending"}
+                  onChange={(e) => handleStatusChange(c.id, e.target.value)}
+                  className="p-1 rounded bg-[#0b1220] border border-gray-600 text-sm h-[30px]"
+                >
+                  <option value="pending">Pending</option>
+                  <option value="approved">Approved</option>
+                  <option value="rejected">Rejected</option>
+                </select>
               </div>
-
             </div>
           ))}
 
