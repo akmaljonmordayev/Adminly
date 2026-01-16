@@ -4,6 +4,12 @@ import { DatePicker } from "antd";
 import { FaMagnifyingGlass } from "react-icons/fa6";
 import axios from "axios";
 import dayjs from "dayjs";
+import {
+  HiOutlineClipboardList,
+  HiOutlineUser,
+  HiOutlineCalendar,
+  HiOutlineStatusOnline,
+} from 'react-icons/hi'
 
 const API_URL = "http://localhost:5000/tasks";
 
@@ -175,22 +181,22 @@ function Tasks() {
           </div>
         </div>
 
-        <div className="bg-[#0f172a] p-6 rounded-3xl mb-10 grid md:grid-cols-4 gap-4">
+        <div className="p-5 rounded-2xl flex items-center gap-4 shadow-[0_0_40px_rgba(0,0,0,0.6)] bg-gradient-to-r from-slate-900 to-slate-800 border border-white/10">
           <div className="relative w-full">
+            <FaMagnifyingGlass className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" />
             <input
-              className="w-full h-12 px-4 pr-12 rounded-xl bg-[#020617] border border-slate-700"
+              className="w-full bg-[#020617] rounded-lg px-2 mr-16 py-3 pl-10"
               type="search"
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               placeholder="Tasklarni qidirish..."
             />
-            <FaMagnifyingGlass className="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400" />
           </div>
 
           <select
             value={sortOrder}
             onChange={(e) => setSortOrder(e.target.value)}
-            className="bg-[#020617] border border-slate-700 rounded-lg px-2 mr-12 py-1 w-full"
+            className="bg-[#020617] border border-slate-700 rounded-lg px-2 py-3 w-full"
           >
             <option value="">Sort by name</option>
             <option value="A-Z">A - Z</option>
@@ -200,7 +206,7 @@ function Tasks() {
           <select
             value={sortOrder}
             onChange={(e) => setSortOrder(e.target.value)}
-            className="bg-[#020617] border border-slate-700 rounded-lg px-2 mr-12 py-1 w-full"
+            className="bg-[#020617] border border-slate-700 rounded-lg px-2 py-3 w-full"
           >
             <option value="">Sort by date</option>
             <option value="DATE-ASC">Date ⬆️</option>
@@ -212,7 +218,7 @@ function Tasks() {
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8 p-4">
           {filteredTasks.length === 0 ? (
-            <h1 className="text-center col-span-full mt-4 text-xs tracking-[0.3em] text-cyan-400 animate-pulse">
+            <h1 className="text-center col-span-full mt-4 text-xl tracking-[0.3em] text-cyan-400 animate-pulse">
               Task not found
             </h1>
           ) : (
@@ -245,23 +251,25 @@ function Tasks() {
                   </div>
                 ) : (
                   <div className="space-y-1">
-                    <h3 className="text-lg text-cyan-300">
-                      📝 {task.taskName}
+                    <h3 className="text-xl text-cyan-100 flex items-center gap-2">
+                      <HiOutlineClipboardList className="text-cyan-300" />{task.taskName}
                     </h3>
-                    <p className="text-sm text-slate-400">
-                      👤 {task.employeeName}
+                    <p className="text-sm text-slate-400 flex items-center gap-2">
+                      <HiOutlineUser className="text-cyan-300"/> {task.employeeName}
                     </p>
-                    <p className="text-sm text-slate-400">📅 {task.deadline}</p>
+                    <p className="text-sm text-slate-400 flex items-center gap-2">
+                     <HiOutlineCalendar className="text-cyan-300"/> {task.deadline}</p>
                   </div>
                 )}
 
                 <p
-                  className={`mt-2 font-semibold ${statusColors[task.status]}`}
+                  className={`mt-1 flex items-center gap-2 right-3 font-semibold ${statusColors[task.status]}`}
                 >
+                  <HiOutlineStatusOnline className="flex text-xl text-cyan-300"/>
                   {task.status}
                 </p>
 
-                <div className="flex gap-2 mt-4">
+                <div className="flex gap-2 mt-4 items-center">
                   <select
                     value={task.status}
                     onChange={(e) => updateStatus(task.id, e.target.value)}
