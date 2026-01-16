@@ -4,7 +4,6 @@ import { toast, ToastContainer } from "react-toastify";
 import axios from "axios";
 import "react-toastify/dist/ReactToastify.css";
 
-
 function Employees() {
   const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -90,8 +89,11 @@ function Employees() {
 
   const handleDelete = async (id) => {
     if (!window.confirm("Delete this employee?")) return;
-    let res = await axios.get(`http://localhost:5000/employees/${id}`)
-    let ress = await axios.post("http://localhost:5000/employeesDeleted", res.data)
+    let res = await axios.get(`http://localhost:5000/employees/${id}`);
+    let ress = await axios.post(
+      "http://localhost:5000/employeesDeleted",
+      res.data
+    );
     await fetch(`http://localhost:5000/employees/${id}`, {
       method: "DELETE",
     }).then(() => {
@@ -128,7 +130,6 @@ function Employees() {
           + Add Employee
         </button>
       </div>
-
 
       <table style={tableStyle}>
         <thead>
@@ -190,18 +191,14 @@ function Employees() {
           style={input}
           placeholder="Full name"
           value={newUser.fullName}
-          onChange={(e) =>
-            setNewUser({ ...newUser, fullName: e.target.value })
-          }
+          onChange={(e) => setNewUser({ ...newUser, fullName: e.target.value })}
         />
 
         <input
           style={input}
           placeholder="Email"
           value={newUser.email}
-          onChange={(e) =>
-            setNewUser({ ...newUser, email: e.target.value })
-          }
+          onChange={(e) => setNewUser({ ...newUser, email: e.target.value })}
         />
 
         <input
@@ -241,9 +238,7 @@ function Employees() {
           style={input}
           placeholder="Email"
           value={editUser.email}
-          onChange={(e) =>
-            setEditUser({ ...editUser, email: e.target.value })
-          }
+          onChange={(e) => setEditUser({ ...editUser, email: e.target.value })}
         />
       </Modal>
 

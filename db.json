@@ -66,59 +66,6 @@
   ],
   "employees": [
     {
-      "id": "2",
-      "userId": 102,
-      "fullName": "Abdulloh Abdumalikov",
-      "email": "abdulloh.abdumalikov@example.com",
-      "hireDate": "2022-03-10",
-      "baseSalary": "10000",
-      "kpiPercent": 15,
-      "kpiAmount": "789",
-      "bonus": "100",
-      "penalty": "0",
-      "totalSalary": 10889,
-      "month": "2025-12",
-      "status": "unpaid",
-      "paymentDate": "2025-12-28",
-      "paymentMethod": "bank",
-      "comment": "Salary paid",
-      "leaves": [
-        {
-          "leaveType": "Annual Leave",
-          "startDate": "2023-07-01",
-          "endDate": "2023-07-10",
-          "status": "Approved"
-        }
-      ],
-      "createdBy": 1,
-      "createdAt": "2025-12-01T09:00:00Z",
-      "updatedAt": "2025-12-28T16:00:00Z",
-      "paymentStatus": "unpaid"
-    },
-    {
-      "id": "3",
-      "userId": 103,
-      "fullName": "Dilshod Karimov",
-      "email": "dilshod.karimov@example.com",
-      "hireDate": "2020-06-20",
-      "baseSalary": "0",
-      "kpiPercent": 25,
-      "kpiAmount": "0",
-      "bonus": "5",
-      "penalty": 0,
-      "totalSalary": 5,
-      "month": "2025-12",
-      "status": "paid",
-      "paymentDate": "2025-12-30",
-      "paymentMethod": "bank",
-      "comment": "Excellent performance",
-      "leaves": [],
-      "createdBy": 1,
-      "createdAt": "2025-12-01T08:30:00Z",
-      "updatedAt": "2025-12-30T15:00:00Z",
-      "name": "yeaa"
-    },
-    {
       "id": "4",
       "userId": 104,
       "fullName": "Jasmina Aliyeva",
@@ -277,6 +224,59 @@
       "createdBy": 1,
       "createdAt": "2025-12-01T13:00:00Z",
       "updatedAt": "2025-12-27T15:20:00Z"
+    },
+    {
+      "id": "2",
+      "userId": 102,
+      "fullName": "Abdulloh Abdumalikov",
+      "email": "abdulloh.abdumalikov@example.com",
+      "hireDate": "2022-03-10",
+      "baseSalary": "10000",
+      "kpiPercent": 15,
+      "kpiAmount": "789",
+      "bonus": "100",
+      "penalty": "0",
+      "totalSalary": 10889,
+      "month": "2025-12",
+      "status": "unpaid",
+      "paymentDate": "2025-12-28",
+      "paymentMethod": "bank",
+      "comment": "Salary paid",
+      "leaves": [
+        {
+          "leaveType": "Annual Leave",
+          "startDate": "2023-07-01",
+          "endDate": "2023-07-10",
+          "status": "Approved"
+        }
+      ],
+      "createdBy": 1,
+      "createdAt": "2025-12-01T09:00:00Z",
+      "updatedAt": "2025-12-28T16:00:00Z",
+      "paymentStatus": "unpaid"
+    },
+    {
+      "id": "3",
+      "userId": 103,
+      "fullName": "Dilshod Karimov",
+      "email": "dilshod.karimov@example.com",
+      "hireDate": "2020-06-20",
+      "baseSalary": "0",
+      "kpiPercent": 25,
+      "kpiAmount": "0",
+      "bonus": "5",
+      "penalty": 0,
+      "totalSalary": 5,
+      "month": "2025-12",
+      "status": "paid",
+      "paymentDate": "2025-12-30",
+      "paymentMethod": "bank",
+      "comment": "Excellent performance",
+      "leaves": [],
+      "createdBy": 1,
+      "createdAt": "2025-12-01T08:30:00Z",
+      "updatedAt": "2025-12-30T15:00:00Z",
+      "name": "yeaa"
     }
   ],
   "tasks": [
@@ -313,27 +313,6 @@
       "taskName": "Employees",
       "employeeName": "Bekzod Shokirov",
       "deadline": "2026-02-05",
-      "status": "pending"
-    },
-    {
-      "id": "1073",
-      "taskName": "dilshod",
-      "employeeName": "Jasmina Aliyeva",
-      "deadline": "2025-11-06",
-      "status": "pending"
-    },
-    {
-      "id": "f964",
-      "taskName": "elshod",
-      "employeeName": "Sherzod Rasulov",
-      "deadline": "2025-12-02",
-      "status": "pending"
-    },
-    {
-      "id": "5582",
-      "taskName": "hoshim",
-      "employeeName": "Nodira Usmonova",
-      "deadline": "2026-01-30",
       "status": "pending"
     }
   ],
@@ -477,20 +456,52 @@
       "description": "My office chair is broken and needs replacement.",
       "date": "2025-12-19",
       "status": "resolved"
-    },
-    {
-      "id": "CPL001",
-      "employeeId": "EMP005",
-      "employeeName": "Ali R.",
-      "title": "Air Conditioner Not Working",
-      "description": "The air conditioner in the 3rd-floor office is not functioning properly.",
-      "date": "2025-12-21",
-      "status": "resolved"
-
     }
   ],
   "employeesDeleted": [],
   "tasksDeleted": [
+    {
+      "id": "d9fc",
+      "taskName": "asdcas",
+      "employeeName": "Akmal Mordayev",
+      "deadline": "2026-01-30",
+      "status": "pending"
+    },
+    {
+      "id": "1073",
+      "taskName": "dilshod",
+      "employeeName": "Jasmina Aliyeva",
+      "deadline": "2025-11-06",
+      "status": "pending"
+    },
+    {
+      "id": "f964",
+      "taskName": "elshod",
+      "employeeName": "Sherzod Rasulov",
+      "deadline": "2025-12-02",
+      "status": "pending"
+    },
+    {
+      "id": "5582",
+      "taskName": "hoshim",
+      "employeeName": "Nodira Usmonova",
+      "deadline": "2026-01-30",
+      "status": "pending"
+    },
+    {
+      "id": "8a0c",
+      "taskName": "adeveb",
+      "employeeName": "Bekzod Shokirov",
+      "deadline": "2026-01-30",
+      "status": "pending"
+    },
+    {
+      "id": "2944",
+      "taskName": "asdeftrhyuki",
+      "employeeName": "Sherzod Rasulov",
+      "deadline": "2026-01-29",
+      "status": "pending"
+    },
     {
       "id": "d0c5",
       "taskName": "defrg",
@@ -499,17 +510,7 @@
       "status": "pending"
     }
   ],
-  "complaintsDeleted": [
-    {
-      "id": "CPL001",
-      "employeeId": "EMP005",
-      "employeeName": "Ali R.",
-      "title": "Air Conditioner Not Working",
-      "description": "The air conditioner in the 3rd-floor office is not functioning properly.",
-      "date": "2025-12-21",
-      "status": "pending"
-    }
-  ],
+  "complaintsDeleted": [],
   "announcementsDeleted": [
     {
       "id": "91b2",
@@ -530,13 +531,6 @@
       "title": "uxlash",
       "text": "uuuuuuuuuuuuuuuuuuuuuuuuu",
       "date": "Jan 11, 2026",
-      "status": "Active"
-    },
-    {
-      "id": "8e79",
-      "title": "abu",
-      "text": "ekon",
-      "date": "Jan 8, 2026",
       "status": "Active"
     }
   ]
