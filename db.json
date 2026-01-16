@@ -2,9 +2,9 @@
   "users": [
     {
       "id": "1",
-      "name": "Akmal Mordaye",
-      "email": "",
-      "password": "",
+      "name": "Akmal Mordayev",
+      "email": "akmaljonmordayev@gmail.com",
+      "password": "123456",
       "role": "manager"
     },
     {
@@ -312,45 +312,9 @@
       "createdBy": 1,
       "createdAt": "2025-12-01T13:00:00Z",
       "updatedAt": "2025-12-27T15:20:00Z"
-    },
-    {
-      "id": "10",
-      "userId": 110,
-      "fullName": "Aziza Mahmudova",
-      "email": "aziza.mahmudova@example.com",
-      "hireDate": "2023-06-30",
-      "baseSalary": 2900000,
-      "kpiPercent": 15,
-      "kpiAmount": 435000,
-      "bonus": 250000,
-      "penalty": 0,
-      "totalSalary": 3585000,
-      "month": "2025-12",
-      "status": "paid",
-      "paymentDate": "2025-12-28",
-      "paymentMethod": "bank",
-      "comment": "Salary completed",
-      "leaves": [
-        {
-          "leaveType": "Annual Leave",
-          "startDate": "2024-06-01",
-          "endDate": "2024-06-07",
-          "status": "Approved"
-        }
-      ],
-      "createdBy": 1,
-      "createdAt": "2025-12-01T14:00:00Z",
-      "updatedAt": "2025-12-28T16:30:00Z"
     }
   ],
   "tasks": [
-    {
-      "id": "65cd",
-      "taskName": "guli",
-      "employeeName": "Islombek Qodirov",
-      "deadline": "2026-01-23",
-      "status": "pending"
-    },
     {
       "id": "5396",
       "taskName": "ilon",
@@ -366,24 +330,24 @@
       "status": "pending"
     },
     {
-      "id": "d0c5",
-      "taskName": "defrg",
-      "employeeName": "Dilshod Karimov",
-      "deadline": "2026-01-13",
+      "id": "5d74",
+      "taskName": "Archieve",
+      "employeeName": "Jasmina Aliyeva",
+      "deadline": "2026-01-20",
       "status": "pending"
     },
     {
-      "id": "8a0c",
-      "taskName": "adeveb",
-      "employeeName": "Bekzod Shokirov",
+      "id": "a59e",
+      "taskName": "Dashboard",
+      "employeeName": "Islombek Qodirov",
       "deadline": "2026-01-30",
       "status": "pending"
     },
     {
-      "id": "2944",
-      "taskName": "asdeftrhyuki",
-      "employeeName": "Sherzod Rasulov",
-      "deadline": "2026-01-29",
+      "id": "9611",
+      "taskName": "Employees",
+      "employeeName": "Bekzod Shokirov",
+      "deadline": "2026-02-05",
       "status": "pending"
     }
   ],
@@ -428,7 +392,7 @@
       "lastWorkingDay": "2025-12-25",
       "noticePeriod": "30 days",
       "reason": "Family reasons",
-      "status": "approved",
+      "status": "rejected",
       "approvedBy": "HR Manager",
       "comment": "Approved without issues"
     },
@@ -502,10 +466,10 @@
   ],
   "announcements": [
     {
-      "id": "91b2",
-      "title": "fghbjnk",
-      "text": "gfvhbjnk",
-      "date": "Jan 21, 2026",
+      "id": "9c93",
+      "title": "gr",
+      "text": "vsd",
+      "date": "Jan 19, 2026",
       "status": "Active"
     }
   ],
@@ -538,43 +502,7 @@
       "status": "resolved"
     }
   ],
-  "employeesDeleted": [
-    {
-      "id": "1",
-      "userId": 101,
-      "fullName": "Akmal Mordayev",
-      "email": "akmal.mordayev@example.com",
-      "hireDate": "2021-01-15",
-      "baseSalary": "1000",
-      "kpiPercent": "23",
-      "kpiAmount": 230,
-      "bonus": "200",
-      "penalty": "10",
-      "totalSalary": 1420,
-      "month": "January",
-      "status": "unpaid",
-      "paymentDate": "2026-01-31",
-      "paymentMethod": "bank",
-      "comment": "tolaymiz!",
-      "leaves": [
-        {
-          "leaveType": "Unpaid Leave",
-          "startDate": "2021-12-08",
-          "endDate": "2021-12-12",
-          "status": "Approved"
-        },
-        {
-          "leaveType": "Sick Leave",
-          "startDate": "2022-05-23",
-          "endDate": "2022-05-28",
-          "status": "Approved"
-        }
-      ],
-      "createdBy": 1,
-      "createdAt": "2025-12-01T10:00:00Z",
-      "updatedAt": "2025-12-30T14:12:00Z"
-    }
-  ],
+  "employeesDeleted": [],
   "tasksDeleted": [
     {
       "id": "d9fc",
@@ -603,6 +531,36 @@
       "employeeName": "Nodira Usmonova",
       "deadline": "2026-01-30",
       "status": "pending"
+    },
+    {
+      "id": "8a0c",
+      "taskName": "adeveb",
+      "employeeName": "Bekzod Shokirov",
+      "deadline": "2026-01-30",
+      "status": "pending"
+    },
+    {
+      "id": "2944",
+      "taskName": "asdeftrhyuki",
+      "employeeName": "Sherzod Rasulov",
+      "deadline": "2026-01-29",
+      "status": "pending"
+    },
+    {
+      "id": "d0c5",
+      "taskName": "defrg",
+      "employeeName": "Dilshod Karimov",
+      "deadline": "2026-01-13",
+      "status": "pending"
+    }
+  ],
+  "complaintsDeleted": [
+    {
+      "id": "65cd",
+      "taskName": "guli",
+      "employeeName": "Islombek Qodirov",
+      "deadline": "2026-01-23",
+      "status": "pending"
     }
   ],
   "complaintsDeleted": [
@@ -622,6 +580,20 @@
       "title": "DAM",
       "text": "14-yanvar vatan himoyachilari kuni uchun hammaga dam",
       "date": "Jan 21, 2026",
+      "status": "Active"
+    },
+    {
+      "id": "91b2",
+      "title": "ry",
+      "text": "brh",
+      "date": "Jan 21, 2026",
+      "status": "Active"
+    },
+    {
+      "id": "c12d",
+      "title": "uxlash",
+      "text": "uuuuuuuuuuuuuuuuuuuuuuuuu",
+      "date": "Jan 11, 2026",
       "status": "Active"
     }
   ]

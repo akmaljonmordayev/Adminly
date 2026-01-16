@@ -1,4 +1,7 @@
 import React, { useState, useEffect } from 'react'
+import axios from 'axios'
+import { toast, ToastContainer } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 import {
   HiOutlineClipboardList,
   HiOutlineUser,
@@ -14,7 +17,7 @@ function TasksArchieve() {
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
 
-  useEffect(() => {
+  const fetchTasksArchive = () => {
     fetch(tasksArchiveUrl)
       .then((res) => {
         if (!res.ok) throw new Error('Data not found')
@@ -28,6 +31,10 @@ function TasksArchieve() {
         setError(err.message)
         setLoading(false)
       })
+  }
+
+  useEffect(() => {
+    fetchTasksArchive()
   }, [])
 
   if (loading)
@@ -36,6 +43,27 @@ function TasksArchieve() {
         <div className="w-10 h-10 border-2 border-cyan-500/20 border-t-cyan-500 rounded-full animate-spin"></div>
       </div>
     )
+
+  const restoreTask = async (task) => {
+    try {
+      await axios.post('http://localhost:5000/tasks', task)
+      await axios.delete(`http://localhost:5000/tasksDeleted/${task.id}`)
+      toast.success('Task restored successfully')
+      fetchTasksArchive()
+    } catch {
+      toast.error('Restore failed')
+    }
+  }
+
+  const deleteTask = async (id) => {
+    try {
+      await axios.delete(`http://localhost:5000/tasksDeleted/${id}`)
+      toast.error('Task permanently deleted')
+      fetchTasksArchive()
+    } catch {
+      toast.error('Delete failed')
+    }
+  }
 
   return (
     <div className="w-full">
@@ -128,11 +156,18 @@ function TasksArchieve() {
 
               {/* Action Buttons */}
               <div className="flex gap-2 pt-6 border-t border-white/5 mt-4">
-                <button className="flex-1 flex items-center justify-center gap-2 py-3 bg-white/5 hover:bg-cyan-500/20 text-gray-400 hover:text-cyan-400 rounded-2xl border border-white/5 transition-none font-bold text-xs uppercase tracking-widest">
+                <button
+                  onClick={() => restoreTask(delTask)}
+                  className="flex-1 flex items-center justify-center gap-2 py-3 bg-white/5 hover:bg-cyan-500/20 text-gray-400 hover:text-cyan-400 rounded-2xl border border-white/5 transition-none font-bold text-xs uppercase tracking-widest"
+                >
                   <HiOutlineRefresh className="text-lg" />
                   Restore
                 </button>
-                <button className="p-3 bg-white/5 hover:bg-red-500/20 text-gray-500 hover:text-red-400 rounded-2xl border border-white/5 transition-none">
+
+                <button
+                  onClick={() => deleteTask(delTask.id)}
+                  className="p-3 bg-white/5 hover:bg-red-500/20 text-gray-500 hover:text-red-400 rounded-2xl border border-white/5 transition-none"
+                >
                   <HiOutlineTrash className="text-lg" />
                 </button>
               </div>
@@ -140,6 +175,7 @@ function TasksArchieve() {
           </div>
         ))}
       </div>
+      <ToastContainer position="top-right" autoClose={3000} theme="dark" />
     </div>
   )
 }
