@@ -491,6 +491,15 @@
       "description": "My office chair is broken and needs replacement.",
       "date": "2025-12-19",
       "status": "resolved"
+    },
+    {
+      "id": "CPL001",
+      "employeeId": "EMP005",
+      "employeeName": "Ali R.",
+      "title": "Air Conditioner Not Working",
+      "description": "The air conditioner in the 3rd-floor office is not functioning properly.",
+      "date": "2025-12-21",
+      "status": "resolved"
     }
   ],
   "employeesDeleted": [],
@@ -562,7 +571,7 @@
       "title": "Air Conditioner Not Working",
       "description": "The air conditioner in the 3rd-floor office is not functioning properly.",
       "date": "2025-12-21",
-      "status": "reviewed"
+      "status": "pending"
     }
   ],
   "announcementsDeleted": [
