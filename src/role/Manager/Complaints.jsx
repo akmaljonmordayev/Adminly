@@ -13,7 +13,6 @@ function ComplaintsAdmin() {
     const getData = async () => {
       try {
         const res = await axios.get("http://localhost:5000/complaints");
-        if (!Array.isArray(res.data)) throw new Error("Ma'lumot array emas");
         setData(res.data);
       } catch (error) {
         setErr(error.message);
@@ -41,10 +40,19 @@ function ComplaintsAdmin() {
   };
 
   const handleDelete = async (id) => {
+    if (!window.confirm("Rostan ham o‘chirmoqchimisiz?")) return;
+
     try {
-      await axios.delete(
-        `http://localhost:5000/complaintsDeleted/${id}`
+      const deletedItem = data.find((item) => item.id === id);
+      if (!deletedItem) return;
+
+      await axios.post(
+        "http://localhost:5000/complaintsDeleted",
+        deletedItem
       );
+
+      await axios.delete(`http://localhost:5000/complaints/${id}`);
+
       setData((prev) => prev.filter((item) => item.id !== id));
     } catch {
       alert("Delete ishlamadi");

@@ -475,15 +475,6 @@
   ],
   "complaints": [
     {
-      "id": "CPL001",
-      "employeeId": "EMP005",
-      "employeeName": "Ali R.",
-      "title": "Air Conditioner Not Working",
-      "description": "The air conditioner in the 3rd-floor office is not functioning properly.",
-      "date": "2025-12-21",
-      "status": "pending"
-    },
-    {
       "id": "CPL002",
       "employeeId": "EMP006",
       "employeeName": "Sabina M.",
@@ -563,7 +554,17 @@
       "status": "pending"
     }
   ],
-  "complaintsDeleted": [],
+  "complaintsDeleted": [
+    {
+      "id": "CPL001",
+      "employeeId": "EMP005",
+      "employeeName": "Ali R.",
+      "title": "Air Conditioner Not Working",
+      "description": "The air conditioner in the 3rd-floor office is not functioning properly.",
+      "date": "2025-12-21",
+      "status": "reviewed"
+    }
+  ],
   "announcementsDeleted": [
     {
       "id": "91b2",
