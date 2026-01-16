@@ -1,4 +1,4 @@
-   {
+{
   "users": [
     {
       "id": "1",
@@ -511,15 +511,6 @@
   ],
   "complaints": [
     {
-      "id": "CPL001",
-      "employeeId": "EMP005",
-      "employeeName": "Ali R.",
-      "title": "Air Conditioner Not Working",
-      "description": "The air conditioner in the 3rd-floor office is not functioning properly.",
-      "date": "2025-12-21",
-      "status": "pending"
-    },
-    {
       "id": "CPL002",
       "employeeId": "EMP006",
       "employeeName": "Sabina M.",
@@ -535,6 +526,15 @@
       "title": "Request for New Chair",
       "description": "My office chair is broken and needs replacement.",
       "date": "2025-12-19",
+      "status": "resolved"
+    },
+    {
+      "id": "CPL001",
+      "employeeId": "EMP005",
+      "employeeName": "Ali R.",
+      "title": "Air Conditioner Not Working",
+      "description": "The air conditioner in the 3rd-floor office is not functioning properly.",
+      "date": "2025-12-21",
       "status": "resolved"
     }
   ],
@@ -613,7 +613,7 @@
       "title": "Air Conditioner Not Working",
       "description": "The air conditioner in the 3rd-floor office is not functioning properly.",
       "date": "2025-12-21",
-      "status": "resolved"
+      "status": "pending"
     }
   ],
   "announcementsDeleted": [
