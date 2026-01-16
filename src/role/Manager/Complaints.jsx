@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import { toast, ToastContainer } from "react-toastify";
 
 function ComplaintsAdmin() {
   const [search, setSearch] = useState("");
@@ -9,20 +10,22 @@ function ComplaintsAdmin() {
   const [err, setErr] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    const getData = async () => {
-      try {
-        const res = await axios.get("http://localhost:5000/complaints");
-        if (!Array.isArray(res.data)) {
-          throw new Error("Ma'lumot array emas");
-        }
-        setData(res.data);
-      } catch (error) {
-        setErr(error.message);
-      } finally {
-        setLoading(false);
+  const getData = async () => {
+    try {
+      const res = await axios.get("http://localhost:5000/complaints");
+      if (!Array.isArray(res.data)) {
+        throw new Error("Ma'lumot array emas");
       }
-    };
+      setData(res.data);
+    } catch (error) {
+      setErr(error.message);
+    } finally {
+      setLoading(false);
+    }
+  };
+  getData();
+
+  useEffect(() => {
     getData();
   }, []);
 
@@ -47,18 +50,16 @@ function ComplaintsAdmin() {
     if (!window.confirm("Rostan ham o‘chirmoqchimisiz?")) return;
 
     try {
-      // 1. O‘chirilayotgan complaintni topamiz
-      const item = data.find((c) => c.id === id);
-      if (!item) return;
+      let res = await axios.get(`http://localhost:5000/complaints/${id}`);
 
-      // 2. Archive (complaintsDeleted) ga qo‘shamiz
-      await axios.post("http://localhost:5000/complaintsDeleted", item);
+      await axios.post("http://localhost:5000/complaintsDeleted", res.data);
 
-      // 3. Asosiy complaints dan o‘chiramiz
-      await axios.delete(`http://localhost:5000/complaints/${id}`);
+      let ress = await axios.delete(`http://localhost:5000/complaints/${id}`);
 
-      // 4. UI ni yangilaymiz
-      setData((prev) => prev.filter((c) => c.id !== id));
+      if (res.status == 200) {
+        toast.success("Successfully deleted and archieved");
+        getData();
+      }
     } catch (error) {
       console.error(error);
       alert("O‘chirishda xatolik");
@@ -92,6 +93,7 @@ function ComplaintsAdmin() {
 
         {err && <p className="text-red-400 mb-2">{err}</p>}
         {loading && <p className="text-gray-400 mb-2">Yuklanmoqda...</p>}
+        <ToastContainer />
 
         <div className="flex flex-col sm:flex-row gap-4 mb-6">
           <input
@@ -152,9 +154,7 @@ function ComplaintsAdmin() {
                 <div className="flex items-center gap-2">
                   <select
                     value={c.status || "pending"}
-                    onChange={(e) =>
-                      handleStatusChange(c.id, e.target.value)
-                    }
+                    onChange={(e) => handleStatusChange(c.id, e.target.value)}
                     className="p-1 rounded bg-[#0b1220] border border-gray-600 text-sm"
                   >
                     <option value="pending">Pending</option>
