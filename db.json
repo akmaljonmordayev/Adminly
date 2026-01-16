@@ -349,6 +349,27 @@
       "employeeName": "Bekzod Shokirov",
       "deadline": "2026-02-05",
       "status": "pending"
+    },
+    {
+      "id": "1073",
+      "taskName": "dilshod",
+      "employeeName": "Jasmina Aliyeva",
+      "deadline": "2025-11-06",
+      "status": "pending"
+    },
+    {
+      "id": "f964",
+      "taskName": "elshod",
+      "employeeName": "Sherzod Rasulov",
+      "deadline": "2025-12-02",
+      "status": "pending"
+    },
+    {
+      "id": "5582",
+      "taskName": "hoshim",
+      "employeeName": "Nodira Usmonova",
+      "deadline": "2026-01-30",
+      "status": "pending"
     }
   ],
   "logs": [
@@ -496,61 +517,10 @@
   "employeesDeleted": [],
   "tasksDeleted": [
     {
-      "id": "d9fc",
-      "taskName": "asdcas",
-      "employeeName": "Akmal Mordayev",
-      "deadline": "2026-01-30",
-      "status": "pending"
-    },
-    {
-      "id": "1073",
-      "taskName": "dilshod",
-      "employeeName": "Jasmina Aliyeva",
-      "deadline": "2025-11-06",
-      "status": "pending"
-    },
-    {
-      "id": "f964",
-      "taskName": "elshod",
-      "employeeName": "Sherzod Rasulov",
-      "deadline": "2025-12-02",
-      "status": "pending"
-    },
-    {
-      "id": "5582",
-      "taskName": "hoshim",
-      "employeeName": "Nodira Usmonova",
-      "deadline": "2026-01-30",
-      "status": "pending"
-    },
-    {
-      "id": "8a0c",
-      "taskName": "adeveb",
-      "employeeName": "Bekzod Shokirov",
-      "deadline": "2026-01-30",
-      "status": "pending"
-    },
-    {
-      "id": "2944",
-      "taskName": "asdeftrhyuki",
-      "employeeName": "Sherzod Rasulov",
-      "deadline": "2026-01-29",
-      "status": "pending"
-    },
-    {
       "id": "d0c5",
       "taskName": "defrg",
       "employeeName": "Dilshod Karimov",
       "deadline": "2026-01-13",
-      "status": "pending"
-    }
-  ],
-  "complaintsDeleted": [
-    {
-      "id": "65cd",
-      "taskName": "guli",
-      "employeeName": "Islombek Qodirov",
-      "deadline": "2026-01-23",
       "status": "pending"
     }
   ],
@@ -585,6 +555,13 @@
       "title": "uxlash",
       "text": "uuuuuuuuuuuuuuuuuuuuuuuuu",
       "date": "Jan 11, 2026",
+      "status": "Active"
+    },
+    {
+      "id": "8e79",
+      "title": "abu",
+      "text": "ekon",
+      "date": "Jan 8, 2026",
       "status": "Active"
     }
   ]
