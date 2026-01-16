@@ -281,13 +281,6 @@
   ],
   "tasks": [
     {
-      "id": "5396",
-      "taskName": "ilon",
-      "employeeName": "Bekzod Shokirov",
-      "deadline": "2026-02-03",
-      "status": "pending"
-    },
-    {
       "id": "3703",
       "taskName": "joxon",
       "employeeName": "Aziza Mahmudova",
@@ -319,15 +312,21 @@
   "logs": [
     {
       "id": "1",
-      "userId": "2",
       "userName": "Akmal Mordayev",
-      "action": "UPDATE"
+      "action": "UPDATE",
+      "date": "2026-01-16T10:30:00Z"
     },
     {
       "id": "2",
-      "userId": "3",
       "userName": "Abdulloh Abdumalikov",
-      "action": "CREATE"
+      "action": "CREATE",
+      "date": "2026-01-16T11:00:00Z"
+    },
+    {
+      "id": "7d7a",
+      "userName": "Akmal Mordayev",
+      "action": "Task deleted",
+      "date": 1768557561685
     }
   ],
   "resignations": [
@@ -507,6 +506,13 @@
       "taskName": "defrg",
       "employeeName": "Dilshod Karimov",
       "deadline": "2026-01-13",
+      "status": "pending"
+    },
+    {
+      "id": "5396",
+      "taskName": "ilon",
+      "employeeName": "Bekzod Shokirov",
+      "deadline": "2026-02-03",
       "status": "pending"
     }
   ],

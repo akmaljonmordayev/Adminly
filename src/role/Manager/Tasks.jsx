@@ -9,7 +9,7 @@ import {
   HiOutlineUser,
   HiOutlineCalendar,
   HiOutlineStatusOnline,
-} from 'react-icons/hi'
+} from "react-icons/hi";
 
 const API_URL = "http://localhost:5000/tasks";
 
@@ -95,8 +95,14 @@ function Tasks() {
   };
 
   const deleteTask = async (id) => {
+    let user = JSON.parse(localStorage.getItem("user"));
     let res = await axios.get(`http://localhost:5000/tasks/${id}`);
     await axios.post(`http://localhost:5000/tasksDeleted`, res.data);
+    await axios.post("http://localhost:5000/logs", {
+      userName: user.name,
+      action: "Task deleted",
+      date: new Date().getTime(),
+    });
     await fetch(`${API_URL}/${id}`, { method: "DELETE" });
     toast.error("Task successfully deleted and achieved");
     fetchTasks();
@@ -252,20 +258,26 @@ function Tasks() {
                 ) : (
                   <div className="space-y-1">
                     <h3 className="text-xl text-cyan-100 flex items-center gap-2">
-                      <HiOutlineClipboardList className="text-cyan-300" />{task.taskName}
+                      <HiOutlineClipboardList className="text-cyan-300" />
+                      {task.taskName}
                     </h3>
                     <p className="text-sm text-slate-400 flex items-center gap-2">
-                      <HiOutlineUser className="text-cyan-300"/> {task.employeeName}
+                      <HiOutlineUser className="text-cyan-300" />{" "}
+                      {task.employeeName}
                     </p>
                     <p className="text-sm text-slate-400 flex items-center gap-2">
-                     <HiOutlineCalendar className="text-cyan-300"/> {task.deadline}</p>
+                      <HiOutlineCalendar className="text-cyan-300" />{" "}
+                      {task.deadline}
+                    </p>
                   </div>
                 )}
 
                 <p
-                  className={`mt-1 flex items-center gap-2 right-3 font-semibold ${statusColors[task.status]}`}
+                  className={`mt-1 flex items-center gap-2 right-3 font-semibold ${
+                    statusColors[task.status]
+                  }`}
                 >
-                  <HiOutlineStatusOnline className="flex text-xl text-cyan-300"/>
+                  <HiOutlineStatusOnline className="flex text-xl text-cyan-300" />
                   {task.status}
                 </p>
 
