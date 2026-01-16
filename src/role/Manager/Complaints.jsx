@@ -13,7 +13,9 @@ function ComplaintsAdmin() {
     const getData = async () => {
       try {
         const res = await axios.get("http://localhost:5000/complaints");
-        if (!Array.isArray(res.data)) throw new Error("Ma'lumot array emas");
+        if (!Array.isArray(res.data)) {
+          throw new Error("Ma'lumot array emas");
+        }
         setData(res.data);
       } catch (error) {
         setErr(error.message);
@@ -35,20 +37,30 @@ function ComplaintsAdmin() {
           item.id === id ? { ...item, status: newStatus } : item
         )
       );
-    } catch {
+    } catch (error) {
+      console.error(error);
       alert("Status o‘zgartirishda xatolik");
     }
   };
 
   const handleDelete = async (id) => {
-    if (!window.confirm("Rostdan ham o‘chirmoqchimisiz?")) return;
+    if (!window.confirm("Rostan ham o‘chirmoqchimisiz?")) return;
 
     try {
-      await axios.delete(
-        `http://localhost:5000/complaintsDeleted/${id}`
-      );
-      setData((prev) => prev.filter((item) => item.id !== id));
-    } catch {
+      // 1. O‘chirilayotgan complaintni topamiz
+      const item = data.find((c) => c.id === id);
+      if (!item) return;
+
+      // 2. Archive (complaintsDeleted) ga qo‘shamiz
+      await axios.post("http://localhost:5000/complaintsDeleted", item);
+
+      // 3. Asosiy complaints dan o‘chiramiz
+      await axios.delete(`http://localhost:5000/complaints/${id}`);
+
+      // 4. UI ni yangilaymiz
+      setData((prev) => prev.filter((c) => c.id !== id));
+    } catch (error) {
+      console.error(error);
       alert("O‘chirishda xatolik");
     }
   };
@@ -119,6 +131,7 @@ function ComplaintsAdmin() {
             >
               <div className="flex justify-between items-center mb-2">
                 <h3 className="text-lg font-semibold">{c.title}</h3>
+
                 <span
                   className={`px-2 py-1 text-sm rounded ${
                     statusColors[c.status?.toLowerCase()] ||
@@ -151,7 +164,7 @@ function ComplaintsAdmin() {
 
                   <button
                     onClick={() => handleDelete(c.id)}
-                    className="px-3 py-1 text-sm rounded bg-red-600/20 text-red-400 border border-red-600 hover:bg-red-600/30"
+                    className="px-3 py-1 text-sm rounded bg-red-600/20 text-red-400 border border-red-600"
                   >
                     Delete
                   </button>
