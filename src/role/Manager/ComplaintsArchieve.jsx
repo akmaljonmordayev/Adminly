@@ -1,3 +1,4 @@
+import axios from "axios";
 import React, { useEffect, useState } from "react";
 import {
   FiClipboard,
@@ -7,41 +8,45 @@ import {
   FiRefreshCw,
   FiTrash2,
 } from "react-icons/fi";
+import { toast, ToastContainer } from "react-toastify";
 
 function ComplaintsArchieve() {
   const [data, setData] = useState([]);
 
+  const getData = async () => {
+    let res = await axios.get("http://localhost:5000/complaintsDeleted");
+    setData(res.data);
+  };
+
   useEffect(() => {
-    fetch("http://localhost:5000/complaintsDeleted")
-      .then((res) => res.json())
-      .then((res) => setData(res))
-      .catch(console.error);
+    getData();
   }, []);
 
   const handleRestore = async (item) => {
-    await fetch("http://localhost:5000/complaints", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(item),
-    });
-
-    await fetch(
-      `http://localhost:5000/complaintsDeleted/${item.id}`,
-      { method: "DELETE" }
+    let ress = await axios.post("http://localhost:5000/complaints", { ...item });
+    let res = await axios.delete(
+      `http://localhost:5000/complaintsDeleted/${item.id}`
     );
-
-    setData((prev) => prev.filter((c) => c.id !== item.id));
+    if (ress.status == 200 && res.status == 200) {
+      toast.success("Complaint successfully restored to the  complaints page");
+    }
+    getData();
   };
 
   const handleDeleteForever = async (id) => {
     if (!window.confirm("Rostdan ham bu ma'lumotni o'chirmoqchimisiz?")) return;
 
-    await fetch(
+    let res = await axios.delete(
       `http://localhost:5000/complaintsDeleted/${id}`,
-      { method: "DELETE" }
+      {
+        method: "DELETE",
+      }
     );
 
-    setData((prev) => prev.filter((c) => c.id !== id));
+    if (res.status == 200) {
+      toast.success("Succeffuly deleted from archieve");
+      getData();
+    }
   };
 
   const statusStyles = {
@@ -62,7 +67,7 @@ function ComplaintsArchieve() {
           Archive bo‘sh
         </div>
       )}
-
+      <ToastContainer />
       <div className="grid gap-8 sm:grid-cols-2 xl:grid-cols-3">
         {data.map((item) => (
           <div
