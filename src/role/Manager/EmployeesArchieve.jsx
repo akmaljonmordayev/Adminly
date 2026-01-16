@@ -1,4 +1,8 @@
 import React, { useState, useEffect } from 'react'
+import axios from 'axios'
+import { toast, ToastContainer } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
+
 import {
   HiOutlineUserCircle,
   HiOutlineCalendar,
@@ -9,11 +13,12 @@ import {
 
 function EmployeesArchieve() {
   const employeeArchiveUrl = 'http://localhost:5000/employeesDeleted'
+
   const [data, setData] = useState([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
 
-  useEffect(() => {
+  const fetchEmployeeArchive = () => {
     fetch(employeeArchiveUrl)
       .then((res) => {
         if (!res.ok) throw new Error('Data not found')
@@ -27,6 +32,10 @@ function EmployeesArchieve() {
         setError(err.message)
         setLoading(false)
       })
+  }
+
+  useEffect(() => {
+    fetchEmployeeArchive()
   }, [])
 
   if (loading)
@@ -36,9 +45,31 @@ function EmployeesArchieve() {
       </div>
     )
 
+  const restoreEmployee = async (employee) => {
+    try {
+      await axios.post('http://localhost:5000/employees', employee)
+      await axios.delete(
+        `http://localhost:5000/employeesDeleted/${employee.id}`,
+      )
+      toast.success('Employee restored successfully')
+      fetchEmployeeArchive()
+    } catch {
+      toast.error('Restore failed')
+    }
+  }
+
+  const deleteForever = async (id) => {
+    try {
+      await axios.delete(`http://localhost:5000/employeesDeleted/${id}`)
+      toast.error('Employee permanently deleted')
+      fetchEmployeeArchive()
+    } catch {
+      toast.error('Delete failed')
+    }
+  }
+
   return (
     <div className="w-full">
-      {/* Header and Info */}
       <div className="flex items-center justify-between mb-6 px-2">
         <div>
           <h2 className="text-xl font-bold text-white tracking-tight">
@@ -73,7 +104,6 @@ function EmployeesArchieve() {
                 key={delEmployee.id}
                 className="group bg-[#0b1220] hover:bg-white/[0.04] border border-white/5 shadow-xl transition-none"
               >
-                {/* User Info */}
                 <td className="px-6 py-4 rounded-l-[20px] border-y border-l border-white/5">
                   <div className="flex items-center gap-3">
                     <div className="w-11 h-11 rounded-full bg-gradient-to-tr from-gray-800 to-gray-700 flex items-center justify-center border border-white/10 group-hover:border-cyan-500/30 transition-none overflow-hidden">
@@ -90,7 +120,6 @@ function EmployeesArchieve() {
                   </div>
                 </td>
 
-                {/* Date */}
                 <td className="px-6 py-4 border-y border-white/5">
                   <div className="flex flex-col">
                     <span className="text-gray-300 text-sm font-medium">
@@ -102,7 +131,6 @@ function EmployeesArchieve() {
                   </div>
                 </td>
 
-                {/* Salary */}
                 <td className="px-6 py-4 border-y border-white/5 text-sm">
                   <div className="flex flex-col font-mono">
                     <span className="text-white font-bold">
@@ -114,19 +142,18 @@ function EmployeesArchieve() {
                   </div>
                 </td>
 
-                {/* Actions */}
                 <td className="px-6 py-4 rounded-r-[20px] border-y border-r border-white/5 text-right">
                   <div className="flex items-center justify-end gap-2">
-                    {/* RESTORE */}
                     <button
+                      onClick={() => restoreEmployee(delEmployee)}
                       title="Restore"
                       className="cursor-pointer p-2.5 bg-white/5 hover:bg-cyan-500/20 text-gray-400 hover:text-cyan-400 rounded-[12px] border border-white/5 hover:border-cyan-500/30 transition-none shadow-sm"
                     >
                       <HiOutlineRefresh className="text-lg" />
                     </button>
 
-                    {/* DELETE */}
                     <button
+                      onClick={() => deleteForever(delEmployee.id)}
                       title="Permanently delete"
                       className="p-2.5 cursor-pointer bg-white/5 hover:bg-red-500/20 text-gray-400 hover:text-red-400 rounded-[12px] border border-white/5 hover:border-red-500/30 transition-none shadow-sm"
                     >
@@ -140,18 +167,7 @@ function EmployeesArchieve() {
         </table>
       </div>
 
-      <style
-        dangerouslySetInnerHTML={{
-          __html: `
-        .custom-scrollbar::-webkit-scrollbar { height: 4px; }
-        .custom-scrollbar::-webkit-scrollbar-thumb { background: #1e293b; border-radius: 10px; }
-        tr { 
-          box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 
-                      0 2px 4px -1px rgba(0, 0, 0, 0.06);
-        }
-      `,
-        }}
-      />
+      <ToastContainer position="top-right" autoClose={3000} theme="dark" />
     </div>
   )
 }
