@@ -32,6 +32,22 @@ function Leaves() {
         (c.status && c.status.toLowerCase() === statusFilter.toLowerCase()))
   );
 
+  const handleStatusChange = async (id, newStatus) => {
+    try {
+      await axios.patch(`http://localhost:5000/resignations/${id}`, {
+        status: newStatus,
+      });
+
+      setData((prev) =>
+        prev.map((item) =>
+          item.id === id ? { ...item, status: newStatus } : item
+        )
+      );
+    } catch (err) {
+      alert("Status o‘zgartirishda xatolik");
+    }
+  };
+
   const sortedData = [...filteredData].sort((a, b) =>
     sort === "a-z"
       ? a.employeeName.localeCompare(b.employeeName)
@@ -40,8 +56,8 @@ function Leaves() {
 
   const statusColors = {
     pending: "bg-yellow-500 text-white",
-    reviewed: "bg-blue-500 text-white",
-    resolved: "bg-green-500 text-white",
+    approved: "bg-blue-500 text-white",
+    rejected: "bg-red-500 text-white",
   };
 
   return (
@@ -78,6 +94,7 @@ function Leaves() {
             <option value="all">All Status</option>
             <option value="pending">Pending</option>
             <option value="approved">Approved</option>
+            <option value="rejected">Rejected</option>
           </select>
         </div>
 
@@ -127,6 +144,7 @@ function Leaves() {
                 >
                   <option value="pending">Pending</option>
                   <option value="approved">Approved</option>
+                  <option value="rejected">Rejected</option>
                 </select>
               </div>
             </div>
