@@ -8,6 +8,8 @@ function Leaves() {
   const [data, setData] = useState([]);
   const [err, setErr] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 4;
 
   useEffect(() => {
     const getData = async () => {
@@ -32,6 +34,16 @@ function Leaves() {
         (c.status && c.status.toLowerCase() === statusFilter.toLowerCase()))
   );
 
+  const sortedData = [...filteredData].sort((a, b) =>
+    sort === "a-z"
+      ? a.employeeName.localeCompare(b.employeeName)
+      : b.employeeName.localeCompare(a.employeeName)
+  );
+
+  const totalPages = Math.ceil(sortedData.length / itemsPerPage);
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const currentData = sortedData.slice(startIndex, startIndex + itemsPerPage);
+
   const handleStatusChange = async (id, newStatus) => {
     try {
       await axios.patch(`http://localhost:5000/resignations/${id}`, {
@@ -47,12 +59,6 @@ function Leaves() {
       alert("Status o‘zgartirishda xatolik");
     }
   };
-
-  const sortedData = [...filteredData].sort((a, b) =>
-    sort === "a-z"
-      ? a.employeeName.localeCompare(b.employeeName)
-      : b.employeeName.localeCompare(a.employeeName)
-  );
 
   const statusColors = {
     pending: "bg-yellow-500 text-white",
@@ -73,7 +79,10 @@ function Leaves() {
             type="text"
             placeholder="Search by title ..."
             value={search}
-            onChange={(e) => setSearch(e.target.value)}
+            onChange={(e) => {
+              setSearch(e.target.value);
+              setCurrentPage(1);
+            }}
             className="w-[600px] flex-1 p-2 bg-[#020617] border border-cyan-700 rounded-md text-white placeholder-cyan-400 focus:outline-none focus:ring-2 focus:ring-cyan-500"
           />
 
@@ -88,7 +97,10 @@ function Leaves() {
 
           <select
             value={statusFilter}
-            onChange={(e) => setStatusFilter(e.target.value)}
+            onChange={(e) => {
+              setStatusFilter(e.target.value);
+              setCurrentPage(1);
+            }}
             className="p-2 bg-[#020617] border border-cyan-700 rounded-md text-white focus:outline-none focus:ring-2 focus:ring-cyan-500"
           >
             <option value="all">All Status</option>
@@ -99,36 +111,32 @@ function Leaves() {
         </div>
 
         <div className="space-y-4">
-          {sortedData.map((c) => (
+          {currentData.map((c) => (
             <div
               key={c.id}
-              className="w-[800px] p-4 bg-[#020617] border border-cyan-800 rounded-lg shadow-sm hover:shadow-cyan-500/20 transition  flex justify-between items-center"
+              className="w-[800px] p-4 bg-[#020617] border border-cyan-800 rounded-lg shadow-sm hover:shadow-cyan-500/100 transition flex justify-between items-center"
             >
-              <div>
-                <div className="flex justify-between items-start mb-2 flex-col sm:flex-col gap-2">
-                  <h3 className="text-lg font-semibold text-white">
-                    {c.employeeName}
-                  </h3>
-                  <span
-                    className={`px-2 py-1 text-sm font-medium rounded ${
-                      statusColors[c.text?.toLowerCase()] ||
-                      "bg-cyan-900 text-white"
-                    }`}
-                  >
-                    {c.comment
-                      ? c.comment.charAt(0).toUpperCase() + c.comment.slice(1)
-                      : "Unknown"}
-                  </span>
-                </div>
-
-                <p className="text-cyan-300 mb-1"></p>
-
+              <div className="flex flex-col gap-2">
+                <h3 className="text-lg font-semibold text-white">
+                  {c.employeeName}
+                </h3>
+                <span
+                  className={`px-2 py-1  text-sm font-medium rounded w-[230px] ${
+                    statusColors[c.text?.toLowerCase()] ||
+                    "bg-cyan-900 text-white"
+                  }`}
+                >
+                  {c.comment
+                    ? c.comment.charAt(0).toUpperCase() + c.comment.slice(1)
+                    : "Unknown"}
+                </span>
                 <p className="text-cyan-400 text-sm">
                   Position: {c.position || "N/A"} | Date:{" "}
                   {c.noticePeriod || "N/A"}
                 </p>
               </div>
-              <div className="flex flex-col gap-5">
+
+              <div className="flex flex-col gap-3">
                 <span
                   className={`px-2 py-1 text-sm rounded ${
                     statusColors[c.status?.toLowerCase()] ||
@@ -137,10 +145,11 @@ function Leaves() {
                 >
                   {c.status || "Unknown"}
                 </span>
+
                 <select
                   value={c.status || "pending"}
                   onChange={(e) => handleStatusChange(c.id, e.target.value)}
-                  className="p-1 rounded bg-[#0b1220] border border-gray-600 text-sm h-[30px]"
+                  className="p-1 rounded bg-[#0b1220] border border-gray-600 text-sm"
                 >
                   <option value="pending">Pending</option>
                   <option value="approved">Approved</option>
@@ -149,11 +158,24 @@ function Leaves() {
               </div>
             </div>
           ))}
-
-          {!loading && sortedData.length === 0 && (
-            <p className="text-cyan-400">Hech narsa topilmadi</p>
-          )}
         </div>
+        {totalPages > 1 && (
+          <div className="flex gap-2 mt-6">
+            {Array.from({ length: totalPages }, (_, i) => (
+              <button
+                key={i}
+                onClick={() => setCurrentPage(i + 1)}
+                className={`px-3 py-1 border border-cyan-600 rounded ${
+                  currentPage === i + 1
+                    ? "bg-cyan-600 text-black"
+                    : "text-cyan-300"
+                }`}
+              >
+                {i + 1}
+              </button>
+            ))}
+          </div>
+        )}
       </div>
     </main>
   );
