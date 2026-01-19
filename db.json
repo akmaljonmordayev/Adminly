@@ -281,34 +281,6 @@
   ],
   "tasks": [
     {
-      "id": "a59e",
-      "taskName": "Dashboard",
-      "employeeName": "Islombek Qodirov",
-      "deadline": "2026-01-30",
-      "status": "pending"
-    },
-    {
-      "id": "9611",
-      "taskName": "Employees",
-      "employeeName": "Bekzod Shokirov",
-      "deadline": "2026-02-05",
-      "status": "pending"
-    },
-    {
-      "id": "5396",
-      "taskName": "ilon",
-      "employeeName": "Bekzod Shokirov",
-      "deadline": "2026-02-03",
-      "status": "pending"
-    },
-    {
-      "id": "1073",
-      "taskName": "dilshod",
-      "employeeName": "Jasmina Aliyeva",
-      "deadline": "2025-11-06",
-      "status": "pending"
-    },
-    {
       "id": "f964",
       "taskName": "elshod",
       "employeeName": "Sherzod Rasulov",
@@ -321,6 +293,13 @@
       "employeeName": "Nodira Usmonova",
       "deadline": "2026-01-30",
       "status": "pending"
+    },
+    {
+      "id": "305a",
+      "taskName": "asvasd",
+      "employeeName": "Jasmina Aliyeva",
+      "deadline": "2026-01-21",
+      "status": "pending"
     }
   ],
   "logs": [
@@ -328,85 +307,29 @@
       "id": "1",
       "userName": "Akmal Mordayev",
       "action": "UPDATE",
-      "date": "2026-01-16T10:30:00Z"
+      "date": "2026-01-16T10:30:00Z",
+      "page": "TASKS"
     },
     {
-      "id": "2",
-      "userName": "Abdulloh Abdumalikov",
-      "action": "CREATE",
-      "date": "2026-01-16T11:00:00Z"
-    },
-    {
-      "id": "7d7a",
+      "id": "b894",
       "userName": "Akmal Mordayev",
-      "action": "Task deleted",
-      "date": 1768557561685
+      "action": "DELETE",
+      "date": "2026-01-19T09:23:51.843Z",
+      "page": "TASKS"
     },
     {
-      "id": "70c9",
-      "userName": "Abdulaziz Xasanov",
-      "action": "Task created",
-      "date": 1768763245331
+      "id": "9ad5",
+      "userName": "Akmal Mordayev",
+      "action": "DELETE",
+      "date": "2026-01-19T09:26:16.958Z",
+      "page": "TASKS"
     },
     {
-      "id": "c7d6",
-      "userName": "Abdulaziz Xasanov",
-      "action": "Task updated",
-      "date": 1768763272557
-    },
-    {
-      "id": "d93f",
-      "userName": "Abdulaziz Xasanov",
-      "action": "Task deleted",
-      "date": 1768763288450
-    },
-    {
-      "id": "0272",
-      "userName": "Abdulaziz Xasanov",
-      "action": "Task created",
-      "date": 1768763700809
-    },
-    {
-      "id": "850a",
-      "userName": "Abdulaziz Xasanov",
-      "action": "Task created",
-      "date": 1768763724331
-    },
-    {
-      "id": "bb54",
-      "userName": "Abdulaziz Xasanov",
-      "action": "Task deleted",
-      "date": 1768763735916
-    },
-    {
-      "id": "c903",
-      "userName": "Abdulaziz Xasanov",
-      "action": "Task deleted",
-      "date": 1768763737832
-    },
-    {
-      "id": "fac6",
-      "userName": "Abdulaziz Xasanov",
-      "action": "Task updated",
-      "date": "2026-01-18T19:19:55.013Z"
-    },
-    {
-      "id": "d6a0",
-      "userName": "Abdulaziz Xasanov",
-      "action": "Task deleted",
-      "date": "2026-01-19T09:06:27.723Z"
-    },
-    {
-      "id": "96d7",
-      "userName": "Abdulaziz Xasanov",
-      "action": "Task deleted",
-      "date": "2026-01-19T09:09:36.815Z"
-    },
-    {
-      "id": "5912",
-      "userName": "Abdulaziz Xasanov",
-      "action": "Task updated",
-      "date": "2026-01-19T09:10:10.985Z"
+      "id": "3804",
+      "userName": "Mohinur Sulaymonqulova",
+      "action": "DELETE",
+      "date": "2026-01-19T09:30:08.177Z",
+      "page": "TASKS"
     }
   ],
   "resignations": [
@@ -421,7 +344,7 @@
       "lastWorkingDay": "2026-01-10",
       "noticePeriod": "30 days",
       "reason": "Career growth",
-      "status": "pending",
+      "status": "approved",
       "approvedBy": null,
       "comment": "Looking for new opportunities"
     },
@@ -525,7 +448,7 @@
       "title": "Internet Connectivity Issue",
       "description": "Internet connection keeps dropping in the design department.",
       "date": "2025-12-20",
-      "status": "reviewed"
+      "status": "resolved"
     },
     {
       "id": "CPL003",
@@ -600,6 +523,34 @@
       "taskName": "Archieve",
       "employeeName": "Jasmina Aliyeva",
       "deadline": "2026-01-20",
+      "status": "pending"
+    },
+    {
+      "id": "a59e",
+      "taskName": "Dashboard",
+      "employeeName": "Islombek Qodirov",
+      "deadline": "2026-01-30",
+      "status": "pending"
+    },
+    {
+      "id": "9611",
+      "taskName": "Employees",
+      "employeeName": "Bekzod Shokirov",
+      "deadline": "2026-02-05",
+      "status": "pending"
+    },
+    {
+      "id": "5396",
+      "taskName": "ilon",
+      "employeeName": "Bekzod Shokirov",
+      "deadline": "2026-02-03",
+      "status": "pending"
+    },
+    {
+      "id": "1073",
+      "taskName": "dilshod",
+      "employeeName": "Jasmina Aliyeva",
+      "deadline": "2025-11-06",
       "status": "pending"
     }
   ],
