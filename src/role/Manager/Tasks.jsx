@@ -75,6 +75,14 @@ function Tasks() {
       return;
     }
 
+    let user = JSON.parse(localStorage.getItem("user"));       
+
+    await axios.post("http://localhost:5000/logs", {
+      userName: user.name,
+      action: "Task created",
+      date: new Date().toISOString(),
+    });
+
     await fetch(API_URL, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -101,7 +109,7 @@ function Tasks() {
     await axios.post("http://localhost:5000/logs", {
       userName: user.name,
       action: "Task deleted",
-      date: new Date().getTime(),
+      date: new Date().toISOString(),
     });
     await fetch(`${API_URL}/${id}`, { method: "DELETE" });
     toast.error("Task successfully deleted and achieved");
@@ -122,6 +130,14 @@ function Tasks() {
 
   const saveEdit = async (id) => {
     const currentTask = tasks.find((t) => t.id === id);
+
+    let user = JSON.parse(localStorage.getItem("user"));       
+
+    await axios.post("http://localhost:5000/logs", {
+      userName: user.name,
+      action: "Task updated",
+      date: new Date().toISOString(),
+    });
 
     await fetch(`${API_URL}/${id}`, {
       method: "PUT",
