@@ -363,6 +363,42 @@
       "userId": "3",
       "userName": "Abdulloh Abdumalikov",
       "action": "CREATE"
+    },
+    {
+      "id": "517c",
+      "userName": "Mohinur Sulaymonqulova",
+      "action": "Leave status changed to rejected",
+      "date": 1768811169854
+    },
+    {
+      "id": "55e0",
+      "userName": "Mohinur Sulaymonqulova",
+      "action": "Leave status changed to approved",
+      "date": 1768811304773
+    },
+    {
+      "id": "02d4",
+      "userName": "Mohinur Sulaymonqulova",
+      "action": "Leave status changed to pending",
+      "date": 1768811336190
+    },
+    {
+      "id": "afb6",
+      "userName": "Mohinur Sulaymonqulova",
+      "action": "Leave status changed to approved",
+      "date": 1768811508396
+    },
+    {
+      "id": "5179",
+      "userName": "Mohinur Sulaymonqulova",
+      "action": "Leave status changed to approved",
+      "date": 1768811738869
+    },
+    {
+      "id": "5104",
+      "userName": "Mohinur Sulaymonqulova",
+      "action": "Leave status changed to pending",
+      "date": 1768811741537
     }
   ],
   "resignations": [

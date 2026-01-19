@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Modal } from "antd";
 import { toast, ToastContainer } from "react-toastify";
+import axios from "axios";
 import "react-toastify/dist/ReactToastify.css";
 
 function Employees() {
@@ -29,7 +30,7 @@ function Employees() {
   const getNow = () => {
     const now = new Date();
     const year = now.getFullYear();
-    const month = String(now.getMonth() );
+    const month = String(now.getMonth());
     const day = String(now.getDate());
     return `${year}-${month}-${day}`;
   };
@@ -86,14 +87,18 @@ function Employees() {
     });
   };
 
-  const handleDelete = (id) => {
+  const handleDelete = async (id) => {
     if (!window.confirm("Delete this employee?")) return;
-
-    fetch(`http://localhost:5000/employees/${id}`, {
+    let res = await axios.get(`http://localhost:5000/employees/${id}`);
+    let ress = await axios.post(
+      "http://localhost:5000/employeesDeleted",
+      res.data
+    );
+    await fetch(`http://localhost:5000/employees/${id}`, {
       method: "DELETE",
     }).then(() => {
       setUsers((prev) => prev.filter((u) => u.id !== id));
-      toast.success("Employee deleted ❌");
+      toast.success("Employee deleted and archieved ❌");
     });
   };
 
@@ -117,7 +122,7 @@ function Employees() {
               email: "",
               phone: "",
               BaseSalary: "",
-              createdAt: getNow(), 
+              createdAt: getNow(),
             });
             setAddOpen(true);
           }}
@@ -162,30 +167,38 @@ function Employees() {
           ))}
         </tbody>
       </table>
+      <style>
+        {`
+ .ant-modal-title { 
+    color: #22d3ee !important;
+ }
+  .ant-modal-container {
+    background-color: #071B2D !important;
 
+  }
+
+`}
+      </style>
       <Modal
         title="Add Employee"
         open={addOpen}
         onOk={handleAdd}
         onCancel={() => setAddOpen(false)}
         okText="Add"
+        className="text-[#ffff]"
       >
         <input
           style={input}
           placeholder="Full name"
           value={newUser.fullName}
-          onChange={(e) =>
-            setNewUser({ ...newUser, fullName: e.target.value })
-          }
+          onChange={(e) => setNewUser({ ...newUser, fullName: e.target.value })}
         />
 
         <input
           style={input}
           placeholder="Email"
           value={newUser.email}
-          onChange={(e) =>
-            setNewUser({ ...newUser, email: e.target.value })
-          }
+          onChange={(e) => setNewUser({ ...newUser, email: e.target.value })}
         />
 
         <input
@@ -225,9 +238,7 @@ function Employees() {
           style={input}
           placeholder="Email"
           value={editUser.email}
-          onChange={(e) =>
-            setEditUser({ ...editUser, email: e.target.value })
-          }
+          onChange={(e) => setEditUser({ ...editUser, email: e.target.value })}
         />
       </Modal>
 

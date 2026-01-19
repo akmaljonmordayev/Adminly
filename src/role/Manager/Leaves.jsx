@@ -15,7 +15,8 @@ function Leaves() {
     const getData = async () => {
       try {
         const res = await axios.get("http://localhost:5000/resignations");
-        if (!Array.isArray(res.data)) throw new Error("Xatolik!");
+        if (!Array.isArray(res.data))
+          throw new Error("Ma'lumot formati noto‘g‘ri");
         setData(res.data);
       } catch (error) {
         setErr(error.message);
@@ -31,13 +32,13 @@ function Leaves() {
       (c.employeeName?.toLowerCase().includes(search.toLowerCase()) ||
         c.description?.toLowerCase().includes(search.toLowerCase())) &&
       (statusFilter === "all" ||
-        (c.status && c.status.toLowerCase() === statusFilter.toLowerCase()))
+        c.status?.toLowerCase() === statusFilter.toLowerCase())
   );
 
   const sortedData = [...filteredData].sort((a, b) =>
     sort === "a-z"
-      ? a.employeeName.localeCompare(b.employeeName)
-      : b.employeeName.localeCompare(a.employeeName)
+      ? (a.employeeName || "").localeCompare(b.employeeName || "")
+      : (b.employeeName || "").localeCompare(a.employeeName || "")
   );
 
   const totalPages = Math.ceil(sortedData.length / itemsPerPage);
@@ -45,9 +46,17 @@ function Leaves() {
   const currentData = sortedData.slice(startIndex, startIndex + itemsPerPage);
 
   const handleStatusChange = async (id, newStatus) => {
+    const user = JSON.parse(localStorage.getItem("user")) || {};
+
     try {
       await axios.patch(`http://localhost:5000/resignations/${id}`, {
         status: newStatus,
+      });
+
+      await axios.post("http://localhost:5000/logs", {
+        userName: user.name || "Unknown",
+        action: `Leave status changed to ${newStatus}`,
+        date: Date.now(),
       });
 
       setData((prev) =>
@@ -55,8 +64,8 @@ function Leaves() {
           item.id === id ? { ...item, status: newStatus } : item
         )
       );
-    } catch (err) {
-      alert("Status o‘zgartirishda xatolik");
+    } catch {
+      alert("Status o‘zgartirishda xatolik yuz berdi");
     }
   };
 
@@ -68,7 +77,7 @@ function Leaves() {
 
   return (
     <main className="flex bg-[#020617]">
-      <div className="p-6 max-w mx-auto min-h-screen bg-[#020617] text-cyan-300">
+      <div className="p-6 max-w-5xl mx-auto min-h-screen bg-[#020617] text-cyan-300">
         <h2 className="text-2xl font-bold mb-4 text-white">Leaves</h2>
 
         {err && <p className="text-red-400 mb-2">{err}</p>}
@@ -77,19 +86,19 @@ function Leaves() {
         <div className="flex flex-col sm:flex-row gap-4 mb-4">
           <input
             type="text"
-            placeholder="Search by title ..."
+            placeholder="Search by name or description..."
             value={search}
             onChange={(e) => {
               setSearch(e.target.value);
               setCurrentPage(1);
             }}
-            className="w-[600px] flex-1 p-2 bg-[#020617] border border-cyan-700 rounded-md text-white placeholder-cyan-400 focus:outline-none focus:ring-2 focus:ring-cyan-500"
+            className="w-full p-2 bg-[#020617] border border-cyan-700 rounded-md text-white placeholder-cyan-400 focus:ring-2 focus:ring-cyan-500"
           />
 
           <select
             value={sort}
             onChange={(e) => setSort(e.target.value)}
-            className="p-2 bg-[#020617] border border-cyan-700 rounded-md text-white focus:outline-none focus:ring-2 focus:ring-cyan-500"
+            className="p-2 bg-[#020617] border border-cyan-700 rounded-md text-white"
           >
             <option value="a-z">A-Z</option>
             <option value="z-a">Z-A</option>
@@ -101,7 +110,7 @@ function Leaves() {
               setStatusFilter(e.target.value);
               setCurrentPage(1);
             }}
-            className="p-2 bg-[#020617] border border-cyan-700 rounded-md text-white focus:outline-none focus:ring-2 focus:ring-cyan-500"
+            className="p-2 bg-[#020617] border border-cyan-700 rounded-md text-white"
           >
             <option value="all">All Status</option>
             <option value="pending">Pending</option>
@@ -118,7 +127,7 @@ function Leaves() {
             >
               <div className="flex flex-col gap-2">
                 <h3 className="text-lg font-semibold text-white">
-                  {c.employeeName}
+                  {c.employeeName || "No name"}
                 </h3>
                 <span
                   className={`px-2 py-1  text-sm font-medium rounded w-[230px] ${
@@ -136,11 +145,11 @@ function Leaves() {
                 </p>
               </div>
 
-              <div className="flex flex-col gap-3">
+              <div className="flex flex-col gap-2">
                 <span
                   className={`px-2 py-1 text-sm rounded ${
                     statusColors[c.status?.toLowerCase()] ||
-                    "bg-gray-500/20 text-gray-300"
+                    "bg-gray-600 text-white"
                   }`}
                 >
                   {c.status || "Unknown"}
@@ -159,6 +168,7 @@ function Leaves() {
             </div>
           ))}
         </div>
+
         {totalPages > 1 && (
           <div className="flex gap-2 mt-6">
             {Array.from({ length: totalPages }, (_, i) => (
