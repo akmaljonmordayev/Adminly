@@ -1,6 +1,6 @@
-import { useState, useEffect } from "react";
-import { useLocation, Link } from "react-router-dom";
-import React from "react";
+import { useState, useEffect } from 'react'
+import { useLocation, Link, useNavigate } from 'react-router-dom'
+import React from 'react'
 import {
   MdDashboard,
   MdPeople,
@@ -12,143 +12,140 @@ import {
   MdAnnouncement,
   MdBeachAccess,
   MdHistory,
-  MdEventBusy,
   MdPersonOff,
-} from "react-icons/md";
-import { FaUserCircle } from "react-icons/fa";
+} from 'react-icons/md'
+import { FaUserCircle } from 'react-icons/fa'
 
-function Sidebar() {
-  const location = useLocation();
-  const [active, setActive] = useState(location.pathname.slice(9));
+function Sidebar({ isCollapsed }) {
+  const location = useLocation()
+  const navigate = useNavigate()
+  const [active, setActive] = useState(location.pathname.slice(9))
 
   useEffect(() => {
-    setActive(location.pathname.slice(9));
-  }, [location.pathname]);
+    setActive(location.pathname.slice(9))
+  }, [location.pathname])
 
   const menu = [
     {
-      id: "dashboard",
-      label: "Dashboard",
+      id: 'dashboard',
+      label: 'Dashboard',
       icon: <MdDashboard />,
-      link: "/manager/dashboard",
+      link: '/manager/dashboard',
     },
     {
-      id: "employees",
-      label: "Employees",
+      id: 'employees',
+      label: 'Employees',
       icon: <MdPeople />,
-      link: "/manager/employees",
+      link: '/manager/employees',
     },
     {
-      id: "finance",
-      label: "Finance",
+      id: 'finance',
+      label: 'Finance',
       icon: <MdAttachMoney />,
-      link: "/manager/finance",
+      link: '/manager/finance',
     },
-    { id: "tasks", label: "Tasks", icon: <MdTask />, link: "/manager/tasks" },
+    { id: 'tasks', label: 'Tasks', icon: <MdTask />, link: '/manager/tasks' },
     {
-      id: "complaints",
-      label: "Complaints",
+      id: 'complaints',
+      label: 'Complaints',
       icon: <MdReport />,
-      link: "/manager/complaints",
+      link: '/manager/complaints',
     },
     {
-      id: "announcemenets",
-      label: "Announcements",
+      id: 'announcemenets',
+      label: 'Announcements',
       icon: <MdAnnouncement />,
-      link: "/manager/announcemenets",
+      link: '/manager/announcemenets',
     },
     {
-      id: "vacations",
-      label: "Vacations",
+      id: 'vacations',
+      label: 'Vacations',
       icon: <MdBeachAccess />,
-      link: "/manager/vacations",
+      link: '/manager/vacations',
     },
     {
-      id: "leaves",
-      label: "Leaves",
+      id: 'leaves',
+      label: 'Leaves',
       icon: <MdPersonOff />,
-      link: "/manager/leaves",
+      link: '/manager/leaves',
     },
     {
-      id: "archieve",
-      label: "Archieve",
+      id: 'archieve',
+      label: 'Archieve',
       icon: <MdArchive />,
-      link: "/manager/archieve",
+      link: '/manager/archieve',
     },
     {
-      id: "settings",
-      label: "Settings",
+      id: 'settings',
+      label: 'Settings',
       icon: <MdSettings />,
-      link: "/manager/settings",
+      link: '/manager/settings',
     },
     {
-      id: "logs",
-      label: "Audit Logs",
+      id: 'logs',
+      label: 'Audit Logs',
       icon: <MdHistory />,
-      link: "/manager/logs",
+      link: '/manager/logs',
     },
-  ];
+  ]
 
-  const user = JSON.parse(localStorage.getItem("user")) || {
-    name: "Guest",
-    role: "Manager",
-  };
+  const user = JSON.parse(localStorage.getItem('user')) || {
+    name: 'Guest',
+    role: 'Manager',
+  }
 
   return (
     <aside
-      className="
-        w-[280px]
-        min-h-screen
-        bg-gradient-to-b from-[#020617] to-[#020617ee]
-        text-white
-        p-6
-        flex
-        flex-col
-        border-r border-white/5
-        shadow-[6px_0_30px_rgba(2,6,23,0.9)]
-      "
+      className={`
+        min-h-screen flex flex-col transition-all duration-300 border-r border-white/5 
+        bg-gradient-to-b from-[#020617] to-[#020617ee] shadow-[6px_0_30px_rgba(2,6,23,0.9)]
+        ${isCollapsed ? 'w-20 p-4' : 'w-[280px] p-6'}
+      `}
     >
-      <h1 className="text-3xl font-bold text-cyan-400 flex items-center gap-3 mb-10 tracking-wide">
-        <MdDashboard className="text-cyan-300 drop-shadow-[0_0_8px_rgba(34,211,238,0.8)]" />
-        Adminly
+      <h1
+        className={`text-3xl font-bold text-cyan-400 flex items-center gap-3 mb-10 tracking-wide ${
+          isCollapsed ? 'justify-center' : ''
+        }`}
+      >
+        <MdDashboard className="text-cyan-300 drop-shadow-[0_0_8px_rgba(34,211,238,0.8)] flex-shrink-0" />
+        {!isCollapsed && <span>Adminly</span>}
       </h1>
 
-      <Link to={"/manager/settings"}>
-        <div
-          className="
-          pointer
-          flex items-center gap-3 mb-12 p-4 rounded-2xl
-          bg-white/5
-          border border-white/10
-          shadow-[0_0_20px_rgba(0,0,0,0.6)]
-        "
-        >
-          <FaUserCircle className="text-5xl text-cyan-400" />
-          <div>
-            <p className="font-semibold">{user.name}</p>
-            <p className="text-sm text-cyan-300">{user.role}</p>
+      <div
+        onClick={() => navigate('/manager/settings')}
+        className={`
+          flex items-center gap-3 mb-12 p-4 rounded-2xl bg-white/5 border border-white/10
+          shadow-[0_0_20px_rgba(0,0,0,0.6)] cursor-pointer hover:bg-white/10 transition-all
+          ${isCollapsed ? 'justify-center' : ''}
+        `}
+      >
+        <FaUserCircle className="text-4xl text-cyan-400 flex-shrink-0" />
+        {!isCollapsed && (
+          <div className="overflow-hidden">
+            <p className="font-semibold truncate text-white">{user.name}</p>
+            <p className="text-sm text-cyan-300 truncate">{user.role}</p>
           </div>
-        </div>
-      </Link>
+        )}
+      </div>
 
       <nav className="flex flex-col gap-2">
         {menu.map((item) => {
-          const isActive = active === item.id;
-
+          const isActive = active === item.id
           return (
             <Link
               key={item.id}
               to={item.link}
-              onClick={() => setActive(item.id)}
+              title={isCollapsed ? item.label : ''}
             >
               <div
                 className={`
                   relative flex items-center gap-4 px-5 py-3 transition-all duration-300
                   ${
                     isActive
-                      ? "bg-gradient-to-r from-cyan-400/20 to-transparent text-cyan-300 font-semibold rounded-xl border-l-4 border-cyan-400"
-                      : "text-gray-400 hover:bg-white/5 hover:text-cyan-300 rounded-xl hover:translate-x-1"
+                      ? 'bg-gradient-to-r from-cyan-400/20 to-transparent text-cyan-300 font-semibold rounded-xl border-l-4 border-cyan-400'
+                      : 'text-gray-400 hover:bg-white/5 hover:text-cyan-300 rounded-xl hover:translate-x-1'
                   }
+                  ${isCollapsed ? 'justify-center' : ''}
                 `}
               >
                 {isActive && (
@@ -156,20 +153,22 @@ function Sidebar() {
                 )}
 
                 <span
-                  className={`relative text-2xl ${
-                    isActive ? "text-cyan-300" : "text-gray-500"
+                  className={`relative text-2xl flex-shrink-0 ${
+                    isActive ? 'text-cyan-300' : 'text-gray-500'
                   }`}
                 >
                   {item.icon}
                 </span>
-                <span className="relative text-md">{item.label}</span>
+                {!isCollapsed && (
+                  <span className="relative text-md">{item.label}</span>
+                )}
               </div>
             </Link>
-          );
+          )
         })}
       </nav>
     </aside>
-  );
+  )
 }
 
-export default Sidebar;
+export default Sidebar

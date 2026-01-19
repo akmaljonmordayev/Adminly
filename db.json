@@ -66,94 +66,6 @@
   ],
   "employees": [
     {
-      "id": "1",
-      "userId": 101,
-      "fullName": "Akmal Mordayev",
-      "email": "akmal.mordayev@example.com",
-      "hireDate": "2021-01-15",
-      "baseSalary": "1000",
-      "kpiPercent": "23",
-      "kpiAmount": 230,
-      "bonus": "200",
-      "penalty": "10",
-      "totalSalary": 1420,
-      "month": "January",
-      "status": "unpaid",
-      "paymentDate": "2026-01-31",
-      "paymentMethod": "bank",
-      "comment": "tolaymiz!",
-      "leaves": [
-        {
-          "leaveType": "Unpaid Leave",
-          "startDate": "2021-12-08",
-          "endDate": "2021-12-12",
-          "status": "Approved"
-        },
-        {
-          "leaveType": "Sick Leave",
-          "startDate": "2022-05-23",
-          "endDate": "2022-05-28",
-          "status": "Approved"
-        }
-      ],
-      "createdBy": 1,
-      "createdAt": "2025-12-01T10:00:00Z",
-      "updatedAt": "2025-12-30T14:12:00Z"
-    },
-    {
-      "id": "2",
-      "userId": 102,
-      "fullName": "Abdulloh Abdumalikov",
-      "email": "abdulloh.abdumalikov@example.com",
-      "hireDate": "2022-03-10",
-      "baseSalary": "10000",
-      "kpiPercent": 15,
-      "kpiAmount": "789",
-      "bonus": "100",
-      "penalty": "0",
-      "totalSalary": 10889,
-      "month": "2025-12",
-      "status": "unpaid",
-      "paymentDate": "2025-12-28",
-      "paymentMethod": "bank",
-      "comment": "Salary paid",
-      "leaves": [
-        {
-          "leaveType": "Annual Leave",
-          "startDate": "2023-07-01",
-          "endDate": "2023-07-10",
-          "status": "Approved"
-        }
-      ],
-      "createdBy": 1,
-      "createdAt": "2025-12-01T09:00:00Z",
-      "updatedAt": "2025-12-28T16:00:00Z",
-      "paymentStatus": "unpaid"
-    },
-    {
-      "id": "3",
-      "userId": 103,
-      "fullName": "Dilshod Karimov",
-      "email": "dilshod.karimov@example.com",
-      "hireDate": "2020-06-20",
-      "baseSalary": "0",
-      "kpiPercent": 25,
-      "kpiAmount": "0",
-      "bonus": "5",
-      "penalty": 0,
-      "totalSalary": 5,
-      "month": "2025-12",
-      "status": "paid",
-      "paymentDate": "2025-12-30",
-      "paymentMethod": "bank",
-      "comment": "Excellent performance",
-      "leaves": [],
-      "createdBy": 1,
-      "createdAt": "2025-12-01T08:30:00Z",
-      "updatedAt": "2025-12-30T15:00:00Z",
-      "name": "yeaa"
-    },
-    {
       "id": "4",
       "userId": 104,
       "fullName": "Jasmina Aliyeva",
@@ -312,16 +224,62 @@
       "createdBy": 1,
       "createdAt": "2025-12-01T13:00:00Z",
       "updatedAt": "2025-12-27T15:20:00Z"
+    },
+    {
+      "id": "2",
+      "userId": 102,
+      "fullName": "Abdulloh Abdumalikov",
+      "email": "abdulloh.abdumalikov@example.com",
+      "hireDate": "2022-03-10",
+      "baseSalary": "10000",
+      "kpiPercent": 15,
+      "kpiAmount": "789",
+      "bonus": "100",
+      "penalty": "0",
+      "totalSalary": 10889,
+      "month": "2025-12",
+      "status": "unpaid",
+      "paymentDate": "2025-12-28",
+      "paymentMethod": "bank",
+      "comment": "Salary paid",
+      "leaves": [
+        {
+          "leaveType": "Annual Leave",
+          "startDate": "2023-07-01",
+          "endDate": "2023-07-10",
+          "status": "Approved"
+        }
+      ],
+      "createdBy": 1,
+      "createdAt": "2025-12-01T09:00:00Z",
+      "updatedAt": "2025-12-28T16:00:00Z",
+      "paymentStatus": "unpaid"
+    },
+    {
+      "id": "3",
+      "userId": 103,
+      "fullName": "Dilshod Karimov",
+      "email": "dilshod.karimov@example.com",
+      "hireDate": "2020-06-20",
+      "baseSalary": "0",
+      "kpiPercent": 25,
+      "kpiAmount": "0",
+      "bonus": "5",
+      "penalty": 0,
+      "totalSalary": 5,
+      "month": "2025-12",
+      "status": "paid",
+      "paymentDate": "2025-12-30",
+      "paymentMethod": "bank",
+      "comment": "Excellent performance",
+      "leaves": [],
+      "createdBy": 1,
+      "createdAt": "2025-12-01T08:30:00Z",
+      "updatedAt": "2025-12-30T15:00:00Z",
+      "name": "yeaa"
     }
   ],
   "tasks": [
-    {
-      "id": "5396",
-      "taskName": "ilon",
-      "employeeName": "Bekzod Shokirov",
-      "deadline": "2026-02-03",
-      "status": "pending"
-    },
     {
       "id": "3703",
       "taskName": "joxon",
@@ -354,51 +312,21 @@
   "logs": [
     {
       "id": "1",
-      "userId": "2",
       "userName": "Akmal Mordayev",
-      "action": "UPDATE"
+      "action": "UPDATE",
+      "date": "2026-01-16T10:30:00Z"
     },
     {
       "id": "2",
-      "userId": "3",
       "userName": "Abdulloh Abdumalikov",
-      "action": "CREATE"
+      "action": "CREATE",
+      "date": "2026-01-16T11:00:00Z"
     },
     {
-      "id": "517c",
-      "userName": "Mohinur Sulaymonqulova",
-      "action": "Leave status changed to rejected",
-      "date": 1768811169854
-    },
-    {
-      "id": "55e0",
-      "userName": "Mohinur Sulaymonqulova",
-      "action": "Leave status changed to approved",
-      "date": 1768811304773
-    },
-    {
-      "id": "02d4",
-      "userName": "Mohinur Sulaymonqulova",
-      "action": "Leave status changed to pending",
-      "date": 1768811336190
-    },
-    {
-      "id": "afb6",
-      "userName": "Mohinur Sulaymonqulova",
-      "action": "Leave status changed to approved",
-      "date": 1768811508396
-    },
-    {
-      "id": "5179",
-      "userName": "Mohinur Sulaymonqulova",
-      "action": "Leave status changed to approved",
-      "date": 1768811738869
-    },
-    {
-      "id": "5104",
-      "userName": "Mohinur Sulaymonqulova",
-      "action": "Leave status changed to pending",
-      "date": 1768811741537
+      "id": "7d7a",
+      "userName": "Akmal Mordayev",
+      "action": "Task deleted",
+      "date": 1768557561685
     }
   ],
   "resignations": [
@@ -579,17 +507,16 @@
       "employeeName": "Dilshod Karimov",
       "deadline": "2026-01-13",
       "status": "pending"
-    }
-  ],
-  "complaintsDeleted": [
+    },
     {
-      "id": "65cd",
-      "taskName": "guli",
-      "employeeName": "Islombek Qodirov",
-      "deadline": "2026-01-23",
+      "id": "5396",
+      "taskName": "ilon",
+      "employeeName": "Bekzod Shokirov",
+      "deadline": "2026-02-03",
       "status": "pending"
     }
   ],
+  "complaintsDeleted": [],
   "announcementsDeleted": [
     {
       "id": "91b2",
