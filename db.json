@@ -289,10 +289,10 @@
     },
     {
       "id": "9611",
-      "taskName": "Employees",
-      "employeeName": "Bekzod Shokirov",
-      "deadline": "2026-02-05",
-      "status": "pending"
+      "taskName": "tasks",
+      "employeeName": "Nodira Usmonova",
+      "deadline": "2026-02-28",
+      "status": "done"
     },
     {
       "id": "5396",
@@ -320,6 +320,20 @@
       "taskName": "hoshim",
       "employeeName": "Nodira Usmonova",
       "deadline": "2026-01-30",
+      "status": "pending"
+    },
+    {
+      "id": "5db3",
+      "taskName": "cefvgrbhn",
+      "employeeName": "Nodira Usmonova",
+      "deadline": "2026-01-14",
+      "status": "pending"
+    },
+    {
+      "id": "a822",
+      "taskName": "vybuhnjik,l",
+      "employeeName": "Jasmina Aliyeva",
+      "deadline": "2026-01-21",
       "status": "pending"
     }
   ],
@@ -407,6 +421,25 @@
       "userName": "Abdulaziz Xasanov",
       "action": "Task updated",
       "date": "2026-01-19T09:10:10.985Z"
+    },
+    {
+      "id": "37b1",
+      "userId": "6",
+      "userName": "Abdulaziz Xasanov",
+      "action": "Task created",
+      "date": "2026-01-19T09:31:37.202Z"
+    },
+    {
+      "id": "c64c",
+      "userName": "Abdulaziz Xasanov",
+      "action": "Task created",
+      "date": "2026-01-21T11:32:19.502Z"
+    },
+    {
+      "id": "45ba",
+      "userName": "Abdulaziz Xasanov",
+      "action": "Task updated",
+      "date": "2026-01-21T11:33:04.504Z"
     }
   ],
   "resignations": [
