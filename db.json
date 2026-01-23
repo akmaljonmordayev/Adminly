@@ -281,6 +281,34 @@
   ],
   "tasks": [
     {
+      "id": "a59e",
+      "taskName": "Dashboard",
+      "employeeName": "Islombek Qodirov",
+      "deadline": "2026-01-30",
+      "status": "pending"
+    },
+    {
+      "id": "9611",
+      "taskName": "tasks",
+      "employeeName": "Nodira Usmonova",
+      "deadline": "2026-02-28",
+      "status": "done"
+    },
+    {
+      "id": "5396",
+      "taskName": "ilon",
+      "employeeName": "Bekzod Shokirov",
+      "deadline": "2026-02-03",
+      "status": "pending"
+    },
+    {
+      "id": "1073",
+      "taskName": "dilshod",
+      "employeeName": "Jasmina Aliyeva",
+      "deadline": "2025-11-06",
+      "status": "pending"
+    },
+    {
       "id": "f964",
       "taskName": "elshod",
       "employeeName": "Sherzod Rasulov",
@@ -295,8 +323,15 @@
       "status": "pending"
     },
     {
-      "id": "305a",
-      "taskName": "asvasd",
+      "id": "5db3",
+      "taskName": "cefvgrbhn",
+      "employeeName": "Nodira Usmonova",
+      "deadline": "2026-01-14",
+      "status": "pending"
+    },
+    {
+      "id": "a822",
+      "taskName": "vybuhnjik,l",
       "employeeName": "Jasmina Aliyeva",
       "deadline": "2026-01-21",
       "status": "pending"
@@ -325,11 +360,29 @@
       "page": "TASKS"
     },
     {
-      "id": "3804",
-      "userName": "Mohinur Sulaymonqulova",
-      "action": "DELETE",
-      "date": "2026-01-19T09:30:08.177Z",
-      "page": "TASKS"
+      "id": "5912",
+      "userName": "Abdulaziz Xasanov",
+      "action": "Task updated",
+      "date": "2026-01-19T09:10:10.985Z"
+    },
+    {
+      "id": "37b1",
+      "userId": "6",
+      "userName": "Abdulaziz Xasanov",
+      "action": "Task created",
+      "date": "2026-01-19T09:31:37.202Z"
+    },
+    {
+      "id": "c64c",
+      "userName": "Abdulaziz Xasanov",
+      "action": "Task created",
+      "date": "2026-01-21T11:32:19.502Z"
+    },
+    {
+      "id": "45ba",
+      "userName": "Abdulaziz Xasanov",
+      "action": "Task updated",
+      "date": "2026-01-21T11:33:04.504Z"
     }
   ],
   "resignations": [
@@ -433,10 +486,10 @@
   ],
   "announcements": [
     {
-      "id": "9c93",
-      "title": "gr",
-      "text": "vsd",
-      "date": "Jan 19, 2026",
+      "id": "3db3b248-399b-4629-97d2-3540df5d121a",
+      "title": "DAM",
+      "text": "14-yanvar vatan himoyachilari kuni uchun hammaga dam",
+      "date": "Jan 21, 2026",
       "status": "Active"
     }
   ],
@@ -496,86 +549,8 @@
       "employeeName": "Malika Tursunova",
       "deadline": "2026-01-30",
       "status": "pending"
-    },
-    {
-      "id": "37a9",
-      "taskName": "dfve",
-      "employeeName": "Islombek Qodirov",
-      "deadline": "2026-01-05",
-      "status": "pending"
-    },
-    {
-      "id": "c720",
-      "taskName": "logs",
-      "employeeName": "Nodira Usmonova",
-      "deadline": "2026-01-22",
-      "status": "pending"
-    },
-    {
-      "id": "3703",
-      "taskName": "logs",
-      "employeeName": "Aziza Mahmudova",
-      "deadline": "2026-02-26",
-      "status": "pending"
-    },
-    {
-      "id": "5d74",
-      "taskName": "Archieve",
-      "employeeName": "Jasmina Aliyeva",
-      "deadline": "2026-01-20",
-      "status": "pending"
-    },
-    {
-      "id": "a59e",
-      "taskName": "Dashboard",
-      "employeeName": "Islombek Qodirov",
-      "deadline": "2026-01-30",
-      "status": "pending"
-    },
-    {
-      "id": "9611",
-      "taskName": "Employees",
-      "employeeName": "Bekzod Shokirov",
-      "deadline": "2026-02-05",
-      "status": "pending"
-    },
-    {
-      "id": "5396",
-      "taskName": "ilon",
-      "employeeName": "Bekzod Shokirov",
-      "deadline": "2026-02-03",
-      "status": "pending"
-    },
-    {
-      "id": "1073",
-      "taskName": "dilshod",
-      "employeeName": "Jasmina Aliyeva",
-      "deadline": "2025-11-06",
-      "status": "pending"
     }
   ],
   "complaintsDeleted": [],
-  "announcementsDeleted": [
-    {
-      "id": "91b2",
-      "title": "DAM",
-      "text": "14-yanvar vatan himoyachilari kuni uchun hammaga dam",
-      "date": "Jan 21, 2026",
-      "status": "Active"
-    },
-    {
-      "id": "91b2",
-      "title": "ry",
-      "text": "brh",
-      "date": "Jan 21, 2026",
-      "status": "Active"
-    },
-    {
-      "id": "c12d",
-      "title": "uxlash",
-      "text": "uuuuuuuuuuuuuuuuuuuuuuuuu",
-      "date": "Jan 11, 2026",
-      "status": "Active"
-    }
-  ]
+  "announcementsDeleted": []
 }
