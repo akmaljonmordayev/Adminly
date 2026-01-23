@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import { toast } from "react-toastify";
 
 function Leaves() {
   const [search, setSearch] = useState("");
@@ -11,19 +12,20 @@ function Leaves() {
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 4;
 
+  const getData = async () => {
+    try {
+      const res = await axios.get("http://localhost:5000/resignations");
+      if (!Array.isArray(res.data))
+        throw new Error("Ma'lumot formati noto‘g‘ri");
+      setData(res.data);
+    } catch (error) {
+      setErr(error.message);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   useEffect(() => {
-    const getData = async () => {
-      try {
-        const res = await axios.get("http://localhost:5000/resignations");
-        if (!Array.isArray(res.data))
-          throw new Error("Ma'lumot formati noto‘g‘ri");
-        setData(res.data);
-      } catch (error) {
-        setErr(error.message);
-      } finally {
-        setLoading(false);
-      }
-    };
     getData();
   }, []);
 
@@ -69,6 +71,18 @@ function Leaves() {
     }
   };
 
+  const handleDelete = async (id) => {
+    if (!window.confirm("Rostan ham o‘chirmoqchimisiz?")) return;
+    try {
+      await axios.delete(`http://localhost:5000/resignations/${id}`);
+      toast.success("Successfully deleted");
+      getData();
+    } catch (error) {
+      console.log(error.response?.data || error.message);
+      toast.error("O‘chirishda xatolik yuz berdi");
+    }
+  };
+
   const statusColors = {
     pending: "bg-yellow-500 text-white",
     approved: "bg-blue-500 text-white",
@@ -92,7 +106,7 @@ function Leaves() {
               setSearch(e.target.value);
               setCurrentPage(1);
             }}
-            className="w-full p-2 bg-[#020617] border border-cyan-700 rounded-md text-white placeholder-cyan-400 focus:ring-2 focus:ring-cyan-500"
+            className="w-[595px] py-2 px-4 bg-[#020617] border border-cyan-700 rounded-md text-white placeholder-cyan-400 focus:ring-2 focus:ring-cyan-500"
           />
 
           <select
@@ -123,7 +137,9 @@ function Leaves() {
           {currentData.map((c) => (
             <div
               key={c.id}
-              className="w-[800px] p-4 bg-[#020617] border border-cyan-800 rounded-lg shadow-sm hover:shadow-cyan-500/100 transition flex justify-between items-center"
+              className="w-[800px] p-4 bg-[#020617] border border-cyan-800 rounded-lg shadow-[0_0_40px_rgba(34,211,238,0.15)]
+               hover:shadow-[0_0_60px_rgba(34,211,238,0.25)]
+                transition flex justify-between items-center"
             >
               <div className="flex flex-col gap-2">
                 <h3 className="text-lg font-semibold text-white">
@@ -147,7 +163,7 @@ function Leaves() {
 
               <div className="flex flex-col gap-2">
                 <span
-                  className={`px-2 py-1 text-sm rounded ${
+                  className={`px-5 py-1 text-sm rounded ${
                     statusColors[c.status?.toLowerCase()] ||
                     "bg-gray-600 text-white"
                   }`}
@@ -158,12 +174,20 @@ function Leaves() {
                 <select
                   value={c.status || "pending"}
                   onChange={(e) => handleStatusChange(c.id, e.target.value)}
-                  className="p-1 rounded bg-[#0b1220] border border-gray-600 text-sm"
+                  className="px-2 py-1 rounded bg-[#0b1220] border border-gray-600 text-sm"
                 >
                   <option value="pending">Pending</option>
                   <option value="approved">Approved</option>
                   <option value="rejected">Rejected</option>
                 </select>
+                <button
+                  onClick={() => handleDelete(c.id)}
+                  className="w-30 h-8 rounded-[5px] flex items-center justify-center
+                   bg-red-600/10 border border-red-600 text-red-400
+                   hover:bg-red-600 hover:text-white transition"
+                >
+                  Delete
+                </button>
               </div>
             </div>
           ))}
