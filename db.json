@@ -541,7 +541,22 @@
       "id": "e4b3"
     }
   ],
-  "announcements": [],
+  "announcements": [
+    {
+      "id": "f801",
+      "title": "svdsadvasdv",
+      "text": "asdvasd",
+      "date": "Jan 29, 2026",
+      "status": "Active"
+    },
+    {
+      "id": "91b2",
+      "title": "DAM",
+      "text": "14-yanvar vatan himoyachilari kuni uchun hammaga dam",
+      "date": "Jan 21, 2026",
+      "status": "Active"
+    }
+  ],
   "complaints": [
     {
       "id": "CPL002",
@@ -598,72 +613,8 @@
       "employeeName": "Malika Tursunova",
       "deadline": "2026-01-30",
       "status": "pending"
-    },
-    {
-      "id": "37a9",
-      "taskName": "dfve",
-      "employeeName": "Islombek Qodirov",
-      "deadline": "2026-01-05",
-      "status": "pending"
-    },
-    {
-      "id": "c720",
-      "taskName": "logs",
-      "employeeName": "Nodira Usmonova",
-      "deadline": "2026-01-22",
-      "status": "pending"
-    },
-    {
-      "id": "3703",
-      "taskName": "logs",
-      "employeeName": "Aziza Mahmudova",
-      "deadline": "2026-02-26",
-      "status": "pending"
-    },
-    {
-      "id": "5d74",
-      "taskName": "Archieve",
-      "employeeName": "Jasmina Aliyeva",
-      "deadline": "2026-01-20",
-      "status": "pending"
     }
   ],
   "complaintsDeleted": [],
-  "announcementsDeleted": [
-    {
-      "id": "91b2",
-      "title": "DAM",
-      "text": "14-yanvar vatan himoyachilari kuni uchun hammaga dam",
-      "date": "Jan 21, 2026",
-      "status": "Active"
-    },
-    {
-      "id": "91b2",
-      "title": "ry",
-      "text": "brh",
-      "date": "Jan 21, 2026",
-      "status": "Active"
-    },
-    {
-      "id": "c12d",
-      "title": "uxlash",
-      "text": "uuuuuuuuuuuuuuuuuuuuuuuuu",
-      "date": "Jan 11, 2026",
-      "status": "Active"
-    },
-    {
-      "id": "9c93",
-      "title": "gr",
-      "text": "vsd",
-      "date": "Jan 19, 2026",
-      "status": "Active"
-    },
-    {
-      "id": "052d",
-      "title": "WORK OFF.",
-      "text": "EVERYONE CAN LAY OFF IN TEHIR HOUSE USTIL THE DATE BELOWED IN THE POST",
-      "date": "Jan 26, 2026",
-      "status": "Active"
-    }
-  ]
+  "announcementsDeleted": []
 }
