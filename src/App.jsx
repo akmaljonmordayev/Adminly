@@ -21,14 +21,14 @@ const Vacations = React.lazy(() => import("./role/Manager/Vacations"));
 const Leaves = React.lazy(() => import("./role/Manager/Leaves"));
 
 const TasksArchieve = React.lazy(() => import("./role/Manager/TasksArchieve"));
-const AnnouncementsArchieve = React.lazy(() =>
-  import("./role/Manager/AnnouncementsArchieve")
+const AnnouncementsArchieve = React.lazy(
+  () => import("./role/Manager/AnnouncementsArchieve"),
 );
-const ComplaintsArchieve = React.lazy(() =>
-  import("./role/Manager/ComplaintsArchieve")
+const ComplaintsArchieve = React.lazy(
+  () => import("./role/Manager/ComplaintsArchieve"),
 );
-const EmployeesArchieve = React.lazy(() =>
-  import("./role/Manager/EmployeesArchieve")
+const EmployeesArchieve = React.lazy(
+  () => import("./role/Manager/EmployeesArchieve"),
 );
 
 function App() {

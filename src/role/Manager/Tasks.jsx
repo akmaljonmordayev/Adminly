@@ -31,7 +31,7 @@ function Tasks() {
 
   const filteredTasks = [...tasks]
     .filter((task) =>
-      task.taskName.toLowerCase().includes(search.toLowerCase())
+      task.taskName.toLowerCase().includes(search.toLowerCase()),
     )
     .sort((a, b) => {
       if (sortOrder === "A-Z") {
@@ -75,13 +75,7 @@ function Tasks() {
       return;
     }
 
-    let user = JSON.parse(localStorage.getItem("user"));       
-
-    await axios.post("http://localhost:5000/logs", {
-      userName: user.name,
-      action: "Task created",
-      date: new Date().toISOString(),
-    });
+    let user = JSON.parse(localStorage.getItem("user"));
 
     await fetch(API_URL, {
       method: "POST",
@@ -95,6 +89,12 @@ function Tasks() {
     });
 
     toast.success("Task successfully added");
+    await axios.post("http://localhost:5000/logs", {
+      userName: user.name,
+      action: "CREATE",
+      date: new Date().toISOString(),
+      page: "TASKS",
+    });
 
     setTaskName("");
     setEmployeeName("");
@@ -106,13 +106,14 @@ function Tasks() {
     let user = JSON.parse(localStorage.getItem("user"));
     let res = await axios.get(`http://localhost:5000/tasks/${id}`);
     await axios.post(`http://localhost:5000/tasksDeleted`, res.data);
-    await axios.post("http://localhost:5000/logs", {
-      userName: user.name,
-      action: "Task deleted",
-      date: new Date().toISOString(),
-    });
     await fetch(`${API_URL}/${id}`, { method: "DELETE" });
     toast.error("Task successfully deleted and achieved");
+    await axios.post("http://localhost:5000/logs", {
+      userName: user.name,
+      action: "DELETE",
+      date: new Date().toISOString(),
+      page: "TASKS",
+    });
     fetchTasks();
   };
 
@@ -131,14 +132,6 @@ function Tasks() {
   const saveEdit = async (id) => {
     const currentTask = tasks.find((t) => t.id === id);
 
-    let user = JSON.parse(localStorage.getItem("user"));       
-
-    await axios.post("http://localhost:5000/logs", {
-      userName: user.name,
-      action: "Task updated",
-      date: new Date().toISOString(),
-    });
-
     await fetch(`${API_URL}/${id}`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
@@ -151,6 +144,16 @@ function Tasks() {
     });
 
     toast.success("Task updated");
+
+    let user = JSON.parse(localStorage.getItem("user"));
+
+    await axios.post("http://localhost:5000/logs", {
+      userName: user.name,
+      action: "UPDATE",
+      date: new Date().toISOString(),
+      page: "TASKS",
+    });
+
     setEditingId(null);
     fetchTasks();
   };
