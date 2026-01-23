@@ -66,94 +66,6 @@
   ],
   "employees": [
     {
-      "id": "1",
-      "userId": 101,
-      "fullName": "Akmal Mordayev",
-      "email": "akmal.mordayev@example.com",
-      "hireDate": "2021-01-15",
-      "baseSalary": "1000",
-      "kpiPercent": "23",
-      "kpiAmount": 230,
-      "bonus": "200",
-      "penalty": "10",
-      "totalSalary": 1420,
-      "month": "January",
-      "status": "unpaid",
-      "paymentDate": "2026-01-31",
-      "paymentMethod": "bank",
-      "comment": "tolaymiz!",
-      "leaves": [
-        {
-          "leaveType": "Unpaid Leave",
-          "startDate": "2021-12-08",
-          "endDate": "2021-12-12",
-          "status": "Approved"
-        },
-        {
-          "leaveType": "Sick Leave",
-          "startDate": "2022-05-23",
-          "endDate": "2022-05-28",
-          "status": "Approved"
-        }
-      ],
-      "createdBy": 1,
-      "createdAt": "2025-12-01T10:00:00Z",
-      "updatedAt": "2025-12-30T14:12:00Z"
-    },
-    {
-      "id": "2",
-      "userId": 102,
-      "fullName": "Abdulloh Abdumalikov",
-      "email": "abdulloh.abdumalikov@example.com",
-      "hireDate": "2022-03-10",
-      "baseSalary": "10000",
-      "kpiPercent": 15,
-      "kpiAmount": "789",
-      "bonus": "100",
-      "penalty": "0",
-      "totalSalary": 10889,
-      "month": "2025-12",
-      "status": "unpaid",
-      "paymentDate": "2025-12-28",
-      "paymentMethod": "bank",
-      "comment": "Salary paid",
-      "leaves": [
-        {
-          "leaveType": "Annual Leave",
-          "startDate": "2023-07-01",
-          "endDate": "2023-07-10",
-          "status": "Approved"
-        }
-      ],
-      "createdBy": 1,
-      "createdAt": "2025-12-01T09:00:00Z",
-      "updatedAt": "2025-12-28T16:00:00Z",
-      "paymentStatus": "unpaid"
-    },
-    {
-      "id": "3",
-      "userId": 103,
-      "fullName": "Dilshod Karimov",
-      "email": "dilshod.karimov@example.com",
-      "hireDate": "2020-06-20",
-      "baseSalary": "0",
-      "kpiPercent": 25,
-      "kpiAmount": "0",
-      "bonus": "5",
-      "penalty": 0,
-      "totalSalary": 5,
-      "month": "2025-12",
-      "status": "paid",
-      "paymentDate": "2025-12-30",
-      "paymentMethod": "bank",
-      "comment": "Excellent performance",
-      "leaves": [],
-      "createdBy": 1,
-      "createdAt": "2025-12-01T08:30:00Z",
-      "updatedAt": "2025-12-30T15:00:00Z",
-      "name": "yeaa"
-    },
-    {
       "id": "4",
       "userId": 104,
       "fullName": "Jasmina Aliyeva",
@@ -312,9 +224,76 @@
       "createdBy": 1,
       "createdAt": "2025-12-01T13:00:00Z",
       "updatedAt": "2025-12-27T15:20:00Z"
+    },
+    {
+      "id": "2",
+      "userId": 102,
+      "fullName": "Abdulloh Abdumalikov",
+      "email": "abdulloh.abdumalikov@example.com",
+      "hireDate": "2022-03-10",
+      "baseSalary": "10000",
+      "kpiPercent": 15,
+      "kpiAmount": "789",
+      "bonus": "100",
+      "penalty": "0",
+      "totalSalary": 10889,
+      "month": "2025-12",
+      "status": "unpaid",
+      "paymentDate": "2025-12-28",
+      "paymentMethod": "bank",
+      "comment": "Salary paid",
+      "leaves": [
+        {
+          "leaveType": "Annual Leave",
+          "startDate": "2023-07-01",
+          "endDate": "2023-07-10",
+          "status": "Approved"
+        }
+      ],
+      "createdBy": 1,
+      "createdAt": "2025-12-01T09:00:00Z",
+      "updatedAt": "2025-12-28T16:00:00Z",
+      "paymentStatus": "unpaid"
+    },
+    {
+      "id": "3",
+      "userId": 103,
+      "fullName": "Dilshod Karimov",
+      "email": "dilshod.karimov@example.com",
+      "hireDate": "2020-06-20",
+      "baseSalary": "0",
+      "kpiPercent": 25,
+      "kpiAmount": "0",
+      "bonus": "5",
+      "penalty": 0,
+      "totalSalary": 5,
+      "month": "2025-12",
+      "status": "paid",
+      "paymentDate": "2025-12-30",
+      "paymentMethod": "bank",
+      "comment": "Excellent performance",
+      "leaves": [],
+      "createdBy": 1,
+      "createdAt": "2025-12-01T08:30:00Z",
+      "updatedAt": "2025-12-30T15:00:00Z",
+      "name": "yeaa"
     }
   ],
   "tasks": [
+    {
+      "id": "a59e",
+      "taskName": "Dashboard",
+      "employeeName": "Islombek Qodirov",
+      "deadline": "2026-01-30",
+      "status": "pending"
+    },
+    {
+      "id": "9611",
+      "taskName": "tasks",
+      "employeeName": "Nodira Usmonova",
+      "deadline": "2026-02-28",
+      "status": "done"
+    },
     {
       "id": "5396",
       "taskName": "ilon",
@@ -323,46 +302,144 @@
       "status": "pending"
     },
     {
-      "id": "3703",
-      "taskName": "joxon",
-      "employeeName": "Aziza Mahmudova",
-      "deadline": "2026-02-26",
+      "id": "1073",
+      "taskName": "dilshod",
+      "employeeName": "Jasmina Aliyeva",
+      "deadline": "2025-11-06",
       "status": "pending"
     },
     {
-      "id": "d0c5",
-      "taskName": "defrg",
-      "employeeName": "Dilshod Karimov",
-      "deadline": "2026-01-13",
+      "id": "f964",
+      "taskName": "elshod",
+      "employeeName": "Sherzod Rasulov",
+      "deadline": "2025-12-02",
       "status": "pending"
     },
     {
-      "id": "8a0c",
-      "taskName": "adeveb",
-      "employeeName": "Bekzod Shokirov",
+      "id": "5582",
+      "taskName": "hoshim",
+      "employeeName": "Nodira Usmonova",
       "deadline": "2026-01-30",
       "status": "pending"
     },
     {
-      "id": "2944",
-      "taskName": "asdeftrhyuki",
-      "employeeName": "Sherzod Rasulov",
-      "deadline": "2026-01-29",
+      "id": "5db3",
+      "taskName": "cefvgrbhn",
+      "employeeName": "Nodira Usmonova",
+      "deadline": "2026-01-14",
+      "status": "pending"
+    },
+    {
+      "id": "a822",
+      "taskName": "vybuhnjik,l",
+      "employeeName": "Jasmina Aliyeva",
+      "deadline": "2026-01-21",
       "status": "pending"
     }
   ],
   "logs": [
     {
       "id": "1",
-      "userId": "2",
       "userName": "Akmal Mordayev",
-      "action": "UPDATE"
+      "action": "UPDATE",
+      "date": "2026-01-16T10:30:00Z"
     },
     {
       "id": "2",
-      "userId": "3",
       "userName": "Abdulloh Abdumalikov",
-      "action": "CREATE"
+      "action": "CREATE",
+      "date": "2026-01-16T11:00:00Z"
+    },
+    {
+      "id": "7d7a",
+      "userName": "Akmal Mordayev",
+      "action": "Task deleted",
+      "date": 1768557561685
+    },
+    {
+      "id": "70c9",
+      "userName": "Abdulaziz Xasanov",
+      "action": "Task created",
+      "date": 1768763245331
+    },
+    {
+      "id": "c7d6",
+      "userName": "Abdulaziz Xasanov",
+      "action": "Task updated",
+      "date": 1768763272557
+    },
+    {
+      "id": "d93f",
+      "userName": "Abdulaziz Xasanov",
+      "action": "Task deleted",
+      "date": 1768763288450
+    },
+    {
+      "id": "0272",
+      "userName": "Abdulaziz Xasanov",
+      "action": "Task created",
+      "date": 1768763700809
+    },
+    {
+      "id": "850a",
+      "userName": "Abdulaziz Xasanov",
+      "action": "Task created",
+      "date": 1768763724331
+    },
+    {
+      "id": "bb54",
+      "userName": "Abdulaziz Xasanov",
+      "action": "Task deleted",
+      "date": 1768763735916
+    },
+    {
+      "id": "c903",
+      "userName": "Abdulaziz Xasanov",
+      "action": "Task deleted",
+      "date": 1768763737832
+    },
+    {
+      "id": "fac6",
+      "userName": "Abdulaziz Xasanov",
+      "action": "Task updated",
+      "date": "2026-01-18T19:19:55.013Z"
+    },
+    {
+      "id": "d6a0",
+      "userName": "Abdulaziz Xasanov",
+      "action": "Task deleted",
+      "date": "2026-01-19T09:06:27.723Z"
+    },
+    {
+      "id": "96d7",
+      "userName": "Abdulaziz Xasanov",
+      "action": "Task deleted",
+      "date": "2026-01-19T09:09:36.815Z"
+    },
+    {
+      "id": "5912",
+      "userName": "Abdulaziz Xasanov",
+      "action": "Task updated",
+      "date": "2026-01-19T09:10:10.985Z"
+    },
+    {
+      "id": "37b1",
+      "userId": "6",
+      "userName": "Abdulaziz Xasanov",
+      "action": "Task created",
+      "date": "2026-01-19T09:31:37.202Z"
+    },
+    {
+      "id": "c64c",
+      "userName": "Abdulaziz Xasanov",
+      "action": "Task created",
+      "date": "2026-01-21T11:32:19.502Z"
+    },
+    {
+      "id": "45ba",
+      "userName": "Abdulaziz Xasanov",
+      "action": "Task updated",
+      "date": "2026-01-21T11:33:04.504Z"
     }
   ],
   "resignations": [
@@ -482,15 +559,6 @@
   ],
   "complaints": [
     {
-      "id": "CPL001",
-      "employeeId": "EMP005",
-      "employeeName": "Ali R.",
-      "title": "Air Conditioner Not Working",
-      "description": "The air conditioner in the 3rd-floor office is not functioning properly.",
-      "date": "2025-12-21",
-      "status": "pending"
-    },
-    {
       "id": "CPL002",
       "employeeId": "EMP006",
       "employeeName": "Sabina M.",
@@ -519,23 +587,30 @@
       "status": "pending"
     },
     {
-      "id": "1073",
-      "taskName": "dilshod",
-      "employeeName": "Jasmina Aliyeva",
-      "deadline": "2025-11-06",
+      "id": "8a0c",
+      "taskName": "adeveb",
+      "employeeName": "Bekzod Shokirov",
+      "deadline": "2026-01-30",
       "status": "pending"
     },
     {
-      "id": "f964",
-      "taskName": "elshod",
+      "id": "2944",
+      "taskName": "asdeftrhyuki",
       "employeeName": "Sherzod Rasulov",
-      "deadline": "2025-12-02",
+      "deadline": "2026-01-29",
       "status": "pending"
     },
     {
-      "id": "5582",
-      "taskName": "hoshim",
-      "employeeName": "Nodira Usmonova",
+      "id": "d0c5",
+      "taskName": "defrg",
+      "employeeName": "Dilshod Karimov",
+      "deadline": "2026-01-13",
+      "status": "pending"
+    },
+    {
+      "id": "9df1",
+      "taskName": "logs",
+      "employeeName": "Malika Tursunova",
       "deadline": "2026-01-30",
       "status": "pending"
     }

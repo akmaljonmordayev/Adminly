@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import { toast, ToastContainer } from "react-toastify";
 
 function ComplaintsAdmin() {
   const [search, setSearch] = useState("");
@@ -9,18 +10,22 @@ function ComplaintsAdmin() {
   const [err, setErr] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    const getData = async () => {
-      try {
-        const res = await axios.get("http://localhost:5000/complaints");
-        if (!Array.isArray(res.data)) throw new Error("Ma'lumot array emas");
-        setData(res.data);
-      } catch (error) {
-        setErr(error.message);
-      } finally {
-        setLoading(false);
+  const getData = async () => {
+    try {
+      const res = await axios.get("http://localhost:5000/complaints");
+      if (!Array.isArray(res.data)) {
+        throw new Error("Ma'lumot array emas");
       }
-    };
+      setData(res.data);
+    } catch (error) {
+      setErr(error.message);
+    } finally {
+      setLoading(false);
+    }
+  };
+  getData();
+
+  useEffect(() => {
     getData();
   }, []);
 
@@ -35,19 +40,29 @@ function ComplaintsAdmin() {
           item.id === id ? { ...item, status: newStatus } : item
         )
       );
-    } catch {
+    } catch (error) {
+      console.error(error);
       alert("Status o‘zgartirishda xatolik");
     }
   };
 
   const handleDelete = async (id) => {
+    if (!window.confirm("Rostan ham o‘chirmoqchimisiz?")) return;
+
     try {
-      await axios.delete(
-        `http://localhost:5000/complaintsDeleted/${id}`
-      );
-      setData((prev) => prev.filter((item) => item.id !== id));
-    } catch {
-      alert("Delete ishlamadi");
+      let res = await axios.get(`http://localhost:5000/complaints/${id}`);
+
+      await axios.post("http://localhost:5000/complaintsDeleted", res.data);
+
+      let ress = await axios.delete(`http://localhost:5000/complaints/${id}`);
+
+      if (res.status == 200) {
+        toast.success("Successfully deleted and archieved");
+        getData();
+      }
+    } catch (error) {
+      console.error(error);
+      alert("O‘chirishda xatolik");
     }
   };
 
@@ -78,6 +93,7 @@ function ComplaintsAdmin() {
 
         {err && <p className="text-red-400 mb-2">{err}</p>}
         {loading && <p className="text-gray-400 mb-2">Yuklanmoqda...</p>}
+        <ToastContainer />
 
         <div className="flex flex-col sm:flex-row gap-4 mb-6">
           <input
@@ -138,9 +154,7 @@ function ComplaintsAdmin() {
                 <div className="flex items-center gap-2">
                   <select
                     value={c.status || "pending"}
-                    onChange={(e) =>
-                      handleStatusChange(c.id, e.target.value)
-                    }
+                    onChange={(e) => handleStatusChange(c.id, e.target.value)}
                     className="p-1 rounded bg-[#0b1220] border border-gray-600 text-sm"
                   >
                     <option value="pending">Pending</option>
