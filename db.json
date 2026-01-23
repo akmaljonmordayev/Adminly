@@ -541,15 +541,7 @@
       "id": "e4b3"
     }
   ],
-  "announcements": [
-    {
-      "id": "9c93",
-      "title": "gr",
-      "text": "vsd",
-      "date": "Jan 19, 2026",
-      "status": "Active"
-    }
-  ],
+  "announcements": [],
   "complaints": [
     {
       "id": "CPL002",
@@ -657,6 +649,20 @@
       "title": "uxlash",
       "text": "uuuuuuuuuuuuuuuuuuuuuuuuu",
       "date": "Jan 11, 2026",
+      "status": "Active"
+    },
+    {
+      "id": "9c93",
+      "title": "gr",
+      "text": "vsd",
+      "date": "Jan 19, 2026",
+      "status": "Active"
+    },
+    {
+      "id": "052d",
+      "title": "WORK OFF.",
+      "text": "EVERYONE CAN LAY OFF IN TEHIR HOUSE USTIL THE DATE BELOWED IN THE POST",
+      "date": "Jan 26, 2026",
       "status": "Active"
     }
   ]
