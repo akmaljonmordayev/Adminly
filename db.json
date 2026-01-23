@@ -426,21 +426,6 @@
       "comment": "Looking for new opportunities"
     },
     {
-      "id": "RES002",
-      "employeeId": "EMP002",
-      "employeeName": "Laylo Saidova",
-      "position": "HR Specialist",
-      "department": "Human Resources",
-      "resignationType": "voluntary",
-      "appliedDate": "2025-11-25",
-      "lastWorkingDay": "2025-12-25",
-      "noticePeriod": "30 days",
-      "reason": "Family reasons",
-      "status": "rejected",
-      "approvedBy": "HR Manager",
-      "comment": "Approved without issues"
-    },
-    {
       "id": "RES003",
       "employeeId": "EMP003",
       "employeeName": "Dilshod Karimov",
@@ -454,6 +439,21 @@
       "status": "approved",
       "approvedBy": "Tech Lead",
       "comment": "Contract completion"
+    },
+    {
+      "id": "RES002",
+      "employeeId": "EMP002",
+      "employeeName": "Laylo Saidova",
+      "position": "HR Specialist",
+      "department": "Human Resources",
+      "resignationType": "voluntary",
+      "appliedDate": "2025-11-25",
+      "lastWorkingDay": "2025-12-25",
+      "noticePeriod": "30 days",
+      "reason": "Family reasons",
+      "status": "rejected",
+      "approvedBy": "HR Manager",
+      "comment": "Approved without issues"
     },
     {
       "id": "RES004",
