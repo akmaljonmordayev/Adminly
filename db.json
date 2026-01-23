@@ -314,27 +314,6 @@
       "employeeName": "Sherzod Rasulov",
       "deadline": "2025-12-02",
       "status": "pending"
-    },
-    {
-      "id": "5582",
-      "taskName": "hoshim",
-      "employeeName": "Nodira Usmonova",
-      "deadline": "2026-01-30",
-      "status": "pending"
-    },
-    {
-      "id": "5db3",
-      "taskName": "cefvgrbhn",
-      "employeeName": "Nodira Usmonova",
-      "deadline": "2026-01-14",
-      "status": "pending"
-    },
-    {
-      "id": "a822",
-      "taskName": "vybuhnjik,l",
-      "employeeName": "Jasmina Aliyeva",
-      "deadline": "2026-01-21",
-      "status": "pending"
     }
   ],
   "logs": [
@@ -383,6 +362,27 @@
       "userName": "Abdulaziz Xasanov",
       "action": "Task updated",
       "date": "2026-01-21T11:33:04.504Z"
+    },
+    {
+      "id": "f7ce",
+      "userName": "Mohinur Sulaymonqulova",
+      "action": "DELETE",
+      "date": "2026-01-23T09:38:28.231Z",
+      "page": "TASKS"
+    },
+    {
+      "id": "3a08",
+      "userName": "Mohinur Sulaymonqulova",
+      "action": "DELETE",
+      "date": "2026-01-23T09:38:40.702Z",
+      "page": "TASKS"
+    },
+    {
+      "id": "45d9",
+      "userName": "Mohinur Sulaymonqulova",
+      "action": "DELETE",
+      "date": "2026-01-23T09:38:48.380Z",
+      "page": "TASKS"
     }
   ],
   "resignations": [
@@ -486,7 +486,7 @@
   ],
   "announcements": [
     {
-      "id": "3db3b248-399b-4629-97d2-3540df5d121a",
+      "id": "a1f7122c-061a-4666-bc68-3640a7d3abbb",
       "title": "DAM",
       "text": "14-yanvar vatan himoyachilari kuni uchun hammaga dam",
       "date": "Jan 21, 2026",
@@ -549,8 +549,37 @@
       "employeeName": "Malika Tursunova",
       "deadline": "2026-01-30",
       "status": "pending"
+    },
+    {
+      "id": "5db3",
+      "taskName": "cefvgrbhn",
+      "employeeName": "Nodira Usmonova",
+      "deadline": "2026-01-14",
+      "status": "pending"
+    },
+    {
+      "id": "a822",
+      "taskName": "vybuhnjik,l",
+      "employeeName": "Jasmina Aliyeva",
+      "deadline": "2026-01-21",
+      "status": "pending"
+    },
+    {
+      "id": "5582",
+      "taskName": "hoshim",
+      "employeeName": "Nodira Usmonova",
+      "deadline": "2026-01-30",
+      "status": "pending"
     }
   ],
   "complaintsDeleted": [],
-  "announcementsDeleted": []
+  "announcementsDeleted": [
+    {
+      "id": "a296",
+      "title": "asvd",
+      "text": "asdvasdv",
+      "date": "Jan 26, 2026",
+      "status": "Active"
+    }
+  ]
 }
