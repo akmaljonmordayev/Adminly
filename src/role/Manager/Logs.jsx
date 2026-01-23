@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useMemo } from 'react'
+import React, { useEffect, useState, useMemo } from "react";
 import {
   FiSearch,
   FiPlusCircle,
@@ -8,86 +8,86 @@ import {
   FiLayers,
   FiChevronLeft,
   FiChevronRight,
-} from 'react-icons/fi'
+} from "react-icons/fi";
 
-const LOGS_URL = 'http://localhost:5000/logs'
+const LOGS_URL = "http://localhost:5000/logs";
 
 function Logs() {
-  const [data, setData] = useState([])
-  const [loading, setLoading] = useState(true)
-  const [error, setError] = useState(null)
-  const [search, setSearch] = useState('')
-  const [sortOrder, setSortOrder] = useState('a-z')
-  const [statusFilter, setStatusFilter] = useState('all')
+  const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const [search, setSearch] = useState("");
+  const [sortOrder, setSortOrder] = useState("a-z");
+  const [statusFilter, setStatusFilter] = useState("all");
 
   // Pagination states
-  const [currentPage, setCurrentPage] = useState(1)
-  const itemsPerPage = 6 // Items per page
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 6; // Items per page
 
   useEffect(() => {
     const fetchLogs = async () => {
       try {
-        const res = await fetch(LOGS_URL)
-        if (!res.ok) throw new Error('Data not found')
-        const result = await res.json()
-        setData(result)
+        const res = await fetch(LOGS_URL);
+        if (!res.ok) throw new Error("Data not found");
+        const result = await res.json();
+        setData(result);
       } catch (err) {
-        setError(err.message)
+        setError(err.message);
       } finally {
-        setLoading(false)
+        setLoading(false);
       }
-    }
-    fetchLogs()
-  }, [])
+    };
+    fetchLogs();
+  }, []);
 
   // 1. Filtering and Sorting (before pagination)
   const filteredAndSortedData = useMemo(() => {
     let result = data.filter((log) => {
       const matchesSearch = log.userName
         .toLowerCase()
-        .includes(search.toLowerCase())
+        .includes(search.toLowerCase());
       const matchesStatus =
-        statusFilter === 'all' || log.action.toLowerCase() === statusFilter
-      return matchesSearch && matchesStatus
-    })
+        statusFilter === "all" || log.action.toLowerCase() === statusFilter;
+      return matchesSearch && matchesStatus;
+    });
 
     return result.sort((a, b) => {
-      const nameA = a.userName.toLowerCase()
-      const nameB = b.userName.toLowerCase()
-      return sortOrder === 'a-z'
+      const nameA = a.userName.toLowerCase();
+      const nameB = b.userName.toLowerCase();
+      return sortOrder === "a-z"
         ? nameA.localeCompare(nameB)
-        : nameB.localeCompare(nameA)
-    })
-  }, [data, search, statusFilter, sortOrder])
+        : nameB.localeCompare(nameA);
+    });
+  }, [data, search, statusFilter, sortOrder]);
 
   // 2. Pagination logic
-  const totalPages = Math.ceil(filteredAndSortedData.length / itemsPerPage)
-  const indexOfLastItem = currentPage * itemsPerPage
-  const indexOfFirstItem = indexOfLastItem - itemsPerPage
+  const totalPages = Math.ceil(filteredAndSortedData.length / itemsPerPage);
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
   const currentItems = filteredAndSortedData.slice(
     indexOfFirstItem,
     indexOfLastItem,
-  )
+  );
 
   // Reset to first page when filters change
   useEffect(() => {
-    setCurrentPage(1)
-  }, [search, statusFilter])
+    setCurrentPage(1);
+  }, [search, statusFilter]);
 
   const actionConfig = {
     create: {
       icon: <FiPlusCircle className="mr-2" />,
-      style: 'bg-green-500/10 text-green-400 border-green-500/30',
+      style: "bg-green-500/10 text-green-400 border-green-500/30",
     },
     update: {
       icon: <FiEdit className="mr-2" />,
-      style: 'bg-yellow-500/10 text-yellow-400 border-yellow-500/30',
+      style: "bg-yellow-500/10 text-yellow-400 border-yellow-500/30",
     },
     delete: {
       icon: <FiTrash2 className="mr-2" />,
-      style: 'bg-red-500/10 text-red-400 border-red-500/30',
+      style: "bg-red-500/10 text-red-400 border-red-500/30",
     },
-  }
+  };
 
   return (
     <main className="flex bg-[#0A0F1C] min-h-screen py-10 px-4 font-sans">
@@ -151,8 +151,8 @@ function Logs() {
             currentItems.map((log) => {
               const config = actionConfig[log.action.toLowerCase()] || {
                 icon: null,
-                style: 'bg-gray-500/10 text-gray-400 border-gray-500/30',
-              }
+                style: "bg-gray-500/10 text-gray-400 border-gray-500/30",
+              };
               return (
                 <div
                   key={log.id}
@@ -175,7 +175,7 @@ function Logs() {
                     {config.icon} {log.action}
                   </div>
                 </div>
-              )
+              );
             })
           )}
         </div>
@@ -188,8 +188,8 @@ function Logs() {
               disabled={currentPage === 1}
               className={`p-2 rounded-lg border border-[#2BD3F3]/20 transition-all ${
                 currentPage === 1
-                  ? 'opacity-30 cursor-not-allowed'
-                  : 'hover:bg-[#2BD3F3]/10 text-[#2BD3F3]'
+                  ? "opacity-30 cursor-not-allowed"
+                  : "hover:bg-[#2BD3F3]/10 text-[#2BD3F3]"
               }`}
             >
               <FiChevronLeft size={24} />
@@ -202,8 +202,8 @@ function Logs() {
                   onClick={() => setCurrentPage(index + 1)}
                   className={`w-10 h-10 rounded-lg border transition-all font-medium ${
                     currentPage === index + 1
-                      ? 'bg-[#2BD3F3] border-[#2BD3F3] text-[#0D1322]'
-                      : 'border-[#2BD3F3]/20 text-[#2BD3F3] hover:bg-[#2BD3F3]/10'
+                      ? "bg-[#2BD3F3] border-[#2BD3F3] text-[#0D1322]"
+                      : "border-[#2BD3F3]/20 text-[#2BD3F3] hover:bg-[#2BD3F3]/10"
                   }`}
                 >
                   {index + 1}
@@ -218,8 +218,8 @@ function Logs() {
               disabled={currentPage === totalPages}
               className={`p-2 rounded-lg border border-[#2BD3F3]/20 transition-all ${
                 currentPage === totalPages
-                  ? 'opacity-30 cursor-not-allowed'
-                  : 'hover:bg-[#2BD3F3]/10 text-[#2BD3F3]'
+                  ? "opacity-30 cursor-not-allowed"
+                  : "hover:bg-[#2BD3F3]/10 text-[#2BD3F3]"
               }`}
             >
               <FiChevronRight size={24} />
@@ -228,7 +228,7 @@ function Logs() {
         )}
       </div>
     </main>
-  )
+  );
 }
 
-export default Logs
+export default Logs;
