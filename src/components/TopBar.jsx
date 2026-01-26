@@ -1,78 +1,146 @@
-import React from 'react'
-import { FaBars, FaSearch, FaBell, FaUserCircle } from 'react-icons/fa'
-import { IoLogOutOutline } from 'react-icons/io5'
+import React, { useState } from 'react'
+import {
+  FaBars,
+  FaSearch,
+  FaBell,
+  FaBellSlash,
+  FaUserCircle,
+} from 'react-icons/fa'
+import { MdOutlineMailOutline } from 'react-icons/md'
+import { IoLogOutOutline, IoClose } from 'react-icons/io5'
 import { useNavigate } from 'react-router-dom'
 import { toast, ToastContainer } from 'react-toastify'
-import { MdOutlineMailOutline } from 'react-icons/md'
+import 'react-toastify/dist/ReactToastify.css'
+import { theme } from 'antd'
 
-function TopBar({ image, name, username, onToggle }) {
+function TopBar({ onToggle }) {
   const navigate = useNavigate()
+  const [bell, setBell] = useState(true)
+  const [modal, setModal] = useState(false)
 
   const SignOut = () => {
     toast.info('Signing out...')
     setTimeout(() => {
       localStorage.clear()
       navigate('/auth/signin')
-    }, 1500)
+    }, 1000)
   }
 
-  const toggleBars = () => {
-    onToggle()
-    localStorage.setItem('token', 'sizning_maxfiy_tokeningiz')
+  const user = JSON.parse(localStorage.getItem('user')) || {
+    name: 'name',
+    email: 'name@example.com',
   }
 
   return (
-    <div className="bg-[#0b1220] w-full h-16 flex items-center px-6 gap-4 border-b border-cyan-500/30 shadow-[0_4px_20px_rgba(0,0,0,0.4)]">
+    <div className="bg-[#0b1220] w-full h-16 flex items-center px-6 gap-4 border-b border-cyan-500/30 shadow-[0_4px_30px_rgba(0,0,0,0.5)] sticky top-0 z-50">
       <button
-        onClick={() => toggleBars()}
-        className="p-2 rounded-lg transition-all duration-300 hover:bg-cyan-500/20 active:scale-90 group"
+        onClick={onToggle}
+        className="p-2.5 rounded-xl transition-all hover:bg-cyan-500/20 group active:scale-90"
       >
         <FaBars className="text-cyan-400 text-xl group-hover:rotate-180 transition-transform duration-500" />
       </button>
 
-      <div className="flex items-center bg-[#020617] border border-cyan-400/30 rounded-xl px-4 py-1.5 w-72 transition-all duration-300 focus-within:w-80 focus-within:border-cyan-400 focus-within:shadow-[0_0_15px_rgba(34,211,238,0.2)]">
+      <div className="hidden md:flex items-center bg-[#020617] border border-cyan-400/20 rounded-xl px-4 py-2 w-80 focus-within:border-cyan-400/60 focus-within:shadow-[0_0_15px_rgba(34,211,238,0.1)] transition-all">
         <input
-          placeholder="Search..."
-          type="text"
-          className="bg-transparent outline-none text-cyan-100 w-full placeholder:text-cyan-800 text-sm"
+          placeholder="Search system..."
+          className="bg-transparent outline-none text-cyan-100 w-full text-sm placeholder:text-cyan-900"
         />
-        <FaSearch className="text-cyan-600 group-hover:text-cyan-400 transition-colors" />
+        <FaSearch className="text-cyan-800" />
       </div>
 
-      <div className="flex items-center ml-auto gap-6">
-        <div className="flex items-center gap-3 group cursor-pointer p-1 rounded-xl transition-all">
-          <div className="text-right transition-transform duration-300 group-hover:-translate-x-1">
-            <h2 className="font-bold text-cyan-100 text-sm group-hover:text-cyan-400 transition-colors">
-              {name}
-            </h2>
-            <span className="text-[10px] text-cyan-600 font-mono block -mt-1 uppercase tracking-tighter group-hover:text-cyan-300">
-              {username}
-            </span>
-          </div>
-          <div className="relative overflow-hidden rounded-full border-2 border-cyan-500/20 group-hover:border-cyan-400 transition-all duration-300 group-hover:shadow-[0_0_10px_rgba(34,211,238,0.4)]">
-            <FaUserCircle className="text-cyan-300 text-[32px] group-hover:scale-110 transition-transform duration-300" />
-          </div>
+      <div className="flex items-center ml-auto gap-2 md:gap-4">
+        <div className="relative p-2.5 rounded-full hover:bg-cyan-500/10 cursor-pointer text-cyan-400 transition-colors">
+          <MdOutlineMailOutline size={22} />
+          <span className="absolute top-2.5 right-2.5 w-2 h-2 bg-cyan-500 rounded-full animate-pulse shadow-[0_0_10px_#22d3ee]"></span>
         </div>
 
-        <div className="flex items-center gap-3 border-l border-cyan-500/20 pl-6">
-          <div className="relative group cursor-pointer p-2 rounded-full hover:bg-cyan-500/10 transition-all duration-300">
-            <MdOutlineMailOutline className="text-cyan-400 text-2xl group-hover:scale-110 transition-transform" />
-          </div>
+        <div
+          onClick={() => setBell(!bell)}
+          className="p-2.5 w-10 rounded-full hover:bg-cyan-500/10 cursor-pointer text-cyan-400 transition-all border-r border-cyan-500/20 pr-4 mr-2"
+        >
+          {bell ? (
+            <FaBell className="w-5 h-5" />
+          ) : (
+            <FaBellSlash className="w-5 h-5 opacity-40" />
+          )}
+        </div>
 
-          <div className="relative group cursor-pointer p-2 rounded-full hover:bg-cyan-500/10 transition-all duration-300">
-            <FaBell className="text-cyan-400 text-xl group-hover:rotate-[15deg] transition-transform" />
+        <div
+          onClick={() => setModal(true)}
+          className="relative group cursor-pointer active:scale-95 transition-transform"
+        >
+          <div className="absolute -inset-1 bg-gradient-to-tr from-cyan-500 to-blue-600 rounded-full opacity-40 blur group-hover:opacity-50 transition"></div>
+          <div className="relative bg-[#0b1220] rounded-full p-0.5 border border-cyan-500/30">
+            <FaUserCircle className="text-cyan-400 text-3xl group-hover:scale-110 transition-transform" />
           </div>
+        </div>
+      </div>
 
+      {modal && (
+        <div className="fixed inset-0 z-[999] flex items-center justify-center p-4">
           <div
-            onClick={SignOut}
-            className="group cursor-pointer p-2 rounded-full hover:bg-red-500/20 transition-all duration-300"
-          >
-            <IoLogOutOutline className="text-cyan-400 text-[26px] group-hover:text-red-500 group-hover:drop-shadow-[0_0_8px_rgba(239,68,68,0.8)] transition-all" />
+            className="absolute inset-0 bg-[#020617]/90 backdrop-blur-md transition-opacity duration-300"
+            onClick={() => setModal(false)}
+          />
+
+          <div className="relative bg-[#0f172a] w-full max-w-[340px] rounded-[2.5rem] border border-cyan-500/30 overflow-hidden shadow-[0_0_60px_rgba(0,0,0,1)]">
+            <div className="h-24 bg-gradient-to-br from-cyan-600/20 via-blue-600/10 to-transparent relative">
+              <button
+                onClick={() => setModal(false)}
+                className="absolute top-6 right-6 p-2 rounded-full bg-black/40 text-cyan-400 hover:text-white transition-all hover:rotate-90"
+              >
+                <IoClose size={20} />
+              </button>
+            </div>
+
+            <div className="px-8 pb-10 -mt-12 flex flex-col items-center">
+              <div className="relative group">
+                <div className="absolute -inset-4 rounded-full"></div>
+                <div className="relative bg-[#0f172a] p-1.5 rounded-full border border-cyan-500/40">
+                  <FaUserCircle
+                    onClick={() =>
+                      toast.error(
+                        'Bu funksiya faqat Premium foydalanuvchilar uchun mavjud. Premium narxi: 1 000 000 $.',
+                        { theme: 'dark' },
+                      )
+                    }
+                    className="text-cyan-400 text-7xl"
+                  />
+                </div>
+              </div>
+
+              <div className="text-center mt-6">
+                <h3 className="text-2xl font-bold text-white tracking-tight">
+                  {user.name}
+                </h3>
+                <div className="mt-2 inline-block px-4 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/20">
+                  <span className="text-[10px] font-black uppercase tracking-[2.5px] text-cyan-400">
+                    {user.email}
+                  </span>
+                </div>
+              </div>
+
+              <div className="w-full space-y-3 mt-10">
+                <button
+                  onClick={SignOut}
+                  className="w-full flex items-center justify-between py-4 px-6 bg-red-500/5 hover:bg-red-500/15 text-red-500 rounded-2xl border border-red-500/10 transition-all group active:scale-[0.98]"
+                >
+                  <span className="font-bold text-sm text-red-400">
+                    Sign out
+                  </span>
+                  <IoLogOutOutline
+                    size={22}
+                    className="group-hover:translate-x-1 transition-transform"
+                  />
+                </button>
+              </div>
+            </div>
+            <div className="h-2 w-full bg-gradient-to-r from-transparent via-cyan-500 to-transparent opacity-40"></div>
           </div>
         </div>
-      </div>
+      )}
 
-      <ToastContainer position="top-right" autoClose={2000} theme="dark" />
+      <ToastContainer theme="dark" position="top-right" />
     </div>
   )
 }
