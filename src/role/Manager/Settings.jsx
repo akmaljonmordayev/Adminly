@@ -1,10 +1,13 @@
-import React, { useState } from "react";
-import { Button, Modal } from "antd";
+import React, { useEffect, useState } from "react";
+import { FaUserAlt } from "react-icons/fa";
+import { Modal } from "antd";
 import axios from "axios";
-import { useEffect } from "react";
 
 function Settings() {
   const user = JSON.parse(localStorage.getItem("user"));
+  const [data, setData] = useState({});
+  const [open, setOpen] = useState(false);
+
   const [notifications, setNotifications] = useState(true);
   const [emailAlerts, setEmailAlerts] = useState(false);
   const [twoFA, setTwoFA] = useState(false);
@@ -12,109 +15,102 @@ function Settings() {
   const [autoLogout, setAutoLogout] = useState(true);
   const [saveSession, setSaveSession] = useState(true);
   const [devMode, setDevMode] = useState(false);
-  const [open, setOpen] = React.useState(false);
-  const [showPassword, setShowPassword] = useState(false);
+
   const [newFullname, setNewFullname] = useState("");
   const [newEmail, setNewEmail] = useState("");
   const [newPassword, setNewPassword] = useState("");
-  const [data, setData] = useState([])
-
+  const [showPassword, setShowPassword] = useState(false);
 
   const getData = async () => {
-    let user = JSON.parse(localStorage.getItem("user"));
     try {
-      let res = await axios.get(`http://localhost:5000/users/${user.id}`)
-      setData(res.data)
-    } catch (error) {
-
-    }
-  }
+      const res = await axios.get(`http://localhost:5000/users/${user.id}`);
+      setData(res.data);
+    } catch {}
+  };
 
   useEffect(() => {
-    getData()
-  }, [])
+    getData();
+  }, []);
 
-
-  if (!user) return null;
-  const showLoading = async () => {
+  const openModal = async () => {
     setOpen(true);
-    let user = JSON.parse(localStorage.getItem("user"))
-    try {
-      let res = await axios.get(`http://localhost:5000/users/${user.id}`)
-      setNewFullname(res.data.name)
-      setNewEmail(res.data.email)
-      setNewPassword(res.data.password)
-    } catch (error) {
-
-    }
-
+    setNewFullname(data.name);
+    setNewEmail(data.email);
+    setNewPassword(data.password);
   };
 
   const submitData = async (e) => {
     e.preventDefault();
-    let user = JSON.parse(localStorage.getItem("user"));
     try {
-      let res = await axios.put(`http://localhost:5000/users/${user.id}`, {
-        id: user.id,
+      await axios.put(`http://localhost:5000/users/${user.id}`, {
+        ...data,
         name: newFullname,
         email: newEmail,
         password: newPassword,
-        role: "manager",
       });
-      console.log(res);
-      if (res.status == 200) {
-        alert("done")
-        setOpen(false)
-        getData()
-        localStorage.setItem(
-          "user",
-          JSON.stringify({
-            id: user.id,
-            name: newFullname,
-            email: newEmail,
-            password: newPassword,
-            role: "manager",
-          })
-        )
-      }
-    } catch (error) { }
+
+      localStorage.setItem(
+        "user",
+        JSON.stringify({
+          ...user,
+          name: newFullname,
+          email: newEmail,
+          password: newPassword,
+        })
+      );
+
+      setOpen(false);
+      getData();
+    } catch {}
   };
 
+  if (!user) return null;
+
   return (
-    <div className="min-h-screen bg-gradient-to-b from-[#071B2D] to-[#0C2B3E] flex justify-center p-4">
-      <div className="flex flex-col lg:flex-row gap-6 w-full max-w-[1200px]">
-        <div className="bg-[#0D3146] flex-1 rounded-2xl p-8 flex flex-col shadow-lg">
-          <div className="flex items-center gap-5 mb-10">
-            <div className="w-16 h-16 rounded-full bg-gradient-to-br from-[#00D1FF] to-[#00A7CC] flex items-center justify-center text-[#071B2D] text-3xl">
-              👤
+    <main className="min-h-screen bg-[#020617] p-6">
+      <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <section
+          className="rounded-2xl h-[520px] bg-gradient-to-b from-[#0b1220] to-[#020617]
+          border border-cyan-900 p-8 shadow-[0_0_40px_rgba(34,211,238,0.15)]"
+        >
+          <div className="flex items-center gap-5 mb-8">
+            <div
+              className="w-16 h-16 rounded-xl bg-cyan-600/20
+              flex items-center justify-center text-cyan-400 text-3xl"
+            >
+              <FaUserAlt />
             </div>
+
             <div>
-              <div className="text-[#EAFBFF] font-semibold text-2xl sm:text-3xl">
-                {data?.name}
-              </div>
-              <div className="text-[#7FCFE3] text-lg sm:text-xl">
+              <h2 className="text-white text-2xl font-semibold">{data.name}</h2>
+              <p className="text-cyan-400 uppercase text-sm tracking-wider">
                 {data.role}
-              </div>
+              </p>
             </div>
           </div>
 
-          <div className="space-y-4 sm:space-y-6 mt-4">
-            <Row label="Email" value={data.email} />
-            <Row label="Password" value={data.password} />
-            <Row label="Role" value={data.role} highlight />
+          <div className="space-y-4 mt-10">
+            <InfoRow label="Email" value={data.email} />
+            <InfoRow label="Password" value={data.password} />
+            <InfoRow label="Role" value={data.role} highlight />
           </div>
 
           <button
-            onClick={showLoading}
-            className="w-full py-3 mt-auto rounded-xl
-            bg-gradient-to-r from-[#00D1FF] to-[#00A7CC] text-[#071B2D] text-lg sm:text-xl font-semibold
-            hover:brightness-110 transition"
+            onClick={openModal}
+            className="mt-55 w-full py-3 rounded-xl
+            bg-cyan-600/20 border border-cyan-600
+            text-cyan-400 font-semibold
+            hover:bg-cyan-600 hover:text-black transition"
           >
-            Change profile
+            Edit Profile
           </button>
-        </div>
+        </section>
 
-        <div className="bg-[#0D3146] flex-1 rounded-2xl p-6 sm:p-8 flex flex-col justify-center gap-4 sm:gap-6 shadow-lg">
+        <section
+          className="rounded-2xl bg-gradient-to-b from-[#0b1220] to-[#020617]
+          border border-cyan-900 p-8 shadow-[0_0_40px_rgba(34,211,238,0.15)]
+          flex flex-col gap-10"
+        >
           <Setting
             title="Notifications"
             checked={notifications}
@@ -126,12 +122,12 @@ function Settings() {
             onClick={() => setEmailAlerts(!emailAlerts)}
           />
           <Setting
-            title="Two-Factor Auth"
+            title="Two Factor Auth"
             checked={twoFA}
             onClick={() => setTwoFA(!twoFA)}
           />
           <Setting
-            title="Private Profile"
+            title="Private Mode"
             checked={privateMode}
             onClick={() => setPrivateMode(!privateMode)}
           />
@@ -150,123 +146,44 @@ function Settings() {
             checked={devMode}
             onClick={() => setDevMode(!devMode)}
           />
-        </div>
+        </section>
       </div>
-      <style>
-        {`
-  .custom-dark-modal .ant-modal-content {
-    background-color: #071B2D !important;
-    border-radius: 20px;
-    padding: 0 !important;
-  }
-
-  .custom-dark-modal .ant-modal-header {
-    border-bottom: none !important;
-    padding: 16px 24px;
-  }
-
-  .custom-dark-modal .ant-modal-body {
-    
-    padding: 24px ;
-  }
-
-
-  .custom-dark-modal .ant-modal-close-x {
-    color: #22d3ee !important;
-    font-size: 18px;
-  }
-    .custom-dark-modal {
-        padding: 0px;
-    }
-  .ant-modal-container {
-    background-color: #071B2D !important;
-
-  }
-
-`}
-      </style>
-
 
       <Modal
         open={open}
         onCancel={() => setOpen(false)}
         footer={null}
-        className="custom-dark-modal"
+        maskStyle={{
+          backgroundColor: "rgba(8, 145, 178, 0.1)",
+        }}
         title={
-          <p className="text-lg font-semibold text-cyan-400">
-            Edit Profile
-          </p>
+          <span className="text-cyan-400 font-semibold">Edit Profile</span>
         }
       >
-        <form onSubmit={(e) => submitData(e)} className="flex flex-col gap-4 ">
-          <input
-            type="text"
-            placeholder="Full Name"
+        <form onSubmit={submitData} className="space-y-4">
+          <Input
             value={newFullname}
-            onChange={(e) => setNewFullname(e.target.value)}
-            className="
-            w-full
-            bg-[#07182E]
-        border border-cyan-500/40
-        text-white
-        rounded-lg
-        px-4 py-2
-        placeholder:text-gray-400
-        focus:outline-none
-        focus:ring-2
-        focus:ring-cyan-400
-        "
+            onChange={setNewFullname}
+            placeholder="Full name"
           />
-
-          <input
-            type="email"
-            placeholder="Your Email"
+          <Input
             value={newEmail}
-            onChange={(e) => setNewEmail(e.target.value)}
-            className="
-        w-full
-        bg-[#07182E]
-        border border-cyan-500/40
-        text-white
-        rounded-lg
-        px-4 py-2
-        placeholder:text-gray-400
-        focus:outline-none
-        focus:ring-2
-        focus:ring-cyan-400
-      "
+            onChange={setNewEmail}
+            placeholder="Email"
+            type="email"
           />
 
           <div className="relative">
-            <input
-              type={showPassword ? "text" : "password"}
-              placeholder="Your Password"
+            <Input
               value={newPassword}
-              onChange={(e) => setNewPassword(e.target.value)}
-              className="
-              w-full
-              bg-[#07182E]
-              border border-cyan-500/40
-              text-white
-              rounded-lg
-              px-4 py-2 pr-14
-              placeholder:text-gray-400
-              focus:outline-none
-              focus:ring-2
-              focus:ring-cyan-400
-              "
+              onChange={setNewPassword}
+              placeholder="Password"
+              type={showPassword ? "text" : "password"}
             />
-
             <button
               type="button"
               onClick={() => setShowPassword(!showPassword)}
-              className="
-          absolute right-3 top-1/2 -translate-y-1/2
-          text-cyan-400
-          hover:text-cyan-300
-          text-sm
-          select-none
-        "
+              className="absolute right-3 top-1/2 -translate-y-1/2 text-cyan-400 text-sm"
             >
               {showPassword ? "Hide" : "Show"}
             </button>
@@ -274,71 +191,53 @@ function Settings() {
 
           <button
             type="submit"
-            className="
-        mt-2
-        bg-cyan-500
-        hover:bg-cyan-600
-        text-[#07182E]
-        font-semibold
-        py-2
-        rounded-xl
-        transition
-        shadow-lg shadow-cyan-500/30
-      "
+            className="w-full py-2 rounded-xl bg-cyan-600 text-black font-semibold
+            hover:bg-cyan-500 transition"
           >
-            Edit Profile
+            Save Changes
           </button>
-
         </form>
       </Modal>
-    </div>
-
+    </main>
   );
 }
 
-function Row({ label, value, highlight }) {
-  return (
-    <div className="flex justify-between items-center">
-      <span className="text-[#7FCFE3] text-base sm:text-lg font-medium">
-        {label}
-      </span>
-      <span
-        className={`text-base sm:text-xl font-medium ${highlight ? "text-[#00D1FF]" : "text-[#EAFBFF]"
-          }`}
-      >
-        {value}
-      </span>
-    </div>
-  );
-}
+const InfoRow = ({ label, value, highlight }) => (
+  <div className="flex justify-between text-sm">
+    <span className="text-cyan-400">{label}</span>
+    <span className={highlight ? "text-cyan-300" : "text-white"}>{value}</span>
+  </div>
+);
 
-function Setting({ title, checked, onClick }) {
-  return (
-    <div className="flex justify-between items-center">
-      <span className="text-[#EAFBFF] text-base sm:text-xl font-medium">
-        {title}
-      </span>
-      <Switch checked={checked} onClick={onClick} />
-    </div>
-  );
-}
+const Setting = ({ title, checked, onClick }) => (
+  <div className="flex justify-between items-center">
+    <span className="text-white">{title}</span>
+    <Switch checked={checked} onClick={onClick} />
+  </div>
+);
 
-function Switch({ checked, onClick }) {
-  return (
+const Switch = ({ checked, onClick }) => (
+  <div
+    onClick={onClick}
+    className={`w-14 h-7 rounded-full px-1 flex items-center cursor-pointer
+    ${checked ? "bg-cyan-600" : "bg-[#1e293b]"}`}
+  >
     <div
-      onClick={onClick}
-      className={`w-14 sm:w-16 h-7 sm:h-8 rounded-full flex items-center px-1 cursor-pointer transition-all
-      ${checked
-          ? "bg-gradient-to-r from-[#00D1FF] to-[#00A7CC]"
-          : "bg-[#123B52]"
-        }`}
-    >
-      <div
-        className={`w-6 h-6 sm:w-6 sm:h-6 rounded-full bg-white transition-transform transform
-        ${checked ? "translate-x-6 sm:translate-x-7" : "translate-x-0"}`}
-      />
-    </div>
-  );
-}
+      className={`w-5 h-5 rounded-full bg-white transition
+      ${checked ? "translate-x-7" : ""}`}
+    />
+  </div>
+);
+
+const Input = ({ value, onChange, ...props }) => (
+  <input
+    {...props}
+    value={value}
+    onChange={(e) => onChange(e.target.value)}
+    className="w-full bg-[#020617] border border-cyan-800 rounded-lg
+    px-4 py-2 text-white placeholder:text-gray-400
+    focus:outline-none focus:ring-2 focus:ring-cyan-500"
+  />
+);
 
 export default Settings;
