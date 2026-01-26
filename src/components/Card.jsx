@@ -1,40 +1,24 @@
 import React from "react";
 
-function Card({ title, value, icon }) {
+const colors = {
+  cyan: "from-cyan-400 to-cyan-600",
+  purple: "from-purple-400 to-purple-600",
+  red: "from-red-400 to-red-600",
+  blue: "from-blue-400 to-blue-600",
+  yellow: "from-yellow-400 to-yellow-600",
+};
+
+function Card({ title, value, icon, color }) {
   return (
-    <div
-      className="
-        w-80 h-40
-        rounded-2xl
-        p-6
-        bg-white/10
-        backdrop-blur-xl
-        border border-white/10
-        text-white
-        relative
-        transition-all duration-300
-        hover:scale-[1.03]
-        hover:bg-white/15
-        hover:shadow-2xl
-        cursor-pointer
-      "
-    >
-      {/* Icon badge */}
-      <div className="absolute top-5 right-5 w-11 h-11 rounded-xl bg-white/20 flex items-center justify-center text-xl">
+    <div className="relative bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-5 shadow-lg hover:shadow-cyan-500/20 transition-all duration-300 hover:-translate-y-1">
+      <div
+        className={`absolute -top-5 -right-5 bg-gradient-to-br ${colors[color]} text-white p-4 rounded-2xl text-2xl shadow-lg`}
+      >
         {icon}
       </div>
 
-      {/* Title */}
-      <div className="flex items-center gap-2 text-sm text-gray-300">
-        <span className="text-lg">{icon}</span>
-        <span>{title}</span>
-      </div>
-
-      {/* Value */}
-      <div className="mt-6 text-4xl font-bold tracking-tight">{value}</div>
-
-      {/* subtle line */}
-      <div className="absolute bottom-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-white/20 to-transparent"></div>
+      <p className="text-sm text-gray-400 mt-6">{title}</p>
+      <h2 className="text-2xl font-bold text-white mt-1">{value}</h2>
     </div>
   );
 }
