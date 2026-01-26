@@ -316,75 +316,7 @@
       "status": "pending"
     }
   ],
-  "logs": [
-    {
-      "id": "1",
-      "userName": "Akmal Mordayev",
-      "action": "UPDATE",
-      "date": "2026-01-16T10:30:00Z",
-      "page": "TASKS"
-    },
-    {
-      "id": "b894",
-      "userName": "Akmal Mordayev",
-      "action": "DELETE",
-      "date": "2026-01-19T09:23:51.843Z",
-      "page": "TASKS"
-    },
-    {
-      "id": "9ad5",
-      "userName": "Akmal Mordayev",
-      "action": "DELETE",
-      "date": "2026-01-19T09:26:16.958Z",
-      "page": "TASKS"
-    },
-    {
-      "id": "5912",
-      "userName": "Abdulaziz Xasanov",
-      "action": "Task updated",
-      "date": "2026-01-19T09:10:10.985Z"
-    },
-    {
-      "id": "37b1",
-      "userId": "6",
-      "userName": "Abdulaziz Xasanov",
-      "action": "Task created",
-      "date": "2026-01-19T09:31:37.202Z"
-    },
-    {
-      "id": "c64c",
-      "userName": "Abdulaziz Xasanov",
-      "action": "Task created",
-      "date": "2026-01-21T11:32:19.502Z"
-    },
-    {
-      "id": "45ba",
-      "userName": "Abdulaziz Xasanov",
-      "action": "Task updated",
-      "date": "2026-01-21T11:33:04.504Z"
-    },
-    {
-      "id": "f7ce",
-      "userName": "Mohinur Sulaymonqulova",
-      "action": "DELETE",
-      "date": "2026-01-23T09:38:28.231Z",
-      "page": "TASKS"
-    },
-    {
-      "id": "3a08",
-      "userName": "Mohinur Sulaymonqulova",
-      "action": "DELETE",
-      "date": "2026-01-23T09:38:40.702Z",
-      "page": "TASKS"
-    },
-    {
-      "id": "45d9",
-      "userName": "Mohinur Sulaymonqulova",
-      "action": "DELETE",
-      "date": "2026-01-23T09:38:48.380Z",
-      "page": "TASKS"
-    }
-  ],
+  "logs": [],
   "resignations": [
     {
       "id": "RES001",
