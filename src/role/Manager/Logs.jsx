@@ -9,9 +9,9 @@ import {
   FiLayers,
   FiChevronLeft,
   FiChevronRight,
-} from 'react-icons/fi'
+} from "react-icons/fi";
 
-const LOGS_URL = 'http://localhost:5000/logs'
+const LOGS_URL = "http://localhost:5000/logs";
 
 const formatDate = (date) => {
   if (!date) return '-'
@@ -47,11 +47,11 @@ function Logs() {
       } catch (err) {
         setError('Logs not found')
       } finally {
-        setLoading(false)
+        setLoading(false);
       }
-    }
-    fetchLogs()
-  }, [])
+    };
+    fetchLogs();
+  }, []);
 
   /* ================= FILTER + SORT ================= */
   const filteredAndSortedData = useMemo(() => {
@@ -72,9 +72,9 @@ function Logs() {
       const nameB = b.userName?.toLowerCase() || ''
       return sortOrder === 'a-z'
         ? nameA.localeCompare(nameB)
-        : nameB.localeCompare(nameA)
-    })
-  }, [data, search, statusFilter, sortOrder])
+        : nameB.localeCompare(nameA);
+    });
+  }, [data, search, statusFilter, sortOrder]);
 
   /* ================= PAGINATION ================= */
   const totalPages = Math.ceil(filteredAndSortedData.length / itemsPerPage)
@@ -83,26 +83,26 @@ function Logs() {
   const currentItems = filteredAndSortedData.slice(
     indexOfFirstItem,
     indexOfLastItem,
-  )
+  );
 
   useEffect(() => {
-    setCurrentPage(1)
-  }, [search, statusFilter])
+    setCurrentPage(1);
+  }, [search, statusFilter]);
 
   const actionConfig = {
     create: {
       icon: <FiPlusCircle className="mr-2" />,
-      style: 'bg-green-500/10 text-green-400 border-green-500/30',
+      style: "bg-green-500/10 text-green-400 border-green-500/30",
     },
     update: {
       icon: <FiEdit className="mr-2" />,
-      style: 'bg-yellow-500/10 text-yellow-400 border-yellow-500/30',
+      style: "bg-yellow-500/10 text-yellow-400 border-yellow-500/30",
     },
     delete: {
       icon: <FiTrash2 className="mr-2" />,
-      style: 'bg-red-500/10 text-red-400 border-red-500/30',
+      style: "bg-red-500/10 text-red-400 border-red-500/30",
     },
-  }
+  };
 
   return (
     <main className="flex bg-[#0A0F1C] min-h-screen py-10 px-4 font-sans">
@@ -201,7 +201,7 @@ function Logs() {
                     {log.action}
                   </div>
                 </div>
-              )
+              );
             })
           )}
         </div>
@@ -295,7 +295,7 @@ function Logs() {
         </div>
       )}
     </main>
-  )
+  );
 }
 
-export default Logs
+export default Logs;

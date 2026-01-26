@@ -73,10 +73,10 @@
       "hireDate": "2023-02-01",
       "baseSalary": "100",
       "kpiPercent": 10,
-      "kpiAmount": "100",
+      "kpiAmount": 10,
       "bonus": "100",
-      "penalty": "10",
-      "totalSalary": 290,
+      "penalty": "90",
+      "totalSalary": 120,
       "month": "2025-12",
       "status": "unpaid",
       "paymentDate": "2025-12-27",
@@ -289,10 +289,10 @@
     },
     {
       "id": "9611",
-      "taskName": "Employees",
-      "employeeName": "Bekzod Shokirov",
-      "deadline": "2026-02-05",
-      "status": "pending"
+      "taskName": "tasks",
+      "employeeName": "Nodira Usmonova",
+      "deadline": "2026-02-28",
+      "status": "done"
     },
     {
       "id": "5396",
@@ -314,13 +314,6 @@
       "employeeName": "Sherzod Rasulov",
       "deadline": "2025-12-02",
       "status": "pending"
-    },
-    {
-      "id": "5582",
-      "taskName": "hoshim",
-      "employeeName": "Nodira Usmonova",
-      "deadline": "2026-01-30",
-      "status": "pending"
     }
   ],
   "logs": [
@@ -328,85 +321,68 @@
       "id": "1",
       "userName": "Akmal Mordayev",
       "action": "UPDATE",
-      "date": "2026-01-16T10:30:00Z"
+      "date": "2026-01-16T10:30:00Z",
+      "page": "TASKS"
     },
     {
-      "id": "2",
-      "userName": "Abdulloh Abdumalikov",
-      "action": "CREATE",
-      "date": "2026-01-16T11:00:00Z"
-    },
-    {
-      "id": "7d7a",
+      "id": "b894",
       "userName": "Akmal Mordayev",
-      "action": "Task deleted",
-      "date": 1768557561685
+      "action": "DELETE",
+      "date": "2026-01-19T09:23:51.843Z",
+      "page": "TASKS"
     },
     {
-      "id": "70c9",
-      "userName": "Abdulaziz Xasanov",
-      "action": "Task created",
-      "date": 1768763245331
-    },
-    {
-      "id": "c7d6",
-      "userName": "Abdulaziz Xasanov",
-      "action": "Task updated",
-      "date": 1768763272557
-    },
-    {
-      "id": "d93f",
-      "userName": "Abdulaziz Xasanov",
-      "action": "Task deleted",
-      "date": 1768763288450
-    },
-    {
-      "id": "0272",
-      "userName": "Abdulaziz Xasanov",
-      "action": "Task created",
-      "date": 1768763700809
-    },
-    {
-      "id": "850a",
-      "userName": "Abdulaziz Xasanov",
-      "action": "Task created",
-      "date": 1768763724331
-    },
-    {
-      "id": "bb54",
-      "userName": "Abdulaziz Xasanov",
-      "action": "Task deleted",
-      "date": 1768763735916
-    },
-    {
-      "id": "c903",
-      "userName": "Abdulaziz Xasanov",
-      "action": "Task deleted",
-      "date": 1768763737832
-    },
-    {
-      "id": "fac6",
-      "userName": "Abdulaziz Xasanov",
-      "action": "Task updated",
-      "date": "2026-01-18T19:19:55.013Z"
-    },
-    {
-      "id": "d6a0",
-      "userName": "Abdulaziz Xasanov",
-      "action": "Task deleted",
-      "date": "2026-01-19T09:06:27.723Z"
-    },
-    {
-      "id": "96d7",
-      "userName": "Abdulaziz Xasanov",
-      "action": "Task deleted",
-      "date": "2026-01-19T09:09:36.815Z"
+      "id": "9ad5",
+      "userName": "Akmal Mordayev",
+      "action": "DELETE",
+      "date": "2026-01-19T09:26:16.958Z",
+      "page": "TASKS"
     },
     {
       "id": "5912",
       "userName": "Abdulaziz Xasanov",
       "action": "Task updated",
       "date": "2026-01-19T09:10:10.985Z"
+    },
+    {
+      "id": "37b1",
+      "userId": "6",
+      "userName": "Abdulaziz Xasanov",
+      "action": "Task created",
+      "date": "2026-01-19T09:31:37.202Z"
+    },
+    {
+      "id": "c64c",
+      "userName": "Abdulaziz Xasanov",
+      "action": "Task created",
+      "date": "2026-01-21T11:32:19.502Z"
+    },
+    {
+      "id": "45ba",
+      "userName": "Abdulaziz Xasanov",
+      "action": "Task updated",
+      "date": "2026-01-21T11:33:04.504Z"
+    },
+    {
+      "id": "f7ce",
+      "userName": "Mohinur Sulaymonqulova",
+      "action": "DELETE",
+      "date": "2026-01-23T09:38:28.231Z",
+      "page": "TASKS"
+    },
+    {
+      "id": "3a08",
+      "userName": "Mohinur Sulaymonqulova",
+      "action": "DELETE",
+      "date": "2026-01-23T09:38:40.702Z",
+      "page": "TASKS"
+    },
+    {
+      "id": "45d9",
+      "userName": "Mohinur Sulaymonqulova",
+      "action": "DELETE",
+      "date": "2026-01-23T09:38:48.380Z",
+      "page": "TASKS"
     }
   ],
   "resignations": [
@@ -421,24 +397,9 @@
       "lastWorkingDay": "2026-01-10",
       "noticePeriod": "30 days",
       "reason": "Career growth",
-      "status": "pending",
+      "status": "approved",
       "approvedBy": null,
       "comment": "Looking for new opportunities"
-    },
-    {
-      "id": "RES002",
-      "employeeId": "EMP002",
-      "employeeName": "Laylo Saidova",
-      "position": "HR Specialist",
-      "department": "Human Resources",
-      "resignationType": "voluntary",
-      "appliedDate": "2025-11-25",
-      "lastWorkingDay": "2025-12-25",
-      "noticePeriod": "30 days",
-      "reason": "Family reasons",
-      "status": "rejected",
-      "approvedBy": "HR Manager",
-      "comment": "Approved without issues"
     },
     {
       "id": "RES003",
@@ -454,6 +415,21 @@
       "status": "approved",
       "approvedBy": "Tech Lead",
       "comment": "Contract completion"
+    },
+    {
+      "id": "RES002",
+      "employeeId": "EMP002",
+      "employeeName": "Laylo Saidova",
+      "position": "HR Specialist",
+      "department": "Human Resources",
+      "resignationType": "voluntary",
+      "appliedDate": "2025-11-25",
+      "lastWorkingDay": "2025-12-25",
+      "noticePeriod": "30 days",
+      "reason": "Family reasons",
+      "status": "rejected",
+      "approvedBy": "HR Manager",
+      "comment": "Approved without issues"
     },
     {
       "id": "RES004",
@@ -510,10 +486,10 @@
   ],
   "announcements": [
     {
-      "id": "9c93",
-      "title": "gr",
-      "text": "vsd",
-      "date": "Jan 19, 2026",
+      "id": "a1f7122c-061a-4666-bc68-3640a7d3abbb",
+      "title": "DAM",
+      "text": "14-yanvar vatan himoyachilari kuni uchun hammaga dam",
+      "date": "Jan 21, 2026",
       "status": "Active"
     }
   ],
@@ -525,7 +501,7 @@
       "title": "Internet Connectivity Issue",
       "description": "Internet connection keeps dropping in the design department.",
       "date": "2025-12-20",
-      "status": "reviewed"
+      "status": "pending"
     },
     {
       "id": "CPL003",
@@ -534,7 +510,7 @@
       "title": "Request for New Chair",
       "description": "My office chair is broken and needs replacement.",
       "date": "2025-12-19",
-      "status": "resolved"
+      "status": "pending"
     }
   ],
   "employeesDeleted": [],
@@ -575,55 +551,34 @@
       "status": "pending"
     },
     {
-      "id": "37a9",
-      "taskName": "dfve",
-      "employeeName": "Islombek Qodirov",
-      "deadline": "2026-01-05",
-      "status": "pending"
-    },
-    {
-      "id": "c720",
-      "taskName": "logs",
+      "id": "5db3",
+      "taskName": "cefvgrbhn",
       "employeeName": "Nodira Usmonova",
-      "deadline": "2026-01-22",
+      "deadline": "2026-01-14",
       "status": "pending"
     },
     {
-      "id": "3703",
-      "taskName": "logs",
-      "employeeName": "Aziza Mahmudova",
-      "deadline": "2026-02-26",
-      "status": "pending"
-    },
-    {
-      "id": "5d74",
-      "taskName": "Archieve",
+      "id": "a822",
+      "taskName": "vybuhnjik,l",
       "employeeName": "Jasmina Aliyeva",
-      "deadline": "2026-01-20",
+      "deadline": "2026-01-21",
+      "status": "pending"
+    },
+    {
+      "id": "5582",
+      "taskName": "hoshim",
+      "employeeName": "Nodira Usmonova",
+      "deadline": "2026-01-30",
       "status": "pending"
     }
   ],
   "complaintsDeleted": [],
   "announcementsDeleted": [
     {
-      "id": "91b2",
-      "title": "DAM",
-      "text": "14-yanvar vatan himoyachilari kuni uchun hammaga dam",
-      "date": "Jan 21, 2026",
-      "status": "Active"
-    },
-    {
-      "id": "91b2",
-      "title": "ry",
-      "text": "brh",
-      "date": "Jan 21, 2026",
-      "status": "Active"
-    },
-    {
-      "id": "c12d",
-      "title": "uxlash",
-      "text": "uuuuuuuuuuuuuuuuuuuuuuuuu",
-      "date": "Jan 11, 2026",
+      "id": "a296",
+      "title": "asvd",
+      "text": "asdvasdv",
+      "date": "Jan 26, 2026",
       "status": "Active"
     }
   ]

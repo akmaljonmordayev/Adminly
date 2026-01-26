@@ -1,25 +1,40 @@
 import React from "react";
 
-function Card({ ish, price, percentage, icon: Icon, gradient }) {
+function Card({ title, value, icon }) {
   return (
     <div
-      className={`w-72 h-44 rounded-2xl p-5 text-white relative overflow-hidden ${gradient}`}
+      className="
+        w-80 h-40
+        rounded-2xl
+        p-6
+        bg-white/10
+        backdrop-blur-xl
+        border border-white/10
+        text-white
+        relative
+        transition-all duration-300
+        hover:scale-[1.03]
+        hover:bg-white/15
+        hover:shadow-2xl
+        cursor-pointer
+      "
     >
-      {/* Decorative circles */}
-      <div className="absolute -top-10 -right-10 w-40 h-40 rounded-full bg-white/20"></div>
-      <div className="absolute bottom-0 right-10 w-24 h-24 rounded-full bg-white/10"></div>
+      {/* Icon badge */}
+      <div className="absolute top-5 right-5 w-11 h-11 rounded-xl bg-white/20 flex items-center justify-center text-xl">
+        {icon}
+      </div>
 
-      {/* Icon */}
-      {Icon && (
-        <div className="absolute top-5 right-5 bg-white/20 p-2 rounded-lg backdrop-blur-sm">
-          <Icon size={20} />
-        </div>
-      )}
+      {/* Title */}
+      <div className="flex items-center gap-2 text-sm text-gray-300">
+        <span className="text-lg">{icon}</span>
+        <span>{title}</span>
+      </div>
 
-      {/* Content */}
-      <h3 className="text-sm font-medium opacity-90">{ish}</h3>
-      <p className="text-3xl font-bold mt-7">{price}</p>
-      <p className="text-sm mt-7 opacity-90">{percentage}</p>
+      {/* Value */}
+      <div className="mt-6 text-4xl font-bold tracking-tight">{value}</div>
+
+      {/* subtle line */}
+      <div className="absolute bottom-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-white/20 to-transparent"></div>
     </div>
   );
 }
