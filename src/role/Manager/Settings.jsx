@@ -25,7 +25,7 @@ function Settings() {
     try {
       const res = await axios.get(`http://localhost:5000/users/${user.id}`);
       setData(res.data);
-    } catch {}
+    } catch { }
   };
 
   useEffect(() => {
@@ -61,7 +61,7 @@ function Settings() {
 
       setOpen(false);
       getData();
-    } catch {}
+    } catch { }
   };
 
   if (!user) return null;
@@ -149,6 +149,18 @@ function Settings() {
         </section>
       </div>
 
+      <style>
+        {`
+ .ant-modal-title { 
+    color: #22d3ee !important;
+ }
+  .ant-modal-container {
+    background-color: #071B2D !important;
+
+  }
+
+`}
+      </style>
       <Modal
         open={open}
         onCancel={() => setOpen(false)}
