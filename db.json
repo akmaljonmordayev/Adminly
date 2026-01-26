@@ -288,13 +288,6 @@
       "status": "pending"
     },
     {
-      "id": "9611",
-      "taskName": "tasks",
-      "employeeName": "Nodira Usmonova",
-      "deadline": "2026-02-28",
-      "status": "done"
-    },
-    {
       "id": "5396",
       "taskName": "ilon",
       "employeeName": "Bekzod Shokirov",
@@ -316,7 +309,15 @@
       "status": "pending"
     }
   ],
-  "logs": [],
+  "logs": [
+    {
+      "id": "c1ea",
+      "userName": "Mohinur Sulaymonqulova",
+      "action": "DELETE",
+      "date": "2026-01-26T09:43:22.518Z",
+      "page": "TASKS"
+    }
+  ],
   "resignations": [
     {
       "id": "RES001",
@@ -423,6 +424,13 @@
       "text": "14-yanvar vatan himoyachilari kuni uchun hammaga dam",
       "date": "Jan 21, 2026",
       "status": "Active"
+    },
+    {
+      "id": "2b07",
+      "title": "avsd",
+      "text": "asdvvad",
+      "date": "Jan 10, 2026",
+      "status": "Active"
     }
   ],
   "complaints": [
@@ -502,6 +510,13 @@
       "employeeName": "Nodira Usmonova",
       "deadline": "2026-01-30",
       "status": "pending"
+    },
+    {
+      "id": "9611",
+      "taskName": "tasks",
+      "employeeName": "Nodira Usmonova",
+      "deadline": "2026-02-28",
+      "status": "done"
     }
   ],
   "complaintsDeleted": [],
