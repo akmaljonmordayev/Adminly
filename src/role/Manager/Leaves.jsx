@@ -1,93 +1,106 @@
-import axios from "axios";
-import React, { useEffect, useState } from "react";
-import { toast } from "react-toastify";
+import axios from 'axios'
+import React, { useEffect, useState } from 'react'
+import { toast } from 'react-toastify'
 
 function Leaves() {
-  const [search, setSearch] = useState("");
-  const [sort, setSort] = useState("a-z");
-  const [statusFilter, setStatusFilter] = useState("all");
-  const [data, setData] = useState([]);
-  const [err, setErr] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 4;
+  const [search, setSearch] = useState('')
+  const [sort, setSort] = useState('a-z')
+  const [statusFilter, setStatusFilter] = useState('all')
+  const [data, setData] = useState([])
+  const [err, setErr] = useState(null)
+  const [loading, setLoading] = useState(true)
+  const [currentPage, setCurrentPage] = useState(1)
+  const itemsPerPage = 4
 
   const getData = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/resignations");
+      const res = await axios.get('http://localhost:5000/resignations')
       if (!Array.isArray(res.data))
-        throw new Error("Ma'lumot formati noto‘g‘ri");
-      setData(res.data);
+        throw new Error("Ma'lumot formati noto‘g‘ri")
+      setData(res.data)
     } catch (error) {
-      setErr(error.message);
+      setErr(error.message)
     } finally {
-      setLoading(false);
+      setLoading(false)
     }
-  };
+  }
 
   useEffect(() => {
-    getData();
-  }, []);
+    getData()
+  }, [])
 
   const filteredData = data.filter(
     (c) =>
       (c.employeeName?.toLowerCase().includes(search.toLowerCase()) ||
         c.description?.toLowerCase().includes(search.toLowerCase())) &&
-      (statusFilter === "all" ||
-        c.status?.toLowerCase() === statusFilter.toLowerCase())
-  );
+      (statusFilter === 'all' ||
+        c.status?.toLowerCase() === statusFilter.toLowerCase()),
+  )
 
   const sortedData = [...filteredData].sort((a, b) =>
-    sort === "a-z"
-      ? (a.employeeName || "").localeCompare(b.employeeName || "")
-      : (b.employeeName || "").localeCompare(a.employeeName || "")
-  );
+    sort === 'a-z'
+      ? (a.employeeName || '').localeCompare(b.employeeName || '')
+      : (b.employeeName || '').localeCompare(a.employeeName || ''),
+  )
 
-  const totalPages = Math.ceil(sortedData.length / itemsPerPage);
-  const startIndex = (currentPage - 1) * itemsPerPage;
-  const currentData = sortedData.slice(startIndex, startIndex + itemsPerPage);
+  const totalPages = Math.ceil(sortedData.length / itemsPerPage)
+  const startIndex = (currentPage - 1) * itemsPerPage
+  const currentData = sortedData.slice(startIndex, startIndex + itemsPerPage)
 
   const handleStatusChange = async (id, newStatus) => {
-    const user = JSON.parse(localStorage.getItem("user")) || {};
+    const user = JSON.parse(localStorage.getItem('user')) || {}
 
     try {
       await axios.patch(`http://localhost:5000/resignations/${id}`, {
         status: newStatus,
-      });
-
-      await axios.post("http://localhost:5000/logs", {
-        userName: user.name || "Unknown",
-        action: `Leave status changed to ${newStatus}`,
-        date: Date.now(),
-      });
+      })
 
       setData((prev) =>
         prev.map((item) =>
-          item.id === id ? { ...item, status: newStatus } : item
-        )
-      );
+          item.id === id ? { ...item, status: newStatus } : item,
+        ),
+      )
+
+      await axios.post('http://localhost:5000/logs', {
+        userName: user.name || 'Unknown',
+        action: 'UPDATE',
+        date: new Date().toISOString(),
+        page: 'LEAVES',
+        description: `Status changed to ${newStatus}`,
+      })
     } catch {
-      alert("Status o‘zgartirishda xatolik yuz berdi");
+      alert('Status o‘zgartirishda xatolik yuz berdi')
     }
-  };
+  }
 
   const handleDelete = async (id) => {
-    if (!window.confirm("Rostan ham o‘chirmoqchimisiz?")) return;
+    const user = JSON.parse(localStorage.getItem('user')) || {}
+
+    if (!window.confirm('Rostan ham o‘chirmoqchimisiz?')) return
+
     try {
-      await axios.delete(`http://localhost:5000/resignations/${id}`);
-      toast.success("Successfully deleted");
-      getData();
+      await axios.delete(`http://localhost:5000/resignations/${id}`)
+
+      toast.success('Successfully deleted')
+      getData()
+
+      await axios.post('http://localhost:5000/logs', {
+        userName: user.name || 'Unknown',
+        action: 'DELETE',
+        date: new Date().toISOString(),
+        page: 'LEAVES',
+      })
     } catch (error) {
-      console.log(error.response?.data || error.message);
-      toast.error("O‘chirishda xatolik yuz berdi");
+      console.log(error.response?.data || error.message)
+      toast.error('O‘chirishda xatolik yuz berdi')
     }
-  };
+  }
 
   const statusColors = {
-    pending: "bg-yellow-500 text-white",
-    approved: "bg-blue-500 text-white",
-    rejected: "bg-red-500 text-white",
-  };
+    pending: 'bg-yellow-500 text-white',
+    approved: 'bg-blue-500 text-white',
+    rejected: 'bg-red-500 text-white',
+  }
 
   return (
     <main className="flex bg-[#020617]">
@@ -103,8 +116,8 @@ function Leaves() {
             placeholder="Search by name or description..."
             value={search}
             onChange={(e) => {
-              setSearch(e.target.value);
-              setCurrentPage(1);
+              setSearch(e.target.value)
+              setCurrentPage(1)
             }}
             className="w-[595px] py-2 px-4 bg-[#020617] border border-cyan-700 rounded-md text-white placeholder-cyan-400 focus:ring-2 focus:ring-cyan-500"
           />
@@ -121,8 +134,8 @@ function Leaves() {
           <select
             value={statusFilter}
             onChange={(e) => {
-              setStatusFilter(e.target.value);
-              setCurrentPage(1);
+              setStatusFilter(e.target.value)
+              setCurrentPage(1)
             }}
             className="p-2 bg-[#020617] border border-cyan-700 rounded-md text-white"
           >
@@ -143,21 +156,21 @@ function Leaves() {
             >
               <div className="flex flex-col gap-2">
                 <h3 className="text-lg font-semibold text-white">
-                  {c.employeeName || "No name"}
+                  {c.employeeName || 'No name'}
                 </h3>
                 <span
                   className={`px-2 py-1  text-sm font-medium rounded w-[230px] ${
                     statusColors[c.text?.toLowerCase()] ||
-                    "bg-cyan-900 text-white"
+                    'bg-cyan-900 text-white'
                   }`}
                 >
                   {c.comment
                     ? c.comment.charAt(0).toUpperCase() + c.comment.slice(1)
-                    : "Unknown"}
+                    : 'Unknown'}
                 </span>
                 <p className="text-cyan-400 text-sm">
-                  Position: {c.position || "N/A"} | Date:{" "}
-                  {c.noticePeriod || "N/A"}
+                  Position: {c.position || 'N/A'} | Date:{' '}
+                  {c.noticePeriod || 'N/A'}
                 </p>
               </div>
 
@@ -165,14 +178,14 @@ function Leaves() {
                 <span
                   className={`px-5 py-1 text-sm rounded ${
                     statusColors[c.status?.toLowerCase()] ||
-                    "bg-gray-600 text-white"
+                    'bg-gray-600 text-white'
                   }`}
                 >
-                  {c.status || "Unknown"}
+                  {c.status || 'Unknown'}
                 </span>
 
                 <select
-                  value={c.status || "pending"}
+                  value={c.status || 'pending'}
                   onChange={(e) => handleStatusChange(c.id, e.target.value)}
                   className="px-2 py-1 rounded bg-[#0b1220] border border-gray-600 text-sm"
                 >
@@ -201,8 +214,8 @@ function Leaves() {
                 onClick={() => setCurrentPage(i + 1)}
                 className={`px-3 py-1 border border-cyan-600 rounded ${
                   currentPage === i + 1
-                    ? "bg-cyan-600 text-black"
-                    : "text-cyan-300"
+                    ? 'bg-cyan-600 text-black'
+                    : 'text-cyan-300'
                 }`}
               >
                 {i + 1}
@@ -212,7 +225,7 @@ function Leaves() {
         )}
       </div>
     </main>
-  );
+  )
 }
 
-export default Leaves;
+export default Leaves

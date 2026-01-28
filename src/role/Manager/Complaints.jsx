@@ -1,90 +1,98 @@
-import axios from "axios";
-import React, { useEffect, useState } from "react";
-import { toast, ToastContainer } from "react-toastify";
+import axios from 'axios'
+import React, { useEffect, useState } from 'react'
+import { toast, ToastContainer } from 'react-toastify'
 
 function ComplaintsAdmin() {
-  const [search, setSearch] = useState("");
-  const [sort, setSort] = useState("a-z");
-  const [statusFilter, setStatusFilter] = useState("all");
-  const [data, setData] = useState([]);
-  const [err, setErr] = useState(null);
-  const [loading, setLoading] = useState(true);
+  const [search, setSearch] = useState('')
+  const [sort, setSort] = useState('a-z')
+  const [statusFilter, setStatusFilter] = useState('all')
+  const [data, setData] = useState([])
+  const [err, setErr] = useState(null)
+  const [loading, setLoading] = useState(true)
 
   const getData = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/complaints");
+      const res = await axios.get('http://localhost:5000/complaints')
       if (!Array.isArray(res.data)) {
-        throw new Error("Ma'lumot array emas");
+        throw new Error("Ma'lumot array emas")
       }
-      setData(res.data);
+      setData(res.data)
     } catch (error) {
-      setErr(error.message);
+      setErr(error.message)
     } finally {
-      setLoading(false);
+      setLoading(false)
     }
-  };
-  getData();
+  }
+  getData()
 
   useEffect(() => {
-    getData();
-  }, []);
+    getData()
+  }, [])
 
   const handleStatusChange = async (id, newStatus) => {
     try {
       await axios.patch(`http://localhost:5000/complaints/${id}`, {
         status: newStatus,
-      });
+      })
 
       setData((prev) =>
         prev.map((item) =>
-          item.id === id ? { ...item, status: newStatus } : item
-        )
-      );
+          item.id === id ? { ...item, status: newStatus } : item,
+        ),
+      )
     } catch (error) {
-      console.error(error);
-      alert("Status o‘zgartirishda xatolik");
+      console.error(error)
+      alert('Status o‘zgartirishda xatolik')
     }
-  };
+  }
 
   const handleDelete = async (id) => {
-    if (!window.confirm("Rostan ham o‘chirmoqchimisiz?")) return;
+    if (!window.confirm('Rostan ham o‘chirmoqchimisiz?')) return
 
     try {
-      let res = await axios.get(`http://localhost:5000/complaints/${id}`);
+      let res = await axios.get(`http://localhost:5000/complaints/${id}`)
 
-      await axios.post("http://localhost:5000/complaintsDeleted", res.data);
+      await axios.post('http://localhost:5000/complaintsDeleted', res.data)
 
-      let ress = await axios.delete(`http://localhost:5000/complaints/${id}`);
+      let ress = await axios.delete(`http://localhost:5000/complaints/${id}`)
 
       if (res.status == 200) {
-        toast.success("Successfully deleted and archieved");
-        getData();
+        toast.success('Successfully deleted and archieved')
+        getData()
       }
+
+      toast.success('Complaint was deleted successfully')
+      await axios.post('http://localhost:5000/logs', {
+        userName: user.name,
+        action: 'DELETE',
+        date: new Date().toISOString(),
+        page: 'COMPLAINTS',
+      })
     } catch (error) {
-      console.error(error);
-      alert("O‘chirishda xatolik");
+      console.error(error)
+      alert('O‘chirishda xatolik')
     }
-  };
+  }
 
   const filteredData = data.filter(
     (c) =>
       (c.title?.toLowerCase().includes(search.toLowerCase()) ||
         c.description?.toLowerCase().includes(search.toLowerCase())) &&
-      (statusFilter === "all" ||
-        c.status?.toLowerCase() === statusFilter.toLowerCase())
-  );
+      (statusFilter === 'all' ||
+        c.status?.toLowerCase() === statusFilter.toLowerCase()),
+  )
 
   const sortedData = [...filteredData].sort((a, b) =>
-    sort === "a-z"
+    sort === 'a-z'
       ? a.title.localeCompare(b.title)
-      : b.title.localeCompare(a.title)
-  );
+      : b.title.localeCompare(a.title),
+  )
 
   const statusColors = {
-    pending: "bg-yellow-500/20 text-yellow-300",
-    reviewed: "bg-blue-500/20 text-blue-300",
-    resolved: "bg-green-500/20 text-green-300",
-  };
+    pending: 'bg-yellow-500/20 text-yellow-300',
+    reviewed: 'bg-blue-500/20 text-blue-300',
+    resolved: 'bg-green-500/20 text-green-300',
+  }
 
   return (
     <div className="min-h-screen p-6 bg-[#0b1220] text-gray-200">
@@ -93,7 +101,7 @@ function ComplaintsAdmin() {
 
         {err && <p className="text-red-400 mb-2">{err}</p>}
         {loading && <p className="text-gray-400 mb-2">Yuklanmoqda...</p>}
-        <ToastContainer />
+        <ToastContainer theme="dark" position="top-right" />
 
         <div className="flex flex-col sm:flex-row gap-4 mb-6">
           <input
@@ -137,10 +145,10 @@ function ComplaintsAdmin() {
                 <span
                   className={`px-2 py-1 text-sm rounded ${
                     statusColors[c.status?.toLowerCase()] ||
-                    "bg-gray-500/20 text-gray-300"
+                    'bg-gray-500/20 text-gray-300'
                   }`}
                 >
-                  {c.status || "Unknown"}
+                  {c.status || 'Unknown'}
                 </span>
               </div>
 
@@ -148,12 +156,12 @@ function ComplaintsAdmin() {
 
               <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
                 <p className="text-sm text-gray-500">
-                  Employee: {c.employeeName || "N/A"} | Date: {c.date || "N/A"}
+                  Employee: {c.employeeName || 'N/A'} | Date: {c.date || 'N/A'}
                 </p>
 
                 <div className="flex items-center gap-2">
                   <select
-                    value={c.status || "pending"}
+                    value={c.status || 'pending'}
                     onChange={(e) => handleStatusChange(c.id, e.target.value)}
                     className="p-1 rounded bg-[#0b1220] border border-gray-600 text-sm"
                   >
@@ -179,7 +187,7 @@ function ComplaintsAdmin() {
         </div>
       </div>
     </div>
-  );
+  )
 }
 
-export default ComplaintsAdmin;
+export default ComplaintsAdmin

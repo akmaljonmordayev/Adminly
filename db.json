@@ -60,7 +60,7 @@
       "id": "9",
       "name": "Abdulloh Abdumalikov",
       "email": "abdulloh@gmail.com",
-      "password": "1234",
+      "password": "...",
       "role": "manager"
     }
   ],
@@ -316,6 +316,68 @@
       "action": "DELETE",
       "date": "2026-01-26T09:43:22.518Z",
       "page": "TASKS"
+    },
+    {
+      "id": "e65c",
+      "userName": "Abdulloh Abdumalikov",
+      "action": "CREATE",
+      "date": "2026-01-26T06:31:37.525Z",
+      "page": "ANNOUNCEMENTS"
+    },
+    {
+      "id": "10c8",
+      "userName": "Abdulloh Abdumalikov",
+      "action": "DELETE",
+      "date": "2026-01-26T06:34:36.735Z",
+      "page": "ANNOUNCEMENTS"
+    },
+    {
+      "id": "aabc",
+      "userName": "Abdulloh Abdumalikov",
+      "action": "DELETE",
+      "date": "2026-01-26T06:34:55.071Z",
+      "page": "ANNOUNCEMENTS"
+    },
+    {
+      "id": "c1c8",
+      "userName": "Abdulloh Abdumalikov",
+      "action": "UPDATE",
+      "date": "2026-01-26T06:37:44.359Z",
+      "page": "ANNOUNCEMENTS"
+    },
+    {
+      "id": "a4fd",
+      "userName": "Abdulloh Abdumalikov",
+      "action": "Leave status changed to rejected",
+      "date": 1769571648279
+    },
+    {
+      "id": "ca1e",
+      "userName": "Abdulloh Abdumalikov",
+      "action": "UPDATE",
+      "date": "2026-01-28T03:40:48.301Z",
+      "page": "LEAVES"
+    },
+    {
+      "id": "503d",
+      "userName": "Abdulloh Abdumalikov",
+      "action": "DELETE",
+      "date": "2026-01-28T03:52:03.774Z",
+      "page": "LEAVES"
+    },
+    {
+      "id": "d455",
+      "userName": "Abdulloh Abdumalikov",
+      "action": "DELETE",
+      "date": "2026-01-28T03:52:10.876Z",
+      "page": "LEAVES"
+    },
+    {
+      "id": "525d",
+      "userName": "Abdulloh Abdumalikov",
+      "action": "UPDATE",
+      "date": "2026-01-28T03:58:13.708Z",
+      "page": "SETTINGS"
     }
   ],
   "resignations": [
@@ -330,7 +392,7 @@
       "lastWorkingDay": "2026-01-10",
       "noticePeriod": "30 days",
       "reason": "Career growth",
-      "status": "approved",
+      "status": "pending",
       "approvedBy": null,
       "comment": "Looking for new opportunities"
     },
@@ -348,51 +410,6 @@
       "status": "approved",
       "approvedBy": "Tech Lead",
       "comment": "Contract completion"
-    },
-    {
-      "id": "RES002",
-      "employeeId": "EMP002",
-      "employeeName": "Laylo Saidova",
-      "position": "HR Specialist",
-      "department": "Human Resources",
-      "resignationType": "voluntary",
-      "appliedDate": "2025-11-25",
-      "lastWorkingDay": "2025-12-25",
-      "noticePeriod": "30 days",
-      "reason": "Family reasons",
-      "status": "rejected",
-      "approvedBy": "HR Manager",
-      "comment": "Approved without issues"
-    },
-    {
-      "id": "RES004",
-      "employeeId": "EMP004",
-      "employeeName": "Sherzod Rasulov",
-      "position": "Project Manager",
-      "department": "Management",
-      "resignationType": "termination",
-      "appliedDate": "2025-12-05",
-      "lastWorkingDay": "2025-12-15",
-      "noticePeriod": "10 days",
-      "reason": "Company restructuring",
-      "status": "approved",
-      "approvedBy": "CEO",
-      "comment": "Position closed"
-    },
-    {
-      "id": "RES005",
-      "employeeId": "EMP005",
-      "employeeName": "Malika Tursunova",
-      "position": "Junior Accountant",
-      "department": "Finance",
-      "resignationType": "voluntary",
-      "appliedDate": "2025-12-18",
-      "lastWorkingDay": "2026-01-18",
-      "noticePeriod": "30 days",
-      "reason": "Higher education",
-      "status": "pending",
-      "approvedBy": null,
-      "comment": "Planning to study abroad"
     }
   ],
   "vacations": [
@@ -526,6 +543,27 @@
       "title": "asvd",
       "text": "asdvasdv",
       "date": "Jan 26, 2026",
+      "status": "Active"
+    },
+    {
+      "id": "48d7",
+      "title": "NNa",
+      "text": "NNa",
+      "date": "2026-01-26T06:13:05.999Z",
+      "status": "Active"
+    },
+    {
+      "id": "7634",
+      "title": "QWERTY",
+      "text": "qwerty",
+      "date": "2026-01-26T06:31:37.487Z",
+      "status": "Active"
+    },
+    {
+      "id": "4a43",
+      "title": "QQ",
+      "text": "QQQ",
+      "date": "Jan 2, 2026",
       "status": "Active"
     }
   ]

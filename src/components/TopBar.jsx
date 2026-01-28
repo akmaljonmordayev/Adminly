@@ -18,6 +18,8 @@ function TopBar({ onToggle }) {
   const [bell, setBell] = useState(true)
   const [modal, setModal] = useState(false)
 
+  const hour = new Date().getHours()
+
   const SignOut = () => {
     toast.info('Signing out...')
     setTimeout(() => {
@@ -40,12 +42,15 @@ function TopBar({ onToggle }) {
         <FaBars className="text-cyan-400 text-xl group-hover:rotate-180 transition-transform duration-500" />
       </button>
 
-      <div className="hidden md:flex items-center bg-[#020617] border border-cyan-400/20 rounded-xl px-4 py-2 w-80 focus-within:border-cyan-400/60 focus-within:shadow-[0_0_15px_rgba(34,211,238,0.1)] transition-all">
-        <input
-          placeholder="Search system..."
-          className="bg-transparent outline-none text-cyan-100 w-full text-sm placeholder:text-cyan-900"
-        />
-        <FaSearch className="text-cyan-800" />
+      <div className="flex-1 ml-2">
+        <h2 className="flex items-center gap-3 text-white text-xl md:text-xl font-extrabold tracking-tight">
+          <span className="opacity-90">
+            {hour < 12 ? 'GOOD MORNING' : 'GOOD EAVNING'},
+          </span>
+          <span className="relative">
+            <span className="text-cyan-400">{user.name.toUpperCase()} !</span>
+          </span>
+        </h2>
       </div>
 
       <div className="flex items-center ml-auto gap-2 md:gap-4">
