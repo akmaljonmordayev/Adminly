@@ -9,9 +9,9 @@ import {
   FiLayers,
   FiChevronLeft,
   FiChevronRight,
-} from "react-icons/fi";
+} from 'react-icons/fi'
 
-const LOGS_URL = "http://localhost:5000/logs";
+const LOGS_URL = 'http://localhost:5000/logs'
 
 const formatDate = (date) => {
   if (!date) return '-'
@@ -47,11 +47,11 @@ function Logs() {
       } catch (err) {
         setError('Logs not found')
       } finally {
-        setLoading(false);
+        setLoading(false)
       }
-    };
-    fetchLogs();
-  }, []);
+    }
+    fetchLogs()
+  }, [])
 
   /* ================= FILTER + SORT ================= */
   const filteredAndSortedData = useMemo(() => {
@@ -72,9 +72,9 @@ function Logs() {
       const nameB = b.userName?.toLowerCase() || ''
       return sortOrder === 'a-z'
         ? nameA.localeCompare(nameB)
-        : nameB.localeCompare(nameA);
-    });
-  }, [data, search, statusFilter, sortOrder]);
+        : nameB.localeCompare(nameA)
+    })
+  }, [data, search, statusFilter, sortOrder])
 
   /* ================= PAGINATION ================= */
   const totalPages = Math.ceil(filteredAndSortedData.length / itemsPerPage)
@@ -83,31 +83,30 @@ function Logs() {
   const currentItems = filteredAndSortedData.slice(
     indexOfFirstItem,
     indexOfLastItem,
-  );
+  )
 
   useEffect(() => {
-    setCurrentPage(1);
-  }, [search, statusFilter]);
+    setCurrentPage(1)
+  }, [search, statusFilter])
 
   const actionConfig = {
     create: {
       icon: <FiPlusCircle className="mr-2" />,
-      style: "bg-green-500/10 text-green-400 border-green-500/30",
+      style: 'bg-green-500/10 text-green-400 border-green-500/30',
     },
     update: {
       icon: <FiEdit className="mr-2" />,
-      style: "bg-yellow-500/10 text-yellow-400 border-yellow-500/30",
+      style: 'bg-yellow-500/10 text-yellow-400 border-yellow-500/30',
     },
     delete: {
       icon: <FiTrash2 className="mr-2" />,
-      style: "bg-red-500/10 text-red-400 border-red-500/30",
+      style: 'bg-red-500/10 text-red-400 border-red-500/30',
     },
-  };
+  }
 
   return (
     <main className="flex bg-[#0A0F1C] min-h-screen py-10 px-4 font-sans">
       <div className="max-w-4xl mx-auto w-full flex flex-col">
-
         {/* Header */}
         <div className="flex items-center gap-3 mb-8 border-b border-[#2BD3F3]/10 pb-6">
           <div className="p-3 bg-[#2BD3F3]/10 rounded-xl">
@@ -115,9 +114,7 @@ function Logs() {
           </div>
           <div>
             <h2 className="text-3xl font-bold text-white">Audit Logs</h2>
-            <p className="text-[#2BD3F3]/50 text-sm">
-              Total: {data.length}
-            </p>
+            <p className="text-[#2BD3F3]/50 text-sm">Total: {data.length}</p>
           </div>
         </div>
 
@@ -201,7 +198,7 @@ function Logs() {
                     {log.action}
                   </div>
                 </div>
-              );
+              )
             })
           )}
         </div>
@@ -236,9 +233,7 @@ function Logs() {
             ))}
 
             <button
-              onClick={() =>
-                setCurrentPage((p) => Math.min(p + 1, totalPages))
-              }
+              onClick={() => setCurrentPage((p) => Math.min(p + 1, totalPages))}
               disabled={currentPage === totalPages}
               className={`p-2 rounded-lg border ${
                 currentPage === totalPages
@@ -256,9 +251,7 @@ function Logs() {
       {selectedLog && (
         <div className="fixed inset-0 bg-black/60 flex items-center justify-center z-50">
           <div className="bg-[#111B34] max-w-md w-full rounded-2xl p-6 border border-[#2BD3F3]/20">
-            <h3 className="text-xl font-bold text-white mb-4">
-              Log details
-            </h3>
+            <h3 className="text-xl font-bold text-white mb-4">Log details</h3>
 
             <div className="space-y-3 text-sm">
               <div className="flex justify-between">
@@ -267,7 +260,7 @@ function Logs() {
               </div>
               <div className="flex justify-between">
                 <span className="text-gray-400">User ID</span>
-                <span className="text-white">{selectedLog.userId || '-'}</span>
+                <span className="text-white">{selectedLog.userId || '-T'}</span>
               </div>
               <div className="flex justify-between">
                 <span className="text-gray-400">Status</span>
@@ -295,7 +288,7 @@ function Logs() {
         </div>
       )}
     </main>
-  );
+  )
 }
 
-export default Logs;
+export default Logs

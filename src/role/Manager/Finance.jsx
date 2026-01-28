@@ -91,6 +91,14 @@ function Finance() {
         updatedData,
       )
 
+      toast.success('Finance successfully update')
+      await axios.post('http://localhost:5000/logs', {
+        userName: user.name,
+        action: 'UPDATE',
+        date: new Date().toISOString(),
+        page: 'FINANCE',
+      })
+
       setData((prev) =>
         prev.map((item) => (item.id === editData.id ? updatedData : item)),
       )
@@ -151,7 +159,10 @@ function Finance() {
                           const value = e.target.value
                           let updated = { ...editData, [f.key]: value }
 
-                          if (f.key === 'baseSalary' || f.key === 'kpiPercent') {
+                          if (
+                            f.key === 'baseSalary' ||
+                            f.key === 'kpiPercent'
+                          ) {
                             const base =
                               f.key === 'baseSalary'
                                 ? Number(value)
@@ -161,7 +172,9 @@ function Finance() {
                                 ? Number(value)
                                 : Number(editData.kpiPercent)
 
-                            updated.kpiAmount = Math.round((base * percent) / 100)
+                            updated.kpiAmount = Math.round(
+                              (base * percent) / 100,
+                            )
                           }
 
                           setEditData(updated)
@@ -190,12 +203,17 @@ function Finance() {
 
                   {/* Payment Date */}
                   <div className="flex flex-col gap-1">
-                    <label className="text-xs text-slate-400">Payment Date</label>
+                    <label className="text-xs text-slate-400">
+                      Payment Date
+                    </label>
                     <input
                       type="date"
                       value={editData.paymentDate || ''}
                       onChange={(e) =>
-                        setEditData({ ...editData, paymentDate: e.target.value })
+                        setEditData({
+                          ...editData,
+                          paymentDate: e.target.value,
+                        })
                       }
                       className="px-3 py-2 rounded-xl bg-slate-900 border border-white/10 text-white focus:border-cyan-500"
                     />
@@ -213,19 +231,38 @@ function Finance() {
                     >
                       <option value="">Select Month</option>
                       {[
-                        'January','February','March','April','May','June',
-                        'July','August','September','October','November','December'
-                      ].map(m => <option key={m} value={m}>{m}</option>)}
+                        'January',
+                        'February',
+                        'March',
+                        'April',
+                        'May',
+                        'June',
+                        'July',
+                        'August',
+                        'September',
+                        'October',
+                        'November',
+                        'December',
+                      ].map((m) => (
+                        <option key={m} value={m}>
+                          {m}
+                        </option>
+                      ))}
                     </select>
                   </div>
 
                   {/* Payment Method */}
                   <div className="flex flex-col gap-1">
-                    <label className="text-xs text-slate-400">Payment Method</label>
+                    <label className="text-xs text-slate-400">
+                      Payment Method
+                    </label>
                     <select
                       value={editData.paymentMethod || ''}
                       onChange={(e) =>
-                        setEditData({ ...editData, paymentMethod: e.target.value })
+                        setEditData({
+                          ...editData,
+                          paymentMethod: e.target.value,
+                        })
                       }
                       className="px-3 py-2 rounded-xl bg-slate-900 border border-white/10 text-white focus:border-cyan-500 cursor-pointer"
                     >
@@ -236,7 +273,9 @@ function Finance() {
 
                   {/* Payment Status */}
                   <div className="flex flex-col gap-1">
-                    <label className="text-xs text-slate-400">Payment Status</label>
+                    <label className="text-xs text-slate-400">
+                      Payment Status
+                    </label>
                     <select
                       value={editData.status || ''}
                       onChange={(e) =>
@@ -269,7 +308,9 @@ function Finance() {
                 {/* Total */}
                 <div className="bg-[#0b1221] p-4 rounded-xl border border-white/10">
                   <div className="flex justify-between">
-                    <span className="text-xs uppercase text-cyan-500">Total</span>
+                    <span className="text-xs uppercase text-cyan-500">
+                      Total
+                    </span>
                     <span className="text-2xl font-bold text-cyan-400">
                       $
                       {Number(editData.baseSalary) +
@@ -296,22 +337,28 @@ function Finance() {
           <table className="w-full text-sm">
             <thead className="bg-[#0f172a] text-slate-400">
               <tr>
-                {columns.map(c => (
-                  <th key={c} className="px-4 py-3 text-left">{c}</th>
+                {columns.map((c) => (
+                  <th key={c} className="px-4 py-3 text-left">
+                    {c}
+                  </th>
                 ))}
               </tr>
             </thead>
             <tbody className="divide-y divide-white/5">
-              {currentData.map(row => (
+              {currentData.map((row) => (
                 <tr key={row.id} className="hover:bg-white/5">
                   <td className="px-4 py-3">{row.userId}</td>
                   <td className="px-4 py-3 text-white">{row.fullName}</td>
                   <td className="px-4 py-3">${row.baseSalary}</td>
                   <td className="px-4 py-3">{row.kpiPercent}%</td>
-                  <td className="px-4 py-3 text-emerald-400">+${row.kpiAmount}</td>
+                  <td className="px-4 py-3 text-emerald-400">
+                    +${row.kpiAmount}
+                  </td>
                   <td className="px-4 py-3 text-emerald-400">+${row.bonus}</td>
                   <td className="px-4 py-3 text-red-400">-${row.penalty}</td>
-                  <td className="px-4 py-3 font-bold text-cyan-400">${row.totalSalary}</td>
+                  <td className="px-4 py-3 font-bold text-cyan-400">
+                    ${row.totalSalary}
+                  </td>
                   <td className="px-4 py-3">{row.month}</td>
                   <td className="px-4 py-3">{row.status}</td>
                   <td className="px-4 py-3">{row.paymentDate}</td>
@@ -319,7 +366,10 @@ function Finance() {
                   <td className="px-4 py-3">{row.comment}</td>
                   <td className="px-4 py-3">
                     <button
-                      onClick={() => { setSingleUserId(row.userId); setUserCard(true) }}
+                      onClick={() => {
+                        setSingleUserId(row.userId)
+                        setUserCard(true)
+                      }}
                       className="px-3 py-1 text-xs font-bold text-cyan-400 border border-cyan-400/30 rounded-full hover:bg-cyan-400 hover:text-slate-900"
                     >
                       Edit

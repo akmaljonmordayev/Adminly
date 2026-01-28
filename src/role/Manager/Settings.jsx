@@ -1,84 +1,84 @@
-import React, { useState } from "react";
-import { Button, Modal } from "antd";
-import axios from "axios";
-import { useEffect } from "react";
+import React, { useState } from 'react'
+import { Button, Modal } from 'antd'
+import axios from 'axios'
+import { useEffect } from 'react'
+import { FaEye, FaEyeSlash } from 'react-icons/fa'
 
 function Settings() {
-  const user = JSON.parse(localStorage.getItem("user"));
-  const [notifications, setNotifications] = useState(true);
-  const [emailAlerts, setEmailAlerts] = useState(false);
-  const [twoFA, setTwoFA] = useState(false);
-  const [privateMode, setPrivateMode] = useState(false);
-  const [autoLogout, setAutoLogout] = useState(true);
-  const [saveSession, setSaveSession] = useState(true);
-  const [devMode, setDevMode] = useState(false);
-  const [open, setOpen] = React.useState(false);
-  const [showPassword, setShowPassword] = useState(false);
-  const [newFullname, setNewFullname] = useState("");
-  const [newEmail, setNewEmail] = useState("");
-  const [newPassword, setNewPassword] = useState("");
+  const user = JSON.parse(localStorage.getItem('user'))
+  const [notifications, setNotifications] = useState(true)
+  const [emailAlerts, setEmailAlerts] = useState(false)
+  const [twoFA, setTwoFA] = useState(false)
+  const [privateMode, setPrivateMode] = useState(false)
+  const [autoLogout, setAutoLogout] = useState(true)
+  const [saveSession, setSaveSession] = useState(true)
+  const [devMode, setDevMode] = useState(false)
+  const [open, setOpen] = React.useState(false)
+  const [showPassword, setShowPassword] = useState(false)
+  const [newFullname, setNewFullname] = useState('')
+  const [newEmail, setNewEmail] = useState('')
+  const [newPassword, setNewPassword] = useState('')
   const [data, setData] = useState([])
 
-
   const getData = async () => {
-    let user = JSON.parse(localStorage.getItem("user"));
+    let user = JSON.parse(localStorage.getItem('user'))
     try {
       let res = await axios.get(`http://localhost:5000/users/${user.id}`)
       setData(res.data)
-    } catch (error) {
-
-    }
+    } catch (error) {}
   }
 
   useEffect(() => {
     getData()
   }, [])
 
-
-  if (!user) return null;
+  if (!user) return null
   const showLoading = async () => {
-    setOpen(true);
-    let user = JSON.parse(localStorage.getItem("user"))
+    setOpen(true)
+    let user = JSON.parse(localStorage.getItem('user'))
     try {
       let res = await axios.get(`http://localhost:5000/users/${user.id}`)
       setNewFullname(res.data.name)
       setNewEmail(res.data.email)
       setNewPassword(res.data.password)
-    } catch (error) {
-
-    }
-
-  };
+    } catch (error) {}
+  }
 
   const submitData = async (e) => {
-    e.preventDefault();
-    let user = JSON.parse(localStorage.getItem("user"));
+    e.preventDefault()
+    let user = JSON.parse(localStorage.getItem('user'))
     try {
       let res = await axios.put(`http://localhost:5000/users/${user.id}`, {
         id: user.id,
         name: newFullname,
         email: newEmail,
         password: newPassword,
-        role: "manager",
-      });
-      console.log(res);
+        role: 'manager',
+      })
+      console.log(res)
       if (res.status == 200) {
-        alert("done")
+        alert('done')
         setOpen(false)
         getData()
         localStorage.setItem(
-          "user",
+          'user',
           JSON.stringify({
             id: user.id,
             name: newFullname,
             email: newEmail,
             password: newPassword,
-            role: "manager",
-          })
+            role: 'manager',
+          }),
         )
       }
-    } catch (error) { }
-  };
+      await axios.post('http://localhost:5000/logs', {
+        userName: user.name,
+        action: 'UPDATE',
+        date: new Date().toISOString(),
+        page: 'SETTINGS',
+      })
+    } catch (error) {}
+  }
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-[#071B2D] to-[#0C2B3E] flex justify-center p-4">
@@ -186,16 +186,13 @@ function Settings() {
 `}
       </style>
 
-
       <Modal
         open={open}
         onCancel={() => setOpen(false)}
         footer={null}
         className="custom-dark-modal"
         title={
-          <p className="text-lg font-semibold text-cyan-400">
-            Edit Profile
-          </p>
+          <p className="text-lg font-semibold text-cyan-400">Edit Profile</p>
         }
       >
         <form onSubmit={(e) => submitData(e)} className="flex flex-col gap-4 ">
@@ -239,7 +236,7 @@ function Settings() {
 
           <div className="relative">
             <input
-              type={showPassword ? "text" : "password"}
+              type={showPassword ? 'text' : 'password'}
               placeholder="Your Password"
               value={newPassword}
               onChange={(e) => setNewPassword(e.target.value)}
@@ -261,18 +258,19 @@ function Settings() {
               type="button"
               onClick={() => setShowPassword(!showPassword)}
               className="
-          absolute right-3 top-1/2 -translate-y-1/2
-          text-cyan-400
-          hover:text-cyan-300
-          text-sm
-          select-none
-        "
+    absolute right-3 top-1/2 -translate-y-1/2
+    text-cyan-400
+    hover:text-cyan-300
+    text-lg
+    select-none
+  "
             >
-              {showPassword ? "Hide" : "Show"}
+              {showPassword ? <FaEyeSlash /> : <FaEye />}
             </button>
           </div>
 
           <button
+            onClick={() => {}}
             type="submit"
             className="
         mt-2
@@ -288,12 +286,10 @@ function Settings() {
           >
             Edit Profile
           </button>
-
         </form>
       </Modal>
     </div>
-
-  );
+  )
 }
 
 function Row({ label, value, highlight }) {
@@ -303,13 +299,14 @@ function Row({ label, value, highlight }) {
         {label}
       </span>
       <span
-        className={`text-base sm:text-xl font-medium ${highlight ? "text-[#00D1FF]" : "text-[#EAFBFF]"
-          }`}
+        className={`text-base sm:text-xl font-medium ${
+          highlight ? 'text-[#00D1FF]' : 'text-[#EAFBFF]'
+        }`}
       >
         {value}
       </span>
     </div>
-  );
+  )
 }
 
 function Setting({ title, checked, onClick }) {
@@ -320,7 +317,7 @@ function Setting({ title, checked, onClick }) {
       </span>
       <Switch checked={checked} onClick={onClick} />
     </div>
-  );
+  )
 }
 
 function Switch({ checked, onClick }) {
@@ -328,17 +325,18 @@ function Switch({ checked, onClick }) {
     <div
       onClick={onClick}
       className={`w-14 sm:w-16 h-7 sm:h-8 rounded-full flex items-center px-1 cursor-pointer transition-all
-      ${checked
-          ? "bg-gradient-to-r from-[#00D1FF] to-[#00A7CC]"
-          : "bg-[#123B52]"
-        }`}
+      ${
+        checked
+          ? 'bg-gradient-to-r from-[#00D1FF] to-[#00A7CC]'
+          : 'bg-[#123B52]'
+      }`}
     >
       <div
         className={`w-6 h-6 sm:w-6 sm:h-6 rounded-full bg-white transition-transform transform
-        ${checked ? "translate-x-6 sm:translate-x-7" : "translate-x-0"}`}
+        ${checked ? 'translate-x-6 sm:translate-x-7' : 'translate-x-0'}`}
       />
     </div>
-  );
+  )
 }
 
-export default Settings;
+export default Settings
