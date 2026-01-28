@@ -77,10 +77,10 @@
       "bonus": "100",
       "penalty": "90",
       "totalSalary": 120,
-      "month": "2025-12",
+      "month": "December",
       "status": "unpaid",
       "paymentDate": "2025-12-27",
-      "paymentMethod": "bank",
+      "paymentMethod": "cash",
       "comment": "Salary processed",
       "leaves": [
         {
@@ -307,77 +307,114 @@
       "employeeName": "Sherzod Rasulov",
       "deadline": "2025-12-02",
       "status": "pending"
+    },
+    {
+      "id": "5582",
+      "taskName": "hoshim",
+      "employeeName": "Nodira Usmonova",
+      "deadline": "2026-01-30",
+      "status": "pending"
+    },
+    {
+      "id": "a822",
+      "taskName": "vybuhnjik,l",
+      "employeeName": "Jasmina Aliyeva",
+      "deadline": "2026-01-21",
+      "status": "pending"
+    },
+    {
+      "id": "d0c5",
+      "taskName": "defrg",
+      "employeeName": "Dilshod Karimov",
+      "deadline": "2026-01-13",
+      "status": "pending"
+    },
+    {
+      "id": "5db3",
+      "taskName": "cefvgrbhn",
+      "employeeName": "Nodira Usmonova",
+      "deadline": "2026-01-14",
+      "status": "pending"
+    },
+    {
+      "id": "8a0c",
+      "taskName": "adeveb",
+      "employeeName": "Bekzod Shokirov",
+      "deadline": "2026-01-30",
+      "status": "pending"
+    },
+    {
+      "id": "d9fc",
+      "taskName": "asdcas",
+      "employeeName": "Akmal Mordayev",
+      "deadline": "2026-01-30",
+      "status": "pending"
+    },
+    {
+      "id": "2944",
+      "taskName": "asdeftrhyuki",
+      "employeeName": "Sherzod Rasulov",
+      "deadline": "2026-01-29",
+      "status": "pending"
+    },
+    {
+      "id": "9df1",
+      "taskName": "logs",
+      "employeeName": "Malika Tursunova",
+      "deadline": "2026-01-30",
+      "status": "pending"
+    },
+    {
+      "id": "5db3",
+      "taskName": "cefvgrbhn",
+      "employeeName": "Nodira Usmonova",
+      "deadline": "2026-01-14",
+      "status": "pending"
+    },
+    {
+      "id": "a822",
+      "taskName": "vybuhnjik,l",
+      "employeeName": "Jasmina Aliyeva",
+      "deadline": "2026-01-21",
+      "status": "pending"
+    },
+    {
+      "id": "9611",
+      "taskName": "tasks",
+      "employeeName": "Nodira Usmonova",
+      "deadline": "2026-02-28",
+      "status": "done"
     }
   ],
   "logs": [
     {
-      "id": "c1ea",
-      "userName": "Mohinur Sulaymonqulova",
-      "action": "DELETE",
-      "date": "2026-01-26T09:43:22.518Z",
-      "page": "TASKS"
-    },
-    {
-      "id": "e65c",
+      "id": "41a6",
       "userName": "Abdulloh Abdumalikov",
-      "action": "CREATE",
-      "date": "2026-01-26T06:31:37.525Z",
+      "action": "DELETE",
+      "date": "2026-01-28T05:16:32.338Z",
       "page": "ANNOUNCEMENTS"
     },
     {
-      "id": "10c8",
-      "userName": "Abdulloh Abdumalikov",
-      "action": "DELETE",
-      "date": "2026-01-26T06:34:36.735Z",
-      "page": "ANNOUNCEMENTS"
-    },
-    {
-      "id": "aabc",
-      "userName": "Abdulloh Abdumalikov",
-      "action": "DELETE",
-      "date": "2026-01-26T06:34:55.071Z",
-      "page": "ANNOUNCEMENTS"
-    },
-    {
-      "id": "c1c8",
+      "id": "303a",
       "userName": "Abdulloh Abdumalikov",
       "action": "UPDATE",
-      "date": "2026-01-26T06:37:44.359Z",
+      "date": "2026-01-28T05:16:53.801Z",
       "page": "ANNOUNCEMENTS"
     },
     {
-      "id": "a4fd",
-      "userName": "Abdulloh Abdumalikov",
-      "action": "Leave status changed to rejected",
-      "date": 1769571648279
-    },
-    {
-      "id": "ca1e",
+      "id": "43bc",
       "userName": "Abdulloh Abdumalikov",
       "action": "UPDATE",
-      "date": "2026-01-28T03:40:48.301Z",
-      "page": "LEAVES"
+      "date": "2026-01-28T05:17:08.151Z",
+      "page": "LEAVES",
+      "description": "Status changed to approved"
     },
     {
-      "id": "503d",
+      "id": "5b33",
       "userName": "Abdulloh Abdumalikov",
       "action": "DELETE",
-      "date": "2026-01-28T03:52:03.774Z",
+      "date": "2026-01-28T05:17:18.647Z",
       "page": "LEAVES"
-    },
-    {
-      "id": "d455",
-      "userName": "Abdulloh Abdumalikov",
-      "action": "DELETE",
-      "date": "2026-01-28T03:52:10.876Z",
-      "page": "LEAVES"
-    },
-    {
-      "id": "525d",
-      "userName": "Abdulloh Abdumalikov",
-      "action": "UPDATE",
-      "date": "2026-01-28T03:58:13.708Z",
-      "page": "SETTINGS"
     }
   ],
   "resignations": [
@@ -392,24 +429,9 @@
       "lastWorkingDay": "2026-01-10",
       "noticePeriod": "30 days",
       "reason": "Career growth",
-      "status": "pending",
+      "status": "approved",
       "approvedBy": null,
       "comment": "Looking for new opportunities"
-    },
-    {
-      "id": "RES003",
-      "employeeId": "EMP003",
-      "employeeName": "Dilshod Karimov",
-      "position": "Backend Developer",
-      "department": "IT",
-      "resignationType": "contract_end",
-      "appliedDate": "2025-12-01",
-      "lastWorkingDay": "2025-12-31",
-      "noticePeriod": "Not required",
-      "reason": "Contract expired",
-      "status": "approved",
-      "approvedBy": "Tech Lead",
-      "comment": "Contract completion"
     }
   ],
   "vacations": [
@@ -445,8 +467,15 @@
     {
       "id": "2b07",
       "title": "avsd",
-      "text": "asdvvad",
+      "text": "salom",
       "date": "Jan 10, 2026",
+      "status": "Active"
+    },
+    {
+      "id": "ea9e1f0d-c01b-4f15-87a1-d692701f89f3",
+      "title": "QWERTY",
+      "text": "qwerty",
+      "date": "2026-01-26T06:31:37.487Z",
       "status": "Active"
     }
   ],
@@ -471,99 +500,24 @@
     }
   ],
   "employeesDeleted": [],
-  "tasksDeleted": [
+  "tasksDeleted": [],
+  "complaintsDeleted": [
     {
-      "id": "d9fc",
-      "taskName": "asdcas",
-      "employeeName": "Akmal Mordayev",
-      "deadline": "2026-01-30",
-      "status": "pending"
-    },
-    {
-      "id": "8a0c",
-      "taskName": "adeveb",
-      "employeeName": "Bekzod Shokirov",
-      "deadline": "2026-01-30",
-      "status": "pending"
-    },
-    {
-      "id": "2944",
-      "taskName": "asdeftrhyuki",
-      "employeeName": "Sherzod Rasulov",
-      "deadline": "2026-01-29",
-      "status": "pending"
-    },
-    {
-      "id": "d0c5",
-      "taskName": "defrg",
-      "employeeName": "Dilshod Karimov",
-      "deadline": "2026-01-13",
-      "status": "pending"
-    },
-    {
-      "id": "9df1",
-      "taskName": "logs",
-      "employeeName": "Malika Tursunova",
-      "deadline": "2026-01-30",
-      "status": "pending"
-    },
-    {
-      "id": "5db3",
-      "taskName": "cefvgrbhn",
-      "employeeName": "Nodira Usmonova",
-      "deadline": "2026-01-14",
-      "status": "pending"
-    },
-    {
-      "id": "a822",
-      "taskName": "vybuhnjik,l",
-      "employeeName": "Jasmina Aliyeva",
-      "deadline": "2026-01-21",
-      "status": "pending"
-    },
-    {
-      "id": "5582",
-      "taskName": "hoshim",
-      "employeeName": "Nodira Usmonova",
-      "deadline": "2026-01-30",
-      "status": "pending"
-    },
-    {
-      "id": "9611",
-      "taskName": "tasks",
-      "employeeName": "Nodira Usmonova",
-      "deadline": "2026-02-28",
-      "status": "done"
+      "id": "CPL002",
+      "employeeId": "EMP006",
+      "employeeName": "Sabina M.",
+      "title": "Internet Connectivity Issue",
+      "description": "Internet connection keeps dropping in the design department.",
+      "date": "2025-12-20",
+      "status": "reviewed"
     }
   ],
-  "complaintsDeleted": [],
   "announcementsDeleted": [
     {
-      "id": "a296",
-      "title": "asvd",
-      "text": "asdvasdv",
-      "date": "Jan 26, 2026",
-      "status": "Active"
-    },
-    {
-      "id": "48d7",
+      "id": "17cc1a77-0f1d-4a1e-adf9-4b63c62f0fd5",
       "title": "NNa",
       "text": "NNa",
       "date": "2026-01-26T06:13:05.999Z",
-      "status": "Active"
-    },
-    {
-      "id": "7634",
-      "title": "QWERTY",
-      "text": "qwerty",
-      "date": "2026-01-26T06:31:37.487Z",
-      "status": "Active"
-    },
-    {
-      "id": "4a43",
-      "title": "QQ",
-      "text": "QQQ",
-      "date": "Jan 2, 2026",
       "status": "Active"
     }
   ]
