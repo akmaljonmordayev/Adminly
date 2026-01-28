@@ -145,12 +145,7 @@ function Dashboard() {
     
       <div className="relative -mx-2 px-2">
         <div className="
-          flex gap-6
-          overflow-x-auto
-          py-4 px-2
-          scrollbar-thin
-          scrollbar-thumb-cyan-400/40
-          scrollbar-track-transparent
+          flex gap-10 py-10 px-6 overflow-x-auto no-scrollbar
         ">
           <Card title="Employees" value={allEmployees.length} icon={<FaUsers />} color="cyan" />
           <Card title="Tasks" value={allTasks.length} icon={<FaTasks />} color="purple" />
@@ -164,14 +159,14 @@ function Dashboard() {
 
     
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mt-12">
-        <div className="h-[420px] rounded-2xl p-8 pb-10 bg-white/5 border border-white/10 backdrop-blur-xl">
+        <div className="h-[420px] rounded-2xl p-8 pb-[55px] bg-white/5 border border-white/10 backdrop-blur-xl">
           <h2 className="text-cyan-300 mb-4 font-semibold">
             Adminly Statistics
           </h2>
           <Bar data={barChartData} options={chartOptions} />
         </div>
 
-        <div className="h-[420px] rounded-2xl p-8 pb-10 bg-white/5 border border-white/10 backdrop-blur-xl">
+        <div className="h-[420px] rounded-2xl p-8 pb-[55px] bg-white/5 border border-white/10 backdrop-blur-xl">
           <h2 className="text-cyan-300 mb-4 font-semibold">
             Finance Overview
           </h2>
