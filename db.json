@@ -288,13 +288,6 @@
       "status": "pending"
     },
     {
-      "id": "9611",
-      "taskName": "tasks",
-      "employeeName": "Nodira Usmonova",
-      "deadline": "2026-02-28",
-      "status": "done"
-    },
-    {
       "id": "5396",
       "taskName": "ilon",
       "employeeName": "Bekzod Shokirov",
@@ -318,70 +311,10 @@
   ],
   "logs": [
     {
-      "id": "1",
-      "userName": "Akmal Mordayev",
-      "action": "UPDATE",
-      "date": "2026-01-16T10:30:00Z",
-      "page": "TASKS"
-    },
-    {
-      "id": "b894",
-      "userName": "Akmal Mordayev",
-      "action": "DELETE",
-      "date": "2026-01-19T09:23:51.843Z",
-      "page": "TASKS"
-    },
-    {
-      "id": "9ad5",
-      "userName": "Akmal Mordayev",
-      "action": "DELETE",
-      "date": "2026-01-19T09:26:16.958Z",
-      "page": "TASKS"
-    },
-    {
-      "id": "5912",
-      "userName": "Abdulaziz Xasanov",
-      "action": "Task updated",
-      "date": "2026-01-19T09:10:10.985Z"
-    },
-    {
-      "id": "37b1",
-      "userId": "6",
-      "userName": "Abdulaziz Xasanov",
-      "action": "Task created",
-      "date": "2026-01-19T09:31:37.202Z"
-    },
-    {
-      "id": "c64c",
-      "userName": "Abdulaziz Xasanov",
-      "action": "Task created",
-      "date": "2026-01-21T11:32:19.502Z"
-    },
-    {
-      "id": "45ba",
-      "userName": "Abdulaziz Xasanov",
-      "action": "Task updated",
-      "date": "2026-01-21T11:33:04.504Z"
-    },
-    {
-      "id": "f7ce",
+      "id": "c1ea",
       "userName": "Mohinur Sulaymonqulova",
       "action": "DELETE",
-      "date": "2026-01-23T09:38:28.231Z",
-      "page": "TASKS"
-    },
-    {
-      "id": "3a08",
-      "userName": "Mohinur Sulaymonqulova",
-      "action": "DELETE",
-      "date": "2026-01-23T09:38:40.702Z",
-      "page": "TASKS"
-    },
-    {
-      "id": "45d9",
-      "userName": "Mohinur Sulaymonqulova",
-      "action": "DELETE",
-      "date": "2026-01-23T09:38:48.380Z",
+      "date": "2026-01-26T09:43:22.518Z",
       "page": "TASKS"
     },
     {
@@ -510,52 +443,10 @@
       "status": "Active"
     },
     {
-      "id": "c2af",
-      "title": "TEST",
-      "text": "...",
-      "date": "Jan 31, 2026",
-      "status": "Active"
-    },
-    {
-      "id": "c10d",
-      "title": "test 2",
-      "text": "2.0 v",
-      "date": "Jan 1, 2026",
-      "status": "Active"
-    },
-    {
-      "id": "b931",
-      "title": "Nana",
-      "text": "Banana",
-      "date": "2026-01-26T06:12:48.472Z",
-      "status": "Active"
-    },
-    {
-      "id": "4d18",
-      "title": "NNa",
-      "text": "NNa",
-      "date": "2026-01-26T06:12:52.067Z",
-      "status": "Active"
-    },
-    {
-      "id": "9e1e",
-      "title": "NNa",
-      "text": "NNa",
-      "date": "2026-01-26T06:12:52.898Z",
-      "status": "Active"
-    },
-    {
-      "id": "9f7c",
-      "title": "NNa",
-      "text": "NNa",
-      "date": "2026-01-26T06:12:57.714Z",
-      "status": "Active"
-    },
-    {
-      "id": "7281",
-      "title": "a",
-      "text": "a",
-      "date": "2026-01-26T06:29:32.365Z",
+      "id": "2b07",
+      "title": "avsd",
+      "text": "asdvvad",
+      "date": "Jan 10, 2026",
       "status": "Active"
     }
   ],
@@ -636,6 +527,13 @@
       "employeeName": "Nodira Usmonova",
       "deadline": "2026-01-30",
       "status": "pending"
+    },
+    {
+      "id": "9611",
+      "taskName": "tasks",
+      "employeeName": "Nodira Usmonova",
+      "deadline": "2026-02-28",
+      "status": "done"
     }
   ],
   "complaintsDeleted": [],
