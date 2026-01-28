@@ -7,23 +7,16 @@ import "react-toastify/dist/ReactToastify.css";
 function Employees() {
   const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(true);
-
   const [addOpen, setAddOpen] = useState(false);
   const [editOpen, setEditOpen] = useState(false);
-
-  const [newUser, setNewUser] = useState({
-    fullName: "",
-    email: "",
-    phone: "",
-    BaseSalary: "",
-    createdAt: "",
-  });
-
   const [editUser, setEditUser] = useState({
     id: "",
     fullName: "",
     email: "",
   });
+  const [newFullname, setNewFullname] = useState("")
+  const [newEmail, setNewEmail] = useState("")
+  const [newSalary, setnewSalary] = useState("")
 
   const [search, setSearch] = useState("");
 
@@ -35,17 +28,25 @@ function Employees() {
     return `${year}-${month}-${day}`;
   };
 
+
+
+  const getData = async () => {
+    try {
+      fetch("http://localhost:5000/employees")
+        .then((res) => res.json())
+        .then((data) => {
+          setUsers(data);
+          setLoading(false);
+        })
+        .catch(() => {
+          toast.error("Server error!");
+          setLoading(false);
+        });
+    } catch (error) { }
+  }
+
   useEffect(() => {
-    fetch("http://localhost:5000/employees")
-      .then((res) => res.json())
-      .then((data) => {
-        setUsers(data);
-        setLoading(false);
-      })
-      .catch(() => {
-        toast.error("Server error!");
-        setLoading(false);
-      });
+    getData()
   }, []);
 
   const filteredUsers = users.filter(
@@ -54,24 +55,44 @@ function Employees() {
       u.email.toLowerCase().includes(search.toLowerCase())
   );
 
-  const handleAdd = () => {
-    if (!newUser.fullName || !newUser.email) {
-      toast.warn("Required fields missing");
-      return;
+  const handleAdd = async () => {
+    try {
+      if (!newFullname || !newEmail) {
+        toast.warn("Required fields missing");
+      } else {
+        let res = await axios.post("http://localhost:5000/employees", {
+          id: Number(users[users.length - 1].id) + 1,
+          userId: Number(users[users.length - 1].userId) + 1,
+          fullName: newFullname,
+          email: newEmail,
+          hireDate: getNow(),
+          baseSalary: newSalary,
+          kpiPercent: 0,
+          kpiAmount: 0,
+          bonus: "",
+          penalty: "0",
+          totalSalary: 0,
+          month: "",
+          status: "pending",
+          paymentDate: "",
+          paymentMethod: "",
+          comment: "",
+          leaves: [],
+          createdAt: new Date().toISOString(),
+        })
+        if (res.status == 201) {
+          toast.success("employee succeffsully created")
+          setAddOpen(false)
+          getData()
+        }
+      }
+    } catch (error) {
+      console.log(error.message);
     }
-
-    fetch("http://localhost:5000/employees", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(newUser),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        setUsers((prev) => [...prev, data]);
-        setAddOpen(false);
-        toast.success("Employee added ✅");
-      });
   };
+
+
+
 
   const handleEdit = () => {
     fetch(`http://localhost:5000/employees/${editUser.id}`, {
@@ -94,16 +115,13 @@ function Employees() {
       "http://localhost:5000/employeesDeleted",
       res.data
     );
-    await fetch(`http://localhost:5000/employees/${id}`, {
-      method: "DELETE",
-    }).then(() => {
-      setUsers((prev) => prev.filter((u) => u.id !== id));
-      toast.success("Employee deleted and archieved ❌");
-    });
+    let resDelete = await axios.delete(`http://localhost:5000/employees/${id}`)
+    if (resDelete.status == 200) {
+      getData()
+      toast.success("emploees deleted and archieved")
+    }
   };
-
   if (loading) return <p style={{ color: "#22d3ee" }}>Loading...</p>;
-
   return (
     <div style={{ padding: "20px" }}>
       <div style={topBar}>
@@ -116,16 +134,7 @@ function Employees() {
 
         <button
           style={addBtn}
-          onClick={() => {
-            setNewUser({
-              fullName: "",
-              email: "",
-              phone: "",
-              BaseSalary: "",
-              createdAt: getNow(),
-            });
-            setAddOpen(true);
-          }}
+          onClick={() => setAddOpen(true)}
         >
           + Add Employee
         </button>
@@ -190,31 +199,19 @@ function Employees() {
         <input
           style={input}
           placeholder="Full name"
-          value={newUser.fullName}
-          onChange={(e) => setNewUser({ ...newUser, fullName: e.target.value })}
+          onChange={(e) => setNewFullname(e.target.value)}
         />
 
         <input
           style={input}
           placeholder="Email"
-          value={newUser.email}
-          onChange={(e) => setNewUser({ ...newUser, email: e.target.value })}
+          onChange={(e) => setNewEmail(e.target.value)}
         />
 
         <input
           style={input}
           placeholder="BaseSalary"
-          value={newUser.BaseSalary}
-          onChange={(e) =>
-            setNewUser({ ...newUser, BaseSalary: e.target.value })
-          }
-        />
-
-        <input
-          type="datetime-local"
-          style={input}
-          value={newUser.createdAt}
-          disabled
+          onChange={(e) => setnewSalary(e.target.value)}
         />
       </Modal>
 
