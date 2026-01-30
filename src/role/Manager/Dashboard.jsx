@@ -6,9 +6,11 @@ import {
   FaBullhorn,
   FaExclamationCircle,
   FaArchive,
+  FaSignOutAlt,
+  FaHistory,
 } from "react-icons/fa";
 import axios from "axios";
-import { Bar, Pie, Line } from "react-chartjs-2";
+import { Bar, Pie } from "react-chartjs-2";
 
 function Dashboard() {
   const [allEmployees, setAllEmployees] = useState([]);
@@ -19,34 +21,31 @@ function Dashboard() {
   const [allArchieve4, setAllArchieve4] = useState([]);
   const [allComplaints, setAllComplaints] = useState([]);
   const [allAnnouncements, setAllAnnouncements] = useState([]);
+  const [allVacations, setAllVacations] = useState([]);
+  const [allLeaves, setAllLeaves] = useState([]);
+  const [allLogs, setAllLogs] = useState([]);
 
   useEffect(() => {
-    axios
-      .get("http://localhost:5000/employees")
-      .then((res) => setAllEmployees(res.data));
-    axios
-      .get("http://localhost:5000/tasks")
-      .then((res) => setAllTasks(res.data));
-    axios
-      .get("http://localhost:5000/complaints")
-      .then((res) => setAllComplaints(res.data));
-    axios
-      .get("http://localhost:5000/announcements")
-      .then((res) => setAllAnnouncements(res.data));
-
-    axios
-      .get("http://localhost:5000/employeesDeleted")
-      .then((res) => setAllArchieve1(res.data));
-    axios
-      .get("http://localhost:5000/tasksDeleted")
-      .then((res) => setAllArchieve2(res.data));
-    axios
-      .get("http://localhost:5000/complaintsDeleted")
-      .then((res) => setAllArchieve3(res.data));
-    axios
-      .get("http://localhost:5000/announcementsDeleted")
-      .then((res) => setAllArchieve4(res.data));
+    axios.get("http://localhost:5000/employees").then(r => setAllEmployees(r.data));
+    axios.get("http://localhost:5000/tasks").then(r => setAllTasks(r.data));
+    axios.get("http://localhost:5000/complaints").then(r => setAllComplaints(r.data));
+    axios.get("http://localhost:5000/announcements").then(r => setAllAnnouncements(r.data));
+    axios.get("http://localhost:5000/employeesDeleted").then(r => setAllArchieve1(r.data));
+    axios.get("http://localhost:5000/tasksDeleted").then(r => setAllArchieve2(r.data));
+    axios.get("http://localhost:5000/complaintsDeleted").then(r => setAllArchieve3(r.data));
+    axios.get("http://localhost:5000/announcementsDeleted").then(r => setAllArchieve4(r.data));
+    axios.get("http://localhost:5000/vacations").then(r => setAllVacations(r.data));
+    axios.get("http://localhost:5000/resignations").then(r => setAllLeaves(r.data));
+    axios.get("http://localhost:5000/logs").then(r => setAllLogs(r.data));
   }, []);
+
+  const archiveCount =
+    allArchieve1.length +
+    allArchieve2.length +
+    allArchieve3.length +
+    allArchieve4.length;
+
+ 
 
   const barChartData = {
     labels: [
@@ -67,155 +66,111 @@ function Dashboard() {
           allTasks.length,
           allComplaints.length,
           allAnnouncements.length,
-          allArchieve1.length +
-            allArchieve2.length +
-            allArchieve3.length +
-            allArchieve4.length,
-          4,
-          6,
-          10,
+          archiveCount,
+          allVacations.length,
+          allLeaves.length,
+          allLogs.length,
         ],
         backgroundColor: [
-          "rgba(0, 200, 255, 0.6)",
-          "rgba(155, 89, 182, 0.6)",
-          "rgba(231, 76, 60, 0.6)",
-          "rgba(52, 152, 219, 0.6)",
-          "rgba(241, 196, 15, 0.6)",
-          "rgba(46, 204, 113, 0.6)",
-          "rgba(149, 165, 166, 0.6)",
-          "rgba(105, 229, 16, 0.901)",
+          "#22d3ee",
+          "#a855f7",
+          "#ef4444",
+          "#3b82f6",
+          "#facc15",
+          "#10b981",
+          "#94a3b8",
+          "#84cc16",
         ],
-        borderWidth: 1,
+        borderRadius: 12,
+        borderSkipped: false,
       },
     ],
   };
-  const barChartOptions = {
+
+  const chartOptions = {
     responsive: true,
     maintainAspectRatio: false,
     plugins: {
       legend: {
-        display: true,
-        position: "top",
         labels: {
-          color: "#ffffff",
-          font: {
-            size: 14,
-          },
+          color: "#22d3ee",
+          font: { size: 14, weight: "bold" },
         },
       },
       tooltip: {
-        enabled: true,
-        backgroundColor: "#111827",
-        titleColor: "#ffffff",
+        backgroundColor: "#020617",
+        titleColor: "#22d3ee",
         bodyColor: "#ffffff",
-        borderColor: "#00c8ff",
+        borderColor: "#22d3ee",
         borderWidth: 1,
       },
     },
     scales: {
       x: {
-        ticks: {
-          color: "#9ca3af",
-        },
-        grid: {
-          display: false,
-        },
+        ticks: { color: "#e5e7eb" },
+        grid: { display: false },
       },
       y: {
-        ticks: {
-          color: "#9ca3af",
-          beginAtZero: true,
-        },
-        grid: {
-          color: "rgba(255,255,255,0.05)",
-        },
+        ticks: { color: "#e5e7eb", beginAtZero: true },
+        grid: { color: "rgba(255,255,255,0.08)" },
       },
     },
   };
 
-  const allSalary = allEmployees.reduce((prev, current) => {
-    return prev + Number(current.baseSalary);
-  }, 0);
-  const allBonus = allEmployees.reduce((prev, current) => {
-    return prev + Number(current.bonus);
-  }, 0);
-  const allPenalty = allEmployees.reduce((prev, current) => {
-    return prev + Number(current.penalty);
-  }, 0);
-  const allKpiAmount = allEmployees.reduce((prev, current) => {
-    return prev + Number(current.kpiAmount);
-  }, 0);
-  console.log(allSalary);
+ 
 
-  const barChartDataEmployees = {
-    labels: ["TotalSalary", "Bonus", "Penalty", "KpiAmount"],
+  const allSalary = allEmployees.reduce((p, c) => p + Number(c.baseSalary), 0);
+  const allBonus = allEmployees.reduce((p, c) => p + Number(c.bonus), 0);
+  const allPenalty = allEmployees.reduce((p, c) => p + Number(c.penalty), 0);
+  const allKpiAmount = allEmployees.reduce((p, c) => p + Number(c.kpiAmount), 0);
+
+  const financeChartData = {
+    labels: ["Salary", "Bonus", "Penalty", "KPI"],
     datasets: [
       {
-        label: "Finance Statistics",
         data: [allSalary, allBonus, allPenalty, allKpiAmount],
-        backgroundColor: [
-          "rgba(38, 0, 255, 0.6)",
-          "rgba(89, 182, 94, 0.6)",
-          "rgba(216, 41, 21, 0.6)",
-          "rgba(52, 152, 219, 0.6)",
-        ],
-        borderWidth: 1,
+        backgroundColor: ["#38bdf8", "#22c55e", "#ef4444", "#a855f7"],
+        borderColor: "#020617",
+        borderWidth: 2,
       },
     ],
   };
 
   return (
-    <div>
-      <div className="p-8 bg-[#070B18]">
-        <h1 className="text-2xl font-semibold text-cyan-400 mb-6">
-          Dashboard Overview
-        </h1>
+    <div className="p-10 bg-gradient-to-br from-[#020617] to-[#020617ee] min-h-screen">
+      <h1 className="text-3xl font-bold text-cyan-400 mb-8">
+        Dashboard Overview
+      </h1>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">
-          <Card
-            title="Employees"
-            value={allEmployees.length}
-            icon={<FaUsers />}
-            color="cyan"
-          />
-          <Card
-            title="Tasks"
-            value={allTasks.length}
-            icon={<FaTasks />}
-            color="purple"
-          />
-          <Card
-            title="Complaints"
-            value={allComplaints.length}
-            icon={<FaExclamationCircle />}
-            color="red"
-          />
-          <Card
-            title="Announcements"
-            value={allAnnouncements.length}
-            icon={<FaBullhorn />}
-            color="blue"
-          />
-          <Card
-            title="Archive"
-            value={
-              allArchieve1.length +
-              allArchieve2.length +
-              allArchieve3.length +
-              allArchieve4.length
-            }
-            icon={<FaArchive />}
-            color="yellow"
-          />
+    
+      <div className="relative -mx-2 px-2">
+        <div className="
+          flex gap-10 py-10 px-6 overflow-x-auto no-scrollbar
+        ">
+          <Card title="Employees" value={allEmployees.length} icon={<FaUsers />} color="cyan" />
+          <Card title="Tasks" value={allTasks.length} icon={<FaTasks />} color="purple" />
+          <Card title="Complaints" value={allComplaints.length} icon={<FaExclamationCircle />} color="red" />
+          <Card title="Announcements" value={allAnnouncements.length} icon={<FaBullhorn />} color="blue" />
+          <Card title="Archive" value={archiveCount} icon={<FaArchive />} color="yellow" />
+          <Card title="Leaves" value={allLeaves.length} icon={<FaSignOutAlt />} color="green" />
+          <Card title="Logs" value={allLogs.length} icon={<FaHistory />} color="purple" />
         </div>
       </div>
 
-      <div className="flex">
-        <div style={{ width: "50%", height: "400px" }}>
-          <Bar data={barChartData} options={barChartOptions} />
+    
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mt-12">
+        <div className="h-[420px] rounded-2xl p-8 pb-[55px] bg-white/5 border border-white/10 backdrop-blur-xl">
+          <h2 className="text-cyan-300 mb-4 font-semibold">
+            Adminly Statistics
+          </h2>
+          <Bar data={barChartData} options={chartOptions} />
         </div>
-        <div style={{ width: "50%", height: "400px" }}>
-          <Pie data={barChartDataEmployees} options={barChartOptions} />
+
+        <div className="h-[420px] rounded-2xl p-8 pb-[55px] bg-white/5 border border-white/10 backdrop-blur-xl">
+          <h2 className="text-cyan-300 mb-4 font-semibold">
+            Finance Overview
+          </h2>
+          <Pie data={financeChartData} options={chartOptions} />
         </div>
       </div>
     </div>
