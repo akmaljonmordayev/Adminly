@@ -516,7 +516,7 @@
       "title": "DAM",
       "text": "14-yanvar vatan himoyachilari kuni uchun hammaga dam",
       "date": "Jan 21, 2026",
-      "status": "Active"
+      "status": "No Active"
     },
     {
       "id": "466c4f07-2ff1-43a0-b50d-f7f9c30bb9d8",
@@ -548,6 +548,7 @@
     {
       "id": "CPL002",
       "employeeId": "EMP006",
+ 
       "employeeName": "Sabina M.",
       "title": "Internet Connectivity Issue",
       "description": "Internet connection keeps dropping in the design department.",
