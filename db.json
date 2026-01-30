@@ -415,6 +415,27 @@
       "action": "DELETE",
       "date": "2026-01-28T05:17:18.647Z",
       "page": "LEAVES"
+    },
+    {
+      "id": "f9df",
+      "userName": "Mohinur Sulaymonqulova",
+      "action": "DELETE",
+      "date": "2026-01-28T05:45:12.140Z",
+      "page": "ANNOUNCEMENTS"
+    },
+    {
+      "id": "418a",
+      "userName": "Mohinur Sulaymonqulova",
+      "action": "DELETE",
+      "date": "2026-01-28T05:45:12.931Z",
+      "page": "ANNOUNCEMENTS"
+    },
+    {
+      "id": "391c",
+      "userName": "Mohinur Sulaymonqulova",
+      "action": "DELETE",
+      "date": "2026-01-28T05:45:13.590Z",
+      "page": "ANNOUNCEMENTS"
     }
   ],
   "resignations": [
@@ -458,25 +479,32 @@
   ],
   "announcements": [
     {
-      "id": "a1f7122c-061a-4666-bc68-3640a7d3abbb",
-      "title": "DAM",
-      "text": "14-yanvar vatan himoyachilari kuni uchun hammaga dam",
-      "date": "Jan 21, 2026",
-      "status": "Active"
-    },
-    {
-      "id": "2b07",
-      "title": "avsd",
-      "text": "salom",
-      "date": "Jan 10, 2026",
-      "status": "Active"
-    },
-    {
-      "id": "ea9e1f0d-c01b-4f15-87a1-d692701f89f3",
+      "id": "735f8278-49f1-4979-9d38-644f2b878e28",
       "title": "QWERTY",
       "text": "qwerty",
       "date": "2026-01-26T06:31:37.487Z",
-      "status": "Active"
+      "status": "No Active"
+    },
+    {
+      "id": "2cf9",
+      "title": "asdf",
+      "text": "asd",
+      "date": "Jan 5, 2026",
+      "status": "No Active"
+    },
+    {
+      "id": "cbe6e363-76d2-4b9f-8ffa-a375b09b7973",
+      "title": "DAM",
+      "text": "14-yanvar vatan himoyachilari kuni uchun hammaga dam",
+      "date": "Jan 21, 2026",
+      "status": "No Active"
+    },
+    {
+      "id": "373a3228-7825-4c4f-8bd7-6cf8309d39a9",
+      "title": "avsd",
+      "text": "salom",
+      "date": "Jan 10, 2026",
+      "status": "No Active"
     }
   ],
   "complaints": [
@@ -512,13 +540,5 @@
       "status": "reviewed"
     }
   ],
-  "announcementsDeleted": [
-    {
-      "id": "17cc1a77-0f1d-4a1e-adf9-4b63c62f0fd5",
-      "title": "NNa",
-      "text": "NNa",
-      "date": "2026-01-26T06:13:05.999Z",
-      "status": "Active"
-    }
-  ]
+  "announcementsDeleted": []
 }
