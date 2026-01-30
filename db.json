@@ -168,35 +168,6 @@
       "updatedAt": "2025-12-30T16:40:00Z"
     },
     {
-      "id": "9",
-      "userId": 109,
-      "fullName": "Bekzod Shokirov",
-      "email": "bekzod.shokirov@example.com",
-      "hireDate": "2022-10-21",
-      "baseSalary": 2700000,
-      "kpiPercent": 12,
-      "kpiAmount": 324000,
-      "bonus": 200000,
-      "penalty": 50000,
-      "totalSalary": 3174000,
-      "month": "2025-12",
-      "status": "paid",
-      "paymentDate": "2025-12-27",
-      "paymentMethod": "cash",
-      "comment": "Salary paid",
-      "leaves": [
-        {
-          "leaveType": "Sick Leave",
-          "startDate": "2024-01-14",
-          "endDate": "2024-01-18",
-          "status": "Approved"
-        }
-      ],
-      "createdBy": 1,
-      "createdAt": "2025-12-01T13:00:00Z",
-      "updatedAt": "2025-12-27T15:20:00Z"
-    },
-    {
       "id": "2",
       "userId": 102,
       "fullName": "Abdulloh Abdumalikov",
@@ -277,6 +248,54 @@
       "createdBy": 1,
       "createdAt": "2025-12-01T11:00:00Z",
       "updatedAt": "2025-12-27T13:40:00Z"
+    },
+    {
+      "id": "b395",
+      "fullName": "cvhcj",
+      "email": "vhjhrefkplbfkjeb",
+      "hireDate": "2026-01-30",
+      "baseSalary": "hdwfdvjkfjb",
+      "kpiPercent": 0,
+      "kpiAmount": 0,
+      "bonus": "",
+      "penalty": "0",
+      "totalSalary": 0,
+      "month": "",
+      "status": "pending",
+      "paymentDate": "",
+      "paymentMethod": "",
+      "comment": "",
+      "leaves": [],
+      "createdAt": "2026-01-30T08:44:55.507Z"
+    },
+    {
+      "id": "53f1",
+      "userId": 109,
+      "fullName": "Bekzod Shokirov",
+      "email": "bekzod.shokirov@example.com",
+      "hireDate": "2022-10-21",
+      "baseSalary": 2700000,
+      "kpiPercent": 12,
+      "kpiAmount": 324000,
+      "bonus": 200000,
+      "penalty": 50000,
+      "totalSalary": 3174000,
+      "month": "2025-12",
+      "status": "paid",
+      "paymentDate": "2025-12-27",
+      "paymentMethod": "cash",
+      "comment": "Salary paid",
+      "leaves": [
+        {
+          "leaveType": "Sick Leave",
+          "startDate": "2024-01-14",
+          "endDate": "2024-01-18",
+          "status": "Approved"
+        }
+      ],
+      "createdBy": 1,
+      "createdAt": "2025-12-01T13:00:00Z",
+      "updatedAt": "2025-12-27T15:20:00Z"
     }
   ],
   "tasks": [
@@ -548,7 +567,6 @@
     {
       "id": "CPL002",
       "employeeId": "EMP006",
- 
       "employeeName": "Sabina M.",
       "title": "Internet Connectivity Issue",
       "description": "Internet connection keeps dropping in the design department.",

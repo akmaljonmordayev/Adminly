@@ -9,44 +9,37 @@ function Employees() {
   const [loading, setLoading] = useState(true);
   const [addOpen, setAddOpen] = useState(false);
   const [editOpen, setEditOpen] = useState(false);
+
   const [editUser, setEditUser] = useState({
     id: "",
     fullName: "",
     email: "",
   });
-  const [newFullname, setNewFullname] = useState("")
-  const [newEmail, setNewEmail] = useState("")
-  const [newSalary, setnewSalary] = useState("")
+
+  const [newFullname, setNewFullname] = useState("");
+  const [newEmail, setNewEmail] = useState("");
+  const [newSalary, setNewSalary] = useState("");
 
   const [search, setSearch] = useState("");
 
   const getNow = () => {
     const now = new Date();
-    const year = now.getFullYear();
-    const month = String(now.getMonth());
-    const day = String(now.getDate());
-    return `${year}-${month}-${day}`;
+    return now.toISOString().split("T")[0];
   };
-
-
 
   const getData = async () => {
     try {
-      fetch("http://localhost:5000/employees")
-        .then((res) => res.json())
-        .then((data) => {
-          setUsers(data);
-          setLoading(false);
-        })
-        .catch(() => {
-          toast.error("Server error!");
-          setLoading(false);
-        });
-    } catch (error) { }
-  }
+      const res = await axios.get("http://localhost:5000/employees");
+      setUsers(res.data);
+      setLoading(false);
+    } catch {
+      toast.error("Server error!");
+      setLoading(false);
+    }
+  };
 
   useEffect(() => {
-    getData()
+    getData();
   }, []);
 
   const filteredUsers = users.filter(
@@ -55,73 +48,78 @@ function Employees() {
       u.email.toLowerCase().includes(search.toLowerCase())
   );
 
+  // ADD
   const handleAdd = async () => {
+    if (!newFullname || !newEmail) {
+      toast.warn("Required fields missing");
+      return;
+    }
+
     try {
-      if (!newFullname || !newEmail) {
-        toast.warn("Required fields missing");
-      } else {
-        let res = await axios.post("http://localhost:5000/employees", {
-          id: Number(users[users.length - 1].id) + 1,
-          userId: Number(users[users.length - 1].userId) + 1,
-          fullName: newFullname,
-          email: newEmail,
-          hireDate: getNow(),
-          baseSalary: newSalary,
-          kpiPercent: 0,
-          kpiAmount: 0,
-          bonus: "",
-          penalty: "0",
-          totalSalary: 0,
-          month: "",
-          status: "pending",
-          paymentDate: "",
-          paymentMethod: "",
-          comment: "",
-          leaves: [],
-          createdAt: new Date().toISOString(),
-        })
-        if (res.status == 201) {
-          toast.success("employee succeffsully created")
-          setAddOpen(false)
-          getData()
-        }
+      const res = await axios.post("http://localhost:5000/employees", {
+        fullName: newFullname,
+        email: newEmail,
+        hireDate: getNow(),
+        baseSalary: newSalary,
+        kpiPercent: 0,
+        kpiAmount: 0,
+        bonus: "",
+        penalty: "0",
+        totalSalary: 0,
+        month: "",
+        status: "pending",
+        paymentDate: "",
+        paymentMethod: "",
+        comment: "",
+        leaves: [],
+        createdAt: new Date().toISOString(),
+      });
+
+      if (res.status === 201) {
+        toast.success("Employee created");
+        setAddOpen(false);
+        setNewFullname("");
+        setNewEmail("");
+        setNewSalary("");
+        getData();
       }
-    } catch (error) {
-      console.log(error.message);
+    } catch {
+      toast.error("Create error");
     }
   };
 
-
-
-
-  const handleEdit = () => {
-    fetch(`http://localhost:5000/employees/${editUser.id}`, {
-      method: "PUT",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(editUser),
-    }).then(() => {
-      setUsers((prev) =>
-        prev.map((u) => (u.id === editUser.id ? editUser : u))
-      );
-      setEditOpen(false);
-      toast.info("Employee updated ✨");
-    });
+  // EDIT
+  const handleEdit = async () => {
+    await axios.put(
+      `http://localhost:5000/employees/${editUser.id}`,
+      editUser
+    );
+    toast.info("Employee updated");
+    setEditOpen(false);
+    getData();
   };
 
+  // DELETE + ARCHIVE
   const handleDelete = async (id) => {
     if (!window.confirm("Delete this employee?")) return;
-    let res = await axios.get(`http://localhost:5000/employees/${id}`);
-    let ress = await axios.post(
+
+    const res = await axios.get(`http://localhost:5000/employees/${id}`);
+
+    const { id: _, ...archivedEmployee } = res.data;
+
+    await axios.post(
       "http://localhost:5000/employeesDeleted",
-      res.data
+      archivedEmployee
     );
-    let resDelete = await axios.delete(`http://localhost:5000/employees/${id}`)
-    if (resDelete.status == 200) {
-      getData()
-      toast.success("emploees deleted and archieved")
-    }
+
+    await axios.delete(`http://localhost:5000/employees/${id}`);
+
+    toast.success("Employee deleted & archived");
+    getData();
   };
+
   if (loading) return <p style={{ color: "#22d3ee" }}>Loading...</p>;
+
   return (
     <div style={{ padding: "20px" }}>
       <div style={topBar}>
@@ -132,10 +130,7 @@ function Employees() {
           onChange={(e) => setSearch(e.target.value)}
         />
 
-        <button
-          style={addBtn}
-          onClick={() => setAddOpen(true)}
-        >
+        <button style={addBtn} onClick={() => setAddOpen(true)}>
           + Add Employee
         </button>
       </div>
@@ -143,16 +138,16 @@ function Employees() {
       <table style={tableStyle}>
         <thead>
           <tr style={{ background: "#0f172a" }}>
-            <th style={th}>ID</th>
+            <th style={th}>#</th>
             <th style={th}>Full Name</th>
             <th style={th}>Email</th>
             <th style={th}>Actions</th>
           </tr>
         </thead>
         <tbody>
-          {filteredUsers.map((u) => (
+          {filteredUsers.map((u, index) => (
             <tr key={u.id} style={tr}>
-              <td style={td}>{u.id}</td>
+              <td style={td}>{index + 1}</td>
               <td style={td}>{u.fullName}</td>
               <td style={td}>{u.email}</td>
               <td style={td}>
@@ -176,42 +171,31 @@ function Employees() {
           ))}
         </tbody>
       </table>
-      <style>
-        {`
- .ant-modal-title { 
-    color: #22d3ee !important;
- }
-  .ant-modal-container {
-    background-color: #071B2D !important;
 
-  }
-
-`}
-      </style>
       <Modal
         title="Add Employee"
         open={addOpen}
         onOk={handleAdd}
         onCancel={() => setAddOpen(false)}
         okText="Add"
-        className="text-[#ffff]"
       >
         <input
           style={input}
           placeholder="Full name"
+          value={newFullname}
           onChange={(e) => setNewFullname(e.target.value)}
         />
-
         <input
           style={input}
           placeholder="Email"
+          value={newEmail}
           onChange={(e) => setNewEmail(e.target.value)}
         />
-
         <input
           style={input}
-          placeholder="BaseSalary"
-          onChange={(e) => setnewSalary(e.target.value)}
+          placeholder="Base salary"
+          value={newSalary}
+          onChange={(e) => setNewSalary(e.target.value)}
         />
       </Modal>
 
@@ -224,18 +208,17 @@ function Employees() {
       >
         <input
           style={input}
-          placeholder="Full name"
           value={editUser.fullName}
           onChange={(e) =>
             setEditUser({ ...editUser, fullName: e.target.value })
           }
         />
-
         <input
           style={input}
-          placeholder="Email"
           value={editUser.email}
-          onChange={(e) => setEditUser({ ...editUser, email: e.target.value })}
+          onChange={(e) =>
+            setEditUser({ ...editUser, email: e.target.value })
+          }
         />
       </Modal>
 
@@ -244,12 +227,8 @@ function Employees() {
   );
 }
 
-const topBar = {
-  display: "flex",
-  gap: "16px",
-  marginBottom: "16px",
-};
-
+/* styles */
+const topBar = { display: "flex", gap: "16px", marginBottom: "16px" };
 const searchInput = {
   flex: 1,
   padding: "10px",
@@ -258,7 +237,6 @@ const searchInput = {
   border: "1px solid #1e293b",
   color: "#e5e7eb",
 };
-
 const addBtn = {
   padding: "10px 18px",
   borderRadius: "10px",
@@ -267,17 +245,14 @@ const addBtn = {
   background: "#22d3ee",
   fontWeight: "600",
 };
-
 const tableStyle = {
   width: "100%",
   borderCollapse: "collapse",
   background: "#020617",
 };
-
 const th = { padding: "12px", color: "#22d3ee" };
 const td = { padding: "12px", color: "#e5e7eb" };
 const tr = { borderBottom: "1px solid #1e293b" };
-
 const btn = {
   padding: "6px 12px",
   borderRadius: "6px",
@@ -286,7 +261,6 @@ const btn = {
   marginRight: "6px",
   fontWeight: "600",
 };
-
 const input = {
   width: "100%",
   padding: "8px",
