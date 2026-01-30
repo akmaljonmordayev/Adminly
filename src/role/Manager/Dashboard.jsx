@@ -26,17 +26,35 @@ function Dashboard() {
   const [allLogs, setAllLogs] = useState([]);
 
   useEffect(() => {
-    axios.get("http://localhost:5000/employees").then(r => setAllEmployees(r.data));
-    axios.get("http://localhost:5000/tasks").then(r => setAllTasks(r.data));
-    axios.get("http://localhost:5000/complaints").then(r => setAllComplaints(r.data));
-    axios.get("http://localhost:5000/announcements").then(r => setAllAnnouncements(r.data));
-    axios.get("http://localhost:5000/employeesDeleted").then(r => setAllArchieve1(r.data));
-    axios.get("http://localhost:5000/tasksDeleted").then(r => setAllArchieve2(r.data));
-    axios.get("http://localhost:5000/complaintsDeleted").then(r => setAllArchieve3(r.data));
-    axios.get("http://localhost:5000/announcementsDeleted").then(r => setAllArchieve4(r.data));
-    axios.get("http://localhost:5000/vacations").then(r => setAllVacations(r.data));
-    axios.get("http://localhost:5000/resignations").then(r => setAllLeaves(r.data));
-    axios.get("http://localhost:5000/logs").then(r => setAllLogs(r.data));
+    axios
+      .get("http://localhost:5000/employees")
+      .then((r) => setAllEmployees(r.data));
+    axios.get("http://localhost:5000/tasks").then((r) => setAllTasks(r.data));
+    axios
+      .get("http://localhost:5000/complaints")
+      .then((r) => setAllComplaints(r.data));
+    axios
+      .get("http://localhost:5000/announcements")
+      .then((r) => setAllAnnouncements(r.data));
+    axios
+      .get("http://localhost:5000/employeesDeleted")
+      .then((r) => setAllArchieve1(r.data));
+    axios
+      .get("http://localhost:5000/tasksDeleted")
+      .then((r) => setAllArchieve2(r.data));
+    axios
+      .get("http://localhost:5000/complaintsDeleted")
+      .then((r) => setAllArchieve3(r.data));
+    axios
+      .get("http://localhost:5000/announcementsDeleted")
+      .then((r) => setAllArchieve4(r.data));
+    axios
+      .get("http://localhost:5000/vacations")
+      .then((r) => setAllVacations(r.data));
+    axios
+      .get("http://localhost:5000/resignations")
+      .then((r) => setAllLeaves(r.data));
+    axios.get("http://localhost:5000/logs").then((r) => setAllLogs(r.data));
   }, []);
 
   const archiveCount =
@@ -44,8 +62,6 @@ function Dashboard() {
     allArchieve2.length +
     allArchieve3.length +
     allArchieve4.length;
-
- 
 
   const barChartData = {
     labels: [
@@ -117,12 +133,13 @@ function Dashboard() {
     },
   };
 
- 
-
   const allSalary = allEmployees.reduce((p, c) => p + Number(c.baseSalary), 0);
   const allBonus = allEmployees.reduce((p, c) => p + Number(c.bonus), 0);
   const allPenalty = allEmployees.reduce((p, c) => p + Number(c.penalty), 0);
-  const allKpiAmount = allEmployees.reduce((p, c) => p + Number(c.kpiAmount), 0);
+  const allKpiAmount = allEmployees.reduce(
+    (p, c) => p + Number(c.kpiAmount),
+    0
+  );
 
   const financeChartData = {
     labels: ["Salary", "Bonus", "Penalty", "KPI"],
@@ -142,27 +159,63 @@ function Dashboard() {
         Dashboard Overview
       </h1>
 
-    
       <div className="relative -mx-2 px-2">
-        <div className="
+        <div
+          className="
           flex gap-6
           overflow-x-auto
+          max-w-full
           py-4 px-2
           scrollbar-thin
           scrollbar-thumb-cyan-400/40
           scrollbar-track-transparent
-        ">
-          <Card title="Employees" value={allEmployees.length} icon={<FaUsers />} color="cyan" />
-          <Card title="Tasks" value={allTasks.length} icon={<FaTasks />} color="purple" />
-          <Card title="Complaints" value={allComplaints.length} icon={<FaExclamationCircle />} color="red" />
-          <Card title="Announcements" value={allAnnouncements.length} icon={<FaBullhorn />} color="blue" />
-          <Card title="Archive" value={archiveCount} icon={<FaArchive />} color="yellow" />
-          <Card title="Leaves" value={allLeaves.length} icon={<FaSignOutAlt />} color="green" />
-          <Card title="Logs" value={allLogs.length} icon={<FaHistory />} color="purple" />
+        "
+        >
+          <Card
+            title="Employees"
+            value={allEmployees.length}
+            icon={<FaUsers />}
+            color="cyan"
+          />
+          <Card
+            title="Tasks"
+            value={allTasks.length}
+            icon={<FaTasks />}
+            color="purple"
+          />
+          <Card
+            title="Complaints"
+            value={allComplaints.length}
+            icon={<FaExclamationCircle />}
+            color="red"
+          />
+          <Card
+            title="Announcements"
+            value={allAnnouncements.length}
+            icon={<FaBullhorn />}
+            color="blue"
+          />
+          <Card
+            title="Archive"
+            value={archiveCount}
+            icon={<FaArchive />}
+            color="yellow"
+          />
+          <Card
+            title="Leaves"
+            value={allLeaves.length}
+            icon={<FaSignOutAlt />}
+            color="green"
+          />
+          <Card
+            title="Logs"
+            value={allLogs.length}
+            icon={<FaHistory />}
+            color="purple"
+          />
         </div>
       </div>
 
-    
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mt-12">
         <div className="h-[420px] rounded-2xl p-8 pb-10 bg-white/5 border border-white/10 backdrop-blur-xl">
           <h2 className="text-cyan-300 mb-4 font-semibold">
@@ -172,9 +225,7 @@ function Dashboard() {
         </div>
 
         <div className="h-[420px] rounded-2xl p-8 pb-10 bg-white/5 border border-white/10 backdrop-blur-xl">
-          <h2 className="text-cyan-300 mb-4 font-semibold">
-            Finance Overview
-          </h2>
+          <h2 className="text-cyan-300 mb-4 font-semibold">Finance Overview</h2>
           <Pie data={financeChartData} options={chartOptions} />
         </div>
       </div>
