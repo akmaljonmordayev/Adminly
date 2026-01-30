@@ -1,12 +1,20 @@
-import React from 'react'
-import { Navigate } from 'react-router-dom'
+import { Navigate } from "react-router-dom";
 
-function ProtectedRoute({ children }) {
-  let token = localStorage.getItem('token')
-  if (!token) {
-    return <Navigate to={'/auth/signin'} />
+function ProtectedRoute({ children, role }) {
+  const token = localStorage.getItem("token");
+  const user = JSON.parse(localStorage.getItem("user"));
+
+  // 1. Login tekshiruvi
+  if (!token || !user) {
+    return <Navigate to="/auth/signin" replace />;
   }
-  return children
+
+  // 2. Role tekshiruvi
+  if (role && user.role !== role) {
+    return <Navigate to="/auth/signin" replace />;
+  }
+
+  return children;
 }
 
-export default ProtectedRoute
+export default ProtectedRoute;

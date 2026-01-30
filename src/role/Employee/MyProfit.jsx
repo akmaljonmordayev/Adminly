@@ -1,11 +1,11 @@
 import React from 'react'
 
-function Home() {
+function MyProfit() {
   return (
     <div>
-      Home
+      MyProfit
     </div>
   )
 }
 
-export default Home
+export default MyProfit

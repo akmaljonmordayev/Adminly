@@ -14,6 +14,7 @@ function Login() {
     [open, setOpen] = useState(false)
   const navigate = useNavigate()
   const [data, setData] = useState([])
+  const [employeeData, setEmployeeData] = useState([])
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
 
@@ -23,6 +24,20 @@ function Login() {
       try {
         let res = await axios.get('http://localhost:5000/users')
         setData(res.data)
+      } catch (err) {
+        setError(err.message)
+      } finally {
+        setLoading(false)
+      }
+    }
+    getData()
+  }, [])
+  useEffect(() => {
+    const getData = async () => {
+      setLoading(true)
+      try {
+        let res = await axios.get('http://localhost:5000/employees')
+        setEmployeeData(res.data)
       } catch (err) {
         setError(err.message)
       } finally {
@@ -47,7 +62,9 @@ function Login() {
     }
     getData()
 
-    let filterData = data?.filter(
+    let allData = [...data, ...employeeData]
+
+    let filterData = allData?.filter(
       (item) => item.email == email && item.password == password,
     )
 
@@ -58,13 +75,22 @@ function Login() {
       setTimeout(() => {
         navigate('/auth/signup')
       }, 1500)
-    } else {
+    }
+    if (filterData[0].role == "manager") {
       toast.success('Successful login!')
       const token = crypto.randomUUID()
       localStorage.setItem('user', JSON.stringify(filterData[0]))
       localStorage.setItem('token', token)
       setTimeout(() => {
         navigate('/manager/dashboard')
+      }, 1500)
+    } else if (filterData[0].role == "employee") {
+      toast.success('Successful login!')
+      const token = crypto.randomUUID()
+      localStorage.setItem('user', JSON.stringify(filterData[0]))
+      localStorage.setItem('token', token)
+      setTimeout(() => {
+        navigate('/employee/home')
       }, 1500)
     }
   }
@@ -183,7 +209,7 @@ function Login() {
           </h1>
         </div>
       </div>
-      <ToastContainer theme='dark'position='top-right' />
+      <ToastContainer theme='dark' position='top-right' />
     </div>
   )
 }
