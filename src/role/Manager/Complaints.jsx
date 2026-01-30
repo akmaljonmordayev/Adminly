@@ -9,6 +9,7 @@ function ComplaintsAdmin() {
   const [data, setData] = useState([])
   const [err, setErr] = useState(null)
   const [loading, setLoading] = useState(true)
+  const user = JSON.parse(localStorage.getItem('user'))
 
   const getData = async () => {
     try {
@@ -40,6 +41,13 @@ function ComplaintsAdmin() {
           item.id === id ? { ...item, status: newStatus } : item,
         ),
       )
+      toast.success('Complaint was deleted successfully')
+      await axios.post('http://localhost:5000/logs', {
+        userName: user.name,
+        action: 'UPDATE',
+        date: new Date().toISOString(),
+        page: 'COMPLAINTS',
+      })
     } catch (error) {
       console.error(error)
       alert('Status o‘zgartirishda xatolik')

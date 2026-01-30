@@ -1,6 +1,6 @@
-import axios from "axios";
-import React, { useEffect, useState } from "react";
-import { ToastContainer, toast } from "react-toastify";
+import axios from 'axios'
+import React, { useEffect, useState } from 'react'
+import { ToastContainer, toast } from 'react-toastify'
 import {
   HiOutlineClipboardList,
   HiOutlineDocumentText,
@@ -8,51 +8,51 @@ import {
   HiOutlineStatusOnline,
   HiOutlineRefresh,
   HiOutlineTrash,
-} from "react-icons/hi";
+} from 'react-icons/hi'
 
 function AnnouncementsArchieve() {
-  const [data, setData] = useState([]);
-  const [err, setErr] = useState("");
+  const [data, setData] = useState([])
+  const [err, setErr] = useState('')
 
   const getData = async () => {
     try {
-      let res = await axios.get("http://localhost:5000/announcementsDeleted");
-      setData(res.data);
+      let res = await axios.get('http://localhost:5000/announcementsDeleted')
+      setData(res.data)
     } catch (error) {
-      setErr(error.message);
+      setErr(error.message)
     }
-  };
+  }
 
   useEffect(() => {
-    getData();
-  }, []);
+    getData()
+  }, [])
 
   const deleteAnnouncements = async (id) => {
     try {
-      await axios.delete(`http://localhost:5000/announcementsDeleted/${id}`);
-      toast.error("Announcment permanently deleted");
-      getData();
+      await axios.delete(`http://localhost:5000/announcementsDeleted/${id}`)
+      toast.error('Announcment permanently deleted')
+      getData()
     } catch {
-      toast.error("Delete failed");
+      toast.error('Delete failed')
     }
-  };
+  }
 
   const restoreAnnouncements = async (announcement) => {
-    console.log(announcement);
+    console.log(announcement)
     try {
       await axios.delete(
         `http://localhost:5000/announcementsDeleted/${announcement.id}`,
-      );
-      await axios.post("http://localhost:5000/announcements", {
+      )
+      await axios.post('http://localhost:5000/announcements', {
         ...announcement,
         id: crypto.randomUUID(),
-      });
-      toast.error("Announcment permanently deleted");
-      getData();
+      })
+      toast.success('Announcment permanently restore')
+      getData()
     } catch {
-      toast.error("Delete failed");
+      toast.error('Restore failed')
     }
-  };
+  }
 
   return (
     <div className="w-full">
@@ -121,11 +121,11 @@ function AnnouncementsArchieve() {
                   <div className="flex flex-col">
                     <span
                       className={`text-sm font-bold ${
-                        delTask.status === "Active"
-                          ? "text-green-400"
-                          : delTask.status === "Pending"
-                            ? "text-orange-400"
-                            : "text-gray-400"
+                        delTask.status === 'Active'
+                          ? 'text-green-400'
+                          : delTask.status === 'Pending'
+                          ? 'text-orange-400'
+                          : 'text-gray-400'
                       }`}
                     >
                       {delTask.status}
@@ -157,9 +157,9 @@ function AnnouncementsArchieve() {
           </div>
         ))}
       </div>
-      <ToastContainer position="top-right" autoClose={3000} theme="dark" />
+      <ToastContainer position="top-right" theme="dark" />
     </div>
-  );
+  )
 }
 
-export default AnnouncementsArchieve;
+export default AnnouncementsArchieve

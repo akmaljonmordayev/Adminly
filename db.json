@@ -60,40 +60,11 @@
       "id": "9",
       "name": "Abdulloh Abdumalikov",
       "email": "abdulloh@gmail.com",
-      "password": "...",
+      "password": "123",
       "role": "manager"
     }
   ],
   "employees": [
-    {
-      "id": "4",
-      "userId": 104,
-      "fullName": "Jasmina Aliyeva",
-      "email": "jasmina.aliyeva@example.com",
-      "hireDate": "2023-02-01",
-      "baseSalary": "100",
-      "kpiPercent": 10,
-      "kpiAmount": 10,
-      "bonus": "100",
-      "penalty": "90",
-      "totalSalary": 120,
-      "month": "December",
-      "status": "unpaid",
-      "paymentDate": "2025-12-27",
-      "paymentMethod": "cash",
-      "comment": "Salary processed",
-      "leaves": [
-        {
-          "leaveType": "Sick Leave",
-          "startDate": "2024-11-10",
-          "endDate": "2024-11-12",
-          "status": "Approved"
-        }
-      ],
-      "createdBy": 1,
-      "createdAt": "2025-12-01T11:00:00Z",
-      "updatedAt": "2025-12-27T13:40:00Z"
-    },
     {
       "id": "5",
       "userId": 105,
@@ -277,6 +248,35 @@
       "createdAt": "2025-12-01T08:30:00Z",
       "updatedAt": "2025-12-30T15:00:00Z",
       "name": "yeaa"
+    },
+    {
+      "id": "4",
+      "userId": 104,
+      "fullName": "Jasmina Aliyeva",
+      "email": "jasmina.aliyeva@example.com",
+      "hireDate": "2023-02-01",
+      "baseSalary": "100",
+      "kpiPercent": 10,
+      "kpiAmount": 10,
+      "bonus": "100",
+      "penalty": "90",
+      "totalSalary": 120,
+      "month": "December",
+      "status": "unpaid",
+      "paymentDate": "2025-12-27",
+      "paymentMethod": "cash",
+      "comment": "Salary processed",
+      "leaves": [
+        {
+          "leaveType": "Sick Leave",
+          "startDate": "2024-11-10",
+          "endDate": "2024-11-12",
+          "status": "Approved"
+        }
+      ],
+      "createdBy": 1,
+      "createdAt": "2025-12-01T11:00:00Z",
+      "updatedAt": "2025-12-27T13:40:00Z"
     }
   ],
   "tasks": [
@@ -415,25 +415,72 @@
       "action": "DELETE",
       "date": "2026-01-28T05:17:18.647Z",
       "page": "LEAVES"
-    }
-  ],
-  "resignations": [
+    },
     {
-      "id": "RES001",
-      "employeeId": "EMP001",
-      "employeeName": "Akmal Mordayev",
-      "position": "Frontend Developer",
-      "department": "IT",
-      "resignationType": "voluntary",
-      "appliedDate": "2025-12-10",
-      "lastWorkingDay": "2026-01-10",
-      "noticePeriod": "30 days",
-      "reason": "Career growth",
-      "status": "approved",
-      "approvedBy": null,
-      "comment": "Looking for new opportunities"
+      "id": "f65e",
+      "userName": "Abdulloh Abdumalikov",
+      "action": "DELETE",
+      "date": "2026-01-28T08:54:42.265Z",
+      "page": "LEAVES"
+    },
+    {
+      "id": "e5d1",
+      "userName": "Abdulloh Abdumalikov",
+      "action": "UPDATE",
+      "date": "2026-01-28T08:59:50.338Z",
+      "page": "SETTINGS"
+    },
+    {
+      "id": "92b2",
+      "userName": "Abdulloh Abdumalikov",
+      "action": "DELETE",
+      "date": "2026-01-29T05:48:58.875Z",
+      "page": "COMPLAINTS"
+    },
+    {
+      "id": "c7fa",
+      "userName": "Abdulloh Abdumalikov",
+      "action": "UPDATE",
+      "date": "2026-01-29T05:51:36.620Z",
+      "page": "COMPLAINTS"
+    },
+    {
+      "id": "ee5f",
+      "userName": "Abdulloh Abdumalikov",
+      "action": "a",
+      "date": "2026-01-29T05:52:02.206Z",
+      "page": "COMPLAINTS"
+    },
+    {
+      "id": "7736",
+      "userName": "Abdulloh Abdumalikov",
+      "action": "DELETE",
+      "date": "2026-01-30T05:04:45.558Z",
+      "page": "ANNOUNCEMENTS"
+    },
+    {
+      "id": "0b6e",
+      "userName": "Abdulloh Abdumalikov",
+      "action": "DELETE",
+      "date": "2026-01-30T05:04:47.121Z",
+      "page": "ANNOUNCEMENTS"
+    },
+    {
+      "id": "e1f2",
+      "userName": "Abdulloh Abdumalikov",
+      "action": "DELETE",
+      "date": "2026-01-30T05:04:47.891Z",
+      "page": "ANNOUNCEMENTS"
+    },
+    {
+      "id": "855d",
+      "userName": "Abdulloh Abdumalikov",
+      "action": "DELETE",
+      "date": "2026-01-30T05:31:04.742Z",
+      "page": "COMPLAINTS"
     }
   ],
+  "resignations": [],
   "vacations": [
     {
       "employeeId": "EMP003",
@@ -458,28 +505,37 @@
   ],
   "announcements": [
     {
-      "id": "a1f7122c-061a-4666-bc68-3640a7d3abbb",
+      "id": "5f08509f-ddd1-4825-b8a6-29e4da33ee49",
+      "title": "NNa",
+      "text": "NNa",
+      "date": "2026-01-26T06:13:05.999Z",
+      "status": "Active"
+    },
+    {
+      "id": "715ca997-9d77-4230-88ef-fb002469209f",
       "title": "DAM",
       "text": "14-yanvar vatan himoyachilari kuni uchun hammaga dam",
       "date": "Jan 21, 2026",
       "status": "Active"
     },
     {
-      "id": "2b07",
+      "id": "466c4f07-2ff1-43a0-b50d-f7f9c30bb9d8",
       "title": "avsd",
       "text": "salom",
       "date": "Jan 10, 2026",
       "status": "Active"
-    },
-    {
-      "id": "ea9e1f0d-c01b-4f15-87a1-d692701f89f3",
-      "title": "QWERTY",
-      "text": "qwerty",
-      "date": "2026-01-26T06:31:37.487Z",
-      "status": "Active"
     }
   ],
   "complaints": [
+    {
+      "id": "CPL003",
+      "employeeId": "EMP007",
+      "employeeName": "Jasur T.",
+      "title": "Request for New Chair",
+      "description": "My office chair is broken and needs replacement.",
+      "date": "2025-12-19",
+      "status": "pending"
+    },
     {
       "id": "CPL002",
       "employeeId": "EMP006",
@@ -489,19 +545,6 @@
       "date": "2025-12-20",
       "status": "pending"
     },
-    {
-      "id": "CPL003",
-      "employeeId": "EMP007",
-      "employeeName": "Jasur T.",
-      "title": "Request for New Chair",
-      "description": "My office chair is broken and needs replacement.",
-      "date": "2025-12-19",
-      "status": "pending"
-    }
-  ],
-  "employeesDeleted": [],
-  "tasksDeleted": [],
-  "complaintsDeleted": [
     {
       "id": "CPL002",
       "employeeId": "EMP006",
@@ -512,12 +555,15 @@
       "status": "reviewed"
     }
   ],
+  "employeesDeleted": [],
+  "tasksDeleted": [],
+  "complaintsDeleted": [],
   "announcementsDeleted": [
     {
-      "id": "17cc1a77-0f1d-4a1e-adf9-4b63c62f0fd5",
-      "title": "NNa",
-      "text": "NNa",
-      "date": "2026-01-26T06:13:05.999Z",
+      "id": "ea9e1f0d-c01b-4f15-87a1-d692701f89f3",
+      "title": "QWERTY",
+      "text": "qwerty",
+      "date": "2026-01-26T06:31:37.487Z",
       "status": "Active"
     }
   ]

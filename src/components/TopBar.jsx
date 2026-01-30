@@ -21,7 +21,7 @@ function TopBar({ onToggle }) {
   const hour = new Date().getHours()
 
   const SignOut = () => {
-    toast.info('Signing out...')
+    toast.info('Signing out...'), { theme: 'dark' }
     setTimeout(() => {
       localStorage.clear()
       navigate('/auth/signin')
@@ -43,12 +43,17 @@ function TopBar({ onToggle }) {
       </button>
 
       <div className="flex-1 ml-2">
-        <h2 className="flex items-center gap-3 text-white text-xl md:text-xl font-extrabold tracking-tight">
+        <h2 className="flex tracking-wide items-center gap-3 text-white text-xl md:text-xl font-extrabold tracking-tight">
           <span className="opacity-90">
-            {hour < 12 ? 'GOOD MORNING' : 'GOOD EAVNING'},
+            {hour < 12
+              ? 'Good Morning'
+              : hour < 18
+              ? 'Good Afternoon'
+              : 'GOOD Evening'}
+            ,
           </span>
           <span className="relative">
-            <span className="text-cyan-400">{user.name.toUpperCase()} !</span>
+            <span className="text-cyan-400">{user.name}!</span>
           </span>
         </h2>
       </div>
