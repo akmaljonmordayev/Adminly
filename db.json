@@ -92,7 +92,9 @@
       ],
       "createdBy": 1,
       "createdAt": "2025-12-01T07:45:00Z",
-      "updatedAt": "2025-12-30T17:10:00Z"
+      "updatedAt": "2025-12-30T17:10:00Z",
+      "password": "1234",
+      "role": "employee"
     },
     {
       "id": "6",
@@ -114,7 +116,9 @@
       "leaves": [],
       "createdBy": 1,
       "createdAt": "2025-12-01T12:00:00Z",
-      "updatedAt": "2025-12-26T14:00:00Z"
+      "updatedAt": "2025-12-26T14:00:00Z",
+      "password": "1234",
+      "role": "employee"
     },
     {
       "id": "7",
@@ -143,29 +147,9 @@
       ],
       "createdBy": 1,
       "createdAt": "2025-12-01T10:20:00Z",
-      "updatedAt": "2025-12-29T18:00:00Z"
-    },
-    {
-      "id": "8",
-      "userId": 108,
-      "fullName": "Nodira Usmonova",
-      "email": "nodira.usmonova@example.com",
-      "hireDate": "2018-05-17",
-      "baseSalary": 3600000,
-      "kpiPercent": 22,
-      "kpiAmount": 792000,
-      "bonus": 450000,
-      "penalty": 0,
-      "totalSalary": 4842000,
-      "month": "2025-12",
-      "status": "paid",
-      "paymentDate": "2025-12-30",
-      "paymentMethod": "bank",
-      "comment": "Senior staff",
-      "leaves": [],
-      "createdBy": 1,
-      "createdAt": "2025-12-01T09:10:00Z",
-      "updatedAt": "2025-12-30T16:40:00Z"
+      "updatedAt": "2025-12-29T18:00:00Z",
+      "password": "1234",
+      "role": "employee"
     },
     {
       "id": "2",
@@ -195,7 +179,9 @@
       "createdBy": 1,
       "createdAt": "2025-12-01T09:00:00Z",
       "updatedAt": "2025-12-28T16:00:00Z",
-      "paymentStatus": "unpaid"
+      "paymentStatus": "unpaid",
+      "password": "1234",
+      "role": "employee"
     },
     {
       "id": "3",
@@ -218,7 +204,9 @@
       "createdBy": 1,
       "createdAt": "2025-12-01T08:30:00Z",
       "updatedAt": "2025-12-30T15:00:00Z",
-      "name": "yeaa"
+      "name": "yeaa",
+      "password": "1234",
+      "role": "employee"
     },
     {
       "id": "4",
@@ -247,7 +235,9 @@
       ],
       "createdBy": 1,
       "createdAt": "2025-12-01T11:00:00Z",
-      "updatedAt": "2025-12-27T13:40:00Z"
+      "updatedAt": "2025-12-27T13:40:00Z",
+      "password": "1234",
+      "role": "employee"
     },
     {
       "id": "b395",
@@ -266,10 +256,12 @@
       "paymentMethod": "",
       "comment": "",
       "leaves": [],
-      "createdAt": "2026-01-30T08:44:55.507Z"
+      "createdAt": "2026-01-30T08:44:55.507Z",
+      "password": "1234",
+      "role": "employee"
     },
     {
-      "id": "53f1",
+      "id": "69cb",
       "userId": 109,
       "fullName": "Bekzod Shokirov",
       "email": "bekzod.shokirov@example.com",
@@ -295,7 +287,33 @@
       ],
       "createdBy": 1,
       "createdAt": "2025-12-01T13:00:00Z",
-      "updatedAt": "2025-12-27T15:20:00Z"
+      "updatedAt": "2025-12-27T15:20:00Z",
+      "password": "1234",
+      "role": "employee"
+    },
+    {
+      "id": "d225",
+      "userId": 108,
+      "fullName": "Nodira Usmonova",
+      "email": "nodira.usmonova@example.com",
+      "hireDate": "2018-05-17",
+      "baseSalary": 3600000,
+      "kpiPercent": 22,
+      "kpiAmount": 792000,
+      "bonus": 450000,
+      "penalty": 0,
+      "totalSalary": 4842000,
+      "month": "2025-12",
+      "status": "paid",
+      "paymentDate": "2025-12-30",
+      "paymentMethod": "bank",
+      "comment": "Senior staff",
+      "leaves": [],
+      "createdBy": 1,
+      "createdAt": "2025-12-01T09:10:00Z",
+      "updatedAt": "2025-12-30T16:40:00Z",
+      "password": "1234",
+      "role": "employee"
     }
   ],
   "tasks": [
@@ -535,7 +553,7 @@
       "title": "DAM",
       "text": "14-yanvar vatan himoyachilari kuni uchun hammaga dam",
       "date": "Jan 21, 2026",
-      "status": "No Active"
+      "status": "Active"
     },
     {
       "id": "466c4f07-2ff1-43a0-b50d-f7f9c30bb9d8",
