@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
+import { ToastContainer, toast } from 'react-toastify'
 
 const columns = [
   'ID',
@@ -28,6 +29,7 @@ function Finance() {
   const [userCard, setUserCard] = useState(false)
   const [loading, setLoading] = useState(false)
   const [err, setErr] = useState('')
+  const user = JSON.parse(localStorage.getItem('user'))
 
   const totalPages = Math.ceil(data.length / ITEMS_PER_PAGE)
   const startIndex = (currentPage - 1) * ITEMS_PER_PAGE
@@ -54,16 +56,16 @@ function Finance() {
       setLoading(true)
       try {
         const res = await axios.get(
-          `http://localhost:5000/employees?userId=${singleUserId}`,
+          `http://localhost:5000/employees/${singleUserId}`,
         )
-        const user = res.data[0]
-        setEditData(user)
+        setEditData(res.data)
       } catch (error) {
         setErr(error.message)
       } finally {
         setLoading(false)
       }
     }
+
     fetchSingleUser()
   }, [singleUserId])
 
@@ -90,19 +92,18 @@ function Finance() {
         `http://localhost:5000/employees/${editData.id}`,
         updatedData,
       )
-
-      toast.success('Finance successfully update')
-      await axios.post('http://localhost:5000/logs', {
-        userName: user.name,
-        action: 'UPDATE',
-        date: new Date().toISOString(),
-        page: 'FINANCE',
-      })
-
       setData((prev) =>
         prev.map((item) => (item.id === editData.id ? updatedData : item)),
       )
       setUserCard(false)
+
+      toast.success('Finance successfully update')
+      await axios.post('http://localhost:5000/logs', {
+        userName: user?.name || 'Unknown',
+        action: 'UPDATE',
+        date: new Date().toISOString(),
+        page: 'FINANCE',
+      })
     } catch (error) {
       setErr(error.message)
     } finally {
@@ -367,7 +368,7 @@ function Finance() {
                   <td className="px-4 py-3">
                     <button
                       onClick={() => {
-                        setSingleUserId(row.userId)
+                        setSingleUserId(row.id)
                         setUserCard(true)
                       }}
                       className="px-3 py-1 text-xs font-bold text-cyan-400 border border-cyan-400/30 rounded-full hover:bg-cyan-400 hover:text-slate-900"
@@ -383,6 +384,7 @@ function Finance() {
 
         {err && <p className="text-red-400 mt-4">{err}</p>}
       </div>
+      <ToastContainer theme="dark" position="top-right" />
     </div>
   )
 }

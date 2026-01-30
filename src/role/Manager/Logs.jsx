@@ -260,7 +260,7 @@ function Logs() {
               </div>
               <div className="flex justify-between">
                 <span className="text-gray-400">User ID</span>
-                <span className="text-white">{selectedLog.userId || '-T'}</span>
+                <span className="text-white">{selectedLog.userId || '-'}</span>
               </div>
               <div className="flex justify-between">
                 <span className="text-gray-400">Status</span>
