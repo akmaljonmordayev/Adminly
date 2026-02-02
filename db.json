@@ -515,6 +515,13 @@
       "action": "DELETE",
       "date": "2026-01-30T05:31:04.742Z",
       "page": "COMPLAINTS"
+    },
+    {
+      "id": "012e",
+      "userName": "Mohinur Sulaymonqulova",
+      "action": "CREATE",
+      "date": "2026-02-02T05:34:19.297Z",
+      "page": "ANNOUNCEMENTS"
     }
   ],
   "resignations": [],
@@ -560,6 +567,13 @@
       "title": "avsd",
       "text": "salom",
       "date": "Jan 10, 2026",
+      "status": "Active"
+    },
+    {
+      "id": "01b6",
+      "title": "asdv",
+      "text": "asdvasdvas",
+      "date": "Jan 18, 2026",
       "status": "Active"
     }
   ],

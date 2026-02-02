@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from 'react'
-import axios from 'axios'
-import { Modal, ConfigProvider, theme } from 'antd'
-import { ToastContainer, toast } from 'react-toastify'
-import 'react-toastify/dist/ReactToastify.css'
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import { Modal, ConfigProvider, theme } from "antd";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import {
   HiOutlineCalendarDays,
   HiOutlineTrash,
@@ -11,149 +11,148 @@ import {
   HiOutlineHashtag,
   HiOutlineChatBubbleLeftRight,
   HiPlus,
-} from 'react-icons/hi2'
+} from "react-icons/hi2";
 
 const Announcements = () => {
-  const API = 'http://localhost:5000/announcements'
-  const DELETED_API = 'http://localhost:5000/announcementsDeleted'
+  const API = "http://localhost:5000/announcements";
+  const DELETED_API = "http://localhost:5000/announcementsDeleted";
 
-  const [announcements, setAnnouncements] = useState([])
-  const [newTitle, setNewTitle] = useState('')
-  const [newText, setNewText] = useState('')
-  const [date, setDate] = useState('')
-  const [calendarOpen, setCalendarOpen] = useState(false)
-  const [isModalOpen, setIsModalOpen] = useState(false)
-  const [editingAnn, setEditingAnn] = useState(null)
+  const [announcements, setAnnouncements] = useState([]);
+  const [newTitle, setNewTitle] = useState("");
+  const [newText, setNewText] = useState("");
+  const [date, setDate] = useState("");
+  const [calendarOpen, setCalendarOpen] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [editingAnn, setEditingAnn] = useState(null);
 
   useEffect(() => {
     fetch(API)
       .then((res) => res.json())
       .then((data) => setAnnouncements(data))
-      .catch(console.error)
-  }, [])
+      .catch(console.error);
+  }, []);
 
-  let user = JSON.parse(localStorage.getItem('user'))
+  let user = JSON.parse(localStorage.getItem("user"));
 
   const addAnnouncement = async () => {
     if (!newTitle || !newText) {
-      toast.error('Please fill in all fields', { theme: 'dark' })
-      return
+      toast.error("Please fill in all fields", { theme: "dark" });
+      return;
     }
 
     const newAnn = {
       title: newTitle,
       text: newText,
       date: date || new Date().toISOString(),
-      status: 'Active',
-    }
+      status: "Active",
+    };
 
     try {
       const res = await fetch(API, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify(newAnn),
-      })
+      });
 
-      if (!res.ok) throw new Error('Failed to add announcement')
+      if (!res.ok) throw new Error("Failed to add announcement");
 
-      const saved = await res.json()
-      setAnnouncements([...announcements, saved])
+      const saved = await res.json();
+      setAnnouncements([...announcements, saved]);
 
       // ✅ LOGS POST
       try {
-        if (!user || !user.name) throw new Error('User not defined')
-        toast.success('Task successfully added')
-        await axios.post('http://localhost:5000/logs', {
+        if (!user || !user.name) throw new Error("User not defined");
+        toast.success("Task successfully added");
+        await axios.post("http://localhost:5000/logs", {
           userName: user.name,
-          action: 'CREATE',
+          action: "CREATE",
           date: new Date().toISOString(),
-          page: 'ANNOUNCEMENTS',
-        })
+          page: "ANNOUNCEMENTS",
+        });
       } catch (logError) {
-        console.error('Failed to write log:', logError)
+        console.error("Failed to write log:", logError);
       }
 
-      setNewTitle('')
-      setNewText('')
-      setDate('')
-      toast.success('Announcement published successfully', { theme: 'dark' })
+      setNewTitle("");
+      setNewText("");
+      setDate("");
+      toast.success("Announcement published successfully", { theme: "dark" });
     } catch (e) {
-      toast.error('Something went wrong', { theme: 'dark' })
-      console.error(e)
+      toast.error("Something went wrong", { theme: "dark" });
+      console.error(e);
     }
-  }
+  };
 
   const deleteAnnouncement = async (id) => {
-    const item = announcements.find((a) => a.id === id)
-    if (!item) return
+    const item = announcements.find((a) => a.id === id);
+    if (!item) return;
 
     await fetch(DELETED_API, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify(item),
-    })
+    });
 
-    await fetch(`${API}/${id}`, { method: 'DELETE' })
-    toast.error('Announcment successfully deleted and achieved', {
-      theme: 'dark',
-    })
-    await axios.post('http://localhost:5000/logs', {
+    await fetch(`${API}/${id}`, { method: "DELETE" });
+    toast.error("Announcment successfully deleted and achieved", {
+      theme: "dark",
+    });
+    await axios.post("http://localhost:5000/logs", {
       userName: user.name,
-      action: 'DELETE',
+      action: "DELETE",
       date: new Date().toISOString(),
-      page: 'ANNOUNCEMENTS',
-    })
+      page: "ANNOUNCEMENTS",
+    });
 
-    setAnnouncements(announcements.filter((a) => a.id !== id))
-    toast.info('Announcement deleted', { theme: 'dark' })
-  }
+    setAnnouncements(announcements.filter((a) => a.id !== id));
+    toast.info("Announcement deleted", { theme: "dark" });
+  };
 
   const openEditModal = (a) => {
-    setEditingAnn(a)
-    setNewTitle(a.title)
-    setNewText(a.text)
-    setDate(a.date)
-    setIsModalOpen(true)
-  }
+    setEditingAnn(a);
+    setNewTitle(a.title);
+    setNewText(a.text);
+    setDate(a.date);
+    setIsModalOpen(true);
+  };
 
   const updateAnnouncement = async () => {
-    const updated = { ...editingAnn, title: newTitle, text: newText, date }
+    const updated = { ...editingAnn, title: newTitle, text: newText, date };
 
     await fetch(`${API}/${editingAnn.id}`, {
-      method: 'PUT',
-      headers: { 'Content-Type': 'application/json' },
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify(updated),
-    })
+    });
 
     setAnnouncements(
       announcements.map((a) => (a.id === editingAnn.id ? updated : a)),
-    )
+    );
 
-    setIsModalOpen(false)
+    setIsModalOpen(false);
 
-    await axios.post('http://localhost:5000/logs', {
+    await axios.post("http://localhost:5000/logs", {
       userName: user.name,
-      action: 'UPDATE',
+      action: "UPDATE",
       date: new Date().toISOString(),
-      page: 'ANNOUNCEMENTS',
-    })
-  }
+      page: "ANNOUNCEMENTS",
+    });
+  };
 
   const handleSelectDate = (day) => {
-    setDate(`Jan ${day}, 2026`)
-    setCalendarOpen(false)
-  }
-
+    setDate(`Jan ${day}, 2026`);
+    setCalendarOpen(false);
+  };
 
   return (
     <ConfigProvider
       theme={{
         algorithm: theme.darkAlgorithm,
         token: {
-          colorBgElevated: '#0f172a',
-          colorText: '#f8fafc',
+          colorBgElevated: "#0f172a",
+          colorText: "#f8fafc",
           borderRadius: 16,
-          colorPrimary: '#06b6d4',
+          colorPrimary: "#06b6d4",
         },
       }}
     >
@@ -198,8 +197,8 @@ const Announcements = () => {
              hover:border-cyan-500 hover:bg-slate-900
              transition-all duration-200"
               >
-                <span className={date ? 'text-slate-100' : 'text-slate-500'}>
-                  {date || 'Select date'}
+                <span className={date ? "text-slate-100" : "text-slate-500"}>
+                  {date || "Select date"}
                 </span>
                 <HiOutlineCalendarDays className="text-lg text-cyan-400" />
               </button>
@@ -242,7 +241,6 @@ const Announcements = () => {
             </button>
           </div>
         </div>
-
 
         {/* GRID */}
         <div className="max-w-[1400px] mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -297,7 +295,7 @@ const Announcements = () => {
         </Modal>
       </div>
     </ConfigProvider>
-  )
-}
+  );
+};
 
-export default Announcements
+export default Announcements;
