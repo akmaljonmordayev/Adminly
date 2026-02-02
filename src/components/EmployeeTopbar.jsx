@@ -48,12 +48,12 @@ function EmployeeTopBar({ onToggle }) {
             {hour < 12
               ? 'Good Morning'
               : hour < 18
-                ? 'Good Afternoon'
-                : 'GOOD Evening'}
+              ? 'Good Afternoon'
+              : 'GOOD Evening'}
             ,
           </span>
           <span className="relative">
-            <span className="text-cyan-400">{user.name}!</span>
+            <span className="text-cyan-400">{user.fullName}!</span>
           </span>
         </h2>
       </div>
@@ -121,7 +121,7 @@ function EmployeeTopBar({ onToggle }) {
 
               <div className="text-center mt-6">
                 <h3 className="text-2xl font-bold text-white tracking-tight">
-                  {user.name}
+                  {user.fullName}
                 </h3>
                 <div className="mt-2 inline-block px-4 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/20">
                   <span className="text-[10px] font-black uppercase tracking-[2.5px] text-cyan-400">
