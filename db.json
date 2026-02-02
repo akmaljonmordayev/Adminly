@@ -60,43 +60,69 @@
       "id": "9",
       "name": "Abdulloh Abdumalikov",
       "email": "abdulloh@gmail.com",
-      "password": "...",
+      "password": "123",
       "role": "manager"
     }
   ],
   "employees": [
     {
-      "id": "1",
-      "userId": 101,
-      "fullName": "Jasmina Aliyeva",
-      "email": "jasmina.aliyeva@example.com",
-      "hireDate": "2023-02-01",
-      "baseSalary": "100",
-      "kpiPercent": 10,
-      "kpiAmount": 10,
-      "bonus": "100",
-      "penalty": "90",
-      "totalSalary": 120,
-      "month": "December",
-      "status": "unpaid",
-      "paymentDate": "2025-12-27",
-      "paymentMethod": "cash",
-      "comment": "Salary processed",
+      "id": "5",
+      "userId": 105,
+      "fullName": "Sherzod Rasulov",
+      "email": "sherzod.rasulov@example.com",
+      "hireDate": "2019-09-12",
+      "baseSalary": 4000000,
+      "kpiPercent": 30,
+      "kpiAmount": 1200000,
+      "bonus": 600000,
+      "penalty": 100000,
+      "totalSalary": 5700000,
+      "month": "2025-12",
+      "status": "paid",
+      "paymentDate": "2025-12-30",
+      "paymentMethod": "bank",
+      "comment": "Top performer",
       "leaves": [
         {
-          "leaveType": "Sick Leave",
-          "startDate": "2024-11-10",
-          "endDate": "2024-11-12",
+          "leaveType": "Annual Leave",
+          "startDate": "2022-08-05",
+          "endDate": "2022-08-15",
           "status": "Approved"
         }
       ],
       "createdBy": 1,
-      "createdAt": "2025-12-01T11:00:00Z",
-      "updatedAt": "2025-12-27T13:40:00Z"
+      "createdAt": "2025-12-01T07:45:00Z",
+      "updatedAt": "2025-12-30T17:10:00Z",
+      "password": "1234",
+      "role": "employee"
     },
     {
-      "id": "4",
-      "userId": 104,
+      "id": "6",
+      "userId": 106,
+      "fullName": "Malika Tursunova",
+      "email": "malika.tursunova@example.com",
+      "hireDate": "2024-01-08",
+      "baseSalary": 2200000,
+      "kpiPercent": 10,
+      "kpiAmount": 220000,
+      "bonus": 150000,
+      "penalty": 0,
+      "totalSalary": 2570000,
+      "month": "2025-12",
+      "status": "paid",
+      "paymentDate": "2025-12-26",
+      "paymentMethod": "cash",
+      "comment": "New employee",
+      "leaves": [],
+      "createdBy": 1,
+      "createdAt": "2025-12-01T12:00:00Z",
+      "updatedAt": "2025-12-26T14:00:00Z",
+      "password": "1234",
+      "role": "employee"
+    },
+    {
+      "id": "7",
+      "userId": 107,
       "fullName": "Islombek Qodirov",
       "email": "islombek.qodirov@example.com",
       "hireDate": "2020-11-03",
@@ -121,123 +147,9 @@
       ],
       "createdBy": 1,
       "createdAt": "2025-12-01T10:20:00Z",
-      "updatedAt": "2025-12-29T18:00:00Z"
-    },
-    {
-      "id": "5",
-      "userId": 105,
-      "fullName": "Nodira Usmonova",
-      "email": "nodira.usmonova@example.com",
-      "hireDate": "2018-05-17",
-      "baseSalary": 3600000,
-      "kpiPercent": 22,
-      "kpiAmount": 792000,
-      "bonus": 450000,
-      "penalty": 0,
-      "totalSalary": 4842000,
-      "month": "2025-12",
-      "status": "paid",
-      "paymentDate": "2025-12-30",
-      "paymentMethod": "bank",
-      "comment": "Senior staff",
-      "leaves": [],
-      "createdBy": 1,
-      "createdAt": "2025-12-01T09:10:00Z",
-      "updatedAt": "2025-12-30T16:40:00Z"
-    },
-    {
-      "id": "7",
-      "userId": 107,
-      "fullName": "akmal",
-      "email": "akmal@gmail.com",
-      "hireDate": "2026-0-28",
-      "baseSalary": "12121212",
-      "kpiPercent": 0,
-      "kpiAmount": 0,
-      "bonus": "",
-      "penalty": "0",
-      "totalSalary": 0,
-      "month": "",
-      "status": "pending",
-      "paymentDate": "",
-      "paymentMethod": "",
-      "comment": "",
-      "leaves": [],
-      "createdAt": "2026-01-28T09:42:06.613Z"
-    },
-    {
-      "id": "3",
-      "userId": 103,
-      "fullName": "Dilshod Karimov",
-      "email": "dilshod.karimov@example.com",
-      "hireDate": "2020-06-20",
-      "baseSalary": "0",
-      "kpiPercent": 25,
-      "kpiAmount": "0",
-      "bonus": "5",
-      "penalty": 0,
-      "totalSalary": 5,
-      "month": "2025-12",
-      "status": "paid",
-      "paymentDate": "2025-12-30",
-      "paymentMethod": "bank",
-      "comment": "Excellent performance",
-      "leaves": [],
-      "createdBy": 1,
-      "createdAt": "2025-12-01T08:30:00Z",
-      "updatedAt": "2025-12-30T15:00:00Z",
-      "name": "yeaa"
-    },
-    {
-      "id": "3",
-      "userId": 103,
-      "fullName": "Malika Tursunova",
-      "email": "malika.tursunova@example.com",
-      "hireDate": "2024-01-08",
-      "baseSalary": 2200000,
-      "kpiPercent": 10,
-      "kpiAmount": 220000,
-      "bonus": 150000,
-      "penalty": 0,
-      "totalSalary": 2570000,
-      "month": "2025-12",
-      "status": "paid",
-      "paymentDate": "2025-12-26",
-      "paymentMethod": "cash",
-      "comment": "New employee",
-      "leaves": [],
-      "createdBy": 1,
-      "createdAt": "2025-12-01T12:00:00Z",
-      "updatedAt": "2025-12-26T14:00:00Z"
-    },
-    {
-      "id": "6",
-      "userId": 106,
-      "fullName": "Bekzod Shokirov",
-      "email": "bekzod.shokirov@example.com",
-      "hireDate": "2022-10-21",
-      "baseSalary": 2700000,
-      "kpiPercent": 12,
-      "kpiAmount": 324000,
-      "bonus": 200000,
-      "penalty": 50000,
-      "totalSalary": 3174000,
-      "month": "2025-12",
-      "status": "paid",
-      "paymentDate": "2025-12-27",
-      "paymentMethod": "cash",
-      "comment": "Salary paid",
-      "leaves": [
-        {
-          "leaveType": "Sick Leave",
-          "startDate": "2024-01-14",
-          "endDate": "2024-01-18",
-          "status": "Approved"
-        }
-      ],
-      "createdBy": 1,
-      "createdAt": "2025-12-01T13:00:00Z",
-      "updatedAt": "2025-12-27T15:20:00Z"
+      "updatedAt": "2025-12-29T18:00:00Z",
+      "password": "1234",
+      "role": "employee"
     },
     {
       "id": "2",
@@ -267,7 +179,141 @@
       "createdBy": 1,
       "createdAt": "2025-12-01T09:00:00Z",
       "updatedAt": "2025-12-28T16:00:00Z",
-      "paymentStatus": "unpaid"
+      "paymentStatus": "unpaid",
+      "password": "1234",
+      "role": "employee"
+    },
+    {
+      "id": "3",
+      "userId": 103,
+      "fullName": "Dilshod Karimov",
+      "email": "dilshod.karimov@example.com",
+      "hireDate": "2020-06-20",
+      "baseSalary": "0",
+      "kpiPercent": 25,
+      "kpiAmount": "0",
+      "bonus": "5",
+      "penalty": 0,
+      "totalSalary": 5,
+      "month": "2025-12",
+      "status": "paid",
+      "paymentDate": "2025-12-30",
+      "paymentMethod": "bank",
+      "comment": "Excellent performance",
+      "leaves": [],
+      "createdBy": 1,
+      "createdAt": "2025-12-01T08:30:00Z",
+      "updatedAt": "2025-12-30T15:00:00Z",
+      "name": "yeaa",
+      "password": "1234",
+      "role": "employee"
+    },
+    {
+      "id": "4",
+      "userId": 104,
+      "fullName": "Jasmina Aliyeva",
+      "email": "jasmina.aliyeva@example.com",
+      "hireDate": "2023-02-01",
+      "baseSalary": "100",
+      "kpiPercent": 10,
+      "kpiAmount": 10,
+      "bonus": "100",
+      "penalty": "90",
+      "totalSalary": 120,
+      "month": "December",
+      "status": "unpaid",
+      "paymentDate": "2025-12-27",
+      "paymentMethod": "cash",
+      "comment": "Salary processed",
+      "leaves": [
+        {
+          "leaveType": "Sick Leave",
+          "startDate": "2024-11-10",
+          "endDate": "2024-11-12",
+          "status": "Approved"
+        }
+      ],
+      "createdBy": 1,
+      "createdAt": "2025-12-01T11:00:00Z",
+      "updatedAt": "2025-12-27T13:40:00Z",
+      "password": "1234",
+      "role": "employee"
+    },
+    {
+      "id": "b395",
+      "fullName": "cvhcj",
+      "email": "vhjhrefkplbfkjeb",
+      "hireDate": "2026-01-30",
+      "baseSalary": "hdwfdvjkfjb",
+      "kpiPercent": 0,
+      "kpiAmount": 0,
+      "bonus": "",
+      "penalty": "0",
+      "totalSalary": 0,
+      "month": "",
+      "status": "pending",
+      "paymentDate": "",
+      "paymentMethod": "",
+      "comment": "",
+      "leaves": [],
+      "createdAt": "2026-01-30T08:44:55.507Z",
+      "password": "1234",
+      "role": "employee"
+    },
+    {
+      "id": "69cb",
+      "userId": 109,
+      "fullName": "Bekzod Shokirov",
+      "email": "bekzod.shokirov@example.com",
+      "hireDate": "2022-10-21",
+      "baseSalary": 2700000,
+      "kpiPercent": 12,
+      "kpiAmount": 324000,
+      "bonus": 200000,
+      "penalty": 50000,
+      "totalSalary": 3174000,
+      "month": "2025-12",
+      "status": "paid",
+      "paymentDate": "2025-12-27",
+      "paymentMethod": "cash",
+      "comment": "Salary paid",
+      "leaves": [
+        {
+          "leaveType": "Sick Leave",
+          "startDate": "2024-01-14",
+          "endDate": "2024-01-18",
+          "status": "Approved"
+        }
+      ],
+      "createdBy": 1,
+      "createdAt": "2025-12-01T13:00:00Z",
+      "updatedAt": "2025-12-27T15:20:00Z",
+      "password": "1234",
+      "role": "employee"
+    },
+    {
+      "id": "d225",
+      "userId": 108,
+      "fullName": "Nodira Usmonova",
+      "email": "nodira.usmonova@example.com",
+      "hireDate": "2018-05-17",
+      "baseSalary": 3600000,
+      "kpiPercent": 22,
+      "kpiAmount": 792000,
+      "bonus": 450000,
+      "penalty": 0,
+      "totalSalary": 4842000,
+      "month": "2025-12",
+      "status": "paid",
+      "paymentDate": "2025-12-30",
+      "paymentMethod": "bank",
+      "comment": "Senior staff",
+      "leaves": [],
+      "createdBy": 1,
+      "createdAt": "2025-12-01T09:10:00Z",
+      "updatedAt": "2025-12-30T16:40:00Z",
+      "password": "1234",
+      "role": "employee"
     }
   ],
   "tasks": [
@@ -345,58 +391,77 @@
       "page": "LEAVES"
     },
     {
-      "id": "1aeb",
-      "userName": "Abdulaziz Xasanov",
+      "id": "f65e",
+      "userName": "Abdulloh Abdumalikov",
       "action": "DELETE",
-      "date": "2026-01-29T19:54:51.980Z",
-      "page": "TASKS"
+      "date": "2026-01-28T08:54:42.265Z",
+      "page": "LEAVES"
     },
     {
-      "id": "acdc",
-      "userName": "Abdulaziz Xasanov",
-      "action": "DELETE",
-      "date": "2026-01-29T19:55:10.192Z",
-      "page": "TASKS"
+      "id": "e5d1",
+      "userName": "Abdulloh Abdumalikov",
+      "action": "UPDATE",
+      "date": "2026-01-28T08:59:50.338Z",
+      "page": "SETTINGS"
     },
     {
-      "id": "4dbe",
-      "userName": "Abdulaziz Xasanov",
+      "id": "92b2",
+      "userName": "Abdulloh Abdumalikov",
       "action": "DELETE",
-      "date": "2026-01-29T19:55:11.957Z",
-      "page": "TASKS"
+      "date": "2026-01-29T05:48:58.875Z",
+      "page": "COMPLAINTS"
     },
     {
-      "id": "8ed8",
-      "userName": "Abdulaziz Xasanov",
-      "action": "DELETE",
-      "date": "2026-01-29T19:55:13.685Z",
-      "page": "TASKS"
+      "id": "c7fa",
+      "userName": "Abdulloh Abdumalikov",
+      "action": "UPDATE",
+      "date": "2026-01-29T05:51:36.620Z",
+      "page": "COMPLAINTS"
     },
     {
-      "id": "1805",
-      "userName": "Abdulaziz Xasanov",
+      "id": "ee5f",
+      "userName": "Abdulloh Abdumalikov",
+      "action": "a",
+      "date": "2026-01-29T05:52:02.206Z",
+      "page": "COMPLAINTS"
+    },
+    {
+      "id": "7736",
+      "userName": "Abdulloh Abdumalikov",
       "action": "DELETE",
-      "date": "2026-01-29T19:55:16.285Z",
-      "page": "TASKS"
+      "date": "2026-01-30T05:04:45.558Z",
+      "page": "ANNOUNCEMENTS"
+    },
+    {
+      "id": "0b6e",
+      "userName": "Abdulloh Abdumalikov",
+      "action": "DELETE",
+      "date": "2026-01-30T05:04:47.121Z",
+      "page": "ANNOUNCEMENTS"
+    },
+    {
+      "id": "e1f2",
+      "userName": "Abdulloh Abdumalikov",
+      "action": "DELETE",
+      "date": "2026-01-30T05:04:47.891Z",
+      "page": "ANNOUNCEMENTS"
+    },
+    {
+      "id": "855d",
+      "userName": "Abdulloh Abdumalikov",
+      "action": "DELETE",
+      "date": "2026-01-30T05:31:04.742Z",
+      "page": "COMPLAINTS"
+    },
+    {
+      "id": "012e",
+      "userName": "Mohinur Sulaymonqulova",
+      "action": "CREATE",
+      "date": "2026-02-02T05:34:19.297Z",
+      "page": "ANNOUNCEMENTS"
     }
   ],
-  "resignations": [
-    {
-      "id": "RES001",
-      "employeeId": "EMP001",
-      "employeeName": "Akmal Mordayev",
-      "position": "Frontend Developer",
-      "department": "IT",
-      "resignationType": "voluntary",
-      "appliedDate": "2025-12-10",
-      "lastWorkingDay": "2026-01-10",
-      "noticePeriod": "30 days",
-      "reason": "Career growth",
-      "status": "approved",
-      "approvedBy": null,
-      "comment": "Looking for new opportunities"
-    }
-  ],
+  "resignations": [],
   "vacations": [
     {
       "employeeId": "EMP003",
@@ -421,24 +486,31 @@
   ],
   "announcements": [
     {
-      "id": "a1f7122c-061a-4666-bc68-3640a7d3abbb",
+      "id": "5f08509f-ddd1-4825-b8a6-29e4da33ee49",
+      "title": "NNa",
+      "text": "NNa",
+      "date": "2026-01-26T06:13:05.999Z",
+      "status": "Active"
+    },
+    {
+      "id": "715ca997-9d77-4230-88ef-fb002469209f",
       "title": "DAM",
       "text": "14-yanvar vatan himoyachilari kuni uchun hammaga dam",
       "date": "Jan 21, 2026",
       "status": "Active"
     },
     {
-      "id": "2b07",
+      "id": "466c4f07-2ff1-43a0-b50d-f7f9c30bb9d8",
       "title": "avsd",
       "text": "salom",
       "date": "Jan 10, 2026",
       "status": "Active"
     },
     {
-      "id": "ea9e1f0d-c01b-4f15-87a1-d692701f89f3",
-      "title": "QWERTY",
-      "text": "qwerty",
-      "date": "2026-01-26T06:31:37.487Z",
+      "id": "01b6",
+      "title": "asdv",
+      "text": "asdvasdvas",
+      "date": "Jan 18, 2026",
       "status": "Active"
     }
   ],
@@ -451,6 +523,24 @@
       "description": "My office chair is broken and needs replacement.",
       "date": "2025-12-19",
       "status": "pending"
+    },
+    {
+      "id": "CPL002",
+      "employeeId": "EMP006",
+      "employeeName": "Sabina M.",
+      "title": "Internet Connectivity Issue",
+      "description": "Internet connection keeps dropping in the design department.",
+      "date": "2025-12-20",
+      "status": "pending"
+    },
+    {
+      "id": "CPL002",
+      "employeeId": "EMP006",
+      "employeeName": "Sabina M.",
+      "title": "Internet Connectivity Issue",
+      "description": "Internet connection keeps dropping in the design department.",
+      "date": "2025-12-20",
+      "status": "reviewed"
     }
   ],
   "employeesDeleted": [],
@@ -515,10 +605,10 @@
   "complaintsDeleted": [],
   "announcementsDeleted": [
     {
-      "id": "17cc1a77-0f1d-4a1e-adf9-4b63c62f0fd5",
-      "title": "NNa",
-      "text": "NNa",
-      "date": "2026-01-26T06:13:05.999Z",
+      "id": "ea9e1f0d-c01b-4f15-87a1-d692701f89f3",
+      "title": "QWERTY",
+      "text": "qwerty",
+      "date": "2026-01-26T06:31:37.487Z",
       "status": "Active"
     }
   ]

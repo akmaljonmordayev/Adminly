@@ -59,6 +59,13 @@ function Settings() {
         }),
       )
 
+      await axios.post('http://localhost:5000/logs', {
+        userName: user.name,
+        action: 'UPDATE',
+        date: new Date().toISOString(),
+        page: 'SETTINGS',
+      })
+
       setOpen(false)
       getData()
     } catch {}

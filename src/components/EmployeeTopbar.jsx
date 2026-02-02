@@ -13,7 +13,7 @@ import { toast, ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import { theme } from 'antd'
 
-function TopBar({ onToggle }) {
+function EmployeeTopBar({ onToggle }) {
   const navigate = useNavigate()
   const [bell, setBell] = useState(true)
   const [modal, setModal] = useState(false)
@@ -53,7 +53,7 @@ function TopBar({ onToggle }) {
             ,
           </span>
           <span className="relative">
-            <span className="text-cyan-400">{user.name}!</span>
+            <span className="text-cyan-400">{user.fullName}!</span>
           </span>
         </h2>
       </div>
@@ -121,7 +121,7 @@ function TopBar({ onToggle }) {
 
               <div className="text-center mt-6">
                 <h3 className="text-2xl font-bold text-white tracking-tight">
-                  {user.name}
+                  {user.fullName}
                 </h3>
                 <div className="mt-2 inline-block px-4 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/20">
                   <span className="text-[10px] font-black uppercase tracking-[2.5px] text-cyan-400">
@@ -155,4 +155,4 @@ function TopBar({ onToggle }) {
   )
 }
 
-export default TopBar
+export default EmployeeTopBar

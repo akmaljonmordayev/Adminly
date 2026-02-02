@@ -1,11 +1,11 @@
 import React from 'react'
 
-function Home() {
+function MyLeaves() {
   return (
     <div>
-      Home
+      MyLeaves
     </div>
   )
 }
 
-export default Home
+export default MyLeaves

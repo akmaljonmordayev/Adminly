@@ -1,77 +1,102 @@
-import { useState, useEffect } from "react";
-import React from "react";
-import { FaUser } from "react-icons/fa";
-import { FaLock } from "react-icons/fa";
-import { FaLockOpen } from "react-icons/fa";
-import { useNavigate } from "react-router-dom";
-import axios from "axios";
-import { toast, ToastContainer } from "react-toastify";
-import { Link } from "react-router-dom";
+import { useState, useEffect } from 'react'
+import React from 'react'
+import { FaUser } from 'react-icons/fa'
+import { FaLock } from 'react-icons/fa'
+import { FaLockOpen } from 'react-icons/fa'
+import { useNavigate } from 'react-router-dom'
+import axios from 'axios'
+import { toast, ToastContainer } from 'react-toastify'
+import { Link } from 'react-router-dom'
 
 function Login() {
-  const [email, setEmail] = useState(""),
-    [password, setPassword] = useState(""),
-    [open, setOpen] = useState(false);
-  const navigate = useNavigate();
-  const [data, setData] = useState([]);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState("");
+  const [email, setEmail] = useState(''),
+    [password, setPassword] = useState(''),
+    [open, setOpen] = useState(false)
+  const navigate = useNavigate()
+  const [data, setData] = useState([])
+  const [employeeData, setEmployeeData] = useState([])
+  const [loading, setLoading] = useState(false)
+  const [error, setError] = useState('')
 
   useEffect(() => {
     const getData = async () => {
-      setLoading(true);
+      setLoading(true)
       try {
-        let res = await axios.get("http://localhost:5000/users");
-        setData(res.data);
+        let res = await axios.get('http://localhost:5000/users')
+        setData(res.data)
       } catch (err) {
-        setError(err.message);
+        setError(err.message)
       } finally {
-        setLoading(false);
+        setLoading(false)
       }
-    };
-    getData();
-  }, []);
+    }
+    getData()
+  }, [])
+  useEffect(() => {
+    const getData = async () => {
+      setLoading(true)
+      try {
+        let res = await axios.get('http://localhost:5000/employees')
+        setEmployeeData(res.data)
+      } catch (err) {
+        setError(err.message)
+      } finally {
+        setLoading(false)
+      }
+    }
+    getData()
+  }, [])
 
   const onSubmitted = (e) => {
-    e.preventDefault();
+    e.preventDefault()
     const getData = async () => {
-      setLoading(true);
+      setLoading(true)
       try {
-        let res = await axios.get("http://localhost:5000/users");
-        setData(res.data);
+        let res = await axios.get('http://localhost:5000/users')
+        setData(res.data)
       } catch (err) {
-        setError(err.message);
+        setError(err.message)
       } finally {
-        setLoading(false);
+        setLoading(false)
       }
-    };
-    getData();
+    }
+    getData()
 
-    let filterData = data?.filter(
-      (item) => item.email == email && item.password == password
-    );
+    let allData = [...data, ...employeeData]
 
-    console.log(filterData);
+    let filterData = allData?.filter(
+      (item) => item.email == email && item.password == password,
+    )
+
+    console.log(filterData)
 
     if (filterData.length == 0) {
-      toast.error("Bunaqa foydalanuvchi topilmadi!");
+      toast.error('No such user found!')
       setTimeout(() => {
-        navigate("/auth/signup");
-      }, 1500);
-    } else {
-      toast.success("Successful login!");
-      const token = crypto.randomUUID();
-      localStorage.setItem("user", JSON.stringify(filterData[0]));
-      localStorage.setItem("token", token);
-      setTimeout(() => {
-        navigate("/manager/dashboard");
-      }, 1500);
+        navigate('/auth/signup')
+      }, 1500)
     }
-  };
+    if (filterData[0].role == "manager") {
+      toast.success('Successful login!')
+      const token = crypto.randomUUID()
+      localStorage.setItem('user', JSON.stringify(filterData[0]))
+      localStorage.setItem('token', token)
+      setTimeout(() => {
+        navigate('/manager/dashboard')
+      }, 1500)
+    } else if (filterData[0].role == "employee") {
+      toast.success('Successful login!')
+      const token = crypto.randomUUID()
+      localStorage.setItem('user', JSON.stringify(filterData[0]))
+      localStorage.setItem('token', token)
+      setTimeout(() => {
+        navigate('/employee/home')
+      }, 1500)
+    }
+  }
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-[#050b14]">
-      <ToastContainer />
       <div
         className="relative w-[900px] h-[420px] rounded-xl overflow-hidden 
     bg-linear-to-br from-[#0b1220] to-[#050b14]
@@ -119,7 +144,7 @@ function Login() {
             <span className="relative block mt-8">
               <input
                 onChange={(e) => setPassword(e.target.value)}
-                type={open ? "text" : "password"}
+                type={open ? 'text' : 'password'}
                 required
                 value={password}
                 className="
@@ -163,12 +188,12 @@ function Login() {
          font-semibold text-white
           hover:opacity-90 transition cursor-pointer"
             >
-              {loading ? "loading..." : "Login"}
+              {loading ? 'loading...' : 'Login'}
             </button>
           </form>
           <span className="justify-center flex gap-2 mt-6 text-sm text-gray-400">
             <p>Don't have an account</p>
-            <Link to={"/auth/signup"} className="text-cyan-400 hover:underline">
+            <Link to={'/auth/signup'} className="text-cyan-400 hover:underline">
               Sign Up
             </Link>
           </span>
@@ -184,8 +209,9 @@ function Login() {
           </h1>
         </div>
       </div>
+      <ToastContainer theme='dark' position='top-right' />
     </div>
-  );
+  )
 }
 
-export default Login;
+export default Login
