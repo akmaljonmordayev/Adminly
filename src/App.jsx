@@ -1,54 +1,54 @@
-import "./App.css";
-import React, { Suspense } from "react";
-import { Routes, Route, Navigate } from "react-router-dom";
+import './App.css'
+import React, { Suspense } from 'react'
+import { Routes, Route, Navigate } from 'react-router-dom'
 
 /* LAYOUTS */
-import MainLayOut from "./layouts/MainLayOut";
-import EmploeeLayout from "./layouts/EmployeeLayout";
+import MainLayOut from './layouts/MainLayOut'
+import EmploeeLayout from './layouts/EmployeeLayout'
 
 /* PROTECTED */
-import ProtectedRoute from "./components/ProtectedRoute";
+import ProtectedRoute from './components/ProtectedRoute'
 
 /* EMPLOYEE (normal import) */
-import Home from "./role/Employee/Home";
-import MyComplaints from "./role/Employee/MyComplaints";
-import MyAnnouncements from "./role/Employee/MyAnnouncements";
+import Home from './role/Employee/Home'
+import MyComplaints from './role/Employee/MyComplaints'
+import MyAnnouncements from './role/Employee/MyAnnouncements'
 
 /* LAZY LOAD */
-const Login = React.lazy(() => import("./auth/Login"));
-const Register = React.lazy(() => import("./auth/Register"));
-const NotFound = React.lazy(() => import("./role/Employee/NotFound"));
+const Login = React.lazy(() => import('./auth/Login'))
+const Register = React.lazy(() => import('./auth/Register'))
+const NotFound = React.lazy(() => import('./role/Employee/NotFound'))
 
 /* MANAGER */
-const Dashboard = React.lazy(() => import("./role/Manager/Dashboard"));
-const Finance = React.lazy(() => import("./role/Manager/Finance"));
-const Tasks = React.lazy(() => import("./role/Manager/Tasks"));
-const Logs = React.lazy(() => import("./role/Manager/Logs"));
-const Vacations = React.lazy(() => import("./role/Manager/Vacations"));
-const Settings = React.lazy(() => import("./role/Manager/Settings"));
-const Complaints = React.lazy(() => import("./role/Manager/Complaints"));
-const Employees = React.lazy(() => import("./role/Manager/Employees"));
-const Leaves = React.lazy(() => import("./role/Manager/Leaves"));
-const Announcements = React.lazy(() => import("./role/Manager/Announcements"));
-const Archieve = React.lazy(() => import("./role/Manager/Archieve"));
-const TasksArchieve = React.lazy(() => import("./role/Manager/TasksArchieve"));
-const ComplaintsArchieve = React.lazy(
-  () => import("./role/Manager/ComplaintsArchieve"),
-);
-const AnnouncementsArchieve = React.lazy(
-  () => import("./role/Manager/AnnouncementsArchieve"),
-);
-const EmployeesArchieve = React.lazy(
-  () => import("./role/Manager/EmployeesArchieve"),
-);
+const Dashboard = React.lazy(() => import('./role/Manager/Dashboard'))
+const Finance = React.lazy(() => import('./role/Manager/Finance'))
+const Tasks = React.lazy(() => import('./role/Manager/Tasks'))
+const Logs = React.lazy(() => import('./role/Manager/Logs'))
+const Vacations = React.lazy(() => import('./role/Manager/Vacations'))
+const Settings = React.lazy(() => import('./role/Manager/Settings'))
+const Complaints = React.lazy(() => import('./role/Manager/Complaints'))
+const Employees = React.lazy(() => import('./role/Manager/Employees'))
+const Leaves = React.lazy(() => import('./role/Manager/Leaves'))
+const Announcements = React.lazy(() => import('./role/Manager/Announcements'))
+const Archieve = React.lazy(() => import('./role/Manager/Archieve'))
+const TasksArchieve = React.lazy(() => import('./role/Manager/TasksArchieve'))
+const ComplaintsArchieve = React.lazy(() =>
+  import('./role/Manager/ComplaintsArchieve'),
+)
+const AnnouncementsArchieve = React.lazy(() =>
+  import('./role/Manager/AnnouncementsArchieve'),
+)
+const EmployeesArchieve = React.lazy(() =>
+  import('./role/Manager/EmployeesArchieve'),
+)
 
 /* EMPLOYEE */
-const MyTasks = React.lazy(() => import("./role/Employee/MyTasks"));
-const MyVacations = React.lazy(() => import("./role/Employee/MyVacations"));
-const MyLeaves = React.lazy(() => import("./role/Employee/MyLeaves"));
-const MyProfile = React.lazy(() => import("./role/Employee/MyProfile"));
-const MyProfit = React.lazy(() => import("./role/Employee/MyProfit"));
-const MyAnalitics = React.lazy(() => import("./role/Employee/MyAnalitics"));
+const MyTasks = React.lazy(() => import('./role/Employee/MyTasks'))
+const MyVacations = React.lazy(() => import('./role/Employee/MyVacations'))
+const MyLeaves = React.lazy(() => import('./role/Employee/MyLeaves'))
+const MyProfile = React.lazy(() => import('./role/Employee/MyProfile'))
+const MyProfit = React.lazy(() => import('./role/Employee/MyProfit'))
+const MyAnalitics = React.lazy(() => import('./role/Employee/MyAnalitics'))
 
 function App() {
   return (
@@ -87,18 +87,12 @@ function App() {
 
           <Route path="archieve" element={<Archieve />}>
             <Route path="tasksArchieve" element={<TasksArchieve />} />
-            <Route
-              path="complaintsArchieve"
-              element={<ComplaintsArchieve />}
-            />
+            <Route path="complaintsArchieve" element={<ComplaintsArchieve />} />
             <Route
               path="announcementsArchieve"
               element={<AnnouncementsArchieve />}
             />
-            <Route
-              path="employeesArchieve"
-              element={<EmployeesArchieve />}
-            />
+            <Route path="employeesArchieve" element={<EmployeesArchieve />} />
           </Route>
 
           <Route path="*" element={<NotFound />} />
@@ -114,7 +108,7 @@ function App() {
           }
         >
           <Route index element={<Navigate to="home" replace />} />
-          <Route path="home" element={<Home />} />
+          <Route path="myhome" element={<Home />} />
           <Route path="mycomplaints" element={<MyComplaints />} />
           <Route path="mytasks" element={<MyTasks />} />
           <Route path="myvacations" element={<MyVacations />} />
@@ -128,16 +122,13 @@ function App() {
         </Route>
 
         {/* ================= ROOT ================= */}
-        <Route
-          path="/"
-          element={<Navigate to="/auth/signin" replace />}
-        />
+        <Route path="/" element={<Navigate to="/auth/signin" replace />} />
 
         {/* ================= GLOBAL 404 ================= */}
         <Route path="*" element={<NotFound />} />
       </Routes>
     </Suspense>
-  );
+  )
 }
 
-export default App;
+export default App
