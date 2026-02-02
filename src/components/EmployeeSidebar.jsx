@@ -105,7 +105,7 @@ function EmployeeSidebar({ isCollapsed }) {
       </h1>
 
       <div
-        onClick={() => navigate('/manager/settings')}
+        onClick={() => navigate('/employee/myprofile')}
         className={`
           flex items-center gap-3 mb-12 p-4 rounded-2xl bg-white/5 border border-white/10
           shadow-[0_0_20px_rgba(0,0,0,0.6)] cursor-pointer hover:bg-white/10 transition-all
