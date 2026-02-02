@@ -37,6 +37,19 @@ function Logs() {
   const itemsPerPage = 6
 
   const [selectedLog, setSelectedLog] = useState(null)
+  const [contextMenu, setContextMenu] = useState(null)
+
+
+
+
+  const handleContextMenu = ( e, log) => {
+    e.preventDefault()
+    setContextMenu({
+      x: e.pageX,
+      y: e.pageY,
+      log,  
+    })
+  }
 
   /* ================= FETCH WITH AXIOS ================= */
   useEffect(() => {
@@ -105,6 +118,7 @@ function Logs() {
   }
 
   return (
+    <>
     <main className="flex bg-[#0A0F1C] min-h-screen py-10 px-4 font-sans">
       <div className="max-w-4xl mx-auto w-full flex flex-col">
         {/* Header */}
@@ -175,6 +189,7 @@ function Logs() {
                 <div
                   key={log.id}
                   onClick={() => setSelectedLog(log)}
+                  onContextMenu={(e) => handleContextMenu(e, log)}
                   className="cursor-pointer flex items-center justify-between p-5 bg-[#111B34] border border-[#2BD3F3]/5 rounded-2xl hover:bg-[#16223f] hover:border-[#2BD3F3]/30 transition-all shadow-lg"
                 >
                   <div className="flex gap-4">
@@ -288,6 +303,38 @@ function Logs() {
         </div>
       )}
     </main>
+
+    {contextMenu && (
+      <div
+      style={{ top: contextMenu.y, left: contextMenu.x}}
+      className='fixed z-50 bg-[#111B34]  border border-red-500/30 rounded-xl shadow-xl'
+      onMouseLeave={() => setContextMenu(null)}
+      >
+        <button 
+        onClick={async () => {
+          await axios.delete(
+            `http://localhost:5000/logs/${contextMenu.log.id}`
+          )
+
+          setData((prev) =>
+          prev.filter((item) => item.id !== contextMenu.log.id)
+          )
+
+
+          setContextMenu(null)
+        }}
+
+        className="flex items-center gap-2 px-5 py-3 text-red-400 hover:bg-red-500/10 w-full text-sm"
+        >
+          <FiTrash2 />
+          Delete log
+        </button>
+      </div>
+    )}
+
+    </>
+
+    
   )
 }
 

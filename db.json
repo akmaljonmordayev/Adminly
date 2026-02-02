@@ -353,66 +353,10 @@
       "status": "pending"
     },
     {
-      "id": "a822",
-      "taskName": "vybuhnjik,l",
-      "employeeName": "Jasmina Aliyeva",
-      "deadline": "2026-01-21",
-      "status": "pending"
-    },
-    {
-      "id": "d0c5",
-      "taskName": "defrg",
-      "employeeName": "Dilshod Karimov",
-      "deadline": "2026-01-13",
-      "status": "pending"
-    },
-    {
-      "id": "5db3",
-      "taskName": "cefvgrbhn",
-      "employeeName": "Nodira Usmonova",
-      "deadline": "2026-01-14",
-      "status": "pending"
-    },
-    {
-      "id": "8a0c",
-      "taskName": "adeveb",
-      "employeeName": "Bekzod Shokirov",
-      "deadline": "2026-01-30",
-      "status": "pending"
-    },
-    {
-      "id": "d9fc",
-      "taskName": "asdcas",
-      "employeeName": "Akmal Mordayev",
-      "deadline": "2026-01-30",
-      "status": "pending"
-    },
-    {
-      "id": "2944",
-      "taskName": "asdeftrhyuki",
-      "employeeName": "Sherzod Rasulov",
-      "deadline": "2026-01-29",
-      "status": "pending"
-    },
-    {
       "id": "9df1",
       "taskName": "logs",
       "employeeName": "Malika Tursunova",
       "deadline": "2026-01-30",
-      "status": "pending"
-    },
-    {
-      "id": "5db3",
-      "taskName": "cefvgrbhn",
-      "employeeName": "Nodira Usmonova",
-      "deadline": "2026-01-14",
-      "status": "pending"
-    },
-    {
-      "id": "a822",
-      "taskName": "vybuhnjik,l",
-      "employeeName": "Jasmina Aliyeva",
-      "deadline": "2026-01-21",
       "status": "pending"
     },
     {
@@ -424,13 +368,6 @@
     }
   ],
   "logs": [
-    {
-      "id": "41a6",
-      "userName": "Abdulloh Abdumalikov",
-      "action": "DELETE",
-      "date": "2026-01-28T05:16:32.338Z",
-      "page": "ANNOUNCEMENTS"
-    },
     {
       "id": "303a",
       "userName": "Abdulloh Abdumalikov",
@@ -607,7 +544,64 @@
     }
   ],
   "employeesDeleted": [],
-  "tasksDeleted": [],
+  "tasksDeleted": [
+    {
+      "id": "a822",
+      "taskName": "vybuhnjik,l",
+      "employeeName": "Jasmina Aliyeva",
+      "deadline": "2026-01-21",
+      "status": "pending"
+    },
+    {
+      "id": "5db3",
+      "taskName": "cefvgrbhn",
+      "employeeName": "Nodira Usmonova",
+      "deadline": "2026-01-14",
+      "status": "pending"
+    },
+    {
+      "id": "5db3",
+      "taskName": "cefvgrbhn",
+      "employeeName": "Nodira Usmonova",
+      "deadline": "2026-01-14",
+      "status": "pending"
+    },
+    {
+      "id": "8a0c",
+      "taskName": "adeveb",
+      "employeeName": "Bekzod Shokirov",
+      "deadline": "2026-01-30",
+      "status": "pending"
+    },
+    {
+      "id": "2944",
+      "taskName": "asdeftrhyuki",
+      "employeeName": "Sherzod Rasulov",
+      "deadline": "2026-01-29",
+      "status": "pending"
+    },
+    {
+      "id": "d9fc",
+      "taskName": "asdcas",
+      "employeeName": "Akmal Mordayev",
+      "deadline": "2026-01-30",
+      "status": "pending"
+    },
+    {
+      "id": "a822",
+      "taskName": "vybuhnjik,l",
+      "employeeName": "Jasmina Aliyeva",
+      "deadline": "2026-01-21",
+      "status": "pending"
+    },
+    {
+      "id": "d0c5",
+      "taskName": "defrg",
+      "employeeName": "Dilshod Karimov",
+      "deadline": "2026-01-13",
+      "status": "pending"
+    }
+  ],
   "complaintsDeleted": [],
   "announcementsDeleted": [
     {
