@@ -123,8 +123,8 @@
     {
       "id": "7",
       "userId": 107,
-      "fullName": "Islombek Qodirov",
-      "email": "islombek.qodirov@example.com",
+      "fullName": "employee",
+      "email": "emp@gmail.com",
       "hireDate": "2020-11-03",
       "baseSalary": 3200000,
       "kpiPercent": 18,
@@ -148,7 +148,7 @@
       "createdBy": 1,
       "createdAt": "2025-12-01T10:20:00Z",
       "updatedAt": "2025-12-29T18:00:00Z",
-      "password": "1234",
+      "password": "9999",
       "role": "employee"
     },
     {
