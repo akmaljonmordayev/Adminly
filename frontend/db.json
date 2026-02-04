@@ -369,96 +369,11 @@
   ],
   "logs": [
     {
-      "id": "303a",
-      "userName": "Abdulloh Abdumalikov",
-      "action": "UPDATE",
-      "date": "2026-01-28T05:16:53.801Z",
-      "page": "ANNOUNCEMENTS"
-    },
-    {
-      "id": "43bc",
-      "userName": "Abdulloh Abdumalikov",
-      "action": "UPDATE",
-      "date": "2026-01-28T05:17:08.151Z",
-      "page": "LEAVES",
-      "description": "Status changed to approved"
-    },
-    {
-      "id": "5b33",
-      "userName": "Abdulloh Abdumalikov",
-      "action": "DELETE",
-      "date": "2026-01-28T05:17:18.647Z",
-      "page": "LEAVES"
-    },
-    {
-      "id": "f65e",
-      "userName": "Abdulloh Abdumalikov",
-      "action": "DELETE",
-      "date": "2026-01-28T08:54:42.265Z",
-      "page": "LEAVES"
-    },
-    {
-      "id": "e5d1",
-      "userName": "Abdulloh Abdumalikov",
-      "action": "UPDATE",
-      "date": "2026-01-28T08:59:50.338Z",
-      "page": "SETTINGS"
-    },
-    {
-      "id": "92b2",
-      "userName": "Abdulloh Abdumalikov",
-      "action": "DELETE",
-      "date": "2026-01-29T05:48:58.875Z",
-      "page": "COMPLAINTS"
-    },
-    {
-      "id": "c7fa",
-      "userName": "Abdulloh Abdumalikov",
-      "action": "UPDATE",
-      "date": "2026-01-29T05:51:36.620Z",
-      "page": "COMPLAINTS"
-    },
-    {
-      "id": "ee5f",
-      "userName": "Abdulloh Abdumalikov",
-      "action": "a",
-      "date": "2026-01-29T05:52:02.206Z",
-      "page": "COMPLAINTS"
-    },
-    {
-      "id": "7736",
-      "userName": "Abdulloh Abdumalikov",
-      "action": "DELETE",
-      "date": "2026-01-30T05:04:45.558Z",
-      "page": "ANNOUNCEMENTS"
-    },
-    {
-      "id": "0b6e",
-      "userName": "Abdulloh Abdumalikov",
-      "action": "DELETE",
-      "date": "2026-01-30T05:04:47.121Z",
-      "page": "ANNOUNCEMENTS"
-    },
-    {
-      "id": "e1f2",
-      "userName": "Abdulloh Abdumalikov",
-      "action": "DELETE",
-      "date": "2026-01-30T05:04:47.891Z",
-      "page": "ANNOUNCEMENTS"
-    },
-    {
       "id": "855d",
       "userName": "Abdulloh Abdumalikov",
       "action": "DELETE",
       "date": "2026-01-30T05:31:04.742Z",
       "page": "COMPLAINTS"
-    },
-    {
-      "id": "012e",
-      "userName": "Mohinur Sulaymonqulova",
-      "action": "CREATE",
-      "date": "2026-02-02T05:34:19.297Z",
-      "page": "ANNOUNCEMENTS"
     }
   ],
   "resignations": [],
