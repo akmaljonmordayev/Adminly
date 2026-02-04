@@ -365,6 +365,20 @@
       "employeeName": "Nodira Usmonova",
       "deadline": "2026-02-28",
       "status": "done"
+    },
+    {
+      "id": "5ab2",
+      "taskName": "olam terish",
+      "employeeName": "Sherzod Rasulov",
+      "deadline": "2026-02-20",
+      "status": "pending"
+    },
+    {
+      "id": "bfdc",
+      "taskName": "sdvasdv",
+      "employeeName": "Malika Tursunova",
+      "deadline": "2026-02-20",
+      "status": "pending"
     }
   ],
   "logs": [
@@ -459,6 +473,20 @@
       "action": "CREATE",
       "date": "2026-02-02T05:34:19.297Z",
       "page": "ANNOUNCEMENTS"
+    },
+    {
+      "id": "781c",
+      "userName": "Mohinur Sulaymonqulova",
+      "action": "CREATE",
+      "date": "2026-02-04T11:07:36.238Z",
+      "page": "TASKS"
+    },
+    {
+      "id": "4200",
+      "userName": "Mohinur Sulaymonqulova",
+      "action": "CREATE",
+      "date": "2026-02-04T11:09:12.885Z",
+      "page": "TASKS"
     }
   ],
   "resignations": [],
@@ -518,7 +546,7 @@
     {
       "id": "CPL003",
       "employeeId": "EMP007",
-      "employeeName": "Jasur T.",
+      "employeeName": "Sherzod Rasulov",
       "title": "Request for New Chair",
       "description": "My office chair is broken and needs replacement.",
       "date": "2025-12-19",
@@ -527,7 +555,7 @@
     {
       "id": "CPL002",
       "employeeId": "EMP006",
-      "employeeName": "Sabina M.",
+      "employeeName": "Malika Tursunova",
       "title": "Internet Connectivity Issue",
       "description": "Internet connection keeps dropping in the design department.",
       "date": "2025-12-20",
@@ -536,7 +564,7 @@
     {
       "id": "CPL002",
       "employeeId": "EMP006",
-      "employeeName": "Sabina M.",
+      "employeeName": "Islombek Qodirov",
       "title": "Internet Connectivity Issue",
       "description": "Internet connection keeps dropping in the design department.",
       "date": "2025-12-20",
