@@ -49,7 +49,7 @@ function EmployeeTopBar({ onToggle }) {
               ? 'Good Morning'
               : hour < 18
               ? 'Good Afternoon'
-              : 'GOOD Evening'}
+              : 'Good Evening'}
             ,
           </span>
           <span className="relative">
