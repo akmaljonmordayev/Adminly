@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import {
-  HiOutlineClipboardList,
+  HiOutlineClipboardCheck,
   HiOutlineUser,
-  HiOutlineCalendar,
+  HiOutlineClock,
 } from "react-icons/hi";
 
 function MyTasks() {
@@ -12,7 +12,6 @@ function MyTasks() {
 
   const user = JSON.parse(localStorage.getItem("user"));
   const employeeName = user?.fullName?.trim().toLowerCase();
-
   useEffect(() => {
     const fetchTasks = async () => {
       try {
@@ -40,91 +39,70 @@ function MyTasks() {
   if (loading) return <p>Loading...</p>;
 
   return (
-    <div className="p-6 bg-[#0b1220] min-h-screen text-slate-100">
-      <h2 className="text-2xl font-bold mb-8 text-slate-200">
-        My Tasks ({tasks.length})
+    <div className="bg-gradient-to-br from-[#080c16] to-[#020617] min-h-screen p-10">
+      <h2 className="text-3xl font-bold mb-10 text-cyan-300">
+        My Tasks <span className="text-cyan-300">({tasks.length})</span>
       </h2>
 
       {tasks.length === 0 ? (
-        <p className="text-slate-400 text-center mt-10">No tasks assigned</p>
+        <p className="text-cyan-300 text-center mt-20">No tasks assigned</p>
       ) : (
-        <ul className="space-y-6 flex flex-wrap gap-5">
+        <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
           {tasks.map((task) => {
-            let statusClasses = "";
-            // switch (task.status.toLowerCase()) {
-            //   case "completed":
-            //     statusClasses =
-            //       "bg-green-500/20 text-green-400 shadow-[0_0_12px_rgba(34,197,94,0.35)]";
-            //     break;
-            //   case "in progress":
-            //     statusClasses =
-            //       "bg-blue-500/20 text-blue-400 shadow-[0_0_12px_rgba(59,130,246,0.35)]";
-            //     break;
-            //   case "pending":
-            //     statusClasses =
-            //       "bg-orange-500/20 text-orange-400 shadow-[0_0_12px_rgba(249,115,22,0.35)]";
-            //     break;
-            //   default:
-            //     statusClasses = "bg-slate-500/20 text-slate-400";
-            // }
+            let statusStyle = "bg-gray-100 text-gray-600 border-gray-200";
+
+            if (task.status?.toLowerCase() === "completed") {
+              statusStyle =
+                "bg-emerald-100 text-emerald-700 border-emerald-300";
+            } else if (task.status?.toLowerCase() === "in progress") {
+              statusStyle = "bg-sky-100 text-sky-700 border-sky-300";
+            } else if (task.status?.toLowerCase() === "pending") {
+              statusStyle = "bg-amber-100 text-amber-700 border-amber-300";
+            }
 
             return (
-              <div
+              <li
                 key={task.id}
                 className="relative p-6 rounded-3xl
-                       bg-gradient-to-br from-[#0f172a] to-[#020617]
-                       border border-slate-800
-                       shadow-[0_0_40px_rgba(0,0,0,0.6)]
-                       hover:shadow-[0_0_60px_rgba(56,189,248,0.2)]
-                       hover:-translate-y-1 transition-all duration-300
-                       w-[280px]
-                       h-[300px]
-                       flex flex-col justify-center"
+                  bg-gradient-to-br from-[#0f172a] to-[#020617]
+                  border border-slate-800
+                  shadow-[0_0_40px_rgba(0,0,0,0.6)]
+                  hover:shadow-[0_0_60px_rgba(56,189,248,0.2)]
+                  hover:-translate-y-1 transition-all duration-300
+                  w-[280px] h-[300px]
+                  flex flex-col justify-center"
               >
-                <div className="flex items-center mb-4">
-                  <div className="p-3 bg-white/5 rounded-xl border border-white/10 text-cyan-400 flex items-center justify-center">
-                    <HiOutlineClipboardList className="text-2xl" />
+                <div className="flex items-center gap-4 mb-6">
+                  <div className="p-3 rounded-xl bg-sky-500/10 text-cyan-300">
+                    <HiOutlineClipboardCheck className="text-2xl" />
                   </div>
-                  <h3 className="text-lg md:text-xl font-semibold text-white ml-4">
+                  <h3 className="text-lg font-semibold text-cyan-300">
                     {task.taskName}
                   </h3>
                 </div>
 
-                <div className=" gap-4 mb-4 flex flex-col">
-                  <div className="flex gap-3 items-center text-[15px]"> 
-                  <div>
-                    <HiOutlineUser className="text-gray-500 text-lg"/>
+                <div className="space-y-4">
+                  <div className="flex items-center gap-3 text-cyan-300">
+                    <HiOutlineUser className="text-lg" />
+                    <span className="font-medium">{task.employeeName}</span>
                   </div>
-                  <div>
-                    <p className="text-sm text-slate-400">Assigned Employee</p>
-                    <p className="text-slate-200 font-medium">
-                      {task.employeeName}
-                    </p>
-                  </div>
-                  </div>
-                  <div className="flex gap-3 items-center">
-                    <div>
-                      <HiOutlineCalendar className="text-gray-500 text-lg"/>
-                    </div>
-                    <div>
-                    <p className="text-sm text-slate-400">Deadline</p>
-                    <p className="text-slate-200 font-medium">
-                      {task.deadline}
-                    </p>
-                  </div>
-                  
+
+                  <div className="flex items-center gap-3 text-cyan-300">
+                    <HiOutlineClock className="text-lg" />
+                    <span>{task.deadline}</span>
                   </div>
                 </div>
 
-                <div className="mt-2">
-                  <p className="text-sm text-slate-400 mb-1">Current Status</p>
+                <div className="mt-6">
                   <span
-                    className={`inline-block px-4 py-2 text-sm font-semibold rounded-full ${statusClasses}`}
+                    className={`inline-block px-4 py-1.5 text-sm font-semibold rounded-full border ${statusStyle}`}
                   >
                     {task.status}
                   </span>
                 </div>
-              </div>
+
+                
+              </li>
             );
           })}
         </ul>
