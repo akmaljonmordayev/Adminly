@@ -431,11 +431,11 @@
   ],
   "logs": [
     {
-      "id": "303a",
+      "id": "855d",
       "userName": "Abdulloh Abdumalikov",
-      "action": "UPDATE",
-      "date": "2026-01-28T05:16:53.801Z",
-      "page": "ANNOUNCEMENTS"
+      "action": "DELETE",
+      "date": "2026-01-30T05:31:04.742Z",
+      "page": "COMPLAINTS"
     }
   ],
   "resignations": [],
