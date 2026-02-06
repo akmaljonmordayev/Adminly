@@ -72,7 +72,8 @@
       "email": "sherzod.rasulov@example.com",
       "role": "employee",
       "hireDate": "2019-09-12",
-      "status": "active"
+      "status": "active",
+      "password": "1234"
     },
     {
       "id": "2",
@@ -81,7 +82,8 @@
       "email": "malika.tursunova@example.com",
       "role": "employee",
       "hireDate": "2024-01-08",
-      "status": "active"
+      "status": "active",
+      "password": "1234"
     }
   ],
   "employeeFinance": [
@@ -436,6 +438,20 @@
       "action": "DELETE",
       "date": "2026-01-30T05:31:04.742Z",
       "page": "COMPLAINTS"
+    },
+    {
+      "id": "272a",
+      "userName": "Akmal Mordayev",
+      "action": "CREATE",
+      "date": "2026-02-06T09:16:03.796Z",
+      "page": "EMPLOYEES"
+    },
+    {
+      "id": "933b",
+      "userName": "Akmal Mordayev",
+      "action": "DELETE",
+      "date": "2026-02-06T09:16:36.813Z",
+      "page": "EMPLOYEES"
     }
   ],
   "resignations": [],
@@ -526,6 +542,15 @@
       "userId": 103,
       "fullName": "Akmaljon Mordayev",
       "email": "akmaljonmordayev@gmail.com",
+      "role": "employee",
+      "hireDate": "2026-02-06",
+      "status": "active"
+    },
+    {
+      "id": "5e4c",
+      "userId": 103,
+      "fullName": "abdulloh",
+      "email": "abdulloh@gmail.com",
       "role": "employee",
       "hireDate": "2026-02-06",
       "status": "active"
