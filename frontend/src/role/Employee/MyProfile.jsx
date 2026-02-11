@@ -2,11 +2,6 @@ import React, { useEffect, useState } from 'react'
 import {
   FaUserAlt,
   FaTimes,
-  FaWallet,
-  FaChartLine,
-  FaGift,
-  FaUserSlash,
-  FaCalendarCheck,
   FaEye,
   FaEyeSlash,
 } from 'react-icons/fa'
@@ -19,6 +14,17 @@ function MyProfile() {
   const [inpType, setInpType] = useState(false)
   const [eye, setEye] = useState(false)
 
+  // SETTINGS STATE
+  const [settings, setSettings] = useState({
+    notifications: true,
+    emailAlerts: false,
+    twoFactor: false,
+    privateMode: false,
+    autoLogout: true,
+    saveSession: true,
+    developerMode: false,
+  })
+
   const [newFullname, setNewFullname] = useState('')
   const [newEmail, setNewEmail] = useState('')
   const [newPassword, setNewPassword] = useState('')
@@ -26,7 +32,7 @@ function MyProfile() {
   const getData = async () => {
     try {
       const res = await axios.get(
-        `http://localhost:5000/employees/${user?.id || 7}`,
+        `http://localhost:5000/employees/${user?.id || 7}`
       )
       setData(res.data)
     } catch (err) {
@@ -56,7 +62,7 @@ function MyProfile() {
       }
       await axios.put(
         `http://localhost:5000/employees/${user?.id || 7}`,
-        updatedUser,
+        updatedUser
       )
       localStorage.setItem('user', JSON.stringify(updatedUser))
       setOpen(false)
@@ -68,10 +74,21 @@ function MyProfile() {
 
   if (!user) return null
 
+  const settingList = [
+    { label: 'Notifications', key: 'notifications' },
+    { label: 'Email Alerts', key: 'emailAlerts' },
+    { label: 'Two Factor Auth', key: 'twoFactor' },
+    { label: 'Private Mode', key: 'privateMode' },
+    { label: 'Auto Logout', key: 'autoLogout' },
+    { label: 'Save Session', key: 'saveSession' },
+    { label: 'Developer Mode', key: 'developerMode' },
+  ]
+
   return (
     <main className="min-h-screen bg-[#020617] p-6 font-sans">
       <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-6">
-        {/* PROFILE SECTION */}
+
+        {/* PROFILE */}
         <section className="rounded-2xl bg-[#0b1220] border border-cyan-900/50 p-8 shadow-xl flex flex-col justify-between min-h-[550px]">
           <div>
             <div className="flex items-center gap-5 mb-10">
@@ -90,30 +107,29 @@ function MyProfile() {
 
             <div className="space-y-5">
               <div className="flex justify-between border-b border-cyan-900/30 pb-3">
-                <span className="text-cyan-400 text-sm font-medium">Email</span>
+                <span className="text-cyan-400 text-sm">Email</span>
                 <span className="text-white text-sm">{data.email}</span>
               </div>
+
               <div className="flex justify-between border-b border-cyan-900/30 pb-3">
-                <span className="text-cyan-400 text-sm font-medium">
-                  Password
-                </span>
+                <span className="text-cyan-400 text-sm">Password</span>
                 <input
-                  tabIndex={-1}
                   type={inpType ? 'text' : 'password'}
                   readOnly
-                  className="text-white text-right focus:outline-0 cursor-pointer"
                   value={data.password}
                   onClick={() => setInpType(!inpType)}
+                  className="text-white text-right bg-transparent outline-none cursor-pointer"
                 />
               </div>
+
               <div className="flex justify-between border-b border-cyan-900/30 pb-3">
-                <span className="text-cyan-400 text-sm font-medium">
-                  Hire Date
-                </span>
+                <span className="text-cyan-400 text-sm">Hire Date</span>
                 <span className="text-white text-sm">{data.hireDate}</span>
               </div>
+
+
               <div className="flex justify-between border-b border-cyan-900/30 pb-3">
-                <span className="text-cyan-400 text-sm font-medium">Role</span>
+                <span className="text-cyan-400 text-sm">Role</span>
                 <span className="text-cyan-300 text-sm font-bold uppercase">
                   {data.role}
                 </span>
@@ -123,91 +139,59 @@ function MyProfile() {
 
           <button
             onClick={handleOpenModal}
-            className="w-full py-3 rounded-xl bg-cyan-600/10 border border-cyan-600/30 text-cyan-400 font-bold hover:bg-cyan-600 hover:text-black transition-all uppercase text-xs tracking-widest"
+            className="w-full py-3 rounded-xl bg-cyan-600/10 border border-cyan-600/30 text-cyan-400 font-bold hover:bg-cyan-600 hover:text-black transition uppercase text-xs tracking-widest"
           >
             Edit Profile
           </button>
         </section>
 
-        {/* FINANCE SECTION */}
-        <section className="rounded-2xl bg-[#0b1220] border border-cyan-900/50 p-8 shadow-xl">
-          <h3 className="text-white text-lg font-bold mb-8 flex items-center gap-3">
-            <span className="w-1.5 h-6 bg-cyan-500 rounded-full"></span>
-            Finance Overview
-          </h3>
+        {/* SETTINGS (rasmdagidek) */}
+        <section className="rounded-2xl bg-gradient-to-b from-[#020617] via-[#020617] to-[#030b1f] border border-cyan-900/40 p-8 shadow-xl min-h-[550px]">
+          <div className="space-y-8">
+            {settingList.map((item) => (
+              <div key={item.key} className="flex items-center justify-between">
+                <span className="text-white text-[15px]">
+                  {item.label}
+                </span>
 
-          <div className="space-y-6">
-            <div className="flex justify-between items-center text-sm">
-              <div className="flex items-center gap-3 text-cyan-400/80">
-                <FaWallet /> <span>Base Salary</span>
+                <button
+                  onClick={() =>
+                    setSettings((prev) => ({
+                      ...prev,
+                      [item.key]: !prev[item.key],
+                    }))
+                  }
+                  className={`w-16 h-8 flex items-center rounded-full p-1 transition duration-300 ${
+                    settings[item.key]
+                      ? 'bg-cyan-500'
+                      : 'bg-[#1e293b]'
+                  }`}
+                >
+                  <div
+                    className={`w-6 h-6 bg-white rounded-full shadow transform transition duration-300 ${
+                      settings[item.key]
+                        ? 'translate-x-8'
+                        : 'translate-x-0'
+                    }`}
+                  />
+                </button>
               </div>
-              <span className="text-white font-bold">
-                {data.baseSalary?.toLocaleString()} UZS
-              </span>
-            </div>
-
-            <div className="flex justify-between items-center text-sm">
-              <div className="flex items-center gap-3 text-cyan-400/80">
-                <FaChartLine /> <span>KPI Amount</span>
-              </div>
-              <span className="text-emerald-400 font-bold">
-                +{data.kpiAmount?.toLocaleString()} UZS
-              </span>
-            </div>
-
-            <div className="flex justify-between items-center text-sm">
-              <div className="flex items-center gap-3 text-cyan-400/80">
-                <FaGift /> <span>Bonus</span>
-              </div>
-              <span className="text-emerald-400 font-bold">
-                +{data.bonus?.toLocaleString()} UZS
-              </span>
-            </div>
-
-            <div className="flex justify-between items-center text-sm">
-              <div className="flex items-center gap-3 text-cyan-400/80">
-                <FaUserSlash /> <span>Penalty</span>
-              </div>
-              <span className="text-rose-500 font-bold">
-                -{data.penalty?.toLocaleString()} UZS
-              </span>
-            </div>
-
-            <div className="h-[1px] bg-cyan-900/30"></div>
-
-            <div className="flex justify-between items-center text-sm">
-              <div className="flex items-center gap-3 text-cyan-400/80">
-                <FaCalendarCheck /> <span>Salary Month</span>
-              </div>
-              <span className="text-white">{data.month}</span>
-            </div>
-
-            <div className="mt-10 p-5 bg-cyan-600/5 border border-cyan-600/20 rounded-2xl flex justify-between items-center">
-              <div>
-                <p className="text-[10px] text-cyan-500 font-black uppercase tracking-widest">
-                  Net Salary
-                </p>
-                <span className="text-white font-bold">Total Payable</span>
-              </div>
-              <span className="text-2xl font-black text-cyan-400">
-                {data.totalSalary?.toLocaleString()}{' '}
-                <span className="text-xs font-medium">UZS</span>
-              </span>
-            </div>
+            ))}
           </div>
         </section>
       </div>
 
-      {/* EDIT MODAL */}
+      {/* MODAL */}
       {open && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-sm p-4">
-          <div className="w-full max-w-md rounded-2xl bg-[#0b1220] border border-cyan-500/30 p-8 shadow-2xl relative">
+          <div className="w-full max-w-md rounded-2xl bg-[#0b1220] border border-cyan-500/30 p-8 relative">
             <button
               onClick={() => setOpen(false)}
-              className="absolute top-4 right-4 text-cyan-400 hover:text-white transition"
+              className="absolute top-4 right-4 text-cyan-400"
             >
               <FaTimes />
             </button>
+
             <h2 className="text-white text-xl font-bold mb-6">
               Update Profile
             </h2>
@@ -218,34 +202,38 @@ function MyProfile() {
                 value={newFullname}
                 onChange={(e) => setNewFullname(e.target.value)}
                 placeholder="Full Name"
-                className="w-full bg-[#020617] border border-cyan-900 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-cyan-500"
+                className="w-full bg-[#020617] border border-cyan-900 rounded-lg px-4 py-3 text-white outline-none"
               />
+
               <input
                 type="email"
                 value={newEmail}
                 onChange={(e) => setNewEmail(e.target.value)}
-                placeholder="Email Address"
-                className="w-full bg-[#020617] border border-cyan-900 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-cyan-500"
+                placeholder="Email"
+                className="w-full bg-[#020617] border border-cyan-900 rounded-lg px-4 py-3 text-white outline-none"
               />
-              <span className="flex gap-x-36 items-center w-full bg-[#020617] border border-cyan-900 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-cyan-500">
+
+              <div className="flex items-center justify-between bg-[#020617] border border-cyan-900 rounded-lg px-4 py-3">
                 <input
                   type={eye ? 'text' : 'password'}
                   value={newPassword}
                   onChange={(e) => setNewPassword(e.target.value)}
-                  placeholder="New Password"
-                  className=""
+                  placeholder="Password"
+                  className="bg-transparent text-white outline-none"
                 />
                 <span onClick={() => setEye(!eye)}>
                   {eye ? (
-                    <FaEyeSlash className="text-[#2BD3F3] text-2xl" />
+                    <FaEyeSlash className="text-cyan-400 text-xl cursor-pointer" />
                   ) : (
-                    <FaEye className="text-[#2BD3F3] text-2xl" />
+                    <FaEye className="text-cyan-400 text-xl cursor-pointer" />
                   )}
                 </span>
-              </span>
+              </div>
+
+
               <button
                 type="submit"
-                className="w-full py-3 rounded-xl bg-cyan-600 text-black font-black hover:bg-cyan-500 transition-all uppercase text-xs tracking-widest"
+                className="w-full py-3 rounded-xl bg-cyan-600 text-black font-bold hover:bg-cyan-500 transition uppercase text-xs tracking-widest"
               >
                 Save Changes
               </button>
