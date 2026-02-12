@@ -417,16 +417,16 @@
       "status": "done"
     },
     {
-      "id": "5ab2",
-      "taskName": "olam terish",
-      "employeeName": "Sherzod Rasulov",
+      "id": "bfdc",
+      "taskName": "sdvasdv",
+      "employeeName": "Malika Tursunova",
       "deadline": "2026-02-20",
       "status": "pending"
     },
     {
-      "id": "bfdc",
-      "taskName": "sdvasdv",
-      "employeeName": "Malika Tursunova",
+      "id": "5ab2",
+      "taskName": "olam terish",
+      "employeeName": "Sherzod Rasulov",
       "deadline": "2026-02-20",
       "status": "pending"
     }
@@ -452,6 +452,13 @@
       "action": "DELETE",
       "date": "2026-02-06T09:16:36.813Z",
       "page": "EMPLOYEES"
+    },
+    {
+      "id": "cdd1",
+      "userName": "Mohinur Sulaymonqulova",
+      "action": "DELETE",
+      "date": "2026-02-10T13:13:24.501Z",
+      "page": "TASKS"
     }
   ],
   "resignations": [],
@@ -556,64 +563,7 @@
       "status": "active"
     }
   ],
-  "tasksDeleted": [
-    {
-      "id": "a822",
-      "taskName": "vybuhnjik,l",
-      "employeeName": "Jasmina Aliyeva",
-      "deadline": "2026-01-21",
-      "status": "pending"
-    },
-    {
-      "id": "5db3",
-      "taskName": "cefvgrbhn",
-      "employeeName": "Nodira Usmonova",
-      "deadline": "2026-01-14",
-      "status": "pending"
-    },
-    {
-      "id": "5db3",
-      "taskName": "cefvgrbhn",
-      "employeeName": "Nodira Usmonova",
-      "deadline": "2026-01-14",
-      "status": "pending"
-    },
-    {
-      "id": "8a0c",
-      "taskName": "adeveb",
-      "employeeName": "Bekzod Shokirov",
-      "deadline": "2026-01-30",
-      "status": "pending"
-    },
-    {
-      "id": "2944",
-      "taskName": "asdeftrhyuki",
-      "employeeName": "Sherzod Rasulov",
-      "deadline": "2026-01-29",
-      "status": "pending"
-    },
-    {
-      "id": "d9fc",
-      "taskName": "asdcas",
-      "employeeName": "Akmal Mordayev",
-      "deadline": "2026-01-30",
-      "status": "pending"
-    },
-    {
-      "id": "a822",
-      "taskName": "vybuhnjik,l",
-      "employeeName": "Jasmina Aliyeva",
-      "deadline": "2026-01-21",
-      "status": "pending"
-    },
-    {
-      "id": "d0c5",
-      "taskName": "defrg",
-      "employeeName": "Dilshod Karimov",
-      "deadline": "2026-01-13",
-      "status": "pending"
-    }
-  ],
+  "tasksDeleted": [],
   "complaintsDeleted": [],
   "announcementsDeleted": [
     {
