@@ -479,31 +479,73 @@
   ],
   "announcements": [
     {
-      "id": "5f08509f-ddd1-4825-b8a6-29e4da33ee49",
-      "title": "NNa",
-      "text": "NNa",
-      "date": "2026-01-26T06:13:05.999Z",
+      "id": "a1f3c9b2-7d44-4c1a-9f77-11aa22bb33cc",
+      "title": "Yangi O‘quv Semestri Boshlandi",
+      "text": "Hurmatli talabalar! 2026-yil bahorgi semestr rasman boshlandi. Dars jadvali yangilandi va tizimga joylandi.",
+      "date": "2026-02-01T08:00:00.000Z",
       "status": "Active"
     },
     {
-      "id": "715ca997-9d77-4230-88ef-fb002469209f",
-      "title": "DAM",
-      "text": "14-yanvar vatan himoyachilari kuni uchun hammaga dam",
-      "date": "Jan 21, 2026",
+      "id": "b2e4d0c3-8a55-4d2b-8e88-22bb33cc44dd",
+      "title": "Texnik Profilaktika Ishlari",
+      "text": "Serverlarda texnik profilaktika ishlari olib borilishi sababli tizim 16-fevral kuni soat 02:00 dan 04:00 gacha ishlamasligi mumkin.",
+      "date": "2026-02-14T12:30:00.000Z",
       "status": "Active"
     },
     {
-      "id": "466c4f07-2ff1-43a0-b50d-f7f9c30bb9d8",
-      "title": "avsd",
-      "text": "salom",
-      "date": "Jan 10, 2026",
+      "id": "c3f5e1d4-9b66-4e3c-7f99-33cc44dd55ee",
+      "title": "Stipendiya Natijalari E'lon Qilindi",
+      "text": "2026-yil yanvar oyi uchun stipendiya natijalari e'lon qilindi. Natijalarni shaxsiy kabinet orqali ko‘rishingiz mumkin.",
+      "date": "2026-01-28T09:15:00.000Z",
       "status": "Active"
     },
     {
-      "id": "01b6",
-      "title": "asdv",
-      "text": "asdvasdvas",
-      "date": "Jan 18, 2026",
+      "id": "d4a6f2e5-0c77-4f4d-6a10-44dd55ee66ff",
+      "title": "Sport Musobaqalari",
+      "text": "Universitet miqyosida futbol va voleybol bo‘yicha musobaqalar tashkil etiladi. Ro‘yxatdan o‘tish 20-fevralgacha davom etadi.",
+      "date": "2026-02-10T10:45:00.000Z",
+      "status": "Active"
+    },
+    {
+      "id": "e5b7a3f6-1d88-405e-5b21-55ee66ff77aa",
+      "title": "Kutubxona Ish Vaqti O‘zgardi",
+      "text": "Kutubxona ish vaqti 08:00 dan 20:00 gacha uzaytirildi. Dam olish kunlari ham xizmat ko‘rsatadi.",
+      "date": "2026-01-22T14:00:00.000Z",
+      "status": "Active"
+    },
+    {
+      "id": "f6c8b4a7-2e99-416f-4c32-66ff77aa88bb",
+      "title": "Grant Tanlovi",
+      "text": "Xorijiy grant dasturlariga hujjat topshirish boshlandi. Batafsil ma’lumot xalqaro aloqalar bo‘limida.",
+      "date": "2026-02-05T11:20:00.000Z",
+      "status": "Active"
+    },
+    {
+      "id": "07d9c5b8-3faa-4270-3d43-77aa88bb99cc",
+      "title": "14-Fevral Bayram Tadbiri",
+      "text": "14-fevral kuni soat 15:00 da madaniyat saroyida bayram tadbiri bo‘lib o‘tadi. Barchani taklif qilamiz!",
+      "date": "2026-02-12T16:00:00.000Z",
+      "status": "Active"
+    },
+    {
+      "id": "18e0d6c9-4abb-4381-2e54-88bb99cc00dd",
+      "title": "Amaliyot Dasturi",
+      "text": "3-bosqich talabalari uchun ishlab chiqarish amaliyoti 1-martdan boshlanadi. Yo‘llanmalar dekanatdan olinadi.",
+      "date": "2026-02-08T13:10:00.000Z",
+      "status": "Inactive"
+    },
+    {
+      "id": "29f1e7da-5bcc-4492-1f65-99cc00dd11ee",
+      "title": "Onlayn Seminar",
+      "text": "Sun’iy intellekt mavzusida onlayn seminar o‘tkaziladi. Ishtirok etish uchun ro‘yxatdan o‘ting.",
+      "date": "2026-02-03T17:25:00.000Z",
+      "status": "Active"
+    },
+    {
+      "id": "3a02f8eb-6cdd-4503-0g76-aadd11ee22ff",
+      "title": "Talabalar Yig‘ilishi",
+      "text": "Fakultet talabalari uchun umumiy yig‘ilish 18-fevral kuni 11:00 da 301-xonada bo‘lib o‘tadi.",
+      "date": "2026-02-15T09:40:00.000Z",
       "status": "Active"
     }
   ],
