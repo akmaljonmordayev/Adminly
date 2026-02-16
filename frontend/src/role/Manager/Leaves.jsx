@@ -1,131 +1,140 @@
-import axios from 'axios'
-import React, { useEffect, useState } from 'react'
-import { toast } from 'react-toastify'
+import axios from "axios";
+import React, { useEffect, useState } from "react";
+import { toast } from "react-toastify";
 
 function Leaves() {
-  const [search, setSearch] = useState('')
-  const [sort, setSort] = useState('a-z')
-  const [statusFilter, setStatusFilter] = useState('all')
-  const [data, setData] = useState([])
-  const [err, setErr] = useState(null)
-  const [loading, setLoading] = useState(true)
-  const [currentPage, setCurrentPage] = useState(1)
-  const itemsPerPage = 4
+  const API_BASE = "http://localhost:5000/resignationLeaves";
+
+  const [data, setData] = useState([]);
+  const [search, setSearch] = useState("");
+  const [sort, setSort] = useState("a-z");
+  const [statusFilter, setStatusFilter] = useState("all");
+  const [loading, setLoading] = useState(true);
+  const [err, setErr] = useState(null);
+  const [darkMode, setDarkMode] = useState(true);
+  const [currentPage, setCurrentPage] = useState(1);
+
+  const itemsPerPage = 4;
 
   const getData = async () => {
+    setLoading(true);
     try {
-      const res = await axios.get('http://localhost:5000/resignations')
-      if (!Array.isArray(res.data))
-        throw new Error("Ma'lumot formati noto‘g‘ri")
-      setData(res.data)
+      const res = await axios.get(API_BASE);
+      if (!Array.isArray(res.data)) {
+        throw new Error("Data format error");
+      }
+      setData(res.data);
     } catch (error) {
-      setErr(error.message)
+      setErr(error.message);
+      toast.error("Server error");
     } finally {
-      setLoading(false)
+      setLoading(false);
     }
-  }
+  };
 
   useEffect(() => {
-    getData()
-  }, [])
+    getData();
+  }, []);
 
-  const filteredData = data.filter(
-    (c) =>
-      (c.employeeName?.toLowerCase().includes(search.toLowerCase()) ||
-        c.description?.toLowerCase().includes(search.toLowerCase())) &&
-      (statusFilter === 'all' ||
-        c.status?.toLowerCase() === statusFilter.toLowerCase()),
-  )
+  const filteredData = data.filter((c) => {
+    const name = c.employeeName?.toLowerCase() || "";
+    const desc = c.description?.toLowerCase() || "";
+    const status = c.status?.toLowerCase() || "";
 
-  const sortedData = [...filteredData].sort((a, b) =>
-    sort === 'a-z'
-      ? (a.employeeName || '').localeCompare(b.employeeName || '')
-      : (b.employeeName || '').localeCompare(a.employeeName || ''),
-  )
+    return (
+      (name.includes(search.toLowerCase()) ||
+        desc.includes(search.toLowerCase())) &&
+      (statusFilter === "all" || status === statusFilter)
+    );
+  });
 
-  const totalPages = Math.ceil(sortedData.length / itemsPerPage)
-  const startIndex = (currentPage - 1) * itemsPerPage
-  const currentData = sortedData.slice(startIndex, startIndex + itemsPerPage)
+  const sortedData = [...filteredData].sort((a, b) => {
+    const nameA = a.employeeName || "";
+    const nameB = b.employeeName || "";
+    return sort === "a-z"
+      ? nameA.localeCompare(nameB)
+      : nameB.localeCompare(nameA);
+  });
+
+  const totalPages = Math.ceil(sortedData.length / itemsPerPage);
+  const indexOfLast = currentPage * itemsPerPage;
+  const indexOfFirst = indexOfLast - itemsPerPage;
+  const currentData = sortedData.slice(indexOfFirst, indexOfLast);
 
   const handleStatusChange = async (id, newStatus) => {
-    const user = JSON.parse(localStorage.getItem('user')) || {}
-
     try {
-      await axios.patch(`http://localhost:5000/resignations/${id}`, {
-        status: newStatus,
-      })
+      await axios.patch(`${API_BASE}/${id}`, { status: newStatus });
 
       setData((prev) =>
         prev.map((item) =>
-          item.id === id ? { ...item, status: newStatus } : item,
+          (item.id || item._id) === id ? { ...item, status: newStatus } : item,
         ),
-      )
+      );
 
-      await axios.post('http://localhost:5000/logs', {
-        userName: user.name || 'Unknown',
-        action: 'UPDATE',
-        date: new Date().toISOString(),
-        page: 'LEAVES',
-        description: `Status changed to ${newStatus}`,
-      })
+      toast.success("Status updated");
     } catch {
-      alert('Status o‘zgartirishda xatolik yuz berdi')
+      toast.error("Status update error");
     }
-  }
+  };
 
   const handleDelete = async (id) => {
-    const user = JSON.parse(localStorage.getItem('user')) || {}
-
-    if (!window.confirm('Rostan ham o‘chirmoqchimisiz?')) return
+    if (!window.confirm("Delete qilishni tasdiqlaysizmi?")) return;
 
     try {
-      await axios.delete(`http://localhost:5000/resignations/${id}`)
-
-      toast.success('Successfully deleted')
-      getData()
-
-      await axios.post('http://localhost:5000/logs', {
-        userName: user.name || 'Unknown',
-        action: 'DELETE',
-        date: new Date().toISOString(),
-        page: 'LEAVES',
-      })
-    } catch (error) {
-      console.log(error.response?.data || error.message)
-      toast.error('O‘chirishda xatolik yuz berdi')
+      await axios.delete(`${API_BASE}/${id}`);
+      toast.success("Deleted successfully");
+      getData();
+    } catch {
+      toast.error("Delete error");
     }
-  }
+  };
 
   const statusColors = {
-    pending: 'bg-yellow-500 text-white',
-    approved: 'bg-blue-500 text-white',
-    rejected: 'bg-red-500 text-white',
-  }
+    pending: "bg-yellow-400 text-black",
+    approved: "bg-green-500 text-white",
+    rejected: "bg-red-500 text-white",
+  };
 
   return (
-    <main className="flex bg-[#020617]">
-      <div className="p-6 max-w-5xl mx-auto min-h-screen bg-[#020617] text-cyan-300">
-        <h2 className="text-2xl font-bold mb-4 text-white">Leaves</h2>
+    <main
+      className={`min-h-screen py-10 flex justify-center transition ${
+        darkMode ? "bg-gray-900" : "bg-gray-100"
+      }`}
+    >
+      <div className="w-full max-w-6xl px-4">
+        <div className="flex justify-between items-center mb-8">
+          <h2
+            className={`text-3xl font-bold ${
+              darkMode ? "text-white" : "text-gray-900"
+            }`}
+          >
+            Leaves Management
+          </h2>
 
-        {err && <p className="text-red-400 mb-2">{err}</p>}
-        {loading && <p className="text-cyan-400 mb-2">Yuklanmoqda...</p>}
+          <button
+            onClick={() => setDarkMode(!darkMode)}
+            className="px-4 py-2 bg-cyan-600 text-white rounded-lg"
+          >
+            {darkMode ? "Light Mode" : "Dark Mode"}
+          </button>
+        </div>
 
-        <div className="flex flex-col sm:flex-row gap-4 mb-4">
+        <div className="grid md:grid-cols-3 gap-4 mb-8">
           <input
             type="text"
-            placeholder="Search by name or escription..."
+            placeholder="Search..."
             value={search}
             onChange={(e) => {
-              setSearch(e.target.value)
-              setCurrentPage(1)
+              setSearch(e.target.value);
+              setCurrentPage(1);
             }}
-            className="w-[595px] py-2 px-4 bg-[#020617] border border-cyan-700 rounded-md text-white placeholder-cyan-400 focus:ring-2 focus:ring-cyan-500"
+            className="px-4 py-2 rounded-lg border"
           />
 
           <select
             value={sort}
             onChange={(e) => setSort(e.target.value)}
-            className="p-2 bg-[#020617] border border-cyan-700 rounded-md text-white"
+            className="px-4 py-2 rounded-lg border"
           >
             <option value="a-z">A-Z</option>
             <option value="z-a">Z-A</option>
@@ -134,98 +143,96 @@ function Leaves() {
           <select
             value={statusFilter}
             onChange={(e) => {
-              setStatusFilter(e.target.value)
-              setCurrentPage(1)
+              setStatusFilter(e.target.value);
+              setCurrentPage(1);
             }}
-            className="p-2 bg-[#020617] border border-cyan-700 rounded-md text-white"
+            className="px-4 py-2 rounded-lg border"
           >
-            <option value="all">All Status</option>
+            <option value="all">All</option>
             <option value="pending">Pending</option>
             <option value="approved">Approved</option>
             <option value="rejected">Rejected</option>
           </select>
         </div>
 
-        <div className="space-y-4">
-          {currentData.map((c) => (
-            <div
-              key={c.id}
-              className="w-[800px] p-4 bg-[#020617] border border-cyan-800 rounded-lg shadow-[0_0_40px_rgba(34,211,238,0.15)]
-               hover:shadow-[0_0_60px_rgba(34,211,238,0.25)]
-                transition flex justify-between items-center"
-            >
-              <div className="flex flex-col gap-2">
-                <h3 className="text-lg font-semibold text-white">
-                  {c.employeeName || 'No name'}
+        {loading && <p className="text-center">Loading...</p>}
+        {err && <p className="text-red-500 text-center">{err}</p>}
+
+        <div className="grid md:grid-cols-2 gap-6">
+          {currentData.map((c) => {
+            const id = c.id || c._id;
+            const status = c.status?.toLowerCase() || "pending";
+
+            return (
+              <div
+                key={id}
+                className={`p-6 rounded-2xl shadow-xl transition hover:scale-105 ${
+                  darkMode ? "bg-gray-800 text-white" : "bg-white text-gray-900"
+                }`}
+              >
+                <h3 className="text-xl font-semibold">
+                  {c.employeeName || "No name"}
                 </h3>
-                <span
-                  className={`px-2 py-1  text-sm font-medium rounded w-[230px] ${
-                    statusColors[c.text?.toLowerCase()] ||
-                    'bg-cyan-900 text-white'
-                  }`}
-                >
-                  {c.comment
-                    ? c.comment.charAt(0).toUpperCase() + c.comment.slice(1)
-                    : 'Unknown'}
-                </span>
-                <p className="text-cyan-400 text-sm">
-                  Position: {c.position || 'N/A'} | Date:{' '}
-                  {c.noticePeriod || 'N/A'}
+
+                <p className="mt-2 opacity-80">
+                  {c.description || "No description"}
                 </p>
-              </div>
 
-              <div className="flex flex-col gap-2">
                 <span
-                  className={`px-5 py-1 text-sm rounded ${
-                    statusColors[c.status?.toLowerCase()] ||
-                    'bg-gray-600 text-white'
+                  className={`inline-block mt-3 px-4 py-1 rounded-full text-sm font-medium ${
+                    statusColors[status] || "bg-gray-500 text-white"
                   }`}
                 >
-                  {c.status || 'Unknown'}
+                  {status}
                 </span>
 
-                <select
-                  value={c.status || 'pending'}
-                  onChange={(e) => handleStatusChange(c.id, e.target.value)}
-                  className="px-2 py-1 rounded bg-[#0b1220] border border-gray-600 text-sm"
-                >
-                  <option value="pending">Pending</option>
-                  <option value="approved">Approved</option>
-                  <option value="rejected">Rejected</option>
-                </select>
-                <button
-                  onClick={() => handleDelete(c.id)}
-                  className="w-30 h-8 rounded-[5px] flex items-center justify-center
-                   bg-red-600/10 border border-red-600 text-red-400
-                   hover:bg-red-600 hover:text-white transition"
-                >
-                  Delete
-                </button>
+                <div className="flex gap-3 mt-5">
+                  <select
+                    value={status}
+                    onChange={(e) => handleStatusChange(id, e.target.value)}
+                    className="flex-1 px-3 py-2 rounded-lg border"
+                  >
+                    <option value="pending">Pending</option>
+                    <option value="approved">Approved</option>
+                    <option value="rejected">Rejected</option>
+                  </select>
+
+                  <button
+                    onClick={() => handleDelete(id)}
+                    className="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700"
+                  >
+                    Delete
+                  </button>
+                </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
 
         {totalPages > 1 && (
-          <div className="flex gap-2 mt-6">
-            {Array.from({ length: totalPages }, (_, i) => (
+          <div className="flex justify-center mt-10 gap-2">
+            {[...Array(totalPages)].map((_, index) => (
               <button
-                key={i}
-                onClick={() => setCurrentPage(i + 1)}
-                className={`px-3 py-1 border border-cyan-600 rounded ${
-                  currentPage === i + 1
-                    ? 'bg-cyan-600 text-black'
-                    : 'text-cyan-300'
+                key={index}
+                onClick={() => setCurrentPage(index + 1)}
+                className={`px-4 py-2 rounded-lg ${
+                  currentPage === index + 1
+                    ? "bg-cyan-600 text-white"
+                    : "bg-gray-400 text-black"
                 }`}
               >
-                {i + 1}
+                {index + 1}
               </button>
             ))}
           </div>
         )}
+
+        {!loading && sortedData.length === 0 && (
+          <p className="text-center mt-6 opacity-70">Ma’lumot topilmadi</p>
+        )}
       </div>
     </main>
-  )
+  );
 }
 
-export default Leaves
+export default Leaves;
