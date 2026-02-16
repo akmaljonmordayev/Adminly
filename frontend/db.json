@@ -390,6 +390,13 @@
     },
     {
       "id": "f964",
+      "taskName": "vazifani qil",
+      "employeeName": "Sherzod Rasulov",
+      "deadline": "2025-12-02",
+      "status": "pending"
+    },
+    {
+      "id": "f964",
       "taskName": "elshod",
       "employeeName": "Sherzod Rasulov",
       "deadline": "2025-12-02",
@@ -419,6 +426,20 @@
     {
       "id": "5ab2",
       "taskName": "olam terish",
+      "employeeName": "Sherzod Rasulov",
+      "deadline": "2026-02-20",
+      "status": "pending"
+    },
+     {
+      "id": "5ab2",
+      "taskName": "[jfhjfsfsfhisgffsgufugssg fkhfgdfgsl",
+      "employeeName": "Sherzod Rasulov",
+      "deadline": "2026-02-20",
+      "status": "pending"
+    },
+    {
+      "id": "5ab2",
+      "taskName": "[jfhjfsfsfhisgffsgufugssg fkhfgdfgslfbjlskbfklfjkbefkjg",
       "employeeName": "Sherzod Rasulov",
       "deadline": "2026-02-20",
       "status": "pending"

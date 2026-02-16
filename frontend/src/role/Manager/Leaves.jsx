@@ -113,7 +113,7 @@ function Leaves() {
         <div className="flex flex-col sm:flex-row gap-4 mb-4">
           <input
             type="text"
-            placeholder="Search by name or description..."
+            placeholder="Search by name or escription..."
             value={search}
             onChange={(e) => {
               setSearch(e.target.value)
