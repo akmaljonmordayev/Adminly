@@ -93,135 +93,99 @@
       "monthly": [
         {
           "month": "2025-01",
-          "baseSalary": 2200000,
-          "kpiAmount": 220000,
-          "bonus": 100000,
-          "penalty": 0,
-          "totalSalary": 2520000,
-          "status": "paid",
-          "paymentDate": "2025-01-26",
-          "comment": ""
+          "baseSalary": 1800000,
+          "kpiAmount": 350000,
+          "bonus": 500000,
+          "penalty": 50000,
+          "totalSalary": 2600000
         },
         {
           "month": "2025-02",
           "baseSalary": 2200000,
-          "kpiAmount": 220000,
-          "bonus": 150000,
-          "penalty": 0,
-          "totalSalary": 2570000,
-          "status": "paid",
-          "paymentDate": "2025-02-26",
-          "comment": ""
+          "kpiAmount": 600000,
+          "bonus": 250000,
+          "penalty": 120000,
+          "totalSalary": 2930000
         },
         {
           "month": "2025-03",
-          "baseSalary": 2200000,
-          "kpiAmount": 220000,
-          "bonus": 200000,
+          "baseSalary": 2000000,
+          "kpiAmount": 900000,
+          "bonus": 800000,
           "penalty": 0,
-          "totalSalary": 2620000,
-          "status": "paid",
-          "paymentDate": "2025-03-26",
-          "comment": ""
+          "totalSalary": 3700000
         },
         {
           "month": "2025-04",
-          "baseSalary": 2200000,
-          "kpiAmount": 0,
-          "bonus": 0,
-          "penalty": 0,
-          "totalSalary": 0,
-          "status": "reviewed",
-          "paymentDate": "2025-04-26",
-          "comment": ""
+          "baseSalary": 2600000,
+          "kpiAmount": 400000,
+          "bonus": 300000,
+          "penalty": 200000,
+          "totalSalary": 3100000
         },
         {
           "month": "2025-05",
-          "baseSalary": 2200000,
-          "kpiAmount": 0,
-          "bonus": 0,
-          "penalty": 0,
-          "totalSalary": 0,
-          "status": "reviewed",
-          "paymentDate": "2025-05-26",
-          "comment": ""
+          "baseSalary": 2400000,
+          "kpiAmount": 750000,
+          "bonus": 1200000,
+          "penalty": 150000,
+          "totalSalary": 4200000
         },
         {
           "month": "2025-06",
-          "baseSalary": 2200000,
-          "kpiAmount": 0,
-          "bonus": 0,
-          "penalty": 0,
-          "totalSalary": 0,
-          "status": "reviewed",
-          "paymentDate": "2025-06-26",
-          "comment": ""
+          "baseSalary": 3000000,
+          "kpiAmount": 1100000,
+          "bonus": 600000,
+          "penalty": 300000,
+          "totalSalary": 4400000
         },
         {
           "month": "2025-07",
-          "baseSalary": 2200000,
-          "kpiAmount": 0,
-          "bonus": 0,
-          "penalty": 0,
-          "totalSalary": 0,
-          "status": "reviewed",
-          "paymentDate": "2025-07-26",
-          "comment": ""
+          "baseSalary": 2800000,
+          "kpiAmount": 500000,
+          "bonus": 950000,
+          "penalty": 100000,
+          "totalSalary": 4150000
         },
         {
           "month": "2025-08",
-          "baseSalary": 2200000,
-          "kpiAmount": 0,
-          "bonus": 0,
-          "penalty": 0,
-          "totalSalary": 0,
-          "status": "reviewed",
-          "paymentDate": "2025-08-26",
-          "comment": ""
+          "baseSalary": 3500000,
+          "kpiAmount": 1300000,
+          "bonus": 1500000,
+          "penalty": 400000,
+          "totalSalary": 5900000
         },
         {
           "month": "2025-09",
-          "baseSalary": 2200000,
-          "kpiAmount": 0,
-          "bonus": 0,
-          "penalty": 0,
-          "totalSalary": 0,
-          "status": "reviewed",
-          "paymentDate": "2025-09-26",
-          "comment": ""
+          "baseSalary": 2700000,
+          "kpiAmount": 300000,
+          "bonus": 200000,
+          "penalty": 80000,
+          "totalSalary": 3120000
         },
         {
           "month": "2025-10",
-          "baseSalary": 2200000,
-          "kpiAmount": 0,
-          "bonus": 0,
-          "penalty": 0,
-          "totalSalary": 0,
-          "status": "reviewed",
-          "paymentDate": "2025-10-26",
-          "comment": ""
+          "baseSalary": 3200000,
+          "kpiAmount": 950000,
+          "bonus": 1800000,
+          "penalty": 250000,
+          "totalSalary": 5700000
         },
         {
           "month": "2025-11",
-          "baseSalary": 2200000,
-          "kpiAmount": 0,
-          "bonus": 0,
-          "penalty": 0,
-          "totalSalary": 0,
-          "status": "reviewed",
-          "paymentDate": "2025-11-26",
-          "comment": ""
+          "baseSalary": 4000000,
+          "kpiAmount": 1600000,
+          "bonus": 2200000,
+          "penalty": 500000,
+          "totalSalary": 7300000
         },
         {
           "month": "2025-12",
-          "baseSalary": 2200000,
-          "kpiAmount": 0,
-          "bonus": 0,
-          "penalty": 0,
-          "totalSalary": 0,
-          "status": "reviewed",
-          "paymentDate": "2025-12-26",
-          "comment": ""
+          "baseSalary": 3700000,
+          "kpiAmount": 1200000,
+          "bonus": 900000,
+          "penalty": 100000,
+          "totalSalary": 5700000
         }
       ],
       "id": "9bc0"
