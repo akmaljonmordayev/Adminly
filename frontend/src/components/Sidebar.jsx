@@ -103,9 +103,8 @@ function Sidebar({ isCollapsed }) {
       `}
     >
       <h1
-        className={`text-3xl font-bold text-cyan-400 flex items-center gap-3 mb-10 tracking-wide ${
-          isCollapsed ? 'justify-center' : ''
-        }`}
+        className={`text-3xl font-bold text-cyan-400 flex items-center gap-3 mb-10 tracking-wide ${isCollapsed ? 'justify-center' : ''
+          }`}
       >
         <MdDashboard className="text-cyan-300 drop-shadow-[0_0_8px_rgba(34,211,238,0.8)] flex-shrink-0" />
         {!isCollapsed && <span>Adminly</span>}
@@ -140,10 +139,9 @@ function Sidebar({ isCollapsed }) {
               <div
                 className={`
                   relative flex items-center gap-4 px-5 py-3 transition-all duration-300
-                  ${
-                    isActive
-                      ? 'bg-gradient-to-r from-cyan-400/20 to-transparent text-cyan-300 font-semibold rounded-xl border-l-4 border-cyan-400'
-                      : 'text-gray-400 hover:bg-white/5 hover:text-cyan-300 rounded-xl hover:translate-x-1'
+                  ${isActive
+                    ? 'bg-gradient-to-r from-cyan-400/20 to-transparent text-cyan-300 font-semibold rounded-xl border-l-4 border-cyan-400'
+                    : 'text-gray-400 hover:bg-white/5 hover:text-cyan-300 rounded-xl hover:translate-x-1'
                   }
                   ${isCollapsed ? 'justify-center' : ''}
                 `}
@@ -153,9 +151,8 @@ function Sidebar({ isCollapsed }) {
                 )}
 
                 <span
-                  className={`relative text-2xl flex-shrink-0 ${
-                    isActive ? 'text-cyan-300' : 'text-gray-500'
-                  }`}
+                  className={`relative text-2xl flex-shrink-0 ${isActive ? 'text-cyan-300' : 'text-gray-500'
+                    }`}
                 >
                   {item.icon}
                 </span>
