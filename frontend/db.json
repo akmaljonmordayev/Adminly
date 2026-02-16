@@ -328,6 +328,16 @@
         }
       ],
       "id": "a503"
+    },
+    {
+      "id": "5afa",
+      "department": "Frontend",
+      "position": "Frontend intern",
+      "reason": "Personal reason",
+      "description": "I would like to resign due to personal matters.",
+      "today": "2026-02-15",
+      "yesterday": "2026-02-14",
+      "status": "pending"
     }
   ],
   "tasks": [
@@ -446,7 +456,49 @@
       "page": "TASKS"
     }
   ],
-  "resignations": [],
+  "resignationLeaves": [
+    {
+      "id": "1",
+      "employeeId": 101,
+      "employeeName": "Abdulaziz Karimov",
+      "employeeEmail": "abdulaziz@gmail.com",
+      "department": "Frontend",
+      "position": "Frontend Developer",
+      "reason": "Personal reasons",
+      "description": "I would like to resign due to personal matters.",
+      "appliedDate": "2026-02-10",
+      "lastWorkingDate": "2026-02-25",
+      "noticePeriod": 15,
+      "status": "Pending",
+      "approvedBy": null,
+      "approvedDate": null,
+      "rejectionReason": null,
+      "exitInterview": false,
+      "handoverCompleted": false,
+      "createdAt": "2026-02-10T09:00:00Z",
+      "updatedAt": "2026-02-10T09:00:00Z"
+    },
+    {
+      "id": "deb2",
+      "department": "dwefregt",
+      "position": "efregt",
+      "reason": "efreg",
+      "description": "wefregt",
+      "today": "2026-02-15",
+      "yesterday": "2026-02-14",
+      "status": "pending"
+    },
+    {
+      "id": "e342",
+      "department": "Frontend",
+      "position": "develop",
+      "reason": "reason",
+      "description": "description i would you like",
+      "today": "2026-02-16",
+      "yesterday": "2026-02-15",
+      "status": "pending"
+    }
+  ],
   "vacations": [
     {
       "employeeId": "EMP003",
