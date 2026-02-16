@@ -90,7 +90,7 @@ function Login() {
       localStorage.setItem('user', JSON.stringify(filterData[0]))
       localStorage.setItem('token', token)
       setTimeout(() => {
-        navigate('/employee/home')
+        navigate('/employee/myhome')
       }, 1500)
     }
   }

@@ -1,115 +1,156 @@
 import React, { useEffect, useState, useMemo } from "react";
 import axios from "axios";
-import { Doughnut } from "react-chartjs-2";
-import { Chart as ChartJS, ArcElement, Tooltip } from "chart.js";
+import { Line } from "react-chartjs-2";
+import {
+  Chart as ChartJS,
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  Tooltip,
+  Legend,
+} from "chart.js";
 
-ChartJS.register(ArcElement, Tooltip);
+ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Tooltip, Legend);
 
-const COLORS = ["#38bdf8", "#22c55e", "#ef4444", "#a855f7"];
+const months = [
+  "Jan","Feb","Mar","Apr","May","Jun",
+  "Jul","Aug","Sep","Oct","Nov","Dec"
+];
 
-export default function EmployeeFinanceDonut() {
-  const [data, setData] = useState({
-    baseSalary: 0,
-    kpiAmount: 0,
-    bonus: 0,
-    penalty: 0,
-    total: 0,
-  });
-  const [error, setError] = useState(null);
-
-  // 🔑 Logged-in employee ID from localStorage
-  const currentEmployeeId = localStorage.getItem("employeeId");
+export default function EmployeeLineAnalytics() {
+  const [chartDataAPI, setChartDataAPI] = useState(null);
+  const [total, setTotal] = useState(0);
 
   useEffect(() => {
-    axios
-      .get("http://localhost:5000/employees", { timeout: 5000 })
-      .then((res) => {
-        if (!Array.isArray(res.data) || res.data.length === 0) return;
+    const fetchData = async () => {
+      try {
+        const res = await axios.get("http://localhost:5000/employeeFinance");
+  
+        console.log("API:", res.data);
+  
+        const employee = res.data.find(e => e.employeeId === "1");
+        if (!employee) return;
+  
+        const monthly = employee.monthly;
+  
+        const salary = monthly.map(m => m.baseSalary);
+        const kpi = monthly.map(m => m.kpiAmount);
+        const bonus = monthly.map(m => m.bonus);
+        const penalty = monthly.map(m => m.penalty);
+  
+        const formatted = { salary, kpi, bonus, penalty };
+  
+        setChartDataAPI(formatted);
 
-        // 🔹 Find current employee, fallback to first employee
-        const employee =
-          res.data.find(
-            (e) =>
-              String(e._id) === currentEmployeeId ||
-              String(e.id) === currentEmployeeId
-          ) || res.data[0];
+        let sum = 0;
+        monthly.forEach(m => {
+          sum += m.totalSalary;
+        });
+  
+        setTotal(sum);
+  
+      } catch (err) {
+        console.error(err);
+      }
+    };
+  
+    fetchData();
+  }, []);
+  
 
-        const baseSalary = Number(employee.baseSalary || 0);
-        const kpiAmount = Number(employee.kpiAmount || 0);
-        const bonus = Number(employee.bonus || 0);
-        const penalty = Number(employee.penalty || 0);
-        const total = baseSalary + kpiAmount + bonus - penalty;
 
-        setData({ baseSalary, kpiAmount, bonus, penalty, total });
-        setError(null);
-      })
-      .catch((err) => setError("Could not load data, showing default values"));
-  }, [currentEmployeeId]);
+  const data = useMemo(() => {
+    if (!chartDataAPI) return { labels: [], datasets: [] };
 
-  const chartData = useMemo(
-    () => ({
-      labels: ["Base Salary", "KPI Amount", "Bonus", "Penalty"],
+    return {
+      labels: months,
       datasets: [
         {
-          data: [data.baseSalary, data.kpiAmount, data.bonus, data.penalty],
-          backgroundColor: COLORS,
-          borderColor: "#020617",
-          borderWidth: 2,
-          cutout: "70%",
+          label: "Salary",
+          data: chartDataAPI.salary,
+          borderColor: "#06b6d4",
+          backgroundColor: "#06b6d4",
+          tension: 0.4,
+          pointRadius: 4,
+        },
+        {
+          label: "KPI",
+          data: chartDataAPI.kpi,
+          borderColor: "#22c55e",
+          backgroundColor: "#22c55e",
+          tension: 0.4,
+          pointRadius: 4,
+        },
+        {
+          label: "Bonus",
+          data: chartDataAPI.bonus,
+          borderColor: "#f59e0b",
+          backgroundColor: "#f59e0b",
+          tension: 0.4,
+          pointRadius: 4,
+        },
+        {
+          label: "Penalty",
+          data: chartDataAPI.penalty,
+          borderColor: "#ef4444",
+          backgroundColor: "#ef4444",
+          tension: 0.4,
+          pointRadius: 4,
         },
       ],
-    }),
-    [data]
-  );
+    };
+  }, [chartDataAPI]);
 
   const options = {
     responsive: true,
     maintainAspectRatio: false,
-    animation: { duration: 800, easing: "easeOutQuart" },
+    interaction: {
+      mode: "index",
+      intersect: false,
+    },
     plugins: {
       legend: {
-        display: true,
-        position: "bottom",
-        labels: { color: "#22d3ee", font: { weight: "bold", size: 16 } },
+        labels: { color: "#cbd5e1", font:{size:14,weight:"bold"} }
       },
       tooltip: {
-        enabled: true,
-        callbacks: {
-          label: (context) => {
-            const label = context.label || "";
-            const value = context.raw || 0;
-            const percent = data.total
-              ? ((value / data.total) * 100).toFixed(1)
-              : 0;
-            return `${label}: $${value.toLocaleString()} (${percent}%)`;
-          },
-        },
         backgroundColor: "#020617",
-        titleColor: "#38bdf8",
-        bodyColor: "#ffffff",
-        borderColor: "#38bdf8",
-        borderWidth: 2,
-        bodyFont: { size: 14 },
-      },
+        borderColor: "#06b6d4",
+        borderWidth: 1,
+        callbacks: {
+          label: (ctx) => `${ctx.dataset.label}: $${ctx.raw}`
+        }
+      }
     },
+    scales: {
+      y: {
+        beginAtZero: true,
+        ticks: { color: "#94a3b8" },
+        grid: { color: "#0f172a" }
+      },
+      x: {
+        ticks: { color: "#94a3b8" },
+        grid: { color: "#020617" }
+      }
+    }
   };
 
   return (
-    <div className="w-[500px] h-[500px] rounded-3xl shadow-2xl p-8 flex flex-col items-center justify-center bg-gradient-to-br from-[#020617] to-[#020617ee]">
-      <h2 className="text-3xl font-bold text-cyan-300 mb-4">
-        My Finance Overview
-      </h2>
-      <p className="text-xl text-gray-300 mb-5">
-        Total: ${data.total.toLocaleString()}
-      </p>
+    <div className="w-8xl h-full bg-[#020617] flex flex-col items-center p-6">
 
-      {error && (
-        <p className="text-sm text-yellow-400 text-center mb-3">{error}</p>
-      )}
+      <h1 className="text-3xl font-bold text-cyan-400 mb-2">
+      📈 Employee Profit Analytics
+      </h1>
 
-      <div className="w-full h-full p-5 bg-white/5 rounded-2xl flex items-center justify-center backdrop-blur-xl border border-white/10 relative">
-        <Doughnut data={chartData} options={options} />
+      <div className="text-center mb-4">
+        <div className="text-slate-400 text-sm">TOTAL PROFIT</div>
+        <div className="text-4xl text-cyan-400 font-bold">${total}</div>
       </div>
+
+      <div className="w-full h-full bg-[#020617]/70 border border-cyan-900 rounded-2xl p-6 shadow-[0_0_40px_rgba(6,182,212,0.3)]">
+        <Line data={data} options={options}/>
+      </div>
+
     </div>
   );
 }

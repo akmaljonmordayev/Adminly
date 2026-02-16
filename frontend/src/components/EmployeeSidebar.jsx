@@ -57,7 +57,7 @@ function EmployeeSidebar({ isCollapsed }) {
       link: '/employee/mycomplaints',
     },
     {
-      id: 'announcemenets',
+      id: 'announcements',
       label: 'MyAnnouncements',
       icon: <MdAnnouncement />,
       link: '/employee/myannouncements',

@@ -93,135 +93,99 @@
       "monthly": [
         {
           "month": "2025-01",
-          "baseSalary": 2200000,
-          "kpiAmount": 220000,
-          "bonus": 100000,
-          "penalty": 0,
-          "totalSalary": 2520000,
-          "status": "paid",
-          "paymentDate": "2025-01-26",
-          "comment": ""
+          "baseSalary": 1800000,
+          "kpiAmount": 350000,
+          "bonus": 500000,
+          "penalty": 50000,
+          "totalSalary": 2600000
         },
         {
           "month": "2025-02",
           "baseSalary": 2200000,
-          "kpiAmount": 220000,
-          "bonus": 150000,
-          "penalty": 0,
-          "totalSalary": 2570000,
-          "status": "paid",
-          "paymentDate": "2025-02-26",
-          "comment": ""
+          "kpiAmount": 600000,
+          "bonus": 250000,
+          "penalty": 120000,
+          "totalSalary": 2930000
         },
         {
           "month": "2025-03",
-          "baseSalary": 2200000,
-          "kpiAmount": 220000,
-          "bonus": 200000,
+          "baseSalary": 2000000,
+          "kpiAmount": 900000,
+          "bonus": 800000,
           "penalty": 0,
-          "totalSalary": 2620000,
-          "status": "paid",
-          "paymentDate": "2025-03-26",
-          "comment": ""
+          "totalSalary": 3700000
         },
         {
           "month": "2025-04",
-          "baseSalary": 2200000,
-          "kpiAmount": 0,
-          "bonus": 0,
-          "penalty": 0,
-          "totalSalary": 0,
-          "status": "reviewed",
-          "paymentDate": "2025-04-26",
-          "comment": ""
+          "baseSalary": 2600000,
+          "kpiAmount": 400000,
+          "bonus": 300000,
+          "penalty": 200000,
+          "totalSalary": 3100000
         },
         {
           "month": "2025-05",
-          "baseSalary": 2200000,
-          "kpiAmount": 0,
-          "bonus": 0,
-          "penalty": 0,
-          "totalSalary": 0,
-          "status": "reviewed",
-          "paymentDate": "2025-05-26",
-          "comment": ""
+          "baseSalary": 2400000,
+          "kpiAmount": 750000,
+          "bonus": 1200000,
+          "penalty": 150000,
+          "totalSalary": 4200000
         },
         {
           "month": "2025-06",
-          "baseSalary": 2200000,
-          "kpiAmount": 0,
-          "bonus": 0,
-          "penalty": 0,
-          "totalSalary": 0,
-          "status": "reviewed",
-          "paymentDate": "2025-06-26",
-          "comment": ""
+          "baseSalary": 3000000,
+          "kpiAmount": 1100000,
+          "bonus": 600000,
+          "penalty": 300000,
+          "totalSalary": 4400000
         },
         {
           "month": "2025-07",
-          "baseSalary": 2200000,
-          "kpiAmount": 0,
-          "bonus": 0,
-          "penalty": 0,
-          "totalSalary": 0,
-          "status": "reviewed",
-          "paymentDate": "2025-07-26",
-          "comment": ""
+          "baseSalary": 2800000,
+          "kpiAmount": 500000,
+          "bonus": 950000,
+          "penalty": 100000,
+          "totalSalary": 4150000
         },
         {
           "month": "2025-08",
-          "baseSalary": 2200000,
-          "kpiAmount": 0,
-          "bonus": 0,
-          "penalty": 0,
-          "totalSalary": 0,
-          "status": "reviewed",
-          "paymentDate": "2025-08-26",
-          "comment": ""
+          "baseSalary": 3500000,
+          "kpiAmount": 1300000,
+          "bonus": 1500000,
+          "penalty": 400000,
+          "totalSalary": 5900000
         },
         {
           "month": "2025-09",
-          "baseSalary": 2200000,
-          "kpiAmount": 0,
-          "bonus": 0,
-          "penalty": 0,
-          "totalSalary": 0,
-          "status": "reviewed",
-          "paymentDate": "2025-09-26",
-          "comment": ""
+          "baseSalary": 2700000,
+          "kpiAmount": 300000,
+          "bonus": 200000,
+          "penalty": 80000,
+          "totalSalary": 3120000
         },
         {
           "month": "2025-10",
-          "baseSalary": 2200000,
-          "kpiAmount": 0,
-          "bonus": 0,
-          "penalty": 0,
-          "totalSalary": 0,
-          "status": "reviewed",
-          "paymentDate": "2025-10-26",
-          "comment": ""
+          "baseSalary": 3200000,
+          "kpiAmount": 950000,
+          "bonus": 1800000,
+          "penalty": 250000,
+          "totalSalary": 5700000
         },
         {
           "month": "2025-11",
-          "baseSalary": 2200000,
-          "kpiAmount": 0,
-          "bonus": 0,
-          "penalty": 0,
-          "totalSalary": 0,
-          "status": "reviewed",
-          "paymentDate": "2025-11-26",
-          "comment": ""
+          "baseSalary": 4000000,
+          "kpiAmount": 1600000,
+          "bonus": 2200000,
+          "penalty": 500000,
+          "totalSalary": 7300000
         },
         {
           "month": "2025-12",
-          "baseSalary": 2200000,
-          "kpiAmount": 0,
-          "bonus": 0,
-          "penalty": 0,
-          "totalSalary": 0,
-          "status": "reviewed",
-          "paymentDate": "2025-12-26",
-          "comment": ""
+          "baseSalary": 3700000,
+          "kpiAmount": 1200000,
+          "bonus": 900000,
+          "penalty": 100000,
+          "totalSalary": 5700000
         }
       ],
       "id": "9bc0"
@@ -364,6 +328,16 @@
         }
       ],
       "id": "a503"
+    },
+    {
+      "id": "5afa",
+      "department": "Frontend",
+      "position": "Frontend intern",
+      "reason": "Personal reason",
+      "description": "I would like to resign due to personal matters.",
+      "today": "2026-02-15",
+      "yesterday": "2026-02-14",
+      "status": "pending"
     }
   ],
   "tasks": [
@@ -386,6 +360,13 @@
       "taskName": "dilshod",
       "employeeName": "Jasmina Aliyeva",
       "deadline": "2025-11-06",
+      "status": "pending"
+    },
+    {
+      "id": "f964",
+      "taskName": "vazifani qil",
+      "employeeName": "Sherzod Rasulov",
+      "deadline": "2025-12-02",
       "status": "pending"
     },
     {
@@ -417,16 +398,30 @@
       "status": "done"
     },
     {
+      "id": "bfdc",
+      "taskName": "sdvasdv",
+      "employeeName": "Malika Tursunova",
+      "deadline": "2026-02-20",
+      "status": "pending"
+    },
+    {
       "id": "5ab2",
-      "taskName": "olam terish",
+      "taskName": "[jfhjfsfsfhisgffsgufugssg fkhfgdfgsl",
       "employeeName": "Sherzod Rasulov",
       "deadline": "2026-02-20",
       "status": "pending"
     },
     {
-      "id": "bfdc",
-      "taskName": "sdvasdv",
-      "employeeName": "Malika Tursunova",
+      "id": "5ab2",
+      "taskName": "[jfhjfsfsfhisgffsgufugssg fkhfgdfgslfbjlskbfklfjkbefkjg",
+      "employeeName": "Sherzod Rasulov",
+      "deadline": "2026-02-20",
+      "status": "pending"
+    },
+    {
+      "id": "5ab2",
+      "taskName": "olam terish",
+      "employeeName": "Sherzod Rasulov",
       "deadline": "2026-02-20",
       "status": "pending"
     }
@@ -452,6 +447,56 @@
       "action": "DELETE",
       "date": "2026-02-06T09:16:36.813Z",
       "page": "EMPLOYEES"
+    },
+    {
+      "id": "cdd1",
+      "userName": "Mohinur Sulaymonqulova",
+      "action": "DELETE",
+      "date": "2026-02-10T13:13:24.501Z",
+      "page": "TASKS"
+    }
+  ],
+  "resignationLeaves": [
+    {
+      "id": "1",
+      "employeeId": 101,
+      "employeeName": "Abdulaziz Karimov",
+      "employeeEmail": "abdulaziz@gmail.com",
+      "department": "Frontend",
+      "position": "Frontend Developer",
+      "reason": "Personal reasons",
+      "description": "I would like to resign due to personal matters.",
+      "appliedDate": "2026-02-10",
+      "lastWorkingDate": "2026-02-25",
+      "noticePeriod": 15,
+      "status": "Pending",
+      "approvedBy": null,
+      "approvedDate": null,
+      "rejectionReason": null,
+      "exitInterview": false,
+      "handoverCompleted": false,
+      "createdAt": "2026-02-10T09:00:00Z",
+      "updatedAt": "2026-02-10T09:00:00Z"
+    },
+    {
+      "id": "deb2",
+      "department": "dwefregt",
+      "position": "efregt",
+      "reason": "efreg",
+      "description": "wefregt",
+      "today": "2026-02-15",
+      "yesterday": "2026-02-14",
+      "status": "pending"
+    },
+    {
+      "id": "e342",
+      "department": "Frontend",
+      "position": "develop",
+      "reason": "reason",
+      "description": "description i would you like",
+      "today": "2026-02-16",
+      "yesterday": "2026-02-15",
+      "status": "pending"
     }
   ],
   "resignationLeaves": [
@@ -504,31 +549,73 @@
   ],
   "announcements": [
     {
-      "id": "5f08509f-ddd1-4825-b8a6-29e4da33ee49",
-      "title": "NNa",
-      "text": "NNa",
-      "date": "2026-01-26T06:13:05.999Z",
+      "id": "a1f3c9b2-7d44-4c1a-9f77-11aa22bb33cc",
+      "title": "Yangi O‘quv Semestri Boshlandi",
+      "text": "Hurmatli talabalar! 2026-yil bahorgi semestr rasman boshlandi. Dars jadvali yangilandi va tizimga joylandi.",
+      "date": "2026-02-01T08:00:00.000Z",
       "status": "Active"
     },
     {
-      "id": "715ca997-9d77-4230-88ef-fb002469209f",
-      "title": "DAM",
-      "text": "14-yanvar vatan himoyachilari kuni uchun hammaga dam",
-      "date": "Jan 21, 2026",
+      "id": "b2e4d0c3-8a55-4d2b-8e88-22bb33cc44dd",
+      "title": "Texnik Profilaktika Ishlari",
+      "text": "Serverlarda texnik profilaktika ishlari olib borilishi sababli tizim 16-fevral kuni soat 02:00 dan 04:00 gacha ishlamasligi mumkin.",
+      "date": "2026-02-14T12:30:00.000Z",
       "status": "Active"
     },
     {
-      "id": "466c4f07-2ff1-43a0-b50d-f7f9c30bb9d8",
-      "title": "avsd",
-      "text": "salom",
-      "date": "Jan 10, 2026",
+      "id": "c3f5e1d4-9b66-4e3c-7f99-33cc44dd55ee",
+      "title": "Stipendiya Natijalari E'lon Qilindi",
+      "text": "2026-yil yanvar oyi uchun stipendiya natijalari e'lon qilindi. Natijalarni shaxsiy kabinet orqali ko‘rishingiz mumkin.",
+      "date": "2026-01-28T09:15:00.000Z",
       "status": "Active"
     },
     {
-      "id": "01b6",
-      "title": "asdv",
-      "text": "asdvasdvas",
-      "date": "Jan 18, 2026",
+      "id": "d4a6f2e5-0c77-4f4d-6a10-44dd55ee66ff",
+      "title": "Sport Musobaqalari",
+      "text": "Universitet miqyosida futbol va voleybol bo‘yicha musobaqalar tashkil etiladi. Ro‘yxatdan o‘tish 20-fevralgacha davom etadi.",
+      "date": "2026-02-10T10:45:00.000Z",
+      "status": "Active"
+    },
+    {
+      "id": "e5b7a3f6-1d88-405e-5b21-55ee66ff77aa",
+      "title": "Kutubxona Ish Vaqti O‘zgardi",
+      "text": "Kutubxona ish vaqti 08:00 dan 20:00 gacha uzaytirildi. Dam olish kunlari ham xizmat ko‘rsatadi.",
+      "date": "2026-01-22T14:00:00.000Z",
+      "status": "Active"
+    },
+    {
+      "id": "f6c8b4a7-2e99-416f-4c32-66ff77aa88bb",
+      "title": "Grant Tanlovi",
+      "text": "Xorijiy grant dasturlariga hujjat topshirish boshlandi. Batafsil ma’lumot xalqaro aloqalar bo‘limida.",
+      "date": "2026-02-05T11:20:00.000Z",
+      "status": "Active"
+    },
+    {
+      "id": "07d9c5b8-3faa-4270-3d43-77aa88bb99cc",
+      "title": "14-Fevral Bayram Tadbiri",
+      "text": "14-fevral kuni soat 15:00 da madaniyat saroyida bayram tadbiri bo‘lib o‘tadi. Barchani taklif qilamiz!",
+      "date": "2026-02-12T16:00:00.000Z",
+      "status": "Active"
+    },
+    {
+      "id": "18e0d6c9-4abb-4381-2e54-88bb99cc00dd",
+      "title": "Amaliyot Dasturi",
+      "text": "3-bosqich talabalari uchun ishlab chiqarish amaliyoti 1-martdan boshlanadi. Yo‘llanmalar dekanatdan olinadi.",
+      "date": "2026-02-08T13:10:00.000Z",
+      "status": "Inactive"
+    },
+    {
+      "id": "29f1e7da-5bcc-4492-1f65-99cc00dd11ee",
+      "title": "Onlayn Seminar",
+      "text": "Sun’iy intellekt mavzusida onlayn seminar o‘tkaziladi. Ishtirok etish uchun ro‘yxatdan o‘ting.",
+      "date": "2026-02-03T17:25:00.000Z",
+      "status": "Active"
+    },
+    {
+      "id": "3a02f8eb-6cdd-4503-0g76-aadd11ee22ff",
+      "title": "Talabalar Yig‘ilishi",
+      "text": "Fakultet talabalari uchun umumiy yig‘ilish 18-fevral kuni 11:00 da 301-xonada bo‘lib o‘tadi.",
+      "date": "2026-02-15T09:40:00.000Z",
       "status": "Active"
     }
   ],
@@ -581,64 +668,7 @@
       "status": "active"
     }
   ],
-  "tasksDeleted": [
-    {
-      "id": "a822",
-      "taskName": "vybuhnjik,l",
-      "employeeName": "Jasmina Aliyeva",
-      "deadline": "2026-01-21",
-      "status": "pending"
-    },
-    {
-      "id": "5db3",
-      "taskName": "cefvgrbhn",
-      "employeeName": "Nodira Usmonova",
-      "deadline": "2026-01-14",
-      "status": "pending"
-    },
-    {
-      "id": "5db3",
-      "taskName": "cefvgrbhn",
-      "employeeName": "Nodira Usmonova",
-      "deadline": "2026-01-14",
-      "status": "pending"
-    },
-    {
-      "id": "8a0c",
-      "taskName": "adeveb",
-      "employeeName": "Bekzod Shokirov",
-      "deadline": "2026-01-30",
-      "status": "pending"
-    },
-    {
-      "id": "2944",
-      "taskName": "asdeftrhyuki",
-      "employeeName": "Sherzod Rasulov",
-      "deadline": "2026-01-29",
-      "status": "pending"
-    },
-    {
-      "id": "d9fc",
-      "taskName": "asdcas",
-      "employeeName": "Akmal Mordayev",
-      "deadline": "2026-01-30",
-      "status": "pending"
-    },
-    {
-      "id": "a822",
-      "taskName": "vybuhnjik,l",
-      "employeeName": "Jasmina Aliyeva",
-      "deadline": "2026-01-21",
-      "status": "pending"
-    },
-    {
-      "id": "d0c5",
-      "taskName": "defrg",
-      "employeeName": "Dilshod Karimov",
-      "deadline": "2026-01-13",
-      "status": "pending"
-    }
-  ],
+  "tasksDeleted": [],
   "complaintsDeleted": [],
   "announcementsDeleted": [
     {
