@@ -11,12 +11,35 @@ import {
   Legend,
 } from "chart.js";
 
-ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Tooltip, Legend);
+ChartJS.register(
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  Tooltip,
+  Legend
+);
 
 const months = [
-  "Jan","Feb","Mar","Apr","May","Jun",
-  "Jul","Aug","Sep","Oct","Nov","Dec"
+  "Jan",
+  "Feb",
+  "Mar",
+  "Apr",
+  "May",
+  "Jun",
+  "Jul",
+  "Aug",
+  "Sep",
+  "Oct",
+  "Nov",
+  "Dec",
 ];
+
+// 🔥 So'm formatter (3 xonada vergul)
+const formatUZS = (num) => {
+  if (!num && num !== 0) return "0 so'm";
+  return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + " so'm";
+};
 
 export default function EmployeeLineAnalytics() {
   const [chartDataAPI, setChartDataAPI] = useState(null);
@@ -26,39 +49,35 @@ export default function EmployeeLineAnalytics() {
     const fetchData = async () => {
       try {
         const res = await axios.get("http://localhost:5000/employeeFinance");
-  
+
         console.log("API:", res.data);
-  
-        const employee = res.data.find(e => e.employeeId === "1");
+
+        const employee = res.data.find((e) => e.employeeId === "1");
         if (!employee) return;
-  
+
         const monthly = employee.monthly;
-  
-        const salary = monthly.map(m => m.baseSalary);
-        const kpi = monthly.map(m => m.kpiAmount);
-        const bonus = monthly.map(m => m.bonus);
-        const penalty = monthly.map(m => m.penalty);
-  
+
+        const salary = monthly.map((m) => m.baseSalary);
+        const kpi = monthly.map((m) => m.kpiAmount);
+        const bonus = monthly.map((m) => m.bonus);
+        const penalty = monthly.map((m) => m.penalty);
+
         const formatted = { salary, kpi, bonus, penalty };
-  
         setChartDataAPI(formatted);
 
         let sum = 0;
-        monthly.forEach(m => {
+        monthly.forEach((m) => {
           sum += m.totalSalary;
         });
-  
+
         setTotal(sum);
-  
       } catch (err) {
         console.error(err);
       }
     };
-  
+
     fetchData();
   }, []);
-  
-
 
   const data = useMemo(() => {
     if (!chartDataAPI) return { labels: [], datasets: [] };
@@ -111,46 +130,49 @@ export default function EmployeeLineAnalytics() {
     },
     plugins: {
       legend: {
-        labels: { color: "#cbd5e1", font:{size:14,weight:"bold"} }
+        labels: { color: "#cbd5e1", font: { size: 14, weight: "bold" } },
       },
       tooltip: {
         backgroundColor: "#020617",
         borderColor: "#06b6d4",
         borderWidth: 1,
         callbacks: {
-          label: (ctx) => `${ctx.dataset.label}: $${ctx.raw}`
-        }
-      }
+          label: (ctx) => `${ctx.dataset.label}: ${formatUZS(ctx.raw)}`,
+        },
+      },
     },
     scales: {
       y: {
         beginAtZero: true,
-        ticks: { color: "#94a3b8" },
-        grid: { color: "#0f172a" }
+        ticks: {
+          color: "#94a3b8",
+          callback: (value) => formatUZS(value),
+        },
+        grid: { color: "#0f172a" },
       },
       x: {
         ticks: { color: "#94a3b8" },
-        grid: { color: "#020617" }
-      }
-    }
+        grid: { color: "#020617" },
+      },
+    },
   };
 
   return (
     <div className="w-8xl h-full bg-[#020617] flex flex-col items-center p-6">
-
       <h1 className="text-3xl font-bold text-cyan-400 mb-2">
-      📈 Employee Profit Analytics
+        📈 Employee Profit Analytics
       </h1>
 
       <div className="text-center mb-4">
         <div className="text-slate-400 text-sm">TOTAL PROFIT</div>
-        <div className="text-4xl text-cyan-400 font-bold">${total}</div>
+        <div className="text-4xl text-cyan-400 font-bold">
+          {formatUZS(total)}
+        </div>
       </div>
 
       <div className="w-full h-full bg-[#020617]/70 border border-cyan-900 rounded-2xl p-6 shadow-[0_0_40px_rgba(6,182,212,0.3)]">
-        <Line data={data} options={options}/>
+        <Line data={data} options={options} />
       </div>
-
     </div>
   );
 }
