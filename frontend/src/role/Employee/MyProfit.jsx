@@ -61,9 +61,28 @@ function MyProfit() {
         <div className="mb-6 flex justify-end">
           <select
             value={selectedMonth}
-          
+
             onChange={(e) => setSelectedMonth(e.target.value)}
-            className="custom-scroll absolute right-[10px] top-[80px] bg-[#111827] text-white border border-cyan-700 rounded-lg px-4 py-2 outline-none"
+            className="
+  appearance-none
+  bg-[#111827]
+  text-white
+  border border-cyan-600
+  rounded-xl
+  px-4 py-2
+  pr-10
+  text-sm font-medium
+  shadow-md
+  outline-none
+  cursor-pointer
+  transition-all duration-200
+  hover:border-cyan-400
+  hover:shadow-cyan-500/20
+  focus:ring-2 focus:ring-cyan-500
+  focus:border-cyan-400
+  absolute right-[10px] top-[80px]
+"
+
           >
 
             {monthlyData.map((item) => (
