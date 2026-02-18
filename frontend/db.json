@@ -1,0 +1,987 @@
+{
+  "users": [
+    {
+      "id": "1",
+      "name": "Akmal Mordayev",
+      "email": "akmaljonmordayev@gmail.com",
+      "password": "123456",
+      "role": "manager"
+    },
+    {
+      "id": "2",
+      "name": "Mohinur Sulaymonqulova",
+      "email": "mohinur@gmail.com",
+      "password": "1234",
+      "role": "manager"
+    },
+    {
+      "id": "3",
+      "name": "Xojarxon Xaydarova",
+      "email": "xojarxon@gmail.com",
+      "password": "1234",
+      "role": "manager"
+    },
+    {
+      "id": "4",
+      "name": "Bilol Komiljonov",
+      "email": "bilol@gmail.com",
+      "password": "1234",
+      "role": "manager"
+    },
+    {
+      "id": "5",
+      "name": "Akrom Ziyayev",
+      "email": "akrom@gmail.com",
+      "password": "1234",
+      "role": "manager"
+    },
+    {
+      "id": "6",
+      "name": "Abdulaziz Xasanov",
+      "email": "abdulaziz@gmail.com",
+      "password": "1234",
+      "role": "manager"
+    },
+    {
+      "id": "7",
+      "name": "Muhammadali Baxtiyorov",
+      "email": "muhammadali@gmail.com",
+      "password": "1234",
+      "role": "manager"
+    },
+    {
+      "id": "8",
+      "name": "Muhammadqodir Shukriddinov",
+      "email": "muhammadqodir@gmail.com",
+      "password": "1234",
+      "role": "manager"
+    },
+    {
+      "id": "9",
+      "name": "Abdulloh Abdumalikov",
+      "email": "abdulloh@gmail.com",
+      "password": "123",
+      "role": "manager"
+    }
+  ],
+  "employees": [
+    {
+      "id": "1",
+      "userId": 101,
+      "fullName": "Sherzod Rasulov",
+      "email": "sherzod.rasulov@example.com",
+      "role": "employee",
+      "hireDate": "2019-09-12",
+      "status": "active",
+      "password": "1234"
+    },
+    {
+      "id": "2",
+      "userId": 102,
+      "fullName": "Malika Tursunova",
+      "email": "malika.tursunova@example.com",
+      "role": "employee",
+      "hireDate": "2024-01-08",
+      "status": "active",
+      "password": "1234"
+    },
+    {
+      "id": "43dc",
+      "userId": 103,
+      "fullName": "Akmaljon Mordayev",
+      "email": "akmaljonmordayev@gmail.com",
+      "role": "employee",
+      "hireDate": "2026-02-06",
+      "status": "active"
+    }
+  ],
+  "employeeFinance": [
+    {
+      "employeeId": "1",
+      "year": 2025,
+      "monthly": [
+        {
+          "month": "2025-01",
+          "baseSalary": 2200000,
+          "kpiAmount": 220000,
+          "bonus": 100000,
+          "penalty": 0,
+          "totalSalary": 2520000,
+          "status": "paid",
+          "paymentDate": "2025-01-26",
+          "comment": ""
+        },
+        {
+          "month": "2025-02",
+          "baseSalary": 2200000,
+          "kpiAmount": 220000,
+          "bonus": 150000,
+          "penalty": 0,
+          "totalSalary": 2570000,
+          "status": "paid",
+          "paymentDate": "2025-02-26",
+          "comment": ""
+        },
+        {
+          "month": "2025-03",
+          "baseSalary": 2200000,
+          "kpiAmount": 220000,
+          "bonus": 200000,
+          "penalty": 0,
+          "totalSalary": 2620000,
+          "status": "paid",
+          "paymentDate": "2025-03-26",
+          "comment": ""
+        },
+        {
+          "month": "2025-04",
+          "baseSalary": 2200000,
+          "kpiAmount": 0,
+          "bonus": 0,
+          "penalty": 0,
+          "totalSalary": 0,
+          "status": "reviewed",
+          "paymentDate": "2025-04-26",
+          "comment": ""
+        },
+        {
+          "month": "2025-05",
+          "baseSalary": 2200000,
+          "kpiAmount": 0,
+          "bonus": 0,
+          "penalty": 0,
+          "totalSalary": 0,
+          "status": "reviewed",
+          "paymentDate": "2025-05-26",
+          "comment": ""
+        },
+        {
+          "month": "2025-06",
+          "baseSalary": 2200000,
+          "kpiAmount": 0,
+          "bonus": 0,
+          "penalty": 0,
+          "totalSalary": 0,
+          "status": "reviewed",
+          "paymentDate": "2025-06-26",
+          "comment": ""
+        },
+        {
+          "month": "2025-07",
+          "baseSalary": 2200000,
+          "kpiAmount": 0,
+          "bonus": 0,
+          "penalty": 0,
+          "totalSalary": 0,
+          "status": "reviewed",
+          "paymentDate": "2025-07-26",
+          "comment": ""
+        },
+        {
+          "month": "2025-08",
+          "baseSalary": 2200000,
+          "kpiAmount": 0,
+          "bonus": 0,
+          "penalty": 0,
+          "totalSalary": 0,
+          "status": "reviewed",
+          "paymentDate": "2025-08-26",
+          "comment": ""
+        },
+        {
+          "month": "2025-09",
+          "baseSalary": 2200000,
+          "kpiAmount": 0,
+          "bonus": 0,
+          "penalty": 0,
+          "totalSalary": 0,
+          "status": "reviewed",
+          "paymentDate": "2025-09-26",
+          "comment": ""
+        },
+        {
+          "month": "2025-10",
+          "baseSalary": 2200000,
+          "kpiAmount": 0,
+          "bonus": 0,
+          "penalty": 0,
+          "totalSalary": 0,
+          "status": "reviewed",
+          "paymentDate": "2025-10-26",
+          "comment": ""
+        },
+        {
+          "month": "2025-11",
+          "baseSalary": 2200000,
+          "kpiAmount": 0,
+          "bonus": 0,
+          "penalty": 0,
+          "totalSalary": 0,
+          "status": "reviewed",
+          "paymentDate": "2025-11-26",
+          "comment": ""
+        },
+        {
+          "month": "2025-12",
+          "baseSalary": 2200000,
+          "kpiAmount": 0,
+          "bonus": 0,
+          "penalty": 0,
+          "totalSalary": 0,
+          "status": "reviewed",
+          "paymentDate": "2025-12-26",
+          "comment": ""
+        }
+      ],
+      "id": "9bc0"
+    },
+    {
+      "employeeId": "2",
+      "year": 2025,
+      "monthly": [
+        {
+          "month": "2025-01",
+          "baseSalary": 2200000,
+          "kpiAmount": 220000,
+          "bonus": 100000,
+          "penalty": 0,
+          "totalSalary": 2520000,
+          "status": "paid",
+          "paymentDate": "2025-01-26",
+          "comment": ""
+        },
+        {
+          "month": "2025-02",
+          "baseSalary": 2200000,
+          "kpiAmount": 220000,
+          "bonus": 150000,
+          "penalty": 0,
+          "totalSalary": 2570000,
+          "status": "paid",
+          "paymentDate": "2025-02-26",
+          "comment": ""
+        },
+        {
+          "month": "2025-03",
+          "baseSalary": 2200000,
+          "kpiAmount": 220000,
+          "bonus": 200000,
+          "penalty": 0,
+          "totalSalary": 2620000,
+          "status": "paid",
+          "paymentDate": "2025-03-26",
+          "comment": ""
+        },
+        {
+          "month": "2025-04",
+          "baseSalary": 2200000,
+          "kpiAmount": 0,
+          "bonus": 0,
+          "penalty": 0,
+          "totalSalary": 0,
+          "status": "reviewed",
+          "paymentDate": "2025-04-26",
+          "comment": ""
+        },
+        {
+          "month": "2025-05",
+          "baseSalary": 2200000,
+          "kpiAmount": 0,
+          "bonus": 0,
+          "penalty": 0,
+          "totalSalary": 0,
+          "status": "reviewed",
+          "paymentDate": "2025-05-26",
+          "comment": ""
+        },
+        {
+          "month": "2025-06",
+          "baseSalary": 2200000,
+          "kpiAmount": 0,
+          "bonus": 0,
+          "penalty": 0,
+          "totalSalary": 0,
+          "status": "reviewed",
+          "paymentDate": "2025-06-26",
+          "comment": ""
+        },
+        {
+          "month": "2025-07",
+          "baseSalary": 2200000,
+          "kpiAmount": 0,
+          "bonus": 0,
+          "penalty": 0,
+          "totalSalary": 0,
+          "status": "reviewed",
+          "paymentDate": "2025-07-26",
+          "comment": ""
+        },
+        {
+          "month": "2025-08",
+          "baseSalary": 2200000,
+          "kpiAmount": 0,
+          "bonus": 0,
+          "penalty": 0,
+          "totalSalary": 0,
+          "status": "reviewed",
+          "paymentDate": "2025-08-26",
+          "comment": ""
+        },
+        {
+          "month": "2025-09",
+          "baseSalary": 2200000,
+          "kpiAmount": 0,
+          "bonus": 0,
+          "penalty": 0,
+          "totalSalary": 0,
+          "status": "reviewed",
+          "paymentDate": "2025-09-26",
+          "comment": ""
+        },
+        {
+          "month": "2025-10",
+          "baseSalary": 2200000,
+          "kpiAmount": 0,
+          "bonus": 0,
+          "penalty": 0,
+          "totalSalary": 0,
+          "status": "reviewed",
+          "paymentDate": "2025-10-26",
+          "comment": ""
+        },
+        {
+          "month": "2025-11",
+          "baseSalary": 2200000,
+          "kpiAmount": 0,
+          "bonus": 0,
+          "penalty": 0,
+          "totalSalary": 0,
+          "status": "reviewed",
+          "paymentDate": "2025-11-26",
+          "comment": ""
+        },
+        {
+          "month": "2025-12",
+          "baseSalary": 2200000,
+          "kpiAmount": 0,
+          "bonus": 0,
+          "penalty": 0,
+          "totalSalary": 0,
+          "status": "reviewed",
+          "paymentDate": "2025-12-26",
+          "comment": ""
+        }
+      ],
+      "id": "a503"
+    },
+    {
+      "id": "7994",
+      "employeeId": null,
+      "year": 2025,
+      "monthly": [
+        {
+          "month": "2025-01",
+          "baseSalary": 2856623,
+          "kpiAmount": 0,
+          "bonus": 0,
+          "penalty": 0,
+          "totalSalary": 0,
+          "status": "reviewed",
+          "paymentDate": "",
+          "paymentMethod": "bank",
+          "comment": ""
+        },
+        {
+          "month": "2025-02",
+          "baseSalary": 2856623,
+          "kpiAmount": 0,
+          "bonus": 0,
+          "penalty": 0,
+          "totalSalary": 0,
+          "status": "reviewed",
+          "paymentDate": "",
+          "paymentMethod": "bank",
+          "comment": ""
+        },
+        {
+          "month": "2025-03",
+          "baseSalary": 2856623,
+          "kpiAmount": 0,
+          "bonus": 0,
+          "penalty": 0,
+          "totalSalary": 0,
+          "status": "reviewed",
+          "paymentDate": "",
+          "paymentMethod": "bank",
+          "comment": ""
+        },
+        {
+          "month": "2025-04",
+          "baseSalary": 2856623,
+          "kpiAmount": 0,
+          "bonus": 0,
+          "penalty": 0,
+          "totalSalary": 0,
+          "status": "reviewed",
+          "paymentDate": "",
+          "paymentMethod": "bank",
+          "comment": ""
+        },
+        {
+          "month": "2025-05",
+          "baseSalary": 2856623,
+          "kpiAmount": 0,
+          "bonus": 0,
+          "penalty": 0,
+          "totalSalary": 0,
+          "status": "reviewed",
+          "paymentDate": "",
+          "paymentMethod": "bank",
+          "comment": ""
+        },
+        {
+          "month": "2025-06",
+          "baseSalary": 2856623,
+          "kpiAmount": 0,
+          "bonus": 0,
+          "penalty": 0,
+          "totalSalary": 0,
+          "status": "reviewed",
+          "paymentDate": "",
+          "paymentMethod": "bank",
+          "comment": ""
+        },
+        {
+          "month": "2025-07",
+          "baseSalary": 2856623,
+          "kpiAmount": 0,
+          "bonus": 0,
+          "penalty": 0,
+          "totalSalary": 0,
+          "status": "reviewed",
+          "paymentDate": "",
+          "paymentMethod": "bank",
+          "comment": ""
+        },
+        {
+          "month": "2025-08",
+          "baseSalary": 2856623,
+          "kpiAmount": 0,
+          "bonus": 0,
+          "penalty": 0,
+          "totalSalary": 0,
+          "status": "reviewed",
+          "paymentDate": "",
+          "paymentMethod": "bank",
+          "comment": ""
+        },
+        {
+          "month": "2025-09",
+          "baseSalary": 2856623,
+          "kpiAmount": 0,
+          "bonus": 0,
+          "penalty": 0,
+          "totalSalary": 0,
+          "status": "reviewed",
+          "paymentDate": "",
+          "paymentMethod": "bank",
+          "comment": ""
+        },
+        {
+          "month": "2025-10",
+          "baseSalary": 2856623,
+          "kpiAmount": 0,
+          "bonus": 0,
+          "penalty": 0,
+          "totalSalary": 0,
+          "status": "reviewed",
+          "paymentDate": "",
+          "paymentMethod": "bank",
+          "comment": ""
+        },
+        {
+          "month": "2025-11",
+          "baseSalary": 2856623,
+          "kpiAmount": 0,
+          "bonus": 0,
+          "penalty": 0,
+          "totalSalary": 0,
+          "status": "reviewed",
+          "paymentDate": "",
+          "paymentMethod": "bank",
+          "comment": ""
+        },
+        {
+          "month": "2025-12",
+          "baseSalary": 2856623,
+          "kpiAmount": 0,
+          "bonus": 0,
+          "penalty": 0,
+          "totalSalary": 0,
+          "status": "reviewed",
+          "paymentDate": "",
+          "paymentMethod": "bank",
+          "comment": ""
+        }
+      ]
+    },
+    {
+      "id": "194f",
+      "employeeId": null,
+      "year": 2025,
+      "monthly": [
+        {
+          "month": "2025-01",
+          "baseSalary": 78956,
+          "kpiAmount": 0,
+          "bonus": 0,
+          "penalty": 0,
+          "totalSalary": 0,
+          "status": "reviewed",
+          "paymentDate": "",
+          "paymentMethod": "bank",
+          "comment": ""
+        },
+        {
+          "month": "2025-02",
+          "baseSalary": 78956,
+          "kpiAmount": 0,
+          "bonus": 0,
+          "penalty": 0,
+          "totalSalary": 0,
+          "status": "reviewed",
+          "paymentDate": "",
+          "paymentMethod": "bank",
+          "comment": ""
+        },
+        {
+          "month": "2025-03",
+          "baseSalary": 78956,
+          "kpiAmount": 0,
+          "bonus": 0,
+          "penalty": 0,
+          "totalSalary": 0,
+          "status": "reviewed",
+          "paymentDate": "",
+          "paymentMethod": "bank",
+          "comment": ""
+        },
+        {
+          "month": "2025-04",
+          "baseSalary": 78956,
+          "kpiAmount": 0,
+          "bonus": 0,
+          "penalty": 0,
+          "totalSalary": 0,
+          "status": "reviewed",
+          "paymentDate": "",
+          "paymentMethod": "bank",
+          "comment": ""
+        },
+        {
+          "month": "2025-05",
+          "baseSalary": 78956,
+          "kpiAmount": 0,
+          "bonus": 0,
+          "penalty": 0,
+          "totalSalary": 0,
+          "status": "reviewed",
+          "paymentDate": "",
+          "paymentMethod": "bank",
+          "comment": ""
+        },
+        {
+          "month": "2025-06",
+          "baseSalary": 78956,
+          "kpiAmount": 0,
+          "bonus": 0,
+          "penalty": 0,
+          "totalSalary": 0,
+          "status": "reviewed",
+          "paymentDate": "",
+          "paymentMethod": "bank",
+          "comment": ""
+        },
+        {
+          "month": "2025-07",
+          "baseSalary": 78956,
+          "kpiAmount": 0,
+          "bonus": 0,
+          "penalty": 0,
+          "totalSalary": 0,
+          "status": "reviewed",
+          "paymentDate": "",
+          "paymentMethod": "bank",
+          "comment": ""
+        },
+        {
+          "month": "2025-08",
+          "baseSalary": 78956,
+          "kpiAmount": 0,
+          "bonus": 0,
+          "penalty": 0,
+          "totalSalary": 0,
+          "status": "reviewed",
+          "paymentDate": "",
+          "paymentMethod": "bank",
+          "comment": ""
+        },
+        {
+          "month": "2025-09",
+          "baseSalary": 78956,
+          "kpiAmount": 0,
+          "bonus": 0,
+          "penalty": 0,
+          "totalSalary": 0,
+          "status": "reviewed",
+          "paymentDate": "",
+          "paymentMethod": "bank",
+          "comment": ""
+        },
+        {
+          "month": "2025-10",
+          "baseSalary": 78956,
+          "kpiAmount": 0,
+          "bonus": 0,
+          "penalty": 0,
+          "totalSalary": 0,
+          "status": "reviewed",
+          "paymentDate": "",
+          "paymentMethod": "bank",
+          "comment": ""
+        },
+        {
+          "month": "2025-11",
+          "baseSalary": 78956,
+          "kpiAmount": 0,
+          "bonus": 0,
+          "penalty": 0,
+          "totalSalary": 0,
+          "status": "reviewed",
+          "paymentDate": "",
+          "paymentMethod": "bank",
+          "comment": ""
+        },
+        {
+          "month": "2025-12",
+          "baseSalary": 78956,
+          "kpiAmount": 0,
+          "bonus": 0,
+          "penalty": 0,
+          "totalSalary": 0,
+          "status": "reviewed",
+          "paymentDate": "",
+          "paymentMethod": "bank",
+          "comment": ""
+        }
+      ]
+    }
+  ],
+  "tasks": [
+    {
+      "id": "a59e",
+      "taskName": "Dashboard",
+      "employeeName": "Islombek Qodirov",
+      "deadline": "2026-01-30",
+      "status": "pending"
+    },
+    {
+      "id": "5396",
+      "taskName": "ilon",
+      "employeeName": "Bekzod Shokirov",
+      "deadline": "2026-02-03",
+      "status": "pending"
+    },
+    {
+      "id": "1073",
+      "taskName": "dilshod",
+      "employeeName": "Jasmina Aliyeva",
+      "deadline": "2025-11-06",
+      "status": "pending"
+    },
+    {
+      "id": "f964",
+      "taskName": "elshod",
+      "employeeName": "Sherzod Rasulov",
+      "deadline": "2025-12-02",
+      "status": "pending"
+    },
+    {
+      "id": "5582",
+      "taskName": "hoshim",
+      "employeeName": "Nodira Usmonova",
+      "deadline": "2026-01-30",
+      "status": "pending"
+    },
+    {
+      "id": "9df1",
+      "taskName": "logs",
+      "employeeName": "Malika Tursunova",
+      "deadline": "2026-01-30",
+      "status": "pending"
+    },
+    {
+      "id": "9611",
+      "taskName": "tasks",
+      "employeeName": "Nodira Usmonova",
+      "deadline": "2026-02-28",
+      "status": "done"
+    },
+    {
+      "id": "5ab2",
+      "taskName": "olam terish",
+      "employeeName": "Sherzod Rasulov",
+      "deadline": "2026-02-20",
+      "status": "pending"
+    },
+    {
+      "id": "bfdc",
+      "taskName": "sdvasdv",
+      "employeeName": "Malika Tursunova",
+      "deadline": "2026-02-20",
+      "status": "pending"
+    },
+    {
+      "id": "0cc9",
+      "taskName": "qwa-qwa",
+      "employeeName": "Employee",
+      "deadline": "2026-02-17",
+      "status": "pending"
+    },
+    {
+      "id": "a822",
+      "taskName": "vybuhnjik,l",
+      "employeeName": "Jasmina Aliyeva",
+      "deadline": "2026-01-21",
+      "status": "pending"
+    },
+    {
+      "id": "a822",
+      "taskName": "vybuhnjik,l",
+      "employeeName": "Jasmina Aliyeva",
+      "deadline": "2026-01-21",
+      "status": "pending"
+    },
+    {
+      "id": "a822",
+      "taskName": "vybuhnjik,l",
+      "employeeName": "Jasmina Aliyeva",
+      "deadline": "2026-01-21",
+      "status": "pending"
+    },
+    {
+      "id": "a822",
+      "taskName": "vybuhnjik,l",
+      "employeeName": "Jasmina Aliyeva",
+      "deadline": "2026-01-21",
+      "status": "pending"
+    },
+    {
+      "id": "a822",
+      "taskName": "vybuhnjik,l",
+      "employeeName": "Jasmina Aliyeva",
+      "deadline": "2026-01-21",
+      "status": "pending"
+    },
+    {
+      "id": "a822",
+      "taskName": "vybuhnjik,l",
+      "employeeName": "Jasmina Aliyeva",
+      "deadline": "2026-01-21",
+      "status": "pending"
+    },
+    {
+      "id": "a822",
+      "taskName": "vybuhnjik,l",
+      "employeeName": "Jasmina Aliyeva",
+      "deadline": "2026-01-21",
+      "status": "pending"
+    },
+    {
+      "id": "a822",
+      "taskName": "vybuhnjik,l",
+      "employeeName": "Jasmina Aliyeva",
+      "deadline": "2026-01-21",
+      "status": "pending"
+    },
+    {
+      "id": "a822",
+      "taskName": "vybuhnjik,l",
+      "employeeName": "Jasmina Aliyeva",
+      "deadline": "2026-01-21",
+      "status": "pending"
+    },
+    {
+      "id": "a822",
+      "taskName": "vybuhnjik,l",
+      "employeeName": "Jasmina Aliyeva",
+      "deadline": "2026-01-21",
+      "status": "pending"
+    },
+    {
+      "id": "a822",
+      "taskName": "vybuhnjik,l",
+      "employeeName": "Jasmina Aliyeva",
+      "deadline": "2026-01-21",
+      "status": "pending"
+    },
+    {
+      "id": "5db3",
+      "taskName": "cefvgrbhn",
+      "employeeName": "Nodira Usmonova",
+      "deadline": "2026-01-14",
+      "status": "pending"
+    },
+    {
+      "id": "2944",
+      "taskName": "asdeftrhyuki",
+      "employeeName": "Sherzod Rasulov",
+      "deadline": "2026-01-29",
+      "status": "pending"
+    },
+    {
+      "id": "a822",
+      "taskName": "vybuhnjik,l",
+      "employeeName": "Jasmina Aliyeva",
+      "deadline": "2026-01-21",
+      "status": "pending"
+    },
+    {
+      "id": "5db3",
+      "taskName": "cefvgrbhn",
+      "employeeName": "Nodira Usmonova",
+      "deadline": "2026-01-14",
+      "status": "pending"
+    },
+    {
+      "id": "8a0c",
+      "taskName": "adeveb",
+      "employeeName": "Bekzod Shokirov",
+      "deadline": "2026-01-30",
+      "status": "pending"
+    },
+    {
+      "id": "5db3",
+      "taskName": "cefvgrbhn",
+      "employeeName": "Nodira Usmonova",
+      "deadline": "2026-01-14",
+      "status": "pending"
+    },
+    {
+      "id": "5db3",
+      "taskName": "cefvgrbhn",
+      "employeeName": "Nodira Usmonova",
+      "deadline": "2026-01-14",
+      "status": "pending"
+    },
+    {
+      "id": "d9fc",
+      "taskName": "asdcas",
+      "employeeName": "Akmal Mordayev",
+      "deadline": "2026-01-30",
+      "status": "pending"
+    },
+    {
+      "id": "d0c5",
+      "taskName": "defrg",
+      "employeeName": "Dilshod Karimov",
+      "deadline": "2026-01-13",
+      "status": "pending"
+    }
+  ],
+  "logs": [],
+  "resignations": [],
+  "vacations": [
+    {
+      "employeeId": "EMP003",
+      "employeeName": "Rustam K.",
+      "destination": "Italy",
+      "startDate": "2026-01-05",
+      "endDate": "2026-01-15",
+      "purpose": "tourism",
+      "status": "pending",
+      "id": "20c0"
+    },
+    {
+      "employeeId": "EMP004",
+      "employeeName": "Nilufar A.",
+      "destination": "Maldives",
+      "startDate": "2026-02-10",
+      "endDate": "2026-02-20",
+      "purpose": "relaxation",
+      "status": "approved",
+      "id": "e4b3"
+    }
+  ],
+  "announcements": [
+    {
+      "id": "f6d5",
+      "title": "Suv toshqaini haqidagi habar",
+      "text": "Suv toshib ketti. Muammoni tigirlashilani soraymiz!",
+      "date": "16.02.2026",
+      "status": "Active"
+    },
+    {
+      "id": "898bfbb5-79b1-4c55-a920-1da4c5566992",
+      "title": "DAM",
+      "text": "14-yanvar vatan himoyachilari kuni uchun hammaga dam",
+      "date": "Jan 21, 2026",
+      "status": "Active"
+    },
+    {
+      "id": "782a4671-40ef-4634-a30c-691ddccbb156",
+      "title": "avsd",
+      "text": "salom",
+      "date": "Jan 10, 2026",
+      "status": "Active"
+    },
+    {
+      "id": "12fd7ecc-0ce0-411d-9755-73e9e238d75e",
+      "title": "asdv",
+      "text": "asdvasdvas",
+      "date": "Jan 18, 2026",
+      "status": "Active"
+    }
+  ],
+  "complaints": [
+    {
+      "id": "CPL003",
+      "employeeId": "EMP007",
+      "employeeName": "Sherzod Rasulov",
+      "title": "Request for New Chair",
+      "description": "My office chair is broken and needs replacement.",
+      "date": "2025-12-19",
+      "status": "pending"
+    },
+    {
+      "id": "CPL002",
+      "employeeId": "EMP006",
+      "employeeName": "Malika Tursunova",
+      "title": "Internet Connectivity Issue",
+      "description": "Internet connection keeps dropping in the design department.",
+      "date": "2025-12-20",
+      "status": "pending"
+    },
+    {
+      "id": "CPL002",
+      "employeeId": "EMP006",
+      "employeeName": "Islombek Qodirov",
+      "title": "Internet Connectivity Issue",
+      "description": "Internet connection keeps dropping in the design department.",
+      "date": "2025-12-20",
+      "status": "reviewed"
+    }
+  ],
+  "employeesDeleted": [],
+  "tasksDeleted": [
+    {
+      "id": "a822",
+      "taskName": "vybuhnjik,l",
+      "employeeName": "Jasmina Aliyeva",
+      "deadline": "2026-01-21",
+      "status": "pending"
+    }
+  ],
+  "complaintsDeleted": [],
+  "announcementsDeleted": []
+}
