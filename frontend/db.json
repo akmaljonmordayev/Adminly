@@ -84,246 +84,268 @@
       "hireDate": "2024-01-08",
       "status": "active",
       "password": "1234"
+    },
+    {
+      "id": "3",
+      "fullName": "Pasha",
+      "email": "pasha@gmail.com",
+      "baseSalary": "8524",
+      "userId": 103,
+      "role": "employee",
+      "hireDate": "2026-02-19",
+      "status": "active"
     }
   ],
   "employeeFinance": [
     {
       "employeeId": "1",
-      "year": 2025,
+      "year": 2026,
       "monthly": [
         {
           "month": "2025-01",
-          "baseSalary": 1800000,
-          "kpiAmount": 350000,
-          "bonus": 500000,
-          "penalty": 50000,
-          "totalSalary": 2600000
+          "baseSalary": 0,
+          "kpiAmount": 0,
+          "bonus": 0,
+          "penalty": 0,
+          "totalSalary": 0
         },
         {
           "month": "2025-02",
-          "baseSalary": 2200000,
-          "kpiAmount": 600000,
-          "bonus": 250000,
-          "penalty": 120000,
-          "totalSalary": 2930000
+          "baseSalary": 0,
+          "kpiAmount": 0,
+          "bonus": 0,
+          "penalty": 0,
+          "totalSalary": 0
         },
         {
           "month": "2025-03",
-          "baseSalary": 2000000,
-          "kpiAmount": 900000,
-          "bonus": 800000,
+          "baseSalary": 0,
+          "kpiAmount": 0,
+          "bonus": 0,
           "penalty": 0,
-          "totalSalary": 3700000
+          "totalSalary": 0
         },
         {
           "month": "2025-04",
-          "baseSalary": 2600000,
-          "kpiAmount": 400000,
-          "bonus": 300000,
-          "penalty": 200000,
-          "totalSalary": 3100000
+          "baseSalary": 0,
+          "kpiAmount": 0,
+          "bonus": 0,
+          "penalty": 0,
+          "totalSalary": 0
         },
         {
           "month": "2025-05",
-          "baseSalary": 2400000,
-          "kpiAmount": 750000,
-          "bonus": 1200000,
-          "penalty": 150000,
-          "totalSalary": 4200000
+          "baseSalary": 0,
+          "kpiAmount": 0,
+          "bonus": 0,
+          "penalty": 0,
+          "totalSalary": 0
         },
         {
           "month": "2025-06",
-          "baseSalary": 3000000,
-          "kpiAmount": 1100000,
-          "bonus": 600000,
-          "penalty": 300000,
-          "totalSalary": 4400000
+          "baseSalary": 0,
+          "kpiAmount": 0,
+          "bonus": 0,
+          "penalty": 0,
+          "totalSalary": 0
         },
         {
           "month": "2025-07",
-          "baseSalary": 2800000,
-          "kpiAmount": 500000,
-          "bonus": 950000,
-          "penalty": 100000,
-          "totalSalary": 4150000
+          "baseSalary": 0,
+          "kpiAmount": 0,
+          "bonus": 0,
+          "penalty": 0,
+          "totalSalary": 0
         },
         {
           "month": "2025-08",
-          "baseSalary": 3500000,
-          "kpiAmount": 1300000,
-          "bonus": 1500000,
-          "penalty": 400000,
-          "totalSalary": 5900000
+          "baseSalary": 0,
+          "kpiAmount": 0,
+          "bonus": 0,
+          "penalty": 0,
+          "totalSalary": 0
         },
         {
           "month": "2025-09",
-          "baseSalary": 2700000,
-          "kpiAmount": 300000,
-          "bonus": 200000,
-          "penalty": 80000,
-          "totalSalary": 3120000
+          "baseSalary": 0,
+          "kpiAmount": 0,
+          "bonus": 0,
+          "penalty": 0,
+          "totalSalary": 0
         },
         {
           "month": "2025-10",
-          "baseSalary": 3200000,
-          "kpiAmount": 950000,
-          "bonus": 1800000,
-          "penalty": 250000,
-          "totalSalary": 5700000
+          "baseSalary": 0,
+          "kpiAmount": 0,
+          "bonus": 0,
+          "penalty": 0,
+          "totalSalary": 0
         },
         {
           "month": "2025-11",
-          "baseSalary": 4000000,
-          "kpiAmount": 1600000,
-          "bonus": 2200000,
-          "penalty": 500000,
-          "totalSalary": 7300000
+          "baseSalary": 0,
+          "kpiAmount": 0,
+          "bonus": 0,
+          "penalty": 0,
+          "totalSalary": 0
         },
         {
           "month": "2025-12",
-          "baseSalary": 3700000,
-          "kpiAmount": 1200000,
-          "bonus": 900000,
-          "penalty": 100000,
-          "totalSalary": 5700000
+          "baseSalary": 0,
+          "kpiAmount": 0,
+          "bonus": 0,
+          "penalty": 0,
+          "totalSalary": 0
+        },
+        {
+          "month": "2026-01",
+          "baseSalary": 780,
+          "kpiAmount": 0,
+          "bonus": 0,
+          "penalty": 0,
+          "totalSalary": 780,
+          "status": "unpaid",
+          "paymentDate": "2026-02-19",
+          "paymentMethod": "bank",
+          "comment": ""
         }
       ],
       "id": "9bc0"
     },
     {
       "employeeId": "2",
-      "year": 2025,
+      "year": 2026,
       "monthly": [
         {
-          "month": "2025-01",
-          "baseSalary": 2200000,
-          "kpiAmount": 220000,
-          "bonus": 100000,
-          "penalty": 0,
-          "totalSalary": 2520000,
-          "status": "paid",
-          "paymentDate": "2025-01-26",
-          "comment": ""
-        },
-        {
-          "month": "2025-02",
-          "baseSalary": 2200000,
-          "kpiAmount": 220000,
-          "bonus": 150000,
-          "penalty": 0,
-          "totalSalary": 2570000,
-          "status": "paid",
-          "paymentDate": "2025-02-26",
-          "comment": ""
-        },
-        {
-          "month": "2025-03",
-          "baseSalary": 2200000,
-          "kpiAmount": 220000,
-          "bonus": 200000,
-          "penalty": 0,
-          "totalSalary": 2620000,
-          "status": "paid",
-          "paymentDate": "2025-03-26",
-          "comment": ""
-        },
-        {
-          "month": "2025-04",
-          "baseSalary": 2200000,
+          "month": "2026-01",
+          "baseSalary": 0,
           "kpiAmount": 0,
           "bonus": 0,
           "penalty": 0,
           "totalSalary": 0,
           "status": "reviewed",
-          "paymentDate": "2025-04-26",
+          "paymentDate": "2026-01-26",
           "comment": ""
         },
         {
-          "month": "2025-05",
-          "baseSalary": 2200000,
+          "month": "2026-02",
+          "baseSalary": 0,
           "kpiAmount": 0,
           "bonus": 0,
           "penalty": 0,
           "totalSalary": 0,
           "status": "reviewed",
-          "paymentDate": "2025-05-26",
+          "paymentDate": "2026-02-26",
           "comment": ""
         },
         {
-          "month": "2025-06",
-          "baseSalary": 2200000,
+          "month": "2026-03",
+          "baseSalary": 0,
           "kpiAmount": 0,
           "bonus": 0,
           "penalty": 0,
           "totalSalary": 0,
           "status": "reviewed",
-          "paymentDate": "2025-06-26",
+          "paymentDate": "2026-03-26",
           "comment": ""
         },
         {
-          "month": "2025-07",
-          "baseSalary": 2200000,
+          "month": "2026-04",
+          "baseSalary": 0,
           "kpiAmount": 0,
           "bonus": 0,
           "penalty": 0,
           "totalSalary": 0,
           "status": "reviewed",
-          "paymentDate": "2025-07-26",
+          "paymentDate": "2026-04-26",
           "comment": ""
         },
         {
-          "month": "2025-08",
-          "baseSalary": 2200000,
+          "month": "2026-05",
+          "baseSalary": 0,
           "kpiAmount": 0,
           "bonus": 0,
           "penalty": 0,
           "totalSalary": 0,
           "status": "reviewed",
-          "paymentDate": "2025-08-26",
+          "paymentDate": "2026-05-26",
           "comment": ""
         },
         {
-          "month": "2025-09",
-          "baseSalary": 2200000,
+          "month": "2026-06",
+          "baseSalary": 0,
           "kpiAmount": 0,
           "bonus": 0,
           "penalty": 0,
           "totalSalary": 0,
           "status": "reviewed",
-          "paymentDate": "2025-09-26",
+          "paymentDate": "2026-06-26",
           "comment": ""
         },
         {
-          "month": "2025-10",
-          "baseSalary": 2200000,
+          "month": "2026-07",
+          "baseSalary": 0,
           "kpiAmount": 0,
           "bonus": 0,
           "penalty": 0,
           "totalSalary": 0,
           "status": "reviewed",
-          "paymentDate": "2025-10-26",
+          "paymentDate": "2026-07-26",
           "comment": ""
         },
         {
-          "month": "2025-11",
-          "baseSalary": 2200000,
+          "month": "2026-08",
+          "baseSalary": 0,
           "kpiAmount": 0,
           "bonus": 0,
           "penalty": 0,
           "totalSalary": 0,
           "status": "reviewed",
-          "paymentDate": "2025-11-26",
+          "paymentDate": "2026-08-26",
           "comment": ""
         },
         {
-          "month": "2025-12",
-          "baseSalary": 2200000,
+          "month": "2026-09",
+          "baseSalary": 0,
           "kpiAmount": 0,
           "bonus": 0,
           "penalty": 0,
           "totalSalary": 0,
           "status": "reviewed",
-          "paymentDate": "2025-12-26",
+          "paymentDate": "2026-09-26",
+          "comment": ""
+        },
+        {
+          "month": "2026-10",
+          "baseSalary": 0,
+          "kpiAmount": 0,
+          "bonus": 0,
+          "penalty": 0,
+          "totalSalary": 0,
+          "status": "reviewed",
+          "paymentDate": "2026-10-26",
+          "comment": ""
+        },
+        {
+          "month": "2026-11",
+          "baseSalary": 0,
+          "kpiAmount": 0,
+          "bonus": 0,
+          "penalty": 0,
+          "totalSalary": 0,
+          "status": "reviewed",
+          "paymentDate": "2026-11-26",
+          "comment": ""
+        },
+        {
+          "month": "2026-12",
+          "baseSalary": 0,
+          "kpiAmount": 0,
+          "bonus": 0,
+          "penalty": 0,
+          "totalSalary": 0,
+          "status": "reviewed",
+          "paymentDate": "2026-12-26",
           "comment": ""
         }
       ],
@@ -338,6 +360,73 @@
       "today": "2026-02-15",
       "yesterday": "2026-02-14",
       "status": "pending"
+    },
+    {
+      "id": "c3f8",
+      "employeeId": "3",
+      "year": 2025,
+      "monthly": [
+        {
+          "month": "2025-01",
+          "baseSalary": 8524,
+          "status": "reviewed"
+        },
+        {
+          "month": "2025-02",
+          "baseSalary": 8524,
+          "status": "reviewed"
+        },
+        {
+          "month": "2025-03",
+          "baseSalary": 8524,
+          "status": "reviewed"
+        },
+        {
+          "month": "2025-04",
+          "baseSalary": 8524,
+          "status": "reviewed"
+        },
+        {
+          "month": "2025-05",
+          "baseSalary": 8524,
+          "status": "reviewed"
+        },
+        {
+          "month": "2025-06",
+          "baseSalary": 8524,
+          "status": "reviewed"
+        },
+        {
+          "month": "2025-07",
+          "baseSalary": 8524,
+          "status": "reviewed"
+        },
+        {
+          "month": "2025-08",
+          "baseSalary": 8524,
+          "status": "reviewed"
+        },
+        {
+          "month": "2025-09",
+          "baseSalary": 8524,
+          "status": "reviewed"
+        },
+        {
+          "month": "2025-10",
+          "baseSalary": 8524,
+          "status": "reviewed"
+        },
+        {
+          "month": "2025-11",
+          "baseSalary": 8524,
+          "status": "reviewed"
+        },
+        {
+          "month": "2025-12",
+          "baseSalary": 8524,
+          "status": "reviewed"
+        }
+      ]
     }
   ],
   "tasks": [
@@ -435,13 +524,6 @@
       "page": "COMPLAINTS"
     },
     {
-      "id": "272a",
-      "userName": "Akmal Mordayev",
-      "action": "CREATE",
-      "date": "2026-02-06T09:16:03.796Z",
-      "page": "EMPLOYEES"
-    },
-    {
       "id": "933b",
       "userName": "Akmal Mordayev",
       "action": "DELETE",
@@ -477,54 +559,8 @@
       "handoverCompleted": false,
       "createdAt": "2026-02-10T09:00:00Z",
       "updatedAt": "2026-02-10T09:00:00Z"
-    },
-    {
-      "id": "deb2",
-      "department": "dwefregt",
-      "position": "efregt",
-      "reason": "efreg",
-      "description": "wefregt",
-      "today": "2026-02-15",
-      "yesterday": "2026-02-14",
-      "status": "pending"
-    },
-    {
-      "id": "e342",
-      "department": "Frontend",
-      "position": "develop",
-      "reason": "reason",
-      "description": "description i would you like",
-      "today": "2026-02-16",
-      "yesterday": "2026-02-15",
-      "status": "pending"
     }
   ],
-  "resignationLeaves": [
-    {
-      "id": 1,
-      "employeeId": 101,
-      "employeeName": "Abdulaziz Karimov",
-      "employeeEmail": "abdulaziz@gmail.com",
-      "department": "Frontend",
-      "position": "Frontend Developer",
-      "reason": "Personal reasons",
-      "description": "I would like to resign due to personal matters.",
-      "appliedDate": "2026-02-10",
-      "lastWorkingDate": "2026-02-25",
-      "noticePeriod": 15,
-      "status": "Pending",
-      "approvedBy": null,
-      "approvedDate": null,
-      "rejectionReason": null,
-
-      "exitInterview": false,
-      "handoverCompleted": false,
-
-      "createdAt": "2026-02-10T09:00:00Z",
-      "updatedAt": "2026-02-10T09:00:00Z"
-    }
-  ],
-
   "vacations": [
     {
       "employeeId": "EMP003",

@@ -36,6 +36,7 @@ function Dashboard() {
     axios.get("http://localhost:5000/announcementsDeleted").then(r => setAllArchieve4(r.data));
     axios.get("http://localhost:5000/vacations").then(r => setAllVacations(r.data));
     axios.get("http://localhost:5000/resignations").then(r => setAllLeaves(r.data));
+    axios.get("http://localhost:5000/employeeFinance").then(r => setAllLeaves(r.data));
     axios.get("http://localhost:5000/logs").then(r => setAllLogs(r.data));
   }, []);
 
