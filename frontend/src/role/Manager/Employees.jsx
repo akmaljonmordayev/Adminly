@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useMemo } from 'react'
+import React, { useEffect, useState } from 'react'
 import { toast, ToastContainer } from 'react-toastify'
 import axios from 'axios'
 import {
@@ -39,7 +39,7 @@ function Employees() {
     baseSalary: '',
   })
 
-  const user = useMemo(() => JSON.parse(localStorage.getItem('user')), [])
+  let user = JSON.parse(localStorage.getItem("user"));
 
   const getNow = () => new Date().toISOString().split('T')[0]
   const generateUserId = () =>
@@ -112,6 +112,13 @@ function Employees() {
       setAddOpen(false)
       setNewUser({ fullName: '', email: '', baseSalary: '' })
       fetchData()
+
+      await axios.post('http://localhost:5000/logs', {
+        userName: user.name,
+        action: 'create',
+        date: new Date().toISOString(),
+        page: 'EMPLOYEES',
+      })
     } catch (e) {
       toast.error('Something went wrong')
     } finally {
@@ -119,13 +126,47 @@ function Employees() {
     }
   }
 
-  const handleDelete = async (id) => {
-    if (!window.confirm('Are you sure you want to delete?')) return
+  const handleEdit = async () => {
+    if (!editUser.fullName || !editUser.email)
+      return toast.warn('Please fill all fields')
     try {
       setLoading(true)
-      await axios.delete(`${API_BASE}/employees/${id}`)
+      await axios.put(`${API_BASE}/employees/${editUser.id}`, editUser)
+      toast.success('Employee updated successfully')
+      setEditOpen(false)
+      fetchData()
+
+      await axios.post('http://localhost:5000/logs', {
+        userName: user.name,
+        action: 'update',
+        date: new Date().toISOString(),
+        page: 'EMPLOYEES',
+      })
+    } catch (e) {
+      toast.error('Error updating employee')
+    } finally {
+      setLoading(false)
+    }
+  }
+
+  const handleDelete = async (employee) => {
+    if (
+      !window.confirm(`Are you sure you want to delete ${employee.fullName}?`)
+    )
+      return
+
+    try {
+      setLoading(true)
+      await axios.delete(`${API_BASE}/employees/${employee.id}`)
       toast.success('Deleted')
       fetchData()
+
+      await axios.post(`${API_BASE}/logs`, {
+        userName: user.name,
+        action: 'delete',
+        date: new Date().toISOString(),
+        page: 'EMPLOYEES',
+      })
     } catch (e) {
       toast.error('Error deleting employee')
     } finally {
@@ -166,7 +207,7 @@ function Employees() {
             />
           </div>
           <button
-            onClick={() => setAddOpen(true)}
+            onClick={() => setAddOpen(true) && handleAdd()}
             className="bg-cyan-500 hover:bg-cyan-600 text-slate-950 px-5 py-2.5 rounded-xl font-semibold flex items-center gap-2 transition-all active:scale-95"
           >
             <FiUserPlus /> Add Employee
@@ -259,7 +300,7 @@ function Employees() {
                         <FiEdit2 size={16} />
                       </button>
                       <button
-                        onClick={() => handleDelete(u.id)}
+                        onClick={() => handleDelete(u)}
                         className="p-2 rounded-lg text-slate-500 hover:text-rose-500 hover:bg-slate-800 transition-all"
                       >
                         <FiTrash2 size={16} />
@@ -369,13 +410,7 @@ function Employees() {
                 Cancel
               </button>
               <button
-                onClick={
-                  addOpen
-                    ? handleAdd
-                    : () => {
-                        /* Handle Edit logic */
-                      }
-                }
+                onClick={addOpen ? handleAdd : handleEdit}
                 className="flex-1 px-4 py-2.5 rounded-xl font-semibold bg-cyan-500 text-slate-950 hover:bg-cyan-600 transition-all"
               >
                 {addOpen ? 'Create' : 'Save Changes'}
@@ -385,7 +420,7 @@ function Employees() {
         </div>
       )}
 
-      <ToastContainer theme="dark" position="bottom-right" autoClose={2000} />
+      <ToastContainer theme="dark" position="top-right" autoClose={2000} />
     </div>
   )
 }

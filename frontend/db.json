@@ -60,7 +60,7 @@
       "id": "9",
       "name": "Abdulloh Abdumalikov",
       "email": "abdulloh@gmail.com",
-      "password": "123",
+      "password": "1234",
       "role": "manager"
     }
   ],
@@ -68,11 +68,11 @@
     {
       "id": "1",
       "userId": 101,
-      "fullName": "Sherzod Rasulov",
-      "email": "sherzod.rasulov@example.com",
+      "fullName": "Sherzodbek Rasulov",
+      "email": "sherzod@gmail.com",
       "role": "employee",
       "hireDate": "2019-09-12",
-      "status": "active",
+      "status": "inactive",
       "password": "1234"
     },
     {
@@ -87,12 +87,12 @@
     },
     {
       "id": "3",
-      "fullName": "Pasha",
-      "email": "pasha@gmail.com",
-      "baseSalary": "8524",
+      "fullName": "sdvasd",
+      "email": "a37666680@gmail.com",
+      "baseSalary": "2323",
       "userId": 103,
       "role": "employee",
-      "hireDate": "2026-02-19",
+      "hireDate": "2026-02-20",
       "status": "active"
     }
   ],
@@ -102,112 +102,100 @@
       "year": 2026,
       "monthly": [
         {
-          "month": "2025-01",
-          "baseSalary": 0,
-          "kpiAmount": 0,
-          "bonus": 0,
-          "penalty": 0,
-          "totalSalary": 0
-        },
-        {
-          "month": "2025-02",
-          "baseSalary": 0,
-          "kpiAmount": 0,
-          "bonus": 0,
-          "penalty": 0,
-          "totalSalary": 0
-        },
-        {
-          "month": "2025-03",
-          "baseSalary": 0,
-          "kpiAmount": 0,
-          "bonus": 0,
-          "penalty": 0,
-          "totalSalary": 0
-        },
-        {
-          "month": "2025-04",
-          "baseSalary": 0,
-          "kpiAmount": 0,
-          "bonus": 0,
-          "penalty": 0,
-          "totalSalary": 0
-        },
-        {
-          "month": "2025-05",
-          "baseSalary": 0,
-          "kpiAmount": 0,
-          "bonus": 0,
-          "penalty": 0,
-          "totalSalary": 0
-        },
-        {
-          "month": "2025-06",
-          "baseSalary": 0,
-          "kpiAmount": 0,
-          "bonus": 0,
-          "penalty": 0,
-          "totalSalary": 0
-        },
-        {
-          "month": "2025-07",
-          "baseSalary": 0,
-          "kpiAmount": 0,
-          "bonus": 0,
-          "penalty": 0,
-          "totalSalary": 0
-        },
-        {
-          "month": "2025-08",
-          "baseSalary": 0,
-          "kpiAmount": 0,
-          "bonus": 0,
-          "penalty": 0,
-          "totalSalary": 0
-        },
-        {
-          "month": "2025-09",
-          "baseSalary": 0,
-          "kpiAmount": 0,
-          "bonus": 0,
-          "penalty": 0,
-          "totalSalary": 0
-        },
-        {
-          "month": "2025-10",
-          "baseSalary": 0,
-          "kpiAmount": 0,
-          "bonus": 0,
-          "penalty": 0,
-          "totalSalary": 0
-        },
-        {
-          "month": "2025-11",
-          "baseSalary": 0,
-          "kpiAmount": 0,
-          "bonus": 0,
-          "penalty": 0,
-          "totalSalary": 0
-        },
-        {
-          "month": "2025-12",
-          "baseSalary": 0,
-          "kpiAmount": 0,
-          "bonus": 0,
-          "penalty": 0,
-          "totalSalary": 0
-        },
-        {
           "month": "2026-01",
-          "baseSalary": 780,
-          "kpiAmount": 0,
-          "bonus": 0,
+          "baseSalary": 1800000,
+          "kpiAmount": 350000,
+          "bonus": 500000,
+          "penalty": 50000,
+          "totalSalary": 2600000
+        },
+        {
+          "month": "2026-02",
+          "baseSalary": 2200000,
+          "kpiAmount": 600000,
+          "bonus": 250000,
+          "penalty": 120000,
+          "totalSalary": 2930000
+        },
+        {
+          "month": "2026-03",
+          "baseSalary": 2000000,
+          "kpiAmount": 900000,
+          "bonus": 800000,
           "penalty": 0,
-          "totalSalary": 780,
-          "status": "unpaid",
-          "paymentDate": "2026-02-19",
-          "paymentMethod": "bank",
-          "comment": ""
+          "totalSalary": 3700000
+        },
+        {
+          "month": "2026-04",
+          "baseSalary": 2600000,
+          "kpiAmount": 400000,
+          "bonus": 300000,
+          "penalty": 200000,
+          "totalSalary": 3100000
+        },
+        {
+          "month": "2026-05",
+          "baseSalary": 2400000,
+          "kpiAmount": 750000,
+          "bonus": 1200000,
+          "penalty": 150000,
+          "totalSalary": 4200000
+        },
+        {
+          "month": "2026-06",
+          "baseSalary": 3000000,
+          "kpiAmount": 1100000,
+          "bonus": 600000,
+          "penalty": 300000,
+          "totalSalary": 4400000
+        },
+        {
+          "month": "2026-07",
+          "baseSalary": 2800000,
+          "kpiAmount": 500000,
+          "bonus": 950000,
+          "penalty": 100000,
+          "totalSalary": 4150000
+        },
+        {
+          "month": "2026-08",
+          "baseSalary": 3500000,
+          "kpiAmount": 1300000,
+          "bonus": 1500000,
+          "penalty": 400000,
+          "totalSalary": 5900000
+        },
+        {
+          "month": "2026-09",
+          "baseSalary": 2700000,
+          "kpiAmount": 300000,
+          "bonus": 200000,
+          "penalty": 80000,
+          "totalSalary": 3120000
+        },
+        {
+          "month": "2026-10",
+          "baseSalary": 3200000,
+          "kpiAmount": 950000,
+          "bonus": 1800000,
+          "penalty": 250000,
+          "totalSalary": 5700000
+        },
+        {
+          "month": "2026-11",
+          "baseSalary": 4000000,
+          "kpiAmount": 1600000,
+          "bonus": 2200000,
+          "penalty": 500000,
+          "totalSalary": 7300000
+        },
+        {
+          "month": "2026-12",
+          "baseSalary": 3700000,
+          "kpiAmount": 1200000,
+          "bonus": 900000,
+          "penalty": 100000,
+          "totalSalary": 5700000
         }
       ],
       "id": "9bc0"
@@ -218,14 +206,15 @@
       "monthly": [
         {
           "month": "2026-01",
-          "baseSalary": 0,
-          "kpiAmount": 0,
-          "bonus": 0,
-          "penalty": 0,
-          "totalSalary": 0,
-          "status": "reviewed",
+          "baseSalary": 7985623,
+          "kpiAmount": 5989217,
+          "bonus": 7,
+          "penalty": 850045,
+          "totalSalary": 13124802,
+          "status": "rejected",
           "paymentDate": "2026-01-26",
-          "comment": ""
+          "paymentMethod": "bank",
+          "comment": "Тфтфтавпролыдж"
         },
         {
           "month": "2026-02",
@@ -363,67 +352,335 @@
     },
     {
       "id": "c3f8",
-      "employeeId": "3",
+      "employeeId": null,
       "year": 2025,
       "monthly": [
         {
-          "month": "2025-01",
+          "month": "2026-01",
           "baseSalary": 8524,
           "status": "reviewed"
         },
         {
-          "month": "2025-02",
+          "month": "2026-02",
           "baseSalary": 8524,
           "status": "reviewed"
         },
         {
-          "month": "2025-03",
+          "month": "2026-03",
           "baseSalary": 8524,
           "status": "reviewed"
         },
         {
-          "month": "2025-04",
+          "month": "2026-04",
           "baseSalary": 8524,
           "status": "reviewed"
         },
         {
-          "month": "2025-05",
+          "month": "2026-05",
           "baseSalary": 8524,
           "status": "reviewed"
         },
         {
-          "month": "2025-06",
+          "month": "2026-06",
           "baseSalary": 8524,
           "status": "reviewed"
         },
         {
-          "month": "2025-07",
+          "month": "2026-07",
           "baseSalary": 8524,
           "status": "reviewed"
         },
         {
-          "month": "2025-08",
+          "month": "2026-08",
           "baseSalary": 8524,
           "status": "reviewed"
         },
         {
-          "month": "2025-09",
+          "month": "2026-09",
           "baseSalary": 8524,
           "status": "reviewed"
         },
         {
-          "month": "2025-10",
+          "month": "2026-10",
           "baseSalary": 8524,
           "status": "reviewed"
         },
         {
-          "month": "2025-11",
+          "month": "2026-11",
           "baseSalary": 8524,
           "status": "reviewed"
         },
         {
-          "month": "2025-12",
+          "month": "2026-12",
           "baseSalary": 8524,
+          "status": "reviewed"
+        }
+      ]
+    },
+    {
+      "id": "ce3c",
+      "employeeId": null,
+      "year": 2026,
+      "monthly": [
+        {
+          "month": "2026-01",
+          "baseSalary": 1212,
+          "status": "reviewed"
+        },
+        {
+          "month": "2026-02",
+          "baseSalary": 1212,
+          "status": "reviewed"
+        },
+        {
+          "month": "2026-03",
+          "baseSalary": 1212,
+          "status": "reviewed"
+        },
+        {
+          "month": "2026-04",
+          "baseSalary": 1212,
+          "status": "reviewed"
+        },
+        {
+          "month": "2026-05",
+          "baseSalary": 1212,
+          "status": "reviewed"
+        },
+        {
+          "month": "2026-06",
+          "baseSalary": 1212,
+          "status": "reviewed"
+        },
+        {
+          "month": "2026-07",
+          "baseSalary": 1212,
+          "status": "reviewed"
+        },
+        {
+          "month": "2026-08",
+          "baseSalary": 1212,
+          "status": "reviewed"
+        },
+        {
+          "month": "2026-09",
+          "baseSalary": 1212,
+          "status": "reviewed"
+        },
+        {
+          "month": "2026-10",
+          "baseSalary": 1212,
+          "status": "reviewed"
+        },
+        {
+          "month": "2026-11",
+          "baseSalary": 1212,
+          "status": "reviewed"
+        },
+        {
+          "month": "2026-12",
+          "baseSalary": 1212,
+          "status": "reviewed"
+        }
+      ]
+    },
+    {
+      "id": "a32a",
+      "employeeId": "3",
+      "year": 2026,
+      "monthly": [
+        {
+          "month": "2026-01",
+          "baseSalary": 2323,
+          "status": "reviewed"
+        },
+        {
+          "month": "2026-02",
+          "baseSalary": 2323,
+          "status": "reviewed"
+        },
+        {
+          "month": "2026-03",
+          "baseSalary": 2323,
+          "status": "reviewed"
+        },
+        {
+          "month": "2026-04",
+          "baseSalary": 2323,
+          "status": "reviewed"
+        },
+        {
+          "month": "2026-05",
+          "baseSalary": 2323,
+          "status": "reviewed"
+        },
+        {
+          "month": "2026-06",
+          "baseSalary": 2323,
+          "status": "reviewed"
+        },
+        {
+          "month": "2026-07",
+          "baseSalary": 2323,
+          "status": "reviewed"
+        },
+        {
+          "month": "2026-08",
+          "baseSalary": 2323,
+          "status": "reviewed"
+        },
+        {
+          "month": "2026-09",
+          "baseSalary": 2323,
+          "status": "reviewed"
+        },
+        {
+          "month": "2026-10",
+          "baseSalary": 2323,
+          "status": "reviewed"
+        },
+        {
+          "month": "2026-11",
+          "baseSalary": 2323,
+          "status": "reviewed"
+        },
+        {
+          "month": "2026-12",
+          "baseSalary": 2323,
+          "status": "reviewed"
+        }
+      ]
+    },
+    {
+      "id": "2e27",
+      "employeeId": null,
+      "year": 2026,
+      "monthly": [
+        {
+          "month": "2026-01",
+          "baseSalary": 860,
+          "status": "reviewed"
+        },
+        {
+          "month": "2026-02",
+          "baseSalary": 860,
+          "status": "reviewed"
+        },
+        {
+          "month": "2026-03",
+          "baseSalary": 860,
+          "status": "reviewed"
+        },
+        {
+          "month": "2026-04",
+          "baseSalary": 860,
+          "status": "reviewed"
+        },
+        {
+          "month": "2026-05",
+          "baseSalary": 860,
+          "status": "reviewed"
+        },
+        {
+          "month": "2026-06",
+          "baseSalary": 860,
+          "status": "reviewed"
+        },
+        {
+          "month": "2026-07",
+          "baseSalary": 860,
+          "status": "reviewed"
+        },
+        {
+          "month": "2026-08",
+          "baseSalary": 860,
+          "status": "reviewed"
+        },
+        {
+          "month": "2026-09",
+          "baseSalary": 860,
+          "status": "reviewed"
+        },
+        {
+          "month": "2026-10",
+          "baseSalary": 860,
+          "status": "reviewed"
+        },
+        {
+          "month": "2026-11",
+          "baseSalary": 860,
+          "status": "reviewed"
+        },
+        {
+          "month": "2026-12",
+          "baseSalary": 860,
+          "status": "reviewed"
+        }
+      ]
+    },
+    {
+      "id": "c216",
+      "employeeId": null,
+      "year": 2026,
+      "monthly": [
+        {
+          "month": "2026-01",
+          "baseSalary": 786523,
+          "status": "reviewed"
+        },
+        {
+          "month": "2026-02",
+          "baseSalary": 786523,
+          "status": "reviewed"
+        },
+        {
+          "month": "2026-03",
+          "baseSalary": 786523,
+          "status": "reviewed"
+        },
+        {
+          "month": "2026-04",
+          "baseSalary": 786523,
+          "status": "reviewed"
+        },
+        {
+          "month": "2026-05",
+          "baseSalary": 786523,
+          "status": "reviewed"
+        },
+        {
+          "month": "2026-06",
+          "baseSalary": 786523,
+          "status": "reviewed"
+        },
+        {
+          "month": "2026-07",
+          "baseSalary": 786523,
+          "status": "reviewed"
+        },
+        {
+          "month": "2026-08",
+          "baseSalary": 786523,
+          "status": "reviewed"
+        },
+        {
+          "month": "2026-09",
+          "baseSalary": 786523,
+          "status": "reviewed"
+        },
+        {
+          "month": "2026-10",
+          "baseSalary": 786523,
+          "status": "reviewed"
+        },
+        {
+          "month": "2026-11",
+          "baseSalary": 786523,
+          "status": "reviewed"
+        },
+        {
+          "month": "2026-12",
+          "baseSalary": 786523,
           "status": "reviewed"
         }
       ]
@@ -463,7 +720,7 @@
       "taskName": "elshod cjjbfjgvg",
       "employeeName": "Sherzod Rasulov",
       "deadline": "2025-12-02",
-      "status": "pending"
+      "status": "completed"
     },
     {
       "id": "5582",
@@ -517,25 +774,116 @@
   ],
   "logs": [
     {
-      "id": "855d",
+      "id": "ae06",
       "userName": "Abdulloh Abdumalikov",
-      "action": "DELETE",
-      "date": "2026-01-30T05:31:04.742Z",
-      "page": "COMPLAINTS"
-    },
-    {
-      "id": "933b",
-      "userName": "Akmal Mordayev",
-      "action": "DELETE",
-      "date": "2026-02-06T09:16:36.813Z",
+      "action": "delete",
+      "date": "2026-02-23T04:19:19.079Z",
       "page": "EMPLOYEES"
     },
     {
-      "id": "cdd1",
-      "userName": "Mohinur Sulaymonqulova",
-      "action": "DELETE",
-      "date": "2026-02-10T13:13:24.501Z",
-      "page": "TASKS"
+      "id": "4c4c",
+      "userName": "Abdulloh Abdumalikov",
+      "action": "update",
+      "date": "2026-02-23T04:56:14.048Z",
+      "page": "FINANCE"
+    },
+    {
+      "id": "cc87",
+      "userName": "Abdulloh Abdumalikov",
+      "action": "update",
+      "date": "2026-02-23T04:56:19.857Z",
+      "page": "FINANCE"
+    },
+    {
+      "id": "8e75",
+      "userName": "Abdulloh Abdumalikov",
+      "action": "update",
+      "date": "2026-02-23T04:57:12.046Z",
+      "page": "FINANCE"
+    },
+    {
+      "id": "1ccc",
+      "userName": "Abdulloh Abdumalikov",
+      "action": "update",
+      "date": "2026-02-23T05:02:38.777Z",
+      "page": "FINANCE"
+    },
+    {
+      "id": "bca5",
+      "userName": "Abdulloh Abdumalikov",
+      "action": "update",
+      "date": "2026-02-23T05:09:12.692Z",
+      "page": "FINANCE"
+    },
+    {
+      "id": "41fb",
+      "userName": "Abdulloh Abdumalikov",
+      "action": "update",
+      "date": "2026-02-23T05:09:16.841Z",
+      "page": "FINANCE"
+    },
+    {
+      "id": "fefd",
+      "userName": "Abdulloh Abdumalikov",
+      "action": "update",
+      "date": "2026-02-23T05:09:21.027Z",
+      "page": "FINANCE"
+    },
+    {
+      "id": "6513",
+      "userName": "Abdulloh Abdumalikov",
+      "action": "update",
+      "date": "2026-02-23T05:09:24.403Z",
+      "page": "FINANCE"
+    },
+    {
+      "id": "f862",
+      "userName": "Abdulloh Abdumalikov",
+      "action": "update",
+      "date": "2026-02-23T05:16:57.439Z",
+      "page": "FINANCE"
+    },
+    {
+      "id": "9d0d",
+      "userName": "Abdulloh Abdumalikov",
+      "action": "update",
+      "date": "2026-02-23T05:17:41.088Z",
+      "page": "EMPLOYEES"
+    },
+    {
+      "id": "63bb",
+      "userName": "Abdulloh Abdumalikov",
+      "action": "update",
+      "date": "2026-02-23T05:17:44.820Z",
+      "page": "EMPLOYEES"
+    },
+    {
+      "id": "a264",
+      "userName": "Abdulloh Abdumalikov",
+      "action": "update",
+      "date": "2026-02-23T05:17:59.279Z",
+      "page": "EMPLOYEES"
+    },
+    {
+      "id": "dc4e",
+      "userName": "Abdulloh Abdumalikov",
+      "action": "update",
+      "date": "2026-02-23T05:18:05.124Z",
+      "page": "EMPLOYEES"
+    },
+    {
+      "id": "4fe7",
+      "userName": "Abdulloh Abdumalikov",
+      "action": "UPDATE",
+      "date": "2026-02-23T05:21:50.665Z",
+      "page": "SETTINGS"
+    },
+    {
+      "id": "5df4",
+      "userName": "Abdulloh Abdumalikov",
+      "action": "update",
+      "date": "2026-02-23T05:30:26.226Z",
+      "page": "FINANCE"
     }
   ],
   "resignationLeaves": [
