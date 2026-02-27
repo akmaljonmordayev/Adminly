@@ -1,6 +1,6 @@
-import React, { useEffect, useState, useMemo } from "react";
-import axios from "axios";
-import { Line } from "react-chartjs-2";
+import React, { useEffect, useState, useMemo } from 'react'
+import axios from 'axios'
+import { Line } from 'react-chartjs-2'
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -9,7 +9,7 @@ import {
   LineElement,
   Tooltip,
   Legend,
-} from "chart.js";
+} from 'chart.js'
 
 ChartJS.register(
   CategoryScale,
@@ -17,124 +17,126 @@ ChartJS.register(
   PointElement,
   LineElement,
   Tooltip,
-  Legend
-);
+  Legend,
+)
 
 const months = [
-  "Jan",
-  "Feb",
-  "Mar",
-  "Apr",
-  "May",
-  "Jun",
-  "Jul",
-  "Aug",
-  "Sep",
-  "Oct",
-  "Nov",
-  "Dec",
-];
+  'Jan',
+  'Feb',
+  'Mar',
+  'Apr',
+  'May',
+  'Jun',
+  'Jul',
+  'Aug',
+  'Sep',
+  'Oct',
+  'Nov',
+  'Dec',
+]
 
 // 🔥 So'm formatter (3 xonada vergul)
 const formatUZS = (num) => {
-  if (!num && num !== 0) return "0 so'm";
-  return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + " so'm";
-};
+  if (!num && num !== 0) return "0 so'm"
+  return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',') + " so'm"
+}
 
 export default function EmployeeLineAnalytics() {
-  const [chartDataAPI, setChartDataAPI] = useState(null);
-  const [total, setTotal] = useState(0);
+  const [chartDataAPI, setChartDataAPI] = useState(null)
+  const [total, setTotal] = useState(0)
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await axios.get("http://localhost:5000/employeeFinance");
+        const res = await axios.get('http://localhost:5000/employeeFinance')
 
-        console.log("API:", res.data);
+        console.log('API:', res.data)
 
-        const employee = res.data.find((e) => e.employeeId === "1");
-        if (!employee) return;
+        const employee = res.data.find(
+          (e) => e.employeeId == JSON.parse(localStorage.getItem('user')).id,
+        )
+        if (!employee) return
 
-        const monthly = employee.monthly;
+        const monthly = employee.monthly
 
-        const salary = monthly.map((m) => m.baseSalary);
-        const kpi = monthly.map((m) => m.kpiAmount);
-        const bonus = monthly.map((m) => m.bonus);
-        const penalty = monthly.map((m) => m.penalty);
+        const salary = monthly.map((m) => m.baseSalary)
+        const kpi = monthly.map((m) => m.kpiAmount)
+        const bonus = monthly.map((m) => m.bonus)
+        const penalty = monthly.map((m) => m.penalty)
 
-        const formatted = { salary, kpi, bonus, penalty };
-        setChartDataAPI(formatted);
+        const formatted = { salary, kpi, bonus, penalty }
+        setChartDataAPI(formatted)
 
-        let sum = 0;
+        let sum = 0
         monthly.forEach((m) => {
-          sum += m.totalSalary;
-        });
+          sum += m.totalSalary
+        })
 
-        setTotal(sum);
+        setTotal(sum)
       } catch (err) {
-        console.error(err);
+        console.error(err)
       }
-    };
+    }
 
-    fetchData();
-  }, []);
+    fetchData()
+  }, [])
 
   const data = useMemo(() => {
-    if (!chartDataAPI) return { labels: [], datasets: [] };
+    if (!chartDataAPI) return { labels: [], datasets: [] }
 
     return {
       labels: months,
       datasets: [
         {
-          label: "Salary",
+          label: 'Salary',
           data: chartDataAPI.salary,
-          borderColor: "#06b6d4",
-          backgroundColor: "#06b6d4",
+          borderColor: '#06b6d4',
+          backgroundColor: '#06b6d4',
           tension: 0.4,
           pointRadius: 4,
         },
         {
-          label: "KPI",
+          label: 'KPI',
           data: chartDataAPI.kpi,
-          borderColor: "#22c55e",
-          backgroundColor: "#22c55e",
+          borderColor: '#22c55e',
+          backgroundColor: '#22c55e',
           tension: 0.4,
           pointRadius: 4,
         },
         {
-          label: "Bonus",
+          label: 'Bonus',
           data: chartDataAPI.bonus,
-          borderColor: "#f59e0b",
-          backgroundColor: "#f59e0b",
+          borderColor: '#f59e0b',
+          backgroundColor: '#f59e0b',
           tension: 0.4,
           pointRadius: 4,
         },
         {
-          label: "Penalty",
+          label: 'Penalty',
           data: chartDataAPI.penalty,
-          borderColor: "#ef4444",
-          backgroundColor: "#ef4444",
+          borderColor: '#ef4444',
+          backgroundColor: '#ef4444',
           tension: 0.4,
           pointRadius: 4,
         },
       ],
-    };
-  }, [chartDataAPI]);
+    }
+  }, [chartDataAPI])
 
   const options = {
     responsive: true,
     maintainAspectRatio: false,
     interaction: {
-      mode: "index",
+      mode: 'index',
       intersect: false,
     },
     plugins: {
       legend: {
-        labels: { color: "#cbd5e1", font: { size: 14, weight: "bold" } },
+        labels: { color: '#cbd5e1', font: { size: 14, weight: 'bold' } },
       },
       tooltip: {
-        backgroundColor: "#020617",
-        borderColor: "#06b6d4",
+        backgroundColor: '#020617',
+        borderColor: '#06b6d4',
         borderWidth: 1,
         callbacks: {
           label: (ctx) => `${ctx.dataset.label}: ${formatUZS(ctx.raw)}`,
@@ -145,17 +147,17 @@ export default function EmployeeLineAnalytics() {
       y: {
         beginAtZero: true,
         ticks: {
-          color: "#94a3b8",
+          color: '#94a3b8',
           callback: (value) => formatUZS(value),
         },
-        grid: { color: "#0f172a" },
+        grid: { color: '#0f172a' },
       },
       x: {
-        ticks: { color: "#94a3b8" },
-        grid: { color: "#020617" },
+        ticks: { color: '#94a3b8' },
+        grid: { color: '#020617' },
       },
     },
-  };
+  }
 
   return (
     <div className="w-8xl h-full bg-[#020617] flex flex-col items-center p-6">
@@ -174,5 +176,5 @@ export default function EmployeeLineAnalytics() {
         <Line data={data} options={options} />
       </div>
     </div>
-  );
+  )
 }
