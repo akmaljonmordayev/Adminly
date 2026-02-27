@@ -39,7 +39,7 @@ function Employees() {
     baseSalary: '',
   })
 
-  let user = JSON.parse(localStorage.getItem("user"));
+  let user = JSON.parse(localStorage.getItem('user'))
 
   const getNow = () => new Date().toISOString().split('T')[0]
   const generateUserId = () =>
@@ -167,6 +167,7 @@ function Employees() {
         date: new Date().toISOString(),
         page: 'EMPLOYEES',
       })
+      await axios.post(`http://localhost:5000/employeesDeleted`, res.data)
     } catch (e) {
       toast.error('Error deleting employee')
     } finally {
