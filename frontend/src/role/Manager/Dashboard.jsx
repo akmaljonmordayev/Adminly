@@ -57,7 +57,9 @@ function Dashboard() {
     axios
       .get('http://localhost:5000/employeeFinance')
       .then((r) => setAllLeaves(r.data))
-    axios.get('http://localhost:5000/logs').then((r) => setAllLogs(r.data))
+    axios
+      .get('http://localhost:5000/employeeFinance')
+      .then((r) => setFinanceEmployee(r.data))
   }, [])
 
   const archiveCount =

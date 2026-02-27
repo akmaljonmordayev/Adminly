@@ -66,8 +66,8 @@
   ],
   "employees": [
     {
-      "id": "2",
-      "userId": 102,
+      "id": "1",
+      "userId": 101,
       "fullName": "Malika Tursunova",
       "email": "malika.tursunova@gmail.com",
       "role": "employee",
@@ -76,57 +76,18 @@
       "password": "1234"
     },
     {
-      "id": "43dc",
-      "userId": 103,
+      "id": "2",
+      "userId": 102,
       "fullName": "Akmaljon Mordayev",
       "email": "akmaljonmordayev@gmail.com",
       "role": "employee",
       "hireDate": "2026-02-06",
       "status": "active"
-    },
-    {
-      "id": "5e4c",
-      "userId": 103,
-      "fullName": "abdulloh",
-      "email": "abdulloh@gmail.com",
-      "role": "employee",
-      "hireDate": "2026-02-06",
-      "status": "active"
-    },
-    {
-      "id": "44",
-      "fullName": "Abdulloh Abdumalikov",
-      "email": "abdulloh@gmail.com",
-      "baseSalary": "855245",
-      "userId": 104,
-      "role": "employee",
-      "hireDate": "2026-02-23",
-      "status": "active"
-    },
-    {
-      "id": "45",
-      "fullName": "Azamat",
-      "email": "azamat@gmail.com",
-      "baseSalary": "0.1",
-      "userId": 105,
-      "role": "employee",
-      "hireDate": "2026-02-25",
-      "status": "active"
-    },
-    {
-      "id": "46",
-      "fullName": "Ali Vali",
-      "email": "vali.ali@gmail.com",
-      "baseSalary": "741",
-      "userId": 106,
-      "role": "employee",
-      "hireDate": "2026-02-26",
-      "status": "active"
     }
   ],
   "employeeFinance": [
     {
-      "employeeId": null,
+      "employeeId": 1,
       "year": 2026,
       "monthly": [
         {
@@ -367,552 +328,6 @@
         }
       ],
       "id": "a503"
-    },
-    {
-      "id": "5afa",
-      "department": "Frontend",
-      "position": "Frontend intern",
-      "reason": "Personal reason",
-      "description": "I would like to resign due to personal matters.",
-      "today": "2026-02-15",
-      "yesterday": "2026-02-14",
-      "status": "pending"
-    },
-    {
-      "id": "c3f8",
-      "employeeId": null,
-      "year": 2025,
-      "monthly": [
-        {
-          "month": "2026-01",
-          "baseSalary": 8524,
-          "status": "reviewed"
-        },
-        {
-          "month": "2026-02",
-          "baseSalary": 8524,
-          "status": "reviewed"
-        },
-        {
-          "month": "2026-03",
-          "baseSalary": 8524,
-          "status": "reviewed"
-        },
-        {
-          "month": "2026-04",
-          "baseSalary": 8524,
-          "status": "reviewed"
-        },
-        {
-          "month": "2026-05",
-          "baseSalary": 8524,
-          "status": "reviewed"
-        },
-        {
-          "month": "2025-06",
-          "baseSalary": 8524,
-          "status": "reviewed"
-        },
-        {
-          "month": "2025-07",
-          "baseSalary": 8524,
-          "status": "reviewed"
-        },
-        {
-          "month": "2025-08",
-          "baseSalary": 8524,
-          "status": "reviewed"
-        },
-        {
-          "month": "2025-09",
-          "baseSalary": 8524,
-          "status": "reviewed"
-        },
-        {
-          "month": "2025-10",
-          "baseSalary": 8524,
-          "status": "reviewed"
-        },
-        {
-          "month": "2025-11",
-          "baseSalary": 8524,
-          "status": "reviewed"
-        },
-        {
-          "month": "2025-12",
-          "baseSalary": 8524,
-          "status": "reviewed"
-        }
-      ]
-    },
-    {
-      "id": "ce3c",
-      "employeeId": null,
-      "year": 2026,
-      "monthly": [
-        {
-          "month": "2026-01",
-          "baseSalary": 1212,
-          "status": "reviewed"
-        },
-        {
-          "month": "2026-02",
-          "baseSalary": 1212,
-          "status": "reviewed"
-        },
-        {
-          "month": "2026-03",
-          "baseSalary": 1212,
-          "status": "reviewed"
-        },
-        {
-          "month": "2026-04",
-          "baseSalary": 1212,
-          "status": "reviewed"
-        },
-        {
-          "month": "2026-05",
-          "baseSalary": 1212,
-          "status": "reviewed"
-        },
-        {
-          "month": "2026-06",
-          "baseSalary": 1212,
-          "status": "reviewed"
-        },
-        {
-          "month": "2026-07",
-          "baseSalary": 1212,
-          "status": "reviewed"
-        },
-        {
-          "month": "2026-08",
-          "baseSalary": 1212,
-          "status": "reviewed"
-        },
-        {
-          "month": "2026-09",
-          "baseSalary": 1212,
-          "status": "reviewed"
-        },
-        {
-          "month": "2026-10",
-          "baseSalary": 1212,
-          "status": "reviewed"
-        },
-        {
-          "month": "2026-11",
-          "baseSalary": 1212,
-          "status": "reviewed"
-        },
-        {
-          "month": "2026-12",
-          "baseSalary": 1212,
-          "status": "reviewed"
-        }
-      ]
-    },
-    {
-      "id": "a32a",
-      "employeeId": null,
-      "year": 2026,
-      "monthly": [
-        {
-          "month": "2026-01",
-          "baseSalary": 2323,
-          "status": "reviewed"
-        },
-        {
-          "month": "2026-02",
-          "baseSalary": 2323,
-          "status": "reviewed"
-        },
-        {
-          "month": "2026-03",
-          "baseSalary": 2323,
-          "status": "reviewed"
-        },
-        {
-          "month": "2026-04",
-          "baseSalary": 2323,
-          "status": "reviewed"
-        },
-        {
-          "month": "2026-05",
-          "baseSalary": 2323,
-          "status": "reviewed"
-        },
-        {
-          "month": "2026-06",
-          "baseSalary": 2323,
-          "status": "reviewed"
-        },
-        {
-          "month": "2026-07",
-          "baseSalary": 2323,
-          "status": "reviewed"
-        },
-        {
-          "month": "2026-08",
-          "baseSalary": 2323,
-          "status": "reviewed"
-        },
-        {
-          "month": "2026-09",
-          "baseSalary": 2323,
-          "status": "reviewed"
-        },
-        {
-          "month": "2026-10",
-          "baseSalary": 2323,
-          "status": "reviewed"
-        },
-        {
-          "month": "2026-11",
-          "baseSalary": 2323,
-          "status": "reviewed"
-        },
-        {
-          "month": "2026-12",
-          "baseSalary": 2323,
-          "status": "reviewed"
-        }
-      ]
-    },
-    {
-      "id": "2e27",
-      "employeeId": null,
-      "year": 2026,
-      "monthly": [
-        {
-          "month": "2026-01",
-          "baseSalary": 860,
-          "status": "reviewed"
-        },
-        {
-          "month": "2026-02",
-          "baseSalary": 860,
-          "status": "reviewed"
-        },
-        {
-          "month": "2026-03",
-          "baseSalary": 860,
-          "status": "reviewed"
-        },
-        {
-          "month": "2026-04",
-          "baseSalary": 860,
-          "status": "reviewed"
-        },
-        {
-          "month": "2026-05",
-          "baseSalary": 860,
-          "status": "reviewed"
-        },
-        {
-          "month": "2026-06",
-          "baseSalary": 860,
-          "status": "reviewed"
-        },
-        {
-          "month": "2026-07",
-          "baseSalary": 860,
-          "status": "reviewed"
-        },
-        {
-          "month": "2026-08",
-          "baseSalary": 860,
-          "status": "reviewed"
-        },
-        {
-          "month": "2026-09",
-          "baseSalary": 860,
-          "status": "reviewed"
-        },
-        {
-          "month": "2026-10",
-          "baseSalary": 860,
-          "status": "reviewed"
-        },
-        {
-          "month": "2026-11",
-          "baseSalary": 860,
-          "status": "reviewed"
-        },
-        {
-          "month": "2026-12",
-          "baseSalary": 860,
-          "status": "reviewed"
-        }
-      ]
-    },
-    {
-      "id": "c216",
-      "employeeId": null,
-      "year": 2026,
-      "monthly": [
-        {
-          "month": "2026-01",
-          "baseSalary": 786523,
-          "status": "reviewed"
-        },
-        {
-          "month": "2026-02",
-          "baseSalary": 786523,
-          "status": "reviewed"
-        },
-        {
-          "month": "2026-03",
-          "baseSalary": 786523,
-          "status": "reviewed"
-        },
-        {
-          "month": "2026-04",
-          "baseSalary": 786523,
-          "status": "reviewed"
-        },
-        {
-          "month": "2026-05",
-          "baseSalary": 786523,
-          "status": "reviewed"
-        },
-        {
-          "month": "2026-06",
-          "baseSalary": 786523,
-          "status": "reviewed"
-        },
-        {
-          "month": "2026-07",
-          "baseSalary": 786523,
-          "status": "reviewed"
-        },
-        {
-          "month": "2026-08",
-          "baseSalary": 786523,
-          "status": "reviewed"
-        },
-        {
-          "month": "2026-09",
-          "baseSalary": 786523,
-          "status": "reviewed"
-        },
-        {
-          "month": "2026-10",
-          "baseSalary": 786523,
-          "status": "reviewed"
-        },
-        {
-          "month": "2026-11",
-          "baseSalary": 786523,
-          "status": "reviewed"
-        },
-        {
-          "month": "2026-12",
-          "baseSalary": 786523,
-          "status": "reviewed"
-        }
-      ]
-    },
-    {
-      "id": "408f",
-      "employeeId": "44",
-      "year": 2026,
-      "monthly": [
-        {
-          "month": "2026-01",
-          "baseSalary": 855245,
-          "status": "reviewed"
-        },
-        {
-          "month": "2026-02",
-          "baseSalary": 855245,
-          "status": "reviewed"
-        },
-        {
-          "month": "2026-03",
-          "baseSalary": 855245,
-          "status": "reviewed"
-        },
-        {
-          "month": "2026-04",
-          "baseSalary": 855245,
-          "status": "reviewed"
-        },
-        {
-          "month": "2026-05",
-          "baseSalary": 855245,
-          "status": "reviewed"
-        },
-        {
-          "month": "2026-06",
-          "baseSalary": 855245,
-          "status": "reviewed"
-        },
-        {
-          "month": "2026-07",
-          "baseSalary": 855245,
-          "status": "reviewed"
-        },
-        {
-          "month": "2026-08",
-          "baseSalary": 855245,
-          "status": "reviewed"
-        },
-        {
-          "month": "2026-09",
-          "baseSalary": 855245,
-          "status": "reviewed"
-        },
-        {
-          "month": "2026-10",
-          "baseSalary": 855245,
-          "status": "reviewed"
-        },
-        {
-          "month": "2026-11",
-          "baseSalary": 855245,
-          "status": "reviewed"
-        },
-        {
-          "month": "2026-12",
-          "baseSalary": 855245,
-          "status": "reviewed"
-        }
-      ]
-    },
-    {
-      "id": "7caf",
-      "employeeId": "45",
-      "year": 2026,
-      "monthly": [
-        {
-          "month": "2026-01",
-          "baseSalary": 0,
-          "status": "reviewed"
-        },
-        {
-          "month": "2026-02",
-          "baseSalary": 0,
-          "status": "reviewed"
-        },
-        {
-          "month": "2026-03",
-          "baseSalary": 0,
-          "status": "reviewed"
-        },
-        {
-          "month": "2026-04",
-          "baseSalary": 0,
-          "status": "reviewed"
-        },
-        {
-          "month": "2026-05",
-          "baseSalary": 0,
-          "status": "reviewed"
-        },
-        {
-          "month": "2026-06",
-          "baseSalary": 0,
-          "status": "reviewed"
-        },
-        {
-          "month": "2026-07",
-          "baseSalary": 0,
-          "status": "reviewed"
-        },
-        {
-          "month": "2026-08",
-          "baseSalary": 0,
-          "status": "reviewed"
-        },
-        {
-          "month": "2026-09",
-          "baseSalary": 0,
-          "status": "reviewed"
-        },
-        {
-          "month": "2026-10",
-          "baseSalary": 0,
-          "status": "reviewed"
-        },
-        {
-          "month": "2026-11",
-          "baseSalary": 0,
-          "status": "reviewed"
-        },
-        {
-          "month": "2026-12",
-          "baseSalary": 0,
-          "status": "reviewed"
-        }
-      ]
-    },
-    {
-      "id": "0831",
-      "employeeId": "46",
-      "year": 2026,
-      "monthly": [
-        {
-          "month": "2026-01",
-          "baseSalary": 741,
-          "status": "reviewed"
-        },
-        {
-          "month": "2026-02",
-          "baseSalary": 741,
-          "status": "reviewed"
-        },
-        {
-          "month": "2026-03",
-          "baseSalary": 741,
-          "status": "reviewed"
-        },
-        {
-          "month": "2026-04",
-          "baseSalary": 741,
-          "status": "reviewed"
-        },
-        {
-          "month": "2026-05",
-          "baseSalary": 741,
-          "status": "reviewed"
-        },
-        {
-          "month": "2026-06",
-          "baseSalary": 741,
-          "status": "reviewed"
-        },
-        {
-          "month": "2026-07",
-          "baseSalary": 741,
-          "status": "reviewed"
-        },
-        {
-          "month": "2026-08",
-          "baseSalary": 741,
-          "status": "reviewed"
-        },
-        {
-          "month": "2026-09",
-          "baseSalary": 741,
-          "status": "reviewed"
-        },
-        {
-          "month": "2026-10",
-          "baseSalary": 741,
-          "status": "reviewed"
-        },
-        {
-          "month": "2026-11",
-          "baseSalary": 741,
-          "status": "reviewed"
-        },
-        {
-          "month": "2026-12",
-          "baseSalary": 741,
-          "status": "reviewed"
-        }
-      ]
     }
   ],
   "tasks": [
@@ -959,13 +374,6 @@
       "status": "pending"
     },
     {
-      "id": "5ab2",
-      "taskName": "[jfhjfsfsfhisgffsgufugssg fkhfgdfgslfbjlskbfklfjkbefkjg",
-      "employeeName": "Sherzod Rasulov",
-      "deadline": "2026-02-20",
-      "status": "pending"
-    },
-    {
       "id": "5ab3",
       "taskName": "olam terish",
       "employeeName": "Sherzod Rasulov",
@@ -978,6 +386,13 @@
       "employeeName": "Abdulloh Abdumalikov",
       "deadline": "2026-02-12",
       "status": "done"
+    },
+    {
+      "id": "5bb2",
+      "taskName": "[jfhjfsfsfhisgffsgufugssg fkhfgdfgsl",
+      "employeeName": "Sherzod Rasulov",
+      "deadline": "2026-02-20",
+      "status": "completed"
     }
   ],
   "logs": [
@@ -1330,6 +745,13 @@
       "action": "UPDATE",
       "date": "2026-02-27T04:01:01.863Z",
       "page": "COMPLAINTS"
+    },
+    {
+      "id": "9b21",
+      "userName": "Abdulloh Abdumalikov",
+      "action": "DELETE",
+      "date": "2026-02-27T05:47:36.411Z",
+      "page": "TASKS"
     }
   ],
   "resignationLeaves": [
@@ -1495,17 +917,17 @@
       "status": "completed"
     },
     {
-      "id": "5bb2",
-      "taskName": "[jfhjfsfsfhisgffsgufugssg fkhfgdfgsl",
-      "employeeName": "Sherzod Rasulov",
-      "deadline": "2026-02-20",
-      "status": "completed"
-    },
-    {
       "id": "5396",
       "taskName": "ilon dnkhfofggf",
       "employeeName": "Bekzod Shokirov",
       "deadline": "2026-02-03",
+      "status": "pending"
+    },
+    {
+      "id": "5ab2",
+      "taskName": "[jfhjfsfsfhisgffsgufugssg fkhfgdfgslfbjlskbfklfjkbefkjg",
+      "employeeName": "Sherzod Rasulov",
+      "deadline": "2026-02-20",
       "status": "pending"
     }
   ],
