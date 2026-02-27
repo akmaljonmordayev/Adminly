@@ -130,7 +130,7 @@
       "year": 2026,
       "monthly": [
         {
-          "month": "2026-01",
+          "month": "2025-01",
           "baseSalary": 1800000,
           "kpiAmount": 350000,
           "bonus": 500000,
@@ -138,7 +138,7 @@
           "totalSalary": 2600000
         },
         {
-          "month": "2026-02",
+          "month": "2025-02",
           "baseSalary": 2200000,
           "kpiAmount": 600000,
           "bonus": 250000,
@@ -146,7 +146,7 @@
           "totalSalary": 2930000
         },
         {
-          "month": "2026-03",
+          "month": "2025-03",
           "baseSalary": 2000000,
           "kpiAmount": 900000,
           "bonus": 800000,
@@ -154,7 +154,7 @@
           "totalSalary": 3700000
         },
         {
-          "month": "2026-04",
+          "month": "2025-04",
           "baseSalary": 2600000,
           "kpiAmount": 400000,
           "bonus": 300000,
@@ -162,7 +162,7 @@
           "totalSalary": 3100000
         },
         {
-          "month": "2026-05",
+          "month": "2025-05",
           "baseSalary": 2400000,
           "kpiAmount": 750000,
           "bonus": 1200000,
@@ -170,7 +170,7 @@
           "totalSalary": 4200000
         },
         {
-          "month": "2026-06",
+          "month": "2025-06",
           "baseSalary": 3000000,
           "kpiAmount": 1100000,
           "bonus": 600000,
@@ -178,7 +178,7 @@
           "totalSalary": 4400000
         },
         {
-          "month": "2026-07",
+          "month": "2025-07",
           "baseSalary": 2800000,
           "kpiAmount": 500000,
           "bonus": 950000,
@@ -186,7 +186,7 @@
           "totalSalary": 4150000
         },
         {
-          "month": "2026-08",
+          "month": "2025-08",
           "baseSalary": 3500000,
           "kpiAmount": 1300000,
           "bonus": 1500000,
@@ -194,7 +194,7 @@
           "totalSalary": 5900000
         },
         {
-          "month": "2026-09",
+          "month": "2025-09",
           "baseSalary": 2700000,
           "kpiAmount": 300000,
           "bonus": 200000,
@@ -202,7 +202,7 @@
           "totalSalary": 3120000
         },
         {
-          "month": "2026-10",
+          "month": "2025-10",
           "baseSalary": 3200000,
           "kpiAmount": 950000,
           "bonus": 1800000,
@@ -210,7 +210,7 @@
           "totalSalary": 5700000
         },
         {
-          "month": "2026-11",
+          "month": "2025-11",
           "baseSalary": 4000000,
           "kpiAmount": 1600000,
           "bonus": 2200000,
@@ -218,7 +218,7 @@
           "totalSalary": 7300000
         },
         {
-          "month": "2026-12",
+          "month": "2025-12",
           "baseSalary": 3700000,
           "kpiAmount": 1200000,
           "bonus": 900000,
@@ -1353,6 +1353,26 @@
       "handoverCompleted": false,
       "createdAt": "2026-02-10T09:00:00Z",
       "updatedAt": "2026-02-10T09:00:00Z"
+    },
+    {
+      "id": "c7d7",
+      "department": "men ketoman",
+      "position": "a4",
+      "reason": "",
+      "description": "",
+      "today": "2026-02-23",
+      "yesterday": "2026-02-22",
+      "status": "pending"
+    },
+    {
+      "id": "0984",
+      "department": "men ketoman",
+      "position": "abduloh halaqid berypti",
+      "reason": "abduloh ketttttttttt",
+      "description": "men ketim\n",
+      "today": "2026-02-23",
+      "yesterday": "2026-02-22",
+      "status": "pending"
     }
   ],
   "vacations": [
