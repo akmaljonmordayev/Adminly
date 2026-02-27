@@ -68,12 +68,12 @@
     {
       "id": "2",
       "userId": 102,
-      "fullName": "Malika Tursunova",
-      "email": "malika.tursunova@gmail.com",
+      "fullName": "Malika",
+      "email": "malika.mol.tursin.qizibot@gmail.com",
       "role": "employee",
       "hireDate": "2024-01-08",
       "status": "active",
-      "password": "1234"
+      "password": "malikabot"
     },
     {
       "id": "43dc",
