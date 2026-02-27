@@ -398,27 +398,6 @@
       "status": "done"
     },
     {
-      "id": "bfdc",
-      "taskName": "sdvasdv",
-      "employeeName": "Malika Tursunova",
-      "deadline": "2026-02-20",
-      "status": "pending"
-    },
-    {
-      "id": "5ab2",
-      "taskName": "[jfhjfsfsfhisgffsgufugssg fkhfgdfgsl",
-      "employeeName": "Sherzod Rasulov",
-      "deadline": "2026-02-20",
-      "status": "pending"
-    },
-    {
-      "id": "5ab2",
-      "taskName": "[jfhjfsfsfhisgffsgufugssg fkhfgdfgslfbjlskbfklfjkbefkjg",
-      "employeeName": "Sherzod Rasulov",
-      "deadline": "2026-02-20",
-      "status": "pending"
-    },
-    {
       "id": "5ab2",
       "taskName": "olam terish",
       "employeeName": "Sherzod Rasulov",
@@ -454,6 +433,41 @@
       "action": "DELETE",
       "date": "2026-02-10T13:13:24.501Z",
       "page": "TASKS"
+    },
+    {
+      "id": "9fd0",
+      "userName": "Abdulaziz Xasanov",
+      "action": "UPDATE",
+      "date": "2026-02-26T19:24:25.738Z",
+      "page": "TASKS"
+    },
+    {
+      "id": "eeab",
+      "userName": "Abdulaziz Xasanov",
+      "action": "DELETE",
+      "date": "2026-02-26T19:24:33.632Z",
+      "page": "TASKS"
+    },
+    {
+      "id": "8d6a",
+      "userName": "Abdulaziz Xasanov",
+      "action": "DELETE",
+      "date": "2026-02-26T19:24:35.888Z",
+      "page": "TASKS"
+    },
+    {
+      "id": "a813",
+      "userName": "Abdulaziz Xasanov",
+      "action": "DELETE",
+      "date": "2026-02-26T19:24:38.093Z",
+      "page": "TASKS"
+    },
+    {
+      "id": "321e",
+      "userName": "Abdulaziz Xasanov",
+      "action": "UPDATE",
+      "date": "2026-02-26T19:28:09.754Z",
+      "page": "SETTINGS"
     }
   ],
   "resignationLeaves": [
@@ -496,6 +510,16 @@
       "description": "description i would you like",
       "today": "2026-02-16",
       "yesterday": "2026-02-15",
+      "status": "pending"
+    },
+    {
+      "id": "2dbd",
+      "department": "ghb",
+      "position": "crv",
+      "reason": "rfv",
+      "description": "defrvt",
+      "today": "2026-02-22",
+      "yesterday": "2026-02-21",
       "status": "pending"
     }
   ],
