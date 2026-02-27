@@ -55,125 +55,142 @@ function MyProfit() {
     Number(finance.penalty || 0)
 
   return (
-    <div className="flex m-[80px] justify-center">
-      <section className="w-[1000px]  rounded-2xl bg-[#0b1220] border border-cyan-900/50 p-8 shadow-xl">
+    <>
+      <style>
+        {`
+@keyframes gradientMove {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+`}
+      </style>
+      <div className="min-h-screen flex items-center justify-center 
+  bg-gradient-to-br from-[#0b1220] via-[#0f172a] to-[#0b1220] 
+  bg-[length:400%_400%] animate-[gradientMove_15s_ease_infinite] p-10">
 
-        <div className="mb-6 flex justify-end">
-          <select
-            value={selectedMonth}
+        <section className="w-[1000px] bg-[#111827]/90 backdrop-blur-xl 
+    rounded-3xl p-10 shadow-2xl border border-cyan-900/40">
 
-            onChange={(e) => setSelectedMonth(e.target.value)}
-            className="
-  appearance-none
-  bg-[#111827]
-  text-white
-  border border-cyan-600
-  rounded-xl
-  px-4 py-2
-  pr-10
-  text-sm font-medium
-  shadow-md
-  outline-none
-  cursor-pointer
-  transition-all duration-200
-  hover:border-cyan-400
-  hover:shadow-cyan-500/20
-  focus:ring-2 focus:ring-cyan-500
-  focus:border-cyan-400
-  absolute right-[10px] top-[80px]
-"
+          <div className="flex justify-between items-center mb-10">
+            <h2 className="text-3xl font-bold text-white">
+              Finance Dashboard
+            </h2>
 
-          >
-
-            {monthlyData.map((item) => (
-              <option key={item.month} value={item.month}>
-                {item.month}
-              </option>
-            ))}
-          </select>
-        </div>
-
-        <h3 className="text-white text-2xl font-bold mb-8 flex items-center gap-3">
-          <span className="w-1.5 h-6 bg-cyan-500 rounded-full"></span>
-          Finance Overview
-        </h3>
-
-        <div className="space-y-6">
-
-          <div className="flex justify-between items-center text-base">
-            <div className="flex items-center gap-3 text-cyan-400">
-              <FaWallet size={22} />
-              <span>Base Salary</span>
-            </div>
-            <span className="text-white font-semibold text-lg">
-              {Number(finance.baseSalary || 0).toLocaleString()} UZS
-            </span>
+            <select
+              value={selectedMonth}
+              onChange={(e) => setSelectedMonth(e.target.value)}
+              className="bg-[#0f172a] text-cyan-400 border border-cyan-700 
+          rounded-xl px-4 py-2 text-sm font-medium transition-all duration-300 
+          hover:border-cyan-400 hover:shadow-lg hover:shadow-cyan-500/20 
+          focus:outline-none focus:ring-2 focus:ring-cyan-500"
+            >
+              {monthlyData.map((item) => (
+                <option key={item.month} value={item.month}>
+                  {item.month}
+                </option>
+              ))}
+            </select>
           </div>
 
-          <div className="flex justify-between items-center text-base">
-            <div className="flex items-center gap-3 text-cyan-400">
-              <FaChartLine size={22} />
-              <span>KPI Amount</span>
+          <div className="grid grid-cols-2 gap-6">
+
+            <div className="relative overflow-hidden group p-6 bg-[#1e293b] rounded-2xl 
+        border border-cyan-900/30 transition-all duration-300 
+        hover:-translate-y-2 hover:shadow-2xl hover:shadow-cyan-500/20 
+        hover:border-cyan-400 hover:ring-1 hover:ring-cyan-400/40">
+
+              <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent pointer-events-none rounded-2xl"></div>
+
+              <div className="relative flex items-center gap-4 mb-3 text-cyan-400">
+                <FaWallet className="transition-all duration-300 group-hover:scale-125 group-hover:rotate-6" size={22} />
+                <span className="font-semibold">Base Salary</span>
+              </div>
+
+              <p className="relative text-2xl font-bold text-white">
+                {Number(finance.baseSalary || 0).toLocaleString()} UZS
+              </p>
             </div>
-            <span className="text-emerald-400 font-semibold text-lg">
-              +{Number(finance.kpiAmount || 0).toLocaleString()} UZS
-            </span>
+
+            <div className="relative overflow-hidden group p-6 bg-[#1e293b] rounded-2xl 
+        border border-emerald-900/30 transition-all duration-300 
+        hover:-translate-y-2 hover:shadow-2xl hover:shadow-emerald-500/20 
+        hover:border-emerald-400 hover:ring-1 hover:ring-emerald-400/40">
+
+              <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent pointer-events-none rounded-2xl"></div>
+
+              <div className="relative flex items-center gap-4 mb-3 text-emerald-400">
+                <FaChartLine className="transition-all duration-300 group-hover:scale-125 group-hover:rotate-6" size={22} />
+                <span className="font-semibold">KPI Amount</span>
+              </div>
+
+              <p className="relative text-2xl font-bold text-white">
+                +{Number(finance.kpiAmount || 0).toLocaleString()} UZS
+              </p>
+            </div>
+
+            <div className="relative overflow-hidden group p-6 bg-[#1e293b] rounded-2xl 
+        border border-amber-900/30 transition-all duration-300 
+        hover:-translate-y-2 hover:shadow-2xl hover:shadow-amber-500/20 
+        hover:border-amber-400 hover:ring-1 hover:ring-amber-400/40">
+
+              <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent pointer-events-none rounded-2xl"></div>
+
+              <div className="relative flex items-center gap-4 mb-3 text-amber-400">
+                <FaGift className="transition-all duration-300 group-hover:scale-125 group-hover:rotate-6" size={22} />
+                <span className="font-semibold">Bonus</span>
+              </div>
+
+              <p className="relative text-2xl font-bold text-white">
+                +{Number(finance.bonus || 0).toLocaleString()} UZS
+              </p>
+            </div>
+
+            <div className="relative overflow-hidden group p-6 bg-[#1e293b] rounded-2xl 
+        border border-rose-900/30 transition-all duration-300 
+        hover:-translate-y-2 hover:shadow-2xl hover:shadow-rose-500/20 
+        hover:border-rose-400 hover:ring-1 hover:ring-rose-400/40">
+
+              <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent pointer-events-none rounded-2xl"></div>
+
+              <div className="relative flex items-center gap-4 mb-3 text-rose-400">
+                <FaUserSlash className="transition-all duration-300 group-hover:scale-125 group-hover:rotate-6" size={22} />
+                <span className="font-semibold">Penalty</span>
+              </div>
+
+              <p className="relative text-2xl font-bold text-white">
+                -{Number(finance.penalty || 0).toLocaleString()} UZS
+              </p>
+            </div>
+
           </div>
 
-          <div className="flex justify-between items-center text-base">
-            <div className="flex items-center gap-3 text-cyan-400">
-              <FaGift size={22} />
-              <span>Bonus</span>
-            </div>
-            <span className="text-emerald-400 font-semibold text-lg">
-              +{Number(finance.bonus || 0).toLocaleString()} UZS
-            </span>
-          </div>
+          <div className="relative mt-12 p-8 bg-gradient-to-r from-[#0f172a] to-[#111827] 
+      rounded-3xl flex justify-between items-center border border-cyan-900/40 
+      shadow-xl transition-all duration-500 hover:shadow-2xl hover:shadow-cyan-500/20 
+      before:absolute before:inset-0 before:rounded-3xl before:border 
+      before:border-cyan-500/20 before:blur-sm before:opacity-0 
+      hover:before:opacity-100">
 
-          <div className="flex justify-between items-center text-base">
-            <div className="flex items-center gap-3 text-cyan-400">
-              <FaUserSlash size={22} />
-              <span>Penalty</span>
-            </div>
-            <span className="text-rose-500 font-semibold text-lg">
-              -{Number(finance.penalty || 0).toLocaleString()} UZS
-            </span>
-          </div>
-
-          <div className="h-[1px] bg-cyan-900/30"></div>
-
-          <div className="flex justify-between items-center text-base">
-            <div className="flex items-center gap-3 text-cyan-400">
-              <FaCalendarCheck size={22} />
-              <span>Salary Month</span>
-            </div>
-            <span className="text-white text-lg font-medium">
-              {finance.month}
-            </span>
-          </div>
-
-          <div className="mt-10 p-6 bg-cyan-600/10 border border-cyan-600/20 rounded-2xl flex justify-between items-center">
-            <div>
-              <p className="text-sm text-cyan-400 font-bold uppercase tracking-wider">
+            <div className="relative">
+              <p className="text-sm text-cyan-400 uppercase tracking-wider">
                 Net Salary
               </p>
-              <span className="text-white font-semibold text-lg">
-                Total Payable
-              </span>
+              <p className="text-lg text-gray-400">
+                {finance.month}
+              </p>
             </div>
 
-            <span
-              className={`flex items-center justify-center text-3xl font-bold ${total < 0 ? 'text-rose-500' : 'text-cyan-400'
-                }`}
-            >
-              {total.toLocaleString()}
-              <span className="text-base font-medium ml-1">UZS</span>
-            </span>
+            <h1 className={`relative text-4xl font-extrabold ${total < 0 ? 'text-rose-400' : 'text-emerald-400'
+              }`}>
+              {total.toLocaleString()} UZS
+            </h1>
+
           </div>
 
-        </div>
-      </section>
-    </div>
+        </section>
+      </div>
+    </>
   )
 }
 

@@ -60,45 +60,73 @@
       "id": "9",
       "name": "Abdulloh Abdumalikov",
       "email": "abdulloh@gmail.com",
-      "password": "123",
+      "password": "1234",
       "role": "manager"
     }
   ],
   "employees": [
     {
-      "id": "1",
-      "userId": 101,
-      "fullName": "Sherzod Rasulov",
-      "email": "sherzod.rasulov@example.com",
-      "role": "employee",
-      "hireDate": "2019-09-12",
-      "status": "active",
-      "password": "1234"
-    },
-    {
       "id": "2",
       "userId": 102,
       "fullName": "Malika Tursunova",
-      "email": "malika.tursunova@example.com",
+      "email": "malika.tursunova@gmail.com",
       "role": "employee",
       "hireDate": "2024-01-08",
       "status": "active",
       "password": "1234"
     },
     {
-      "id": "3",
-      "fullName": "Pasha",
-      "email": "pasha@gmail.com",
-      "baseSalary": "8524",
+      "id": "43dc",
       "userId": 103,
+      "fullName": "Akmaljon Mordayev",
+      "email": "akmaljonmordayev@gmail.com",
       "role": "employee",
-      "hireDate": "2026-02-19",
+      "hireDate": "2026-02-06",
+      "status": "active"
+    },
+    {
+      "id": "5e4c",
+      "userId": 103,
+      "fullName": "abdulloh",
+      "email": "abdulloh@gmail.com",
+      "role": "employee",
+      "hireDate": "2026-02-06",
+      "status": "active"
+    },
+    {
+      "id": "44",
+      "fullName": "Abdulloh Abdumalikov",
+      "email": "abdulloh@gmail.com",
+      "baseSalary": "855245",
+      "userId": 104,
+      "role": "employee",
+      "hireDate": "2026-02-23",
+      "status": "active"
+    },
+    {
+      "id": "45",
+      "fullName": "Azamat",
+      "email": "azamat@gmail.com",
+      "baseSalary": "0.1",
+      "userId": 105,
+      "role": "employee",
+      "hireDate": "2026-02-25",
+      "status": "active"
+    },
+    {
+      "id": "46",
+      "fullName": "Ali Vali",
+      "email": "vali.ali@gmail.com",
+      "baseSalary": "741",
+      "userId": 106,
+      "role": "employee",
+      "hireDate": "2026-02-26",
       "status": "active"
     }
   ],
   "employeeFinance": [
     {
-      "employeeId": "1",
+      "employeeId": null,
       "year": 2026,
       "monthly": [
         {
@@ -206,14 +234,15 @@
       "monthly": [
         {
           "month": "2026-01",
-          "baseSalary": 0,
-          "kpiAmount": 0,
-          "bonus": 0,
-          "penalty": 0,
-          "totalSalary": 0,
-          "status": "reviewed",
+          "baseSalary": 7985623,
+          "kpiAmount": 5989217,
+          "bonus": 7,
+          "penalty": 850045,
+          "totalSalary": 13124802,
+          "status": "rejected",
           "paymentDate": "2026-01-26",
-          "comment": ""
+          "paymentMethod": "bank",
+          "comment": "Тфтфтавпролыдж"
         },
         {
           "month": "2026-02",
@@ -351,31 +380,31 @@
     },
     {
       "id": "c3f8",
-      "employeeId": "3",
+      "employeeId": null,
       "year": 2025,
       "monthly": [
         {
-          "month": "2025-01",
+          "month": "2026-01",
           "baseSalary": 8524,
           "status": "reviewed"
         },
         {
-          "month": "2025-02",
+          "month": "2026-02",
           "baseSalary": 8524,
           "status": "reviewed"
         },
         {
-          "month": "2025-03",
+          "month": "2026-03",
           "baseSalary": 8524,
           "status": "reviewed"
         },
         {
-          "month": "2025-04",
+          "month": "2026-04",
           "baseSalary": 8524,
           "status": "reviewed"
         },
         {
-          "month": "2025-05",
+          "month": "2026-05",
           "baseSalary": 8524,
           "status": "reviewed"
         },
@@ -415,43 +444,491 @@
           "status": "reviewed"
         }
       ]
+    },
+    {
+      "id": "ce3c",
+      "employeeId": null,
+      "year": 2026,
+      "monthly": [
+        {
+          "month": "2026-01",
+          "baseSalary": 1212,
+          "status": "reviewed"
+        },
+        {
+          "month": "2026-02",
+          "baseSalary": 1212,
+          "status": "reviewed"
+        },
+        {
+          "month": "2026-03",
+          "baseSalary": 1212,
+          "status": "reviewed"
+        },
+        {
+          "month": "2026-04",
+          "baseSalary": 1212,
+          "status": "reviewed"
+        },
+        {
+          "month": "2026-05",
+          "baseSalary": 1212,
+          "status": "reviewed"
+        },
+        {
+          "month": "2026-06",
+          "baseSalary": 1212,
+          "status": "reviewed"
+        },
+        {
+          "month": "2026-07",
+          "baseSalary": 1212,
+          "status": "reviewed"
+        },
+        {
+          "month": "2026-08",
+          "baseSalary": 1212,
+          "status": "reviewed"
+        },
+        {
+          "month": "2026-09",
+          "baseSalary": 1212,
+          "status": "reviewed"
+        },
+        {
+          "month": "2026-10",
+          "baseSalary": 1212,
+          "status": "reviewed"
+        },
+        {
+          "month": "2026-11",
+          "baseSalary": 1212,
+          "status": "reviewed"
+        },
+        {
+          "month": "2026-12",
+          "baseSalary": 1212,
+          "status": "reviewed"
+        }
+      ]
+    },
+    {
+      "id": "a32a",
+      "employeeId": null,
+      "year": 2026,
+      "monthly": [
+        {
+          "month": "2026-01",
+          "baseSalary": 2323,
+          "status": "reviewed"
+        },
+        {
+          "month": "2026-02",
+          "baseSalary": 2323,
+          "status": "reviewed"
+        },
+        {
+          "month": "2026-03",
+          "baseSalary": 2323,
+          "status": "reviewed"
+        },
+        {
+          "month": "2026-04",
+          "baseSalary": 2323,
+          "status": "reviewed"
+        },
+        {
+          "month": "2026-05",
+          "baseSalary": 2323,
+          "status": "reviewed"
+        },
+        {
+          "month": "2026-06",
+          "baseSalary": 2323,
+          "status": "reviewed"
+        },
+        {
+          "month": "2026-07",
+          "baseSalary": 2323,
+          "status": "reviewed"
+        },
+        {
+          "month": "2026-08",
+          "baseSalary": 2323,
+          "status": "reviewed"
+        },
+        {
+          "month": "2026-09",
+          "baseSalary": 2323,
+          "status": "reviewed"
+        },
+        {
+          "month": "2026-10",
+          "baseSalary": 2323,
+          "status": "reviewed"
+        },
+        {
+          "month": "2026-11",
+          "baseSalary": 2323,
+          "status": "reviewed"
+        },
+        {
+          "month": "2026-12",
+          "baseSalary": 2323,
+          "status": "reviewed"
+        }
+      ]
+    },
+    {
+      "id": "2e27",
+      "employeeId": null,
+      "year": 2026,
+      "monthly": [
+        {
+          "month": "2026-01",
+          "baseSalary": 860,
+          "status": "reviewed"
+        },
+        {
+          "month": "2026-02",
+          "baseSalary": 860,
+          "status": "reviewed"
+        },
+        {
+          "month": "2026-03",
+          "baseSalary": 860,
+          "status": "reviewed"
+        },
+        {
+          "month": "2026-04",
+          "baseSalary": 860,
+          "status": "reviewed"
+        },
+        {
+          "month": "2026-05",
+          "baseSalary": 860,
+          "status": "reviewed"
+        },
+        {
+          "month": "2026-06",
+          "baseSalary": 860,
+          "status": "reviewed"
+        },
+        {
+          "month": "2026-07",
+          "baseSalary": 860,
+          "status": "reviewed"
+        },
+        {
+          "month": "2026-08",
+          "baseSalary": 860,
+          "status": "reviewed"
+        },
+        {
+          "month": "2026-09",
+          "baseSalary": 860,
+          "status": "reviewed"
+        },
+        {
+          "month": "2026-10",
+          "baseSalary": 860,
+          "status": "reviewed"
+        },
+        {
+          "month": "2026-11",
+          "baseSalary": 860,
+          "status": "reviewed"
+        },
+        {
+          "month": "2026-12",
+          "baseSalary": 860,
+          "status": "reviewed"
+        }
+      ]
+    },
+    {
+      "id": "c216",
+      "employeeId": null,
+      "year": 2026,
+      "monthly": [
+        {
+          "month": "2026-01",
+          "baseSalary": 786523,
+          "status": "reviewed"
+        },
+        {
+          "month": "2026-02",
+          "baseSalary": 786523,
+          "status": "reviewed"
+        },
+        {
+          "month": "2026-03",
+          "baseSalary": 786523,
+          "status": "reviewed"
+        },
+        {
+          "month": "2026-04",
+          "baseSalary": 786523,
+          "status": "reviewed"
+        },
+        {
+          "month": "2026-05",
+          "baseSalary": 786523,
+          "status": "reviewed"
+        },
+        {
+          "month": "2026-06",
+          "baseSalary": 786523,
+          "status": "reviewed"
+        },
+        {
+          "month": "2026-07",
+          "baseSalary": 786523,
+          "status": "reviewed"
+        },
+        {
+          "month": "2026-08",
+          "baseSalary": 786523,
+          "status": "reviewed"
+        },
+        {
+          "month": "2026-09",
+          "baseSalary": 786523,
+          "status": "reviewed"
+        },
+        {
+          "month": "2026-10",
+          "baseSalary": 786523,
+          "status": "reviewed"
+        },
+        {
+          "month": "2026-11",
+          "baseSalary": 786523,
+          "status": "reviewed"
+        },
+        {
+          "month": "2026-12",
+          "baseSalary": 786523,
+          "status": "reviewed"
+        }
+      ]
+    },
+    {
+      "id": "408f",
+      "employeeId": "44",
+      "year": 2026,
+      "monthly": [
+        {
+          "month": "2026-01",
+          "baseSalary": 855245,
+          "status": "reviewed"
+        },
+        {
+          "month": "2026-02",
+          "baseSalary": 855245,
+          "status": "reviewed"
+        },
+        {
+          "month": "2026-03",
+          "baseSalary": 855245,
+          "status": "reviewed"
+        },
+        {
+          "month": "2026-04",
+          "baseSalary": 855245,
+          "status": "reviewed"
+        },
+        {
+          "month": "2026-05",
+          "baseSalary": 855245,
+          "status": "reviewed"
+        },
+        {
+          "month": "2026-06",
+          "baseSalary": 855245,
+          "status": "reviewed"
+        },
+        {
+          "month": "2026-07",
+          "baseSalary": 855245,
+          "status": "reviewed"
+        },
+        {
+          "month": "2026-08",
+          "baseSalary": 855245,
+          "status": "reviewed"
+        },
+        {
+          "month": "2026-09",
+          "baseSalary": 855245,
+          "status": "reviewed"
+        },
+        {
+          "month": "2026-10",
+          "baseSalary": 855245,
+          "status": "reviewed"
+        },
+        {
+          "month": "2026-11",
+          "baseSalary": 855245,
+          "status": "reviewed"
+        },
+        {
+          "month": "2026-12",
+          "baseSalary": 855245,
+          "status": "reviewed"
+        }
+      ]
+    },
+    {
+      "id": "7caf",
+      "employeeId": "45",
+      "year": 2026,
+      "monthly": [
+        {
+          "month": "2026-01",
+          "baseSalary": 0,
+          "status": "reviewed"
+        },
+        {
+          "month": "2026-02",
+          "baseSalary": 0,
+          "status": "reviewed"
+        },
+        {
+          "month": "2026-03",
+          "baseSalary": 0,
+          "status": "reviewed"
+        },
+        {
+          "month": "2026-04",
+          "baseSalary": 0,
+          "status": "reviewed"
+        },
+        {
+          "month": "2026-05",
+          "baseSalary": 0,
+          "status": "reviewed"
+        },
+        {
+          "month": "2026-06",
+          "baseSalary": 0,
+          "status": "reviewed"
+        },
+        {
+          "month": "2026-07",
+          "baseSalary": 0,
+          "status": "reviewed"
+        },
+        {
+          "month": "2026-08",
+          "baseSalary": 0,
+          "status": "reviewed"
+        },
+        {
+          "month": "2026-09",
+          "baseSalary": 0,
+          "status": "reviewed"
+        },
+        {
+          "month": "2026-10",
+          "baseSalary": 0,
+          "status": "reviewed"
+        },
+        {
+          "month": "2026-11",
+          "baseSalary": 0,
+          "status": "reviewed"
+        },
+        {
+          "month": "2026-12",
+          "baseSalary": 0,
+          "status": "reviewed"
+        }
+      ]
+    },
+    {
+      "id": "0831",
+      "employeeId": "46",
+      "year": 2026,
+      "monthly": [
+        {
+          "month": "2026-01",
+          "baseSalary": 741,
+          "status": "reviewed"
+        },
+        {
+          "month": "2026-02",
+          "baseSalary": 741,
+          "status": "reviewed"
+        },
+        {
+          "month": "2026-03",
+          "baseSalary": 741,
+          "status": "reviewed"
+        },
+        {
+          "month": "2026-04",
+          "baseSalary": 741,
+          "status": "reviewed"
+        },
+        {
+          "month": "2026-05",
+          "baseSalary": 741,
+          "status": "reviewed"
+        },
+        {
+          "month": "2026-06",
+          "baseSalary": 741,
+          "status": "reviewed"
+        },
+        {
+          "month": "2026-07",
+          "baseSalary": 741,
+          "status": "reviewed"
+        },
+        {
+          "month": "2026-08",
+          "baseSalary": 741,
+          "status": "reviewed"
+        },
+        {
+          "month": "2026-09",
+          "baseSalary": 741,
+          "status": "reviewed"
+        },
+        {
+          "month": "2026-10",
+          "baseSalary": 741,
+          "status": "reviewed"
+        },
+        {
+          "month": "2026-11",
+          "baseSalary": 741,
+          "status": "reviewed"
+        },
+        {
+          "month": "2026-12",
+          "baseSalary": 741,
+          "status": "reviewed"
+        }
+      ]
     }
   ],
   "tasks": [
-    {
-      "id": "a59e",
-      "taskName": "Dashboard",
-      "employeeName": "Islombek Qodirov",
-      "deadline": "2026-01-30",
-      "status": "pending"
-    },
-    {
-      "id": "5396",
-      "taskName": "ilon dnkhfofggf",
-      "employeeName": "Bekzod Shokirov",
-      "deadline": "2026-02-03",
-      "status": "pending"
-    },
     {
       "id": "1073",
       "taskName": "dilshod",
       "employeeName": "Jasmina Aliyeva",
       "deadline": "2025-11-06",
-      "status": "pending"
+      "status": "in progress"
     },
     {
       "id": "f964",
       "taskName": "vazifani qil",
       "employeeName": "Sherzod Rasulov",
       "deadline": "2025-12-02",
-      "status": "pending"
-    },
-    {
-      "id": "d964",
-      "taskName": "elshod cjjbfjgvg",
-      "employeeName": "Sherzod Rasulov",
-      "deadline": "2025-12-02",
-      "status": "pending"
+      "status": "in progress"
     },
     {
       "id": "5582",
@@ -482,13 +959,6 @@
       "status": "pending"
     },
     {
-      "id": "5bb2",
-      "taskName": "[jfhjfsfsfhisgffsgufugssg fkhfgdfgsl",
-      "employeeName": "Sherzod Rasulov",
-      "deadline": "2026-02-20",
-      "status": "completed"
-    },
-    {
       "id": "5ab2",
       "taskName": "[jfhjfsfsfhisgffsgufugssg fkhfgdfgslfbjlskbfklfjkbefkjg",
       "employeeName": "Sherzod Rasulov",
@@ -501,29 +971,365 @@
       "employeeName": "Sherzod Rasulov",
       "deadline": "2026-02-20",
       "status": "pending"
+    },
+    {
+      "id": "f792",
+      "taskName": "Task",
+      "employeeName": "Abdulloh Abdumalikov",
+      "deadline": "2026-02-12",
+      "status": "done"
     }
   ],
   "logs": [
     {
-      "id": "855d",
+      "id": "ae06",
       "userName": "Abdulloh Abdumalikov",
-      "action": "DELETE",
-      "date": "2026-01-30T05:31:04.742Z",
-      "page": "COMPLAINTS"
-    },
-    {
-      "id": "933b",
-      "userName": "Akmal Mordayev",
-      "action": "DELETE",
-      "date": "2026-02-06T09:16:36.813Z",
+      "action": "delete",
+      "date": "2026-02-23T04:19:19.079Z",
       "page": "EMPLOYEES"
     },
     {
-      "id": "cdd1",
-      "userName": "Mohinur Sulaymonqulova",
+      "id": "4c4c",
+      "userName": "Abdulloh Abdumalikov",
+      "action": "update",
+      "date": "2026-02-23T04:56:14.048Z",
+      "page": "FINANCE"
+    },
+    {
+      "id": "cc87",
+      "userName": "Abdulloh Abdumalikov",
+      "action": "update",
+      "date": "2026-02-23T04:56:19.857Z",
+      "page": "FINANCE"
+    },
+    {
+      "id": "8e75",
+      "userName": "Abdulloh Abdumalikov",
+      "action": "update",
+      "date": "2026-02-23T04:57:12.046Z",
+      "page": "FINANCE"
+    },
+    {
+      "id": "1ccc",
+      "userName": "Abdulloh Abdumalikov",
+      "action": "update",
+      "date": "2026-02-23T05:02:38.777Z",
+      "page": "FINANCE"
+    },
+    {
+      "id": "bca5",
+      "userName": "Abdulloh Abdumalikov",
+      "action": "update",
+      "date": "2026-02-23T05:09:12.692Z",
+      "page": "FINANCE"
+    },
+    {
+      "id": "41fb",
+      "userName": "Abdulloh Abdumalikov",
+      "action": "update",
+      "date": "2026-02-23T05:09:16.841Z",
+      "page": "FINANCE"
+    },
+    {
+      "id": "fefd",
+      "userName": "Abdulloh Abdumalikov",
+      "action": "update",
+      "date": "2026-02-23T05:09:21.027Z",
+      "page": "FINANCE"
+    },
+    {
+      "id": "6513",
+      "userName": "Abdulloh Abdumalikov",
+      "action": "update",
+      "date": "2026-02-23T05:09:24.403Z",
+      "page": "FINANCE"
+    },
+    {
+      "id": "f862",
+      "userName": "Abdulloh Abdumalikov",
+      "action": "update",
+      "date": "2026-02-23T05:16:57.439Z",
+      "page": "FINANCE"
+    },
+    {
+      "id": "9d0d",
+      "userName": "Abdulloh Abdumalikov",
+      "action": "update",
+      "date": "2026-02-23T05:17:41.088Z",
+      "page": "EMPLOYEES"
+    },
+    {
+      "id": "63bb",
+      "userName": "Abdulloh Abdumalikov",
+      "action": "update",
+      "date": "2026-02-23T05:17:44.820Z",
+      "page": "EMPLOYEES"
+    },
+    {
+      "id": "a264",
+      "userName": "Abdulloh Abdumalikov",
+      "action": "update",
+      "date": "2026-02-23T05:17:59.279Z",
+      "page": "EMPLOYEES"
+    },
+    {
+      "id": "dc4e",
+      "userName": "Abdulloh Abdumalikov",
+      "action": "update",
+      "date": "2026-02-23T05:18:05.124Z",
+      "page": "EMPLOYEES"
+    },
+    {
+      "id": "4fe7",
+      "userName": "Abdulloh Abdumalikov",
+      "action": "UPDATE",
+      "date": "2026-02-23T05:21:50.665Z",
+      "page": "SETTINGS"
+    },
+    {
+      "id": "5df4",
+      "userName": "Abdulloh Abdumalikov",
+      "action": "update",
+      "date": "2026-02-23T05:30:26.226Z",
+      "page": "FINANCE"
+    },
+    {
+      "id": "34e0",
+      "userName": "Abdulloh Abdumalikov",
+      "action": "delete",
+      "date": "2026-02-23T05:46:10.397Z",
+      "page": "EMPLOYEES"
+    },
+    {
+      "id": "7b1d",
+      "userName": "Abdulloh Abdumalikov",
       "action": "DELETE",
-      "date": "2026-02-10T13:13:24.501Z",
+      "date": "2026-02-23T05:49:24.798Z",
       "page": "TASKS"
+    },
+    {
+      "id": "f387",
+      "userName": "Abdulloh Abdumalikov",
+      "action": "delete",
+      "date": "2026-02-23T05:51:49.556Z",
+      "page": "EMPLOYEES"
+    },
+    {
+      "id": "d0e9",
+      "userName": "Abdulloh Abdumalikov",
+      "action": "create",
+      "date": "2026-02-23T05:53:03.554Z",
+      "page": "EMPLOYEES"
+    },
+    {
+      "id": "fa02",
+      "userName": "Abdulloh Abdumalikov",
+      "action": "update",
+      "date": "2026-02-25T05:40:56.584Z",
+      "page": "EMPLOYEES"
+    },
+    {
+      "id": "1a61",
+      "userName": "Abdulloh Abdumalikov",
+      "action": "update",
+      "date": "2026-02-25T05:41:33.773Z",
+      "page": "EMPLOYEES"
+    },
+    {
+      "id": "f92f",
+      "userName": "Abdulloh Abdumalikov",
+      "action": "update",
+      "date": "2026-02-25T05:42:16.140Z",
+      "page": "EMPLOYEES"
+    },
+    {
+      "id": "aa36",
+      "userName": "Abdulloh Abdumalikov",
+      "action": "update",
+      "date": "2026-02-25T05:42:21.847Z",
+      "page": "EMPLOYEES"
+    },
+    {
+      "id": "acc8",
+      "userName": "Abdulloh Abdumalikov",
+      "action": "update",
+      "date": "2026-02-25T05:44:32.058Z",
+      "page": "EMPLOYEES"
+    },
+    {
+      "id": "1f3a",
+      "userName": "Abdulloh Abdumalikov",
+      "action": "create",
+      "date": "2026-02-25T05:45:36.484Z",
+      "page": "EMPLOYEES"
+    },
+    {
+      "id": "10d2",
+      "userName": "Abdulloh Abdumalikov",
+      "action": "CREATE",
+      "date": "2026-02-27T01:26:41.283Z",
+      "page": "TASKS"
+    },
+    {
+      "id": "b9d2",
+      "userName": "Abdulloh Abdumalikov",
+      "action": "DELETE",
+      "date": "2026-02-27T02:24:32.990Z",
+      "page": "TASKS"
+    },
+    {
+      "id": "a5c6",
+      "userName": "Abdulloh Abdumalikov",
+      "action": "UPDATE",
+      "date": "2026-02-27T02:41:21.097Z",
+      "page": "COMPLAINTS"
+    },
+    {
+      "id": "610b",
+      "userName": "Abdulloh Abdumalikov",
+      "action": "UPDATE",
+      "date": "2026-02-27T02:41:22.057Z",
+      "page": "COMPLAINTS"
+    },
+    {
+      "id": "aad1",
+      "userName": "Abdulloh Abdumalikov",
+      "action": "UPDATE",
+      "date": "2026-02-27T02:41:22.437Z",
+      "page": "COMPLAINTS"
+    },
+    {
+      "id": "6c5a",
+      "userName": "Abdulloh Abdumalikov",
+      "action": "UPDATE",
+      "date": "2026-02-27T02:41:22.838Z",
+      "page": "COMPLAINTS"
+    },
+    {
+      "id": "a8cc",
+      "userName": "Abdulloh Abdumalikov",
+      "action": "UPDATE",
+      "date": "2026-02-27T02:41:23.236Z",
+      "page": "COMPLAINTS"
+    },
+    {
+      "id": "0071",
+      "userName": "Abdulloh Abdumalikov",
+      "action": "UPDATE",
+      "date": "2026-02-27T02:41:23.975Z",
+      "page": "COMPLAINTS"
+    },
+    {
+      "id": "bcc0",
+      "userName": "Abdulloh Abdumalikov",
+      "action": "UPDATE",
+      "date": "2026-02-27T02:41:24.316Z",
+      "page": "COMPLAINTS"
+    },
+    {
+      "id": "34ce",
+      "userName": "Abdulloh Abdumalikov",
+      "action": "UPDATE",
+      "date": "2026-02-27T02:41:24.613Z",
+      "page": "COMPLAINTS"
+    },
+    {
+      "id": "88e6",
+      "userName": "Abdulloh Abdumalikov",
+      "action": "UPDATE",
+      "date": "2026-02-27T02:41:24.940Z",
+      "page": "COMPLAINTS"
+    },
+    {
+      "id": "6104",
+      "userName": "Abdulloh Abdumalikov",
+      "action": "UPDATE",
+      "date": "2026-02-27T02:41:25.197Z",
+      "page": "COMPLAINTS"
+    },
+    {
+      "id": "dd24",
+      "userName": "Abdulloh Abdumalikov",
+      "action": "UPDATE",
+      "date": "2026-02-27T02:41:25.845Z",
+      "page": "COMPLAINTS"
+    },
+    {
+      "id": "e3cc",
+      "userName": "Abdulloh Abdumalikov",
+      "action": "UPDATE",
+      "date": "2026-02-27T02:41:26.131Z",
+      "page": "COMPLAINTS"
+    },
+    {
+      "id": "128a",
+      "userName": "Abdulloh Abdumalikov",
+      "action": "UPDATE",
+      "date": "2026-02-27T02:41:26.257Z",
+      "page": "COMPLAINTS"
+    },
+    {
+      "id": "94e7",
+      "userName": "Abdulloh Abdumalikov",
+      "action": "UPDATE",
+      "date": "2026-02-27T02:41:26.657Z",
+      "page": "COMPLAINTS"
+    },
+    {
+      "id": "9d9d",
+      "userName": "Abdulloh Abdumalikov",
+      "action": "UPDATE",
+      "date": "2026-02-27T02:41:28.155Z",
+      "page": "COMPLAINTS"
+    },
+    {
+      "id": "7797",
+      "userName": "Abdulloh Abdumalikov",
+      "action": "UPDATE",
+      "date": "2026-02-27T02:41:28.556Z",
+      "page": "COMPLAINTS"
+    },
+    {
+      "id": "de51",
+      "userName": "Abdulloh Abdumalikov",
+      "action": "UPDATE",
+      "date": "2026-02-27T02:41:28.614Z",
+      "page": "COMPLAINTS"
+    },
+    {
+      "id": "887b",
+      "userName": "Abdulloh Abdumalikov",
+      "action": "UPDATE",
+      "date": "2026-02-27T02:41:42.008Z",
+      "page": "COMPLAINTS"
+    },
+    {
+      "id": "4ffa",
+      "userName": "Abdulloh Abdumalikov",
+      "action": "UPDATE",
+      "date": "2026-02-27T02:41:47.620Z",
+      "page": "COMPLAINTS"
+    },
+    {
+      "id": "a7e6",
+      "userName": "Abdulloh Abdumalikov",
+      "action": "UPDATE",
+      "date": "2026-02-27T02:41:54.106Z",
+      "page": "COMPLAINTS"
+    },
+    {
+      "id": "a298",
+      "userName": "Abdulloh Abdumalikov",
+      "action": "UPDATE",
+      "date": "2026-02-27T04:01:00.549Z",
+      "page": "COMPLAINTS"
+    },
+    {
+      "id": "592d",
+      "userName": "Abdulloh Abdumalikov",
+      "action": "UPDATE",
+      "date": "2026-02-27T04:01:01.863Z",
+      "page": "COMPLAINTS"
     }
   ],
   "resignationLeaves": [
@@ -680,7 +1486,7 @@
       "title": "Internet Connectivity Issue",
       "description": "Internet connection keeps dropping in the design department.",
       "date": "2025-12-20",
-      "status": "pending"
+      "status": "reviewed"
     },
     {
       "id": "CPL002",
@@ -692,27 +1498,37 @@
       "status": "reviewed"
     }
   ],
-  "employeesDeleted": [
+  "employeesDeleted": [],
+  "tasksDeleted": [
     {
-      "id": "43dc",
-      "userId": 103,
-      "fullName": "Akmaljon Mordayev",
-      "email": "akmaljonmordayev@gmail.com",
-      "role": "employee",
-      "hireDate": "2026-02-06",
-      "status": "active"
+      "id": "a59e",
+      "taskName": "Dashboard",
+      "employeeName": "Islombek Qodirov",
+      "deadline": "2026-01-30",
+      "status": "pending"
     },
     {
-      "id": "5e4c",
-      "userId": 103,
-      "fullName": "abdulloh",
-      "email": "abdulloh@gmail.com",
-      "role": "employee",
-      "hireDate": "2026-02-06",
-      "status": "active"
+      "id": "d964",
+      "taskName": "elshod cjjbfjgvg",
+      "employeeName": "Sherzod Rasulov",
+      "deadline": "2025-12-02",
+      "status": "completed"
+    },
+    {
+      "id": "5bb2",
+      "taskName": "[jfhjfsfsfhisgffsgufugssg fkhfgdfgsl",
+      "employeeName": "Sherzod Rasulov",
+      "deadline": "2026-02-20",
+      "status": "completed"
+    },
+    {
+      "id": "5396",
+      "taskName": "ilon dnkhfofggf",
+      "employeeName": "Bekzod Shokirov",
+      "deadline": "2026-02-03",
+      "status": "pending"
     }
   ],
-  "tasksDeleted": [],
   "complaintsDeleted": [],
   "announcementsDeleted": [
     {
