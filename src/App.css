@@ -1,0 +1,11 @@
+.no-scrollbar {
+    -ms-overflow-style: none;  
+    scrollbar-width: none;     
+  }
+  
+  .no-scrollbar::-webkit-scrollbar {
+    width: 0px;
+    height: 0px; 
+    background: transparent; 
+  }
+  
