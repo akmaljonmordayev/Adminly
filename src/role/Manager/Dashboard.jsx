@@ -5,7 +5,6 @@ import {
   FaTasks,
   FaBullhorn,
   FaExclamationCircle,
-  FaArchive,
   FaSignOutAlt,
   FaHistory,
   FaUmbrellaBeach,
@@ -74,15 +73,13 @@ function Dashboard() {
     fetchData()
   }, [])
 
-  // Filter everything by Selected Year
-  const filteredTasks = allTasks.filter(t => t.deadline.startsWith(selectedYear))
-  const filteredComplaints = allComplaints.filter(c => c.date.startsWith(selectedYear))
-  const filteredAnnouncements = allAnnouncements.filter(a => a.date.startsWith(selectedYear))
-  const filteredVacations = allVacations.filter(v => v.startDate.startsWith(selectedYear))
-  const filteredLeaves = allLeaves.filter(l => l.appliedDate.startsWith(selectedYear))
-  const filteredLogs = allLogs.filter(log => log.date.startsWith(selectedYear))
+  const filteredTasks = allTasks.filter(t => t.deadline?.startsWith(selectedYear))
+  const filteredComplaints = allComplaints.filter(c => c.date?.startsWith(selectedYear))
+  const filteredAnnouncements = allAnnouncements.filter(a => a.date?.startsWith(selectedYear))
+  const filteredVacations = allVacations.filter(v => v.startDate?.startsWith(selectedYear))
+  const filteredLeaves = allLeaves.filter(l => l.appliedDate?.startsWith(selectedYear))
+  const filteredLogs = allLogs.filter(log => log.date?.startsWith(selectedYear))
 
-  // Archive data usually has no year, so we show it all or filter if possible
   const archiveCount = archive1.length + archive2.length + archive3.length + archive4.length
 
   const filteredFinance = financeEmployee.filter(emp => emp.year == selectedYear)
@@ -105,8 +102,18 @@ function Dashboard() {
           filteredLeaves.length,
           filteredLogs.length,
         ],
-        backgroundColor: ['#a855f7', '#ef4444', '#3b82f6', '#10b981', '#94a3b8', '#84cc16'],
-        borderRadius: 12,
+        backgroundColor: [
+          'rgba(168, 85, 247, 0.7)',
+          'rgba(239, 68, 68, 0.7)',
+          'rgba(59, 130, 246, 0.7)',
+          'rgba(16, 185, 129, 0.7)',
+          'rgba(148, 163, 184, 0.7)',
+          'rgba(132, 204, 22, 0.7)',
+        ],
+        hoverBackgroundColor: ['#a855f7', '#ef4444', '#3b82f6', '#10b981', '#94a3b8', '#84cc16'],
+        borderRadius: 10,
+        borderWidth: 0,
+        borderSkipped: false,
       },
     ],
   }
@@ -116,70 +123,164 @@ function Dashboard() {
     datasets: [
       {
         data: [allSalary, allBonus, allPenalty, allKpiAmount],
-        backgroundColor: ['#06b6d4', '#22c55e', '#ef4444', '#a855f7'],
-        borderColor: '#020617',
-        borderWidth: 2,
+        backgroundColor: [
+          'rgba(6, 182, 212, 0.8)',
+          'rgba(34, 197, 94, 0.8)',
+          'rgba(239, 68, 68, 0.8)',
+          'rgba(168, 85, 247, 0.8)',
+        ],
+        hoverBackgroundColor: ['#06b6d4', '#22c55e', '#ef4444', '#a855f7'],
+        borderColor: 'rgba(2, 6, 23, 0.8)',
+        borderWidth: 3,
+        hoverOffset: 8,
       },
     ],
   }
 
   return (
-    <div className="p-10 bg-[#020617] min-h-screen">
-      <div className="flex justify-between items-center mb-10 max-w-[1600px] mx-auto">
-        <h1 className="text-4xl font-black text-cyan-400 italic tracking-tighter">
-          OVERVIEW <span className="text-white">DASHBOARD</span>
-        </h1>
-
-        <div className="flex items-center gap-3 bg-white/5 p-1 rounded-2xl border border-white/10">
-          {['2025', '2026'].map((y) => (
-            <button
-              key={y}
-              onClick={() => setSelectedYear(y)}
-              className={`px-8 py-2.5 rounded-xl text-sm font-black transition-all ${selectedYear === y
-                  ? "bg-cyan-500 text-slate-950 shadow-lg shadow-cyan-500/20"
-                  : "text-slate-400 hover:text-white"
-                }`}
-            >
-              {y} Year
-            </button>
-          ))}
-        </div>
+    <div className="min-h-screen bg-[#020617] relative">
+      {/* Background orbs */}
+      <div className="fixed inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute top-[-8%] left-[10%] w-[35%] h-[35%] bg-cyan-900/15 blur-[120px] rounded-full animate-float" />
+        <div className="absolute bottom-[-5%] right-[5%] w-[30%] h-[30%] bg-purple-900/15 blur-[120px] rounded-full animate-float" style={{ animationDelay: '2s' }} />
+        <div className="absolute top-[40%] right-[20%] w-[20%] h-[20%] bg-blue-900/10 blur-[100px] rounded-full animate-float" style={{ animationDelay: '4s' }} />
       </div>
 
-      <div className="max-w-[1700px] mx-auto overflow-x-auto no-scrollbar pb-10">
-        <div className="flex gap-8 mb-10 min-w-max px-4">
-          <Card title="EMPLOYEES" value={allEmployees.length} icon={<FaUsers />} color="cyan" />
-          <Card title="ACTIVE TASKS" value={filteredTasks.length} icon={<FaTasks />} color="purple" />
-          <Card title="COMPLAINTS" value={filteredComplaints.length} icon={<FaExclamationCircle />} color="red" />
-          <Card title="ANNOUNCEMENTS" value={filteredAnnouncements.length} icon={<FaBullhorn />} color="blue" />
-          <Card title="VACATIONS" value={filteredVacations.length} icon={<FaUmbrellaBeach />} color="green" />
-          <Card title="RESIGNATIONS" value={filteredLeaves.length} icon={<FaSignOutAlt />} color="slate" />
-          <Card title="SYSTEM LOGS" value={filteredLogs.length} icon={<FaHistory />} color="lime" />
-        </div>
-      </div>
+      <div className="relative z-10 pt-6 px-6 pb-12">
+        {/* Header */}
+        <div className="flex flex-wrap justify-between items-center gap-4 mb-8 max-w-[1600px] mx-auto animate-fadeInUp">
+          <div>
+            <h1 className="text-3xl font-black tracking-tighter">
+              <span className="bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">OVERVIEW</span>
+              <span className="text-white ml-2">DASHBOARD</span>
+            </h1>
+            <p className="text-slate-600 text-xs font-medium mt-1 tracking-wider uppercase">Real-time analytics & statistics</p>
+          </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 max-w-[1600px] mx-auto">
-        <div className="h-[450px] rounded-[3rem] p-10 bg-slate-900/40 border border-slate-800 backdrop-blur-xl flex flex-col">
-          <h2 className="text-slate-400 text-xs font-black uppercase tracking-widest mb-8 flex items-center gap-2">
-            <span className="w-2 h-2 rounded-full bg-cyan-500" /> Administrative Statistics {selectedYear}
-          </h2>
-          <div className="flex-1 min-h-0">
-            <Bar data={barChartData} options={{
-              responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } },
-              scales: { y: { ticks: { color: '#64748b' }, grid: { color: 'rgba(255,255,255,0.05)' } }, x: { ticks: { color: '#64748b' }, grid: { display: false } } }
-            }} />
+          <div className="flex items-center gap-2 glass rounded-2xl p-1.5">
+            {['2025', '2026'].map((y) => (
+              <button
+                key={y}
+                onClick={() => setSelectedYear(y)}
+                className={`px-6 py-2 rounded-xl text-sm font-bold transition-all duration-300 ${selectedYear === y
+                  ? "bg-gradient-to-r from-cyan-500 to-blue-500 text-white shadow-lg shadow-cyan-500/25"
+                  : "text-slate-500 hover:text-white hover:bg-white/5"
+                  }`}
+              >
+                {y}
+              </button>
+            ))}
           </div>
         </div>
 
-        <div className="h-[450px] rounded-[3rem] p-10 bg-slate-900/40 border border-slate-800 backdrop-blur-xl flex flex-col">
-          <h2 className="text-slate-400 text-xs font-black uppercase tracking-widest mb-8 flex items-center gap-2">
-            <span className="w-2 h-2 rounded-full bg-purple-500" /> Financial Overview {selectedYear}
-          </h2>
-          <div className="flex-1 min-h-0 relative">
-            <Pie data={financeChartData} options={{
-              responsive: true, maintainAspectRatio: false,
-              plugins: { legend: { position: 'right', labels: { color: '#94a3b8', font: { weight: 'bold' }, padding: 20 } }, tooltip: { callbacks: { label: (ctx) => ` ${ctx.label}: ${formatUZS(ctx.raw)}` } } }
-            }} />
+        {/* Stat Cards */}
+        <div className="max-w-[1600px] mx-auto mb-10">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-7 gap-4">
+            {[
+              { title: "EMPLOYEES", value: allEmployees.length, icon: <FaUsers />, color: "cyan", delay: "stagger-1" },
+              { title: "TASKS", value: filteredTasks.length, icon: <FaTasks />, color: "purple", delay: "stagger-2" },
+              { title: "COMPLAINTS", value: filteredComplaints.length, icon: <FaExclamationCircle />, color: "red", delay: "stagger-3" },
+              { title: "ANNOUNCEMENTS", value: filteredAnnouncements.length, icon: <FaBullhorn />, color: "blue", delay: "stagger-4" },
+              { title: "VACATIONS", value: filteredVacations.length, icon: <FaUmbrellaBeach />, color: "green", delay: "stagger-5" },
+              { title: "RESIGNATIONS", value: filteredLeaves.length, icon: <FaSignOutAlt />, color: "slate", delay: "stagger-6" },
+              { title: "LOGS", value: filteredLogs.length, icon: <FaHistory />, color: "lime", delay: "stagger-7" },
+            ].map((card) => (
+              <div key={card.title} className={`animate-fadeInUp opacity-0 ${card.delay}`}>
+                <Card title={card.title} value={card.value} icon={card.icon} color={card.color} />
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Charts */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 max-w-[1600px] mx-auto">
+          {/* Bar Chart */}
+          <div className="relative group h-[450px] rounded-[2rem] overflow-hidden animate-fadeInUp opacity-0 stagger-3">
+            <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/5 via-transparent to-blue-500/5 group-hover:from-cyan-500/10 group-hover:to-blue-500/10 transition-all duration-700" />
+            <div className="noise absolute inset-0 rounded-[2rem]" />
+            <div className="relative h-full glass-strong rounded-[2rem] p-8 flex flex-col">
+              <div className="flex items-center justify-between mb-6">
+                <h2 className="text-slate-400 text-xs font-black uppercase tracking-[0.2em] flex items-center gap-3">
+                  <span className="w-2.5 h-2.5 rounded-full bg-gradient-to-r from-cyan-500 to-blue-500 shadow-lg shadow-cyan-500/30" />
+                  Administrative Data · {selectedYear}
+                </h2>
+                <span className="text-[10px] font-bold text-slate-600 bg-white/5 px-3 py-1 rounded-full">LIVE</span>
+              </div>
+              <div className="flex-1 min-h-0">
+                <Bar data={barChartData} options={{
+                  responsive: true,
+                  maintainAspectRatio: false,
+                  plugins: {
+                    legend: { display: false },
+                    tooltip: {
+                      backgroundColor: 'rgba(15, 23, 42, 0.95)',
+                      borderColor: 'rgba(6, 182, 212, 0.2)',
+                      borderWidth: 1,
+                      cornerRadius: 12,
+                      padding: 12,
+                      titleFont: { weight: 'bold', size: 13 },
+                      bodyFont: { size: 12 },
+                    },
+                  },
+                  scales: {
+                    y: {
+                      ticks: { color: '#475569', font: { size: 11 } },
+                      grid: { color: 'rgba(255,255,255,0.03)' },
+                      border: { display: false },
+                    },
+                    x: {
+                      ticks: { color: '#475569', font: { size: 11, weight: 'bold' } },
+                      grid: { display: false },
+                      border: { display: false },
+                    },
+                  },
+                }} />
+              </div>
+            </div>
+          </div>
+
+          {/* Pie Chart */}
+          <div className="relative group h-[450px] rounded-[2rem] overflow-hidden animate-fadeInUp opacity-0 stagger-4">
+            <div className="absolute inset-0 bg-gradient-to-br from-purple-500/5 via-transparent to-pink-500/5 group-hover:from-purple-500/10 group-hover:to-pink-500/10 transition-all duration-700" />
+            <div className="noise absolute inset-0 rounded-[2rem]" />
+            <div className="relative h-full glass-strong rounded-[2rem] p-8 flex flex-col">
+              <div className="flex items-center justify-between mb-6">
+                <h2 className="text-slate-400 text-xs font-black uppercase tracking-[0.2em] flex items-center gap-3">
+                  <span className="w-2.5 h-2.5 rounded-full bg-gradient-to-r from-purple-500 to-pink-500 shadow-lg shadow-purple-500/30" />
+                  Financial Overview · {selectedYear}
+                </h2>
+                <span className="text-[10px] font-bold text-slate-600 bg-white/5 px-3 py-1 rounded-full">UZS</span>
+              </div>
+              <div className="flex-1 min-h-0 relative">
+                <Pie data={financeChartData} options={{
+                  responsive: true,
+                  maintainAspectRatio: false,
+                  cutout: '20%',
+                  plugins: {
+                    legend: {
+                      position: 'right',
+                      labels: {
+                        color: '#94a3b8',
+                        font: { weight: 'bold', size: 12 },
+                        padding: 16,
+                        usePointStyle: true,
+                        pointStyleWidth: 10,
+                      },
+                    },
+                    tooltip: {
+                      backgroundColor: 'rgba(15, 23, 42, 0.95)',
+                      borderColor: 'rgba(168, 85, 247, 0.2)',
+                      borderWidth: 1,
+                      cornerRadius: 12,
+                      padding: 12,
+                      callbacks: {
+                        label: (ctx) => ` ${ctx.label}: ${formatUZS(ctx.raw)}`,
+                      },
+                    },
+                  },
+                }} />
+              </div>
+            </div>
           </div>
         </div>
       </div>

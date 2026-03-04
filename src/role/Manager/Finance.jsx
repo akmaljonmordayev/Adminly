@@ -180,43 +180,51 @@ function Finance() {
   }
 
   return (
-    <div className="w-full min-h-screen bg-[#020617] p-10 font-sans tracking-tight">
-      <div className="max-w-[1700px] mx-auto">
-        <header className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-8 mb-16">
-          <div className="relative">
-            <div className="absolute -top-10 -left-10 w-40 h-40 bg-cyan-500/10 blur-[80px] rounded-full" />
-            <h1 className="text-5xl font-black text-white italic tracking-tighter mb-4">
-              FINANCE <span className="text-cyan-400">ENGINE</span>
+    <div className="w-full min-h-screen bg-[#020617] font-sans tracking-tight relative">
+      {/* Background orbs */}
+      <div className="fixed inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute top-[-10%] left-[5%] w-[35%] h-[35%] bg-cyan-900/10 blur-[120px] rounded-full animate-float" />
+        <div className="absolute bottom-[-10%] right-[5%] w-[35%] h-[35%] bg-purple-900/8 blur-[120px] rounded-full animate-float" style={{ animationDelay: '2s' }} />
+      </div>
+
+      <div className="relative z-10 p-4 md:p-10 max-w-[1700px] mx-auto">
+        <header className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-8 mb-12 animate-fadeInUp">
+          <div>
+            <h1 className="text-4xl md:text-5xl font-black tracking-tighter mb-2">
+              <span className="bg-gradient-to-r from-cyan-400 via-blue-400 to-purple-400 bg-clip-text text-transparent">FINANCE</span>
+              <span className="text-white ml-2">ENGINE</span>
             </h1>
-            <p className="text-slate-500 font-bold uppercase tracking-[0.3em] text-[10px] opacity-70">
-              PAYROLL MANAGEMENT & PERFORMANCE TRACKING
+            <p className="text-slate-600 text-xs font-medium tracking-wider uppercase">
+              Payroll management & performance tracking
             </p>
           </div>
 
-          <div className="flex items-center gap-4 bg-slate-900/40 p-2 rounded-3xl border border-slate-800 shadow-2xl backdrop-blur-xl">
+          <div className="flex items-center gap-3 glass rounded-2xl p-1.5">
             <select
               value={selectedYear}
               onChange={(e) => setSelectedYear(e.target.value)}
-              className="appearance-none bg-slate-950/50 px-8 py-4 rounded-2xl text-cyan-400 font-black text-xs uppercase tracking-widest outline-none border border-slate-800 transition-all cursor-pointer hover:border-cyan-500/30"
+              className="appearance-none bg-[#060d1f] px-6 py-3 rounded-xl text-cyan-400 font-black text-[10px] uppercase tracking-[0.2em] outline-none border border-white/[0.06] transition-all cursor-pointer hover:border-cyan-500/30"
             >
               {YEARS.map((y) => (
-                <option key={y} value={y}>{y} FISCAL YEAR</option>
+                <option key={y} value={y} className="bg-[#060d1f]">{y} YEAR</option>
               ))}
             </select>
 
             <select
               value={selectedMonth}
               onChange={(e) => setSelectedMonth(e.target.value)}
-              className="appearance-none bg-slate-950/50 px-8 py-4 rounded-2xl text-cyan-400 font-black text-xs uppercase tracking-widest outline-none border border-slate-800 transition-all cursor-pointer hover:border-cyan-500/30"
+              className="appearance-none bg-[#060d1f] px-6 py-3 rounded-xl text-cyan-400 font-black text-[10px] uppercase tracking-[0.2em] outline-none border border-white/[0.06] transition-all cursor-pointer hover:border-cyan-500/30"
             >
               {monthsList.map((m) => (
-                <option key={m.value} value={m.value}>{m.label.toUpperCase()}</option>
+                <option key={m.value} value={m.value} className="bg-[#060d1f]">{m.label.toUpperCase()}</option>
               ))}
             </select>
           </div>
         </header>
 
-        <div className="relative group overflow-hidden rounded-[2.5rem] border border-slate-800 bg-slate-900/30 backdrop-blur-3xl shadow-[0_50px_100px_-20px_rgba(0,0,0,0.5)]">
+        <div className="relative group overflow-hidden rounded-[2rem] border border-white/[0.04] animate-fadeInUp stagger-1 opacity-0">
+          <div className="absolute inset-0 bg-gradient-to-b from-[#0a1128] to-[#060d1f]" />
+          <div className="noise absolute inset-0 rounded-[2rem]" />
           <div className="absolute top-0 right-0 p-10 opacity-5 pointer-events-none">
             <FaCoins size={300} className="text-cyan-500" />
           </div>
@@ -301,8 +309,8 @@ function Finance() {
 
         {/* MODAL REDESIGN */}
         {userCard && editData && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center p-6 bg-slate-950/90 backdrop-blur-2xl">
-            <div className="bg-[#0f172a] border border-white/10 w-full max-w-2xl rounded-[3rem] shadow-[0_50px_100px_-20px_rgba(0,0,0,1)] flex flex-col max-h-[92vh] overflow-hidden animate-in zoom-in duration-300">
+          <div className="fixed inset-0 z-50 flex items-center justify-center p-6 bg-black/70 backdrop-blur-sm animate-fadeInScale">
+            <div className="glass-strong w-full max-w-2xl rounded-[2rem] shadow-2xl flex flex-col max-h-[92vh] overflow-hidden">
               <div className="px-12 py-10 flex justify-between items-start shrink-0 relative overflow-hidden">
                 <div className="absolute top-0 right-0 p-10 opacity-5 pointer-events-none">
                   <FaWallet size={150} className="text-cyan-500" />
@@ -413,7 +421,7 @@ function Finance() {
           </div>
         )}
       </div>
-      <ToastContainer theme="dark" position="bottom-right" />
+      <ToastContainer theme="dark" position="bottom-right" autoClose={2500} toastClassName="!bg-[#0a1128] !border !border-white/10 !rounded-2xl !shadow-2xl" />
     </div>
   )
 }

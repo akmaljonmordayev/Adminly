@@ -163,7 +163,11 @@
           "kpiAmount": 850000,
           "bonus": 300000,
           "penalty": 0,
-          "totalSalary": 3650000
+          "totalSalary": 3650000,
+          "status": "paid",
+          "paymentDate": "",
+          "paymentMethod": "bank",
+          "comment": ""
         },
         {
           "month": "2026-02",
@@ -487,7 +491,7 @@
       "taskName": "Bug Fixing",
       "employeeName": "Malika Tursunova",
       "deadline": "2026-01-10",
-      "status": "in progress"
+      "status": "pending"
     },
     {
       "id": "t4",
@@ -525,6 +529,83 @@
       "date": "2026-03-02T04:15:04.816Z",
       "page": "FINANCE",
       "id": 3
+    },
+    {
+      "userName": "Akmal Mordayev",
+      "action": "UPDATE",
+      "date": "2026-03-04T08:25:06.433Z",
+      "page": "VACATIONS",
+      "id": 4
+    },
+    {
+      "userName": "Akmal Mordayev",
+      "action": "UPDATE",
+      "date": "2026-03-04T08:25:12.436Z",
+      "page": "VACATIONS",
+      "id": 5
+    },
+    {
+      "userName": "Akmal Mordayev",
+      "action": "UPDATE",
+      "date": "2026-03-04T08:25:16.256Z",
+      "page": "VACATIONS",
+      "id": 6
+    },
+    {
+      "userName": "Akmal Mordayev",
+      "action": "UPDATE",
+      "date": "2026-03-04T08:25:18.110Z",
+      "page": "VACATIONS",
+      "id": 7
+    },
+    {
+      "userName": "Akmal Mordayev",
+      "action": "UPDATE",
+      "date": "2026-03-04T08:25:20.824Z",
+      "page": "VACATIONS",
+      "id": 8
+    },
+    {
+      "userName": "Akmal Mordayev",
+      "action": "DELETE",
+      "date": "2026-03-04T08:37:55.311Z",
+      "page": "ANNOUNCEMENTS",
+      "id": 9
+    },
+    {
+      "userName": "Akmal Mordayev",
+      "action": "UPDATE",
+      "date": "2026-03-04T08:39:33.341Z",
+      "page": "FINANCE",
+      "id": 10
+    },
+    {
+      "userName": "Akmal Mordayev",
+      "action": "UPDATE",
+      "date": "2026-03-04T09:02:43.452Z",
+      "page": "COMPLAINTS",
+      "id": 11
+    },
+    {
+      "userName": "Akmal Mordayev",
+      "action": "UPDATE",
+      "date": "2026-03-04T09:02:48.287Z",
+      "page": "COMPLAINTS",
+      "id": 12
+    },
+    {
+      "userName": "Akmal Mordayev",
+      "action": "UPDATE",
+      "date": "2026-03-04T09:03:44.653Z",
+      "page": "VACATIONS",
+      "id": 13
+    },
+    {
+      "userName": "Akmal Mordayev",
+      "action": "UPDATE",
+      "date": "2026-03-04T09:03:47.683Z",
+      "page": "VACATIONS",
+      "id": 14
     }
   ],
   "resignationLeaves": [
@@ -554,7 +635,7 @@
       "employeeName": "Akmaljon Mordayev",
       "startDate": "2026-07-10",
       "endDate": "2026-07-25",
-      "status": "pending"
+      "status": "approved"
     }
   ],
   "announcements": [
@@ -595,7 +676,7 @@
       "title": "Heating Problem",
       "description": "AC unit in Room 402 is leaking.",
       "date": "2026-02-28",
-      "status": "pending"
+      "status": "resolved"
     }
   ],
   "employeesDeleted": [],
@@ -607,7 +688,7 @@
       "text": "dxfghjk",
       "date": "Jan 10, 2026",
       "status": "Active",
-      "id": 1
+      "id": "29cd28be-d8ac-47af-afa9-bbf84f1195fb"
     }
   ]
 }
