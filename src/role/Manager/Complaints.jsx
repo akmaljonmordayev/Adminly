@@ -4,12 +4,11 @@ import { toast, ToastContainer } from 'react-toastify'
 import {
   FiSearch,
   FiTrash2,
-  FiFilter,
   FiCalendar,
   FiUser,
   FiChevronDown,
   FiAlertCircle,
-  FiZap,
+  FiMessageSquare,
 } from 'react-icons/fi'
 import 'react-toastify/dist/ReactToastify.css'
 
@@ -17,23 +16,27 @@ const API = 'http://localhost:5000'
 
 const STATUS_CONFIG = {
   pending: {
-    label: 'Pending',
-    style: 'text-amber-400 border-amber-400/30 bg-amber-400/5',
+    dot: 'bg-amber-400 shadow-amber-400/50',
+    badge: 'text-amber-300 border-amber-400/25 bg-gradient-to-r from-amber-500/10 to-amber-600/5',
+    glow: 'hover:shadow-amber-500/5',
   },
   reviewed: {
-    label: 'Reviewed',
-    style: 'text-cyan-400 border-cyan-400/40 bg-cyan-400/10',
+    dot: 'bg-cyan-400 shadow-cyan-400/50',
+    badge: 'text-cyan-300 border-cyan-400/25 bg-gradient-to-r from-cyan-500/10 to-cyan-600/5',
+    glow: 'hover:shadow-cyan-500/5',
   },
   resolved: {
-    label: 'Resolved',
-    style: 'text-emerald-400 border-emerald-400/30 bg-emerald-400/5',
+    dot: 'bg-emerald-400 shadow-emerald-400/50',
+    badge: 'text-emerald-300 border-emerald-400/25 bg-gradient-to-r from-emerald-500/10 to-emerald-600/5',
+    glow: 'hover:shadow-emerald-500/5',
   },
 }
 
 function ComplaintsAdmin() {
   const [search, setSearch] = useState('')
-  const [sort, setSort] = useState('a-z')
+  const [sort, setSort] = useState('newest')
   const [statusFilter, setStatusFilter] = useState('all')
+  const [selectedYear, setSelectedYear] = useState('all')
   const [data, setData] = useState([])
   const [error, setError] = useState(null)
   const [loading, setLoading] = useState(true)
@@ -53,232 +56,198 @@ function ComplaintsAdmin() {
     }
   }, [])
 
-  useEffect(() => {
-    fetchData()
-  }, [fetchData])
+  useEffect(() => { fetchData() }, [fetchData])
 
   const handleStatusChange = async (id, newStatus) => {
     try {
-      await axios.patch(`${API}/complaints/${id}`, {
-        status: newStatus,
-      })
-
-      setData((prev) =>
-        prev.map((item) =>
-          item.id === id ? { ...item, status: newStatus } : item,
-        ),
-      )
-
-      toast.success(`Updated: ${newStatus}`)
-
-      await axios.post(`${API}/logs`, {
-        userName: user.name,
-        action: 'UPDATE',
-        date: new Date().toISOString(),
-        page: 'COMPLAINTS',
-      })
-    } catch {
-      toast.error('Update failed')
-    }
+      await axios.patch(`${API}/complaints/${id}`, { status: newStatus })
+      setData((prev) => prev.map((item) => item.id === id ? { ...item, status: newStatus } : item))
+      toast.success(`Status → ${newStatus}`)
+      await axios.post(`${API}/logs`, { userName: user.name, action: 'UPDATE', date: new Date().toISOString(), page: 'COMPLAINTS' })
+    } catch { toast.error('Update failed') }
   }
 
   const handleDelete = async (id) => {
     if (!window.confirm('Are you sure you want to delete?')) return
-
     try {
       const target = data.find((i) => i.id === id)
-
       await axios.post(`${API}/complaintsDeleted`, target)
-
       await axios.delete(`${API}/complaints/${id}`)
-
       setData((prev) => prev.filter((item) => item.id !== id))
-
-      toast.warning('Complaint deleted')
-
-      await axios.post(`${API}/logs`, {
-        userName: user.name,
-        action: 'DELETE',
-        date: new Date().toISOString(),
-        page: 'COMPLAINTS',
-      })
-    } catch {
-      toast.error('Delete failed')
-    }
+      toast.warning('Complaint archived')
+      await axios.post(`${API}/logs`, { userName: user.name, action: 'DELETE', date: new Date().toISOString(), page: 'COMPLAINTS' })
+    } catch { toast.error('Delete failed') }
   }
 
+  const availableYears = useMemo(() => {
+    const years = [...new Set(data.map((c) => c.date?.substring(0, 4)).filter(Boolean))]
+    return years.sort((a, b) => b.localeCompare(a))
+  }, [data])
+
   const processedData = useMemo(() => {
-    const filtered = data.filter(
-      (c) =>
-        (c.title?.toLowerCase().includes(search.toLowerCase()) ||
-          c.description?.toLowerCase().includes(search.toLowerCase())) &&
-        (statusFilter === 'all' ||
-          c.status?.toLowerCase() === statusFilter.toLowerCase()),
-    )
-
-    return filtered.sort((a, b) => {
-      const titleA = a.title || ''
-      const titleB = b.title || ''
-
-      return sort === 'a-z'
-        ? titleA.localeCompare(titleB)
-        : titleB.localeCompare(titleA)
+    let filtered = data.filter((c) => {
+      const matchesSearch = c.title?.toLowerCase().includes(search.toLowerCase()) || c.description?.toLowerCase().includes(search.toLowerCase()) || c.employeeName?.toLowerCase().includes(search.toLowerCase())
+      const matchesStatus = statusFilter === 'all' || c.status?.toLowerCase() === statusFilter
+      const matchesYear = selectedYear === 'all' || c.date?.startsWith(selectedYear)
+      return matchesSearch && matchesStatus && matchesYear
     })
-  }, [data, search, statusFilter, sort])
+    return filtered.sort((a, b) => {
+      if (sort === 'newest') return (b.date || '').localeCompare(a.date || '')
+      if (sort === 'oldest') return (a.date || '').localeCompare(b.date || '')
+      if (sort === 'a-z') return (a.title || '').localeCompare(b.title || '')
+      return (b.title || '').localeCompare(a.title || '')
+    })
+  }, [data, search, statusFilter, selectedYear, sort])
 
-  const getStatusStyle = (status) =>
-    STATUS_CONFIG[status?.toLowerCase()]?.style ||
-    'text-slate-400 border-slate-700'
+  const statusCounts = useMemo(() => {
+    const yf = selectedYear === 'all' ? data : data.filter((c) => c.date?.startsWith(selectedYear))
+    return {
+      all: yf.length,
+      pending: yf.filter((c) => c.status?.toLowerCase() === 'pending').length,
+      reviewed: yf.filter((c) => c.status?.toLowerCase() === 'reviewed').length,
+      resolved: yf.filter((c) => c.status?.toLowerCase() === 'resolved').length,
+    }
+  }, [data, selectedYear])
 
   if (error) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-[#020617] text-red-500">
-        <div className="text-center">
-          <FiAlertCircle className="text-5xl mx-auto mb-4" />
-          <p className="text-xl font-bold">{error}</p>
+      <div className="min-h-screen flex items-center justify-center bg-[#020617]">
+        <div className="text-center animate-fadeInScale">
+          <div className="w-20 h-20 mx-auto mb-6 rounded-2xl bg-red-500/10 border border-red-500/20 flex items-center justify-center">
+            <FiAlertCircle className="text-3xl text-red-400" />
+          </div>
+          <p className="text-xl font-bold text-white mb-2">{error}</p>
+          <button onClick={fetchData} className="px-6 py-2.5 bg-gradient-to-r from-cyan-500 to-blue-500 text-white font-bold rounded-xl mt-3 hover:shadow-lg hover:shadow-cyan-500/20 transition-all">Retry</button>
         </div>
       </div>
     )
   }
 
   return (
-    <div className="min-h-screen bg-[#020617] text-slate-200 p-4 md:p-10 font-sans">
-      <div className="max-w-6xl mx-auto">
-        {/* HEADER */}
-        <header className="mb-12">
-          <h1 className="text-4xl md:text-5xl font-black text-white">
-            Complaints Management
-          </h1>
+    <div className="min-h-screen bg-[#020617] text-slate-200 font-sans relative">
+      <div className="fixed inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute top-[-15%] right-[-10%] w-[50%] h-[50%] bg-red-900/8 blur-[150px] rounded-full animate-float" />
+        <div className="absolute bottom-[-20%] left-[-5%] w-[40%] h-[40%] bg-cyan-900/8 blur-[150px] rounded-full animate-float" style={{ animationDelay: '2s' }} />
+      </div>
+
+      <div className="relative z-10 p-4 md:p-8 max-w-[1500px] mx-auto">
+        {/* Header */}
+        <header className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-10 animate-fadeInUp">
+          <div>
+            <h1 className="text-4xl md:text-5xl font-black tracking-tighter">
+              <span className="bg-gradient-to-r from-red-400 via-rose-400 to-pink-400 bg-clip-text text-transparent">COMPLAINTS</span>
+            </h1>
+            <p className="text-slate-600 text-xs font-medium mt-1.5 tracking-wider uppercase">Manage & resolve employee complaints</p>
+          </div>
+          <div className="flex items-center gap-2 glass rounded-2xl p-1.5">
+            <button onClick={() => setSelectedYear('all')} className={`px-5 py-2 rounded-xl text-sm font-bold transition-all duration-300 ${selectedYear === 'all' ? 'bg-gradient-to-r from-cyan-500 to-blue-500 text-white shadow-lg shadow-cyan-500/25' : 'text-slate-500 hover:text-white hover:bg-white/5'}`}>All</button>
+            {availableYears.map((y) => (
+              <button key={y} onClick={() => setSelectedYear(y)} className={`px-5 py-2 rounded-xl text-sm font-bold transition-all duration-300 ${selectedYear === y ? 'bg-gradient-to-r from-cyan-500 to-blue-500 text-white shadow-lg shadow-cyan-500/25' : 'text-slate-500 hover:text-white hover:bg-white/5'}`}>{y}</button>
+            ))}
+          </div>
         </header>
 
-        {/* CONTROLS */}
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-4 mb-8">
-          {/* Search */}
-          <div className="md:col-span-6 relative">
-            <FiSearch className="absolute left-4 top-1/2 -translate-y-1/2 text-cyan-400" />
-            <input
-              type="text"
-              placeholder="Search complaints..."
-              value={search}
-              onChange={(e) => setSearch(e.target.value)}
-              className="w-full bg-slate-900/60 border-2 border-slate-800 rounded-2xl py-4 pl-12 pr-4 focus:outline-none focus:border-cyan-400 transition-all text-white"
-            />
-          </div>
-
-          {/* Status Filter */}
-          <div className="md:col-span-3 relative">
-            <FiFilter className="absolute left-4 top-1/2 -translate-y-1/2 text-cyan-400" />
-            <select
-              value={statusFilter}
-              onChange={(e) => setStatusFilter(e.target.value)}
-              className="w-full bg-slate-900/60 border-2 border-slate-800 rounded-2xl py-4 pl-12 pr-10 appearance-none focus:outline-none focus:border-cyan-400 cursor-pointer"
+        {/* Status Cards */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-10 animate-fadeInUp stagger-1 opacity-0">
+          {[
+            { key: 'all', label: 'Total', icon: <FiMessageSquare />, gradient: 'from-cyan-500/15 to-blue-500/5', iconColor: 'text-cyan-400', dotColor: 'bg-cyan-400', borderColor: 'border-cyan-500/20 hover:border-cyan-400/40' },
+            { key: 'pending', label: 'Pending', icon: <FiAlertCircle />, gradient: 'from-amber-500/15 to-orange-500/5', iconColor: 'text-amber-400', dotColor: 'bg-amber-400', borderColor: 'border-amber-500/20 hover:border-amber-400/40' },
+            { key: 'reviewed', label: 'Reviewed', icon: <FiSearch />, gradient: 'from-blue-500/15 to-indigo-500/5', iconColor: 'text-blue-400', dotColor: 'bg-blue-400', borderColor: 'border-blue-500/20 hover:border-blue-400/40' },
+            { key: 'resolved', label: 'Resolved', icon: <FiCalendar />, gradient: 'from-emerald-500/15 to-green-500/5', iconColor: 'text-emerald-400', dotColor: 'bg-emerald-400', borderColor: 'border-emerald-500/20 hover:border-emerald-400/40' },
+          ].map((s) => (
+            <button key={s.key} onClick={() => setStatusFilter(s.key)}
+              className={`relative overflow-hidden rounded-2xl p-5 border transition-all duration-500 text-left group cursor-pointer ${s.borderColor} ${statusFilter === s.key ? 'ring-1 ring-white/10 bg-[#0a1128]' : 'bg-[#060d1f]'}`}
             >
-              <option className='bg-[#]' value="all">All Statuses</option>
-              <option className='bg-[#]' value="pending">Pending</option>
-              <option className='bg-[#]' value="reviewed">Reviewed</option>
-              <option className='bg-[#]' value="resolved">Resolved</option>
-            </select>
-            <FiChevronDown className="absolute right-4 top-1/2 -translate-y-1/2 text-cyan-400" />
-          </div>
+              <div className={`absolute inset-0 bg-gradient-to-br ${s.gradient} opacity-50 group-hover:opacity-100 transition-opacity duration-500`} />
+              <div className="noise absolute inset-0 rounded-2xl" />
+              <div className="relative flex items-center gap-3">
+                <div className={`w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center ${s.iconColor} border border-white/5`}>{s.icon}</div>
+                <div>
+                  <p className="text-[9px] font-black uppercase tracking-[0.2em] text-slate-600">{s.label}</p>
+                  <p className="text-2xl font-black text-white">{statusCounts[s.key]}</p>
+                </div>
+              </div>
+            </button>
+          ))}
+        </div>
 
-          {/* Sort */}
-          <div className="md:col-span-3 relative">
-            <select
-              value={sort}
-              onChange={(e) => setSort(e.target.value)}
-              className="w-full bg-slate-900/60 border-2 border-slate-800 rounded-2xl py-4 px-6 appearance-none focus:outline-none focus:border-cyan-400 cursor-pointer"
-            >
-              <option value="a-z">Sort: A-Z</option>
-              <option value="z-a">Sort: Z-A</option>
+        {/* Controls */}
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-3 mb-8 animate-fadeInUp stagger-2 opacity-0">
+          <div className="md:col-span-8 relative group">
+            <FiSearch className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-600 group-focus-within:text-cyan-400 transition-colors" />
+            <input type="text" placeholder="Search by title, description or employee..." value={search} onChange={(e) => setSearch(e.target.value)}
+              className="w-full glass rounded-2xl py-3.5 pl-12 pr-4 focus:outline-none focus:border-cyan-500/40 transition-all text-white placeholder:text-slate-700 text-sm" />
+          </div>
+          <div className="md:col-span-4 relative">
+            <select value={sort} onChange={(e) => setSort(e.target.value)} className="w-full glass rounded-2xl py-3.5 px-5 appearance-none focus:outline-none focus:border-cyan-500/40 cursor-pointer text-slate-400 text-sm">
+              <option className="bg-[#080D1F]" value="newest">Newest First</option>
+              <option className="bg-[#080D1F]" value="oldest">Oldest First</option>
+              <option className="bg-[#080D1F]" value="a-z">Title: A-Z</option>
+              <option className="bg-[#080D1F]" value="z-a">Title: Z-A</option>
             </select>
-            <FiChevronDown className="absolute right-4 top-1/2 -translate-y-1/2 text-cyan-400" />
+            <FiChevronDown className="absolute right-4 top-1/2 -translate-y-1/2 text-slate-600 pointer-events-none" />
           </div>
         </div>
 
-        {/* CONTENT */}
-        <div className="grid gap-6">
+        {/* Content */}
+        <div className="space-y-4">
           {loading ? (
-            <div className="text-center py-20">
-              <FiZap className="text-5xl text-cyan-400 animate-bounce mx-auto mb-4" />
-              <p className="text-cyan-400 font-bold uppercase">
-                Loading Data...
-              </p>
+            <div className="text-center py-28 animate-fadeInScale">
+              <div className="w-14 h-14 border-2 border-slate-800 border-t-cyan-500 rounded-full animate-spin mx-auto mb-5" />
+              <p className="text-cyan-500/60 font-bold uppercase tracking-[0.3em] text-xs">Loading complaints</p>
             </div>
           ) : processedData.length > 0 ? (
-            processedData.map((item) => (
-              <div
-                key={item.id}
-                className="bg-slate-900/80 border border-slate-800 rounded-2xl p-6 hover:border-cyan-400 transition-all"
-              >
-                <div className="flex flex-col lg:flex-row justify-between gap-8">
-                  <div className="flex-1">
-                    <div className="flex items-center gap-3 mb-4">
-                      <span
-                        className={`text-xs font-bold uppercase px-4 py-1.5 rounded-full border-2 ${getStatusStyle(
-                          item.status,
-                        )}`}
-                      >
-                        {item.status || 'NEW'}
-                      </span>
-                    </div>
-
-                    <h3 className="text-2xl font-bold text-white mb-3">
-                      {item.title}
-                    </h3>
-
-                    <p className="text-slate-400 mb-6">{item.description}</p>
-
-                    <div className="flex items-center gap-6 text-sm text-slate-500">
-                      <div className="flex items-center gap-2">
-                        <FiUser className="text-cyan-400" />
-                        <span>{item.employeeName || 'System'}</span>
+            processedData.map((item, i) => {
+              const cfg = STATUS_CONFIG[item.status?.toLowerCase()] || STATUS_CONFIG.pending
+              return (
+                <div key={item.id} className={`group relative overflow-hidden rounded-2xl border border-white/[0.04] hover:border-white/10 transition-all duration-500 ${cfg.glow} hover:shadow-xl animate-fadeInUp opacity-0`} style={{ animationDelay: `${i * 0.06}s` }}>
+                  <div className="absolute inset-0 bg-gradient-to-r from-[#0a1128] to-[#060d1f] group-hover:from-[#0d1630] group-hover:to-[#0a1128] transition-all duration-500" />
+                  <div className="noise absolute inset-0" />
+                  <div className="relative p-6">
+                    <div className="flex flex-col lg:flex-row justify-between gap-5">
+                      <div className="flex-1 min-w-0">
+                        <div className="flex items-center gap-3 mb-3">
+                          <span className={`inline-flex items-center gap-2 text-[10px] font-black uppercase tracking-wider px-3 py-1.5 rounded-full border ${cfg.badge}`}>
+                            <span className={`w-1.5 h-1.5 rounded-full ${cfg.dot} shadow-sm`} />
+                            {item.status || 'NEW'}
+                          </span>
+                        </div>
+                        <h3 className="text-lg font-bold text-white mb-2 group-hover:text-cyan-400 transition-colors duration-300">{item.title}</h3>
+                        <p className="text-slate-500 text-sm leading-relaxed mb-4 line-clamp-2">{item.description}</p>
+                        <div className="flex items-center gap-5 text-xs text-slate-600">
+                          <div className="flex items-center gap-2"><FiUser className="text-cyan-500/50" /><span className="font-medium">{item.employeeName || 'System'}</span></div>
+                          <div className="flex items-center gap-2"><FiCalendar className="text-cyan-500/50" /><span className="font-medium">{item.date || 'N/A'}</span></div>
+                        </div>
                       </div>
-                      <div className="flex items-center gap-2">
-                        <FiCalendar className="text-cyan-400" />
-                        <span>{item.date || 'N/A'}</span>
+                      <div className="flex lg:flex-col gap-3 flex-shrink-0">
+                        <select value={item.status || 'pending'} onChange={(e) => handleStatusChange(item.id, e.target.value)}
+                          className="bg-[#060d1f] border border-white/[0.06] rounded-xl px-4 py-2.5 text-[10px] font-black uppercase cursor-pointer outline-none focus:border-cyan-500/30 text-slate-400 min-w-[130px] hover:border-white/15 transition-all">
+                          <option className="bg-[#060d1f]" value="pending">Pending</option>
+                          <option className="bg-[#060d1f]" value="reviewed">Reviewed</option>
+                          <option className="bg-[#060d1f]" value="resolved">Resolved</option>
+                        </select>
+                        <button onClick={() => handleDelete(item.id)}
+                          className="flex items-center justify-center gap-2 px-4 py-2.5 bg-red-500/[0.04] text-red-400/70 border border-red-500/10 rounded-xl hover:bg-red-500 hover:text-white hover:border-red-500 hover:shadow-lg hover:shadow-red-500/20 transition-all text-xs font-bold">
+                          <FiTrash2 size={14} /><span className="hidden lg:inline">Delete</span>
+                        </button>
                       </div>
                     </div>
-                  </div>
-
-                  <div className="flex lg:flex-col gap-4">
-                    <select
-                      value={item.status || 'pending'}
-                      onChange={(e) =>
-                        handleStatusChange(item.id, e.target.value)
-                      }
-                      className={`bg-slate-950 border-2 rounded-xl px-4 py-3 text-xs font-bold uppercase cursor-pointer ${getStatusStyle(
-                        item.status,
-                      )}`}
-                    >
-                      <option value="pending">Pending</option>
-                      <option value="reviewed">Reviewed</option>
-                      <option value="resolved">Resolved</option>
-                    </select>
-
-                    <button
-                      onClick={() => handleDelete(item.id)}
-                      className="flex items-center gap-3 p-3 bg-rose-500/10 text-rose-500 border border-rose-500/20 rounded-xl hover:bg-rose-500 hover:text-white transition-all"
-                    >
-                      <FiTrash2 size={20} /> Delete
-                    </button>
                   </div>
                 </div>
-              </div>
-            ))
+              )
+            })
           ) : (
-            <div className="py-20 text-center border-2 border-dashed border-slate-800 rounded-2xl">
-              <FiAlertCircle className="text-6xl text-slate-700 mx-auto mb-4" />
-              <p className="text-slate-500 font-bold">No complaints found</p>
+            <div className="py-28 text-center border border-dashed border-white/[0.06] rounded-[2rem] bg-[#060d1f] animate-fadeInScale">
+              <div className="w-16 h-16 mx-auto mb-5 rounded-2xl bg-white/[0.02] border border-white/5 flex items-center justify-center">
+                <FiAlertCircle className="text-2xl text-slate-700" />
+              </div>
+              <p className="text-slate-600 font-bold text-lg">No complaints found</p>
+              <p className="text-slate-700 text-sm mt-1">Adjust filters to see results</p>
             </div>
           )}
         </div>
       </div>
-
-      <ToastContainer
-        theme="dark"
-        toastClassName="!bg-slate-950 !border !border-cyan-400 !text-cyan-400"
-        progressClassName="!bg-cyan-400"
-      />
+      <ToastContainer theme="dark" position="bottom-right" autoClose={2500} toastClassName="!bg-[#0a1128] !border !border-white/10 !rounded-2xl !shadow-2xl" />
     </div>
   )
 }
