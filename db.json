@@ -1,0 +1,724 @@
+{
+  "users": [
+    {
+      "id": "1",
+      "name": "Akmal Mordayev",
+      "email": "akmaljonmordayev@gmail.com",
+      "password": "123456",
+      "role": "manager"
+    },
+    {
+      "id": "2",
+      "name": "Mohinur Sulaymonqulova",
+      "email": "mohinur@gmail.com",
+      "password": "1234",
+      "role": "manager"
+    },
+    {
+      "id": "3",
+      "name": "Malika Tursunova",
+      "email": "malika.tursunova@gmail.com",
+      "password": "1234",
+      "role": "employee"
+    },
+    {
+      "id": "4",
+      "name": "Akmaljon Mordayev",
+      "email": "akmaljonmordayev@gmail.com",
+      "password": "1234",
+      "role": "employee"
+    }
+  ],
+  "employees": [
+    {
+      "id": "3",
+      "fullName": "Malika Tursunova",
+      "email": "malika.tursunova@gmail.com",
+      "role": "employee",
+      "hireDate": "2024-01-08",
+      "status": "active",
+      "password": "1234"
+    },
+    {
+      "id": "4",
+      "fullName": "Akmaljon Mordayev",
+      "email": "akmaljonmordayev@gmail.com",
+      "role": "employee",
+      "hireDate": "2026-02-06",
+      "status": "active",
+      "password": "1234"
+    }
+  ],
+  "employeeFinance": [
+    {
+      "employeeId": "3",
+      "year": 2025,
+      "monthly": [
+        {
+          "month": "2025-01",
+          "baseSalary": 1800000,
+          "kpiAmount": 350000,
+          "bonus": 500000,
+          "penalty": 50000,
+          "totalSalary": 2600000
+        },
+        {
+          "month": "2025-02",
+          "baseSalary": 2200000,
+          "kpiAmount": 600000,
+          "bonus": 250000,
+          "penalty": 120000,
+          "totalSalary": 2930000
+        },
+        {
+          "month": "2025-03",
+          "baseSalary": 2000000,
+          "kpiAmount": 900000,
+          "bonus": 800000,
+          "penalty": 0,
+          "totalSalary": 3700000
+        },
+        {
+          "month": "2025-04",
+          "baseSalary": 2600000,
+          "kpiAmount": 400000,
+          "bonus": 300000,
+          "penalty": 200000,
+          "totalSalary": 3100000
+        },
+        {
+          "month": "2025-05",
+          "baseSalary": 2400000,
+          "kpiAmount": 750000,
+          "bonus": 1200000,
+          "penalty": 150000,
+          "totalSalary": 4200000
+        },
+        {
+          "month": "2025-06",
+          "baseSalary": 3000000,
+          "kpiAmount": 1100000,
+          "bonus": 600000,
+          "penalty": 300000,
+          "totalSalary": 4400000
+        },
+        {
+          "month": "2025-07",
+          "baseSalary": 2800000,
+          "kpiAmount": 500000,
+          "bonus": 950000,
+          "penalty": 100000,
+          "totalSalary": 4150000
+        },
+        {
+          "month": "2025-08",
+          "baseSalary": 3500000,
+          "kpiAmount": 1300000,
+          "bonus": 1500000,
+          "penalty": 400000,
+          "totalSalary": 5900000
+        },
+        {
+          "month": "2025-09",
+          "baseSalary": 2700000,
+          "kpiAmount": 300000,
+          "bonus": 200000,
+          "penalty": 80000,
+          "totalSalary": 3120000
+        },
+        {
+          "month": "2025-10",
+          "baseSalary": 3200000,
+          "kpiAmount": 950000,
+          "bonus": 1800000,
+          "penalty": 250000,
+          "totalSalary": 5700000
+        },
+        {
+          "month": "2025-11",
+          "baseSalary": 4000000,
+          "kpiAmount": 1600000,
+          "bonus": 2200000,
+          "penalty": 500000,
+          "totalSalary": 7300000
+        },
+        {
+          "month": "2025-12",
+          "baseSalary": 3700000,
+          "kpiAmount": 1200000,
+          "bonus": 900000,
+          "penalty": 100000,
+          "totalSalary": 5700000
+        }
+      ],
+      "id": "1"
+    },
+    {
+      "employeeId": "3",
+      "year": 2026,
+      "monthly": [
+        {
+          "month": "2026-01",
+          "baseSalary": 2500000,
+          "kpiAmount": 850000,
+          "bonus": 300000,
+          "penalty": 0,
+          "totalSalary": 3650000,
+          "status": "paid",
+          "paymentDate": "",
+          "paymentMethod": "bank",
+          "comment": ""
+        },
+        {
+          "month": "2026-02",
+          "baseSalary": 2500000,
+          "kpiAmount": 920000,
+          "bonus": 0,
+          "penalty": 50000,
+          "totalSalary": 3370000
+        },
+        {
+          "month": "2026-03",
+          "baseSalary": 2500000,
+          "kpiAmount": 1100000,
+          "bonus": 500000,
+          "penalty": 0,
+          "totalSalary": 4100000
+        },
+        {
+          "month": "2026-04",
+          "baseSalary": 2500000,
+          "kpiAmount": 750000,
+          "bonus": 200000,
+          "penalty": 100000,
+          "totalSalary": 3350000
+        },
+        {
+          "month": "2026-05",
+          "baseSalary": 2800000,
+          "kpiAmount": 1200000,
+          "bonus": 1000000,
+          "penalty": 0,
+          "totalSalary": 5000000
+        },
+        {
+          "month": "2026-06",
+          "baseSalary": 2800000,
+          "kpiAmount": 950000,
+          "bonus": 400000,
+          "penalty": 150000,
+          "totalSalary": 4000000
+        },
+        {
+          "month": "2026-07",
+          "baseSalary": 2800000,
+          "kpiAmount": 812000,
+          "bonus": 300000,
+          "penalty": 0,
+          "totalSalary": 3912000,
+          "status": "unpaid",
+          "paymentDate": "",
+          "paymentMethod": "card",
+          "comment": ""
+        },
+        {
+          "month": "2026-08",
+          "baseSalary": 2800000,
+          "kpiAmount": 1300000,
+          "bonus": 1500000,
+          "penalty": 200000,
+          "totalSalary": 5400000
+        },
+        {
+          "month": "2026-09",
+          "baseSalary": 3000000,
+          "kpiAmount": 900000,
+          "bonus": 0,
+          "penalty": 0,
+          "totalSalary": 3900000
+        },
+        {
+          "month": "2026-10",
+          "baseSalary": 3000000,
+          "kpiAmount": 1400000,
+          "bonus": 800000,
+          "penalty": 50000,
+          "totalSalary": 5150000
+        },
+        {
+          "month": "2026-11",
+          "baseSalary": 3000000,
+          "kpiAmount": 1600000,
+          "bonus": 1200000,
+          "penalty": 300000,
+          "totalSalary": 5500000
+        },
+        {
+          "month": "2026-12",
+          "baseSalary": 3200000,
+          "kpiAmount": 1800000,
+          "bonus": 2500000,
+          "penalty": 0,
+          "totalSalary": 7500000
+        }
+      ],
+      "id": "2"
+    },
+    {
+      "employeeId": "4",
+      "year": 2025,
+      "monthly": [
+        {
+          "month": "2025-01",
+          "baseSalary": 4000000,
+          "kpiAmount": 1000000,
+          "bonus": 1500000,
+          "penalty": 100000,
+          "totalSalary": 6400000
+        },
+        {
+          "month": "2025-02",
+          "baseSalary": 4000000,
+          "kpiAmount": 900000,
+          "bonus": 500000,
+          "penalty": 0,
+          "totalSalary": 5400000
+        },
+        {
+          "month": "2025-03",
+          "baseSalary": 4000000,
+          "kpiAmount": 1200000,
+          "bonus": 800000,
+          "penalty": 50000,
+          "totalSalary": 5950000
+        },
+        {
+          "month": "2025-04",
+          "baseSalary": 4500000,
+          "kpiAmount": 1500000,
+          "bonus": 2000000,
+          "penalty": 0,
+          "totalSalary": 8000000
+        },
+        {
+          "month": "2025-05",
+          "baseSalary": 4500000,
+          "kpiAmount": 1000000,
+          "bonus": 400000,
+          "penalty": 100000,
+          "totalSalary": 5800000
+        },
+        {
+          "month": "2025-06",
+          "baseSalary": 4500000,
+          "kpiAmount": 1100000,
+          "bonus": 0,
+          "penalty": 0,
+          "totalSalary": 5600000
+        },
+        {
+          "month": "2025-07",
+          "baseSalary": 5000000,
+          "kpiAmount": 1400000,
+          "bonus": 1000000,
+          "penalty": 50000,
+          "totalSalary": 7350000
+        },
+        {
+          "month": "2025-08",
+          "baseSalary": 5000000,
+          "kpiAmount": 1600000,
+          "bonus": 3000000,
+          "penalty": 200000,
+          "totalSalary": 9400000
+        },
+        {
+          "month": "2025-09",
+          "baseSalary": 5000000,
+          "kpiAmount": 1100000,
+          "bonus": 0,
+          "penalty": 0,
+          "totalSalary": 6100000
+        },
+        {
+          "month": "2025-10",
+          "baseSalary": 5500000,
+          "kpiAmount": 1900000,
+          "bonus": 1500000,
+          "penalty": 100000,
+          "totalSalary": 8800000
+        },
+        {
+          "month": "2025-11",
+          "baseSalary": 5500000,
+          "kpiAmount": 2100000,
+          "bonus": 2500000,
+          "penalty": 400000,
+          "totalSalary": 9700000
+        },
+        {
+          "month": "2025-12",
+          "baseSalary": 6000000,
+          "kpiAmount": 2300000,
+          "bonus": 4000000,
+          "penalty": 0,
+          "totalSalary": 12300000
+        }
+      ],
+      "id": "3"
+    },
+    {
+      "employeeId": "4",
+      "year": 2026,
+      "monthly": [
+        {
+          "month": "2026-01",
+          "baseSalary": 5000000,
+          "kpiAmount": 1500000,
+          "bonus": 2000000,
+          "penalty": 250000,
+          "totalSalary": 8250000
+        },
+        {
+          "month": "2026-02",
+          "baseSalary": 5000000,
+          "kpiAmount": 1200000,
+          "bonus": 500000,
+          "penalty": 0,
+          "totalSalary": 6700000
+        },
+        {
+          "month": "2026-03",
+          "baseSalary": 5000000,
+          "kpiAmount": 1800000,
+          "bonus": 1000000,
+          "penalty": 150000,
+          "totalSalary": 7650000
+        },
+        {
+          "month": "2026-04",
+          "baseSalary": 5500000,
+          "kpiAmount": 2000000,
+          "bonus": 3000000,
+          "penalty": 0,
+          "totalSalary": 10500000
+        },
+        {
+          "month": "2026-05",
+          "baseSalary": 5500000,
+          "kpiAmount": 1400000,
+          "bonus": 500000,
+          "penalty": 100000,
+          "totalSalary": 7300000
+        },
+        {
+          "month": "2026-06",
+          "baseSalary": 5500000,
+          "kpiAmount": 1600000,
+          "bonus": 0,
+          "penalty": 0,
+          "totalSalary": 7100000
+        },
+        {
+          "month": "2026-07",
+          "baseSalary": 6000000,
+          "kpiAmount": 1900000,
+          "bonus": 1500000,
+          "penalty": 50000,
+          "totalSalary": 9350000
+        },
+        {
+          "month": "2026-08",
+          "baseSalary": 6000000,
+          "kpiAmount": 2200000,
+          "bonus": 4000000,
+          "penalty": 300000,
+          "totalSalary": 11900000
+        },
+        {
+          "month": "2026-09",
+          "baseSalary": 6000000,
+          "kpiAmount": 1500000,
+          "bonus": 0,
+          "penalty": 0,
+          "totalSalary": 7500000
+        },
+        {
+          "month": "2026-10",
+          "baseSalary": 6500000,
+          "kpiAmount": 2500000,
+          "bonus": 2000000,
+          "penalty": 100000,
+          "totalSalary": 10900000
+        },
+        {
+          "month": "2026-11",
+          "baseSalary": 6500000,
+          "kpiAmount": 2800000,
+          "bonus": 3500000,
+          "penalty": 500000,
+          "totalSalary": 12300000
+        },
+        {
+          "month": "2026-12",
+          "baseSalary": 7000000,
+          "kpiAmount": 3000000,
+          "bonus": 5000000,
+          "penalty": 0,
+          "totalSalary": 15000000
+        }
+      ],
+      "id": "4"
+    }
+  ],
+  "tasks": [
+    {
+      "id": "t1",
+      "taskName": "Design System Update",
+      "employeeName": "Malika Tursunova",
+      "deadline": "2025-03-15",
+      "status": "done"
+    },
+    {
+      "id": "t2",
+      "taskName": "API Integration",
+      "employeeName": "Malika Tursunova",
+      "deadline": "2025-06-20",
+      "status": "done"
+    },
+    {
+      "id": "t3",
+      "taskName": "Bug Fixing",
+      "employeeName": "Malika Tursunova",
+      "deadline": "2026-01-10",
+      "status": "pending"
+    },
+    {
+      "id": "t4",
+      "taskName": "New Feature Dev",
+      "employeeName": "Akmaljon Mordayev",
+      "deadline": "2025-11-30",
+      "status": "done"
+    },
+    {
+      "id": "t5",
+      "taskName": "Code Review",
+      "employeeName": "Akmaljon Mordayev",
+      "deadline": "2026-02-15",
+      "status": "in process"
+    },
+    {
+      "taskName": "Fix computers",
+      "employeeName": "Malika Tursunova",
+      "deadline": "2026-03-20",
+      "status": "pending",
+      "id": "2MUQVsO"
+    }
+  ],
+  "logs": [
+    {
+      "userName": "Mohinur Sulaymonqulova",
+      "action": "CREATE",
+      "date": "2026-03-02T04:01:27.509Z",
+      "page": "ANNOUNCEMENTS",
+      "id": 1
+    },
+    {
+      "userName": "Mohinur Sulaymonqulova",
+      "action": "DELETE",
+      "date": "2026-03-02T04:01:54.611Z",
+      "page": "ANNOUNCEMENTS",
+      "id": 2
+    },
+    {
+      "userName": "Mohinur Sulaymonqulova",
+      "action": "UPDATE",
+      "date": "2026-03-02T04:15:04.816Z",
+      "page": "FINANCE",
+      "id": 3
+    },
+    {
+      "userName": "Akmal Mordayev",
+      "action": "UPDATE",
+      "date": "2026-03-04T08:25:06.433Z",
+      "page": "VACATIONS",
+      "id": 4
+    },
+    {
+      "userName": "Akmal Mordayev",
+      "action": "UPDATE",
+      "date": "2026-03-04T08:25:12.436Z",
+      "page": "VACATIONS",
+      "id": 5
+    },
+    {
+      "userName": "Akmal Mordayev",
+      "action": "UPDATE",
+      "date": "2026-03-04T08:25:16.256Z",
+      "page": "VACATIONS",
+      "id": 6
+    },
+    {
+      "userName": "Akmal Mordayev",
+      "action": "UPDATE",
+      "date": "2026-03-04T08:25:18.110Z",
+      "page": "VACATIONS",
+      "id": 7
+    },
+    {
+      "userName": "Akmal Mordayev",
+      "action": "UPDATE",
+      "date": "2026-03-04T08:25:20.824Z",
+      "page": "VACATIONS",
+      "id": 8
+    },
+    {
+      "userName": "Akmal Mordayev",
+      "action": "DELETE",
+      "date": "2026-03-04T08:37:55.311Z",
+      "page": "ANNOUNCEMENTS",
+      "id": 9
+    },
+    {
+      "userName": "Akmal Mordayev",
+      "action": "UPDATE",
+      "date": "2026-03-04T08:39:33.341Z",
+      "page": "FINANCE",
+      "id": 10
+    },
+    {
+      "userName": "Akmal Mordayev",
+      "action": "UPDATE",
+      "date": "2026-03-04T09:02:43.452Z",
+      "page": "COMPLAINTS",
+      "id": 11
+    },
+    {
+      "userName": "Akmal Mordayev",
+      "action": "UPDATE",
+      "date": "2026-03-04T09:02:48.287Z",
+      "page": "COMPLAINTS",
+      "id": 12
+    },
+    {
+      "userName": "Akmal Mordayev",
+      "action": "UPDATE",
+      "date": "2026-03-04T09:03:44.653Z",
+      "page": "VACATIONS",
+      "id": 13
+    },
+    {
+      "userName": "Akmal Mordayev",
+      "action": "UPDATE",
+      "date": "2026-03-04T09:03:47.683Z",
+      "page": "VACATIONS",
+      "id": 14
+    },
+    {
+      "userName": "Mohinur Sulaymonqulova",
+      "action": "CREATE",
+      "date": "2026-03-05T20:59:14.430Z",
+      "page": "TASKS",
+      "id": 15
+    }
+  ],
+  "resignationLeaves": [
+    {
+      "id": "r1",
+      "employeeName": "Malika Tursunova",
+      "appliedDate": "2025-05-10",
+      "status": "approved"
+    },
+    {
+      "id": "r2",
+      "employeeName": "Akmaljon Mordayev",
+      "appliedDate": "2026-03-01",
+      "status": "pending"
+    }
+  ],
+  "vacations": [
+    {
+      "id": "v1",
+      "employeeName": "Malika Tursunova",
+      "startDate": "2025-08-01",
+      "endDate": "2025-08-15",
+      "status": "approved"
+    },
+    {
+      "id": "v2",
+      "employeeName": "Akmaljon Mordayev",
+      "startDate": "2026-07-10",
+      "endDate": "2026-07-25",
+      "status": "approved"
+    }
+  ],
+  "announcements": [
+    {
+      "id": "a1",
+      "title": "Company Annual Meeting",
+      "text": "Join us for the 2025 annual kick-off meeting on January 5th.",
+      "date": "2025-01-01T09:00:00Z",
+      "status": "Active"
+    },
+    {
+      "id": "a2",
+      "title": "New Tech Stack",
+      "text": "We are moving to Next.js for all future projects starting 2026.",
+      "date": "2026-02-15T10:30:00Z",
+      "status": "Active"
+    },
+    {
+      "id": "a3",
+      "title": "Summer Team Building",
+      "text": "Get ready for a great summer trip in July!",
+      "date": "2026-03-01T08:00:00Z",
+      "status": "Active"
+    }
+  ],
+  "complaints": [
+    {
+      "id": "c1",
+      "employeeName": "Malika Tursunova",
+      "title": "Keyboard Issue",
+      "description": "Mechanical keyboard spacebar is double-clicking.",
+      "date": "2025-04-12",
+      "status": "resolved"
+    },
+    {
+      "id": "c2",
+      "employeeName": "Akmaljon Mordayev",
+      "title": "Heating Problem",
+      "description": "AC unit in Room 402 is leaking.",
+      "date": "2026-02-28",
+      "status": "resolved"
+    },
+    {
+      "title": "liFT ISHMALIYAPTI",
+      "description": "ILTIMOS LIFTNI TUZATIB BERILA UMUMAN ISHLAMIYAPTI",
+      "employeeName": "Employee",
+      "date": "2026-03-05",
+      "status": "pending",
+      "id": "fmQVgoT"
+    },
+    {
+      "title": "Table",
+      "description": "The table of this room was broken!",
+      "employeeName": "Employee",
+      "date": "2026-03-05",
+      "status": "pending",
+      "id": "J2kLaZz"
+    }
+  ],
+  "employeesDeleted": [],
+  "tasksDeleted": [],
+  "complaintsDeleted": [],
+  "announcementsDeleted": [
+    {
+      "title": "dfghj",
+      "text": "dxfghjk",
+      "date": "Jan 10, 2026",
+      "status": "Active",
+      "id": "29cd28be-d8ac-47af-afa9-bbf84f1195fb"
+    }
+  ]
+}
