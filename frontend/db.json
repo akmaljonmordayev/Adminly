@@ -1,0 +1,964 @@
+{
+  "users": [
+    {
+      "id": "1",
+      "name": "Akmal Mordayev",
+      "email": "akmaljonmordayev@gmail.com",
+      "password": "123456",
+      "role": "manager"
+    },
+    {
+      "id": "2",
+      "name": "Mohinur Sulaymonqulova",
+      "email": "mohinur@gmail.com",
+      "password": "1234",
+      "role": "manager"
+    },
+    {
+      "id": "3",
+      "name": "Xojarxon Xaydarova",
+      "email": "xojarxon@gmail.com",
+      "password": "1234",
+      "role": "manager"
+    },
+    {
+      "id": "4",
+      "name": "Bilol Komiljonov",
+      "email": "bilol@gmail.com",
+      "password": "1234",
+      "role": "manager"
+    },
+    {
+      "id": "5",
+      "name": "Akrom Ziyayev",
+      "email": "akrom@gmail.com",
+      "password": "1234",
+      "role": "manager"
+    },
+    {
+      "id": "6",
+      "name": "Abdulaziz Xasanov",
+      "email": "abdulaziz@gmail.com",
+      "password": "1234",
+      "role": "manager"
+    },
+    {
+      "id": "7",
+      "name": "Muhammadali Baxtiyorov",
+      "email": "muhammadali@gmail.com",
+      "password": "1234",
+      "role": "manager"
+    },
+    {
+      "id": "8",
+      "name": "Muhammadqodir Shukriddinov",
+      "email": "muhammadqodir@gmail.com",
+      "password": "1234",
+      "role": "manager"
+    },
+    {
+      "id": "9",
+      "name": "Abdulloh Abdumalikov",
+      "email": "abdulloh@gmail.com",
+      "password": "1234",
+      "role": "manager"
+    }
+  ],
+  "employees": [
+    {
+      "id": "1",
+      "userId": 101,
+      "fullName": "Malika Tursunova",
+      "email": "malika.tursunova@gmail.com",
+      "role": "employee",
+      "hireDate": "2024-01-08",
+      "status": "active",
+      "password": "1234"
+    },
+    {
+      "id": "2",
+      "userId": 102,
+      "fullName": "Akmaljon Mordayev",
+      "email": "akmaljonmordayev@gmail.com",
+      "role": "employee",
+      "hireDate": "2026-02-06",
+      "status": "active"
+    }
+  ],
+  "employeeFinance": [
+    {
+      "employeeId": "1",
+      "year": 2026,
+      "monthly": [
+        {
+          "month": "2025-01",
+          "baseSalary": 1800000,
+          "kpiAmount": 350000,
+          "bonus": 500000,
+          "penalty": 50000,
+          "totalSalary": 2600000
+        },
+        {
+          "month": "2025-02",
+          "baseSalary": 2200000,
+          "kpiAmount": 600000,
+          "bonus": 250000,
+          "penalty": 120000,
+          "totalSalary": 2930000
+        },
+        {
+          "month": "2025-03",
+          "baseSalary": 2000000,
+          "kpiAmount": 900000,
+          "bonus": 800000,
+          "penalty": 0,
+          "totalSalary": 3700000
+        },
+        {
+          "month": "2025-04",
+          "baseSalary": 2600000,
+          "kpiAmount": 400000,
+          "bonus": 300000,
+          "penalty": 200000,
+          "totalSalary": 3100000
+        },
+        {
+          "month": "2025-05",
+          "baseSalary": 2400000,
+          "kpiAmount": 750000,
+          "bonus": 1200000,
+          "penalty": 150000,
+          "totalSalary": 4200000
+        },
+        {
+          "month": "2025-06",
+          "baseSalary": 3000000,
+          "kpiAmount": 1100000,
+          "bonus": 600000,
+          "penalty": 300000,
+          "totalSalary": 4400000
+        },
+        {
+          "month": "2025-07",
+          "baseSalary": 2800000,
+          "kpiAmount": 500000,
+          "bonus": 950000,
+          "penalty": 100000,
+          "totalSalary": 4150000
+        },
+        {
+          "month": "2025-08",
+          "baseSalary": 3500000,
+          "kpiAmount": 1300000,
+          "bonus": 1500000,
+          "penalty": 400000,
+          "totalSalary": 5900000
+        },
+        {
+          "month": "2025-09",
+          "baseSalary": 2700000,
+          "kpiAmount": 300000,
+          "bonus": 200000,
+          "penalty": 80000,
+          "totalSalary": 3120000
+        },
+        {
+          "month": "2025-10",
+          "baseSalary": 3200000,
+          "kpiAmount": 950000,
+          "bonus": 1800000,
+          "penalty": 250000,
+          "totalSalary": 5700000
+        },
+        {
+          "month": "2025-11",
+          "baseSalary": 4000000,
+          "kpiAmount": 1600000,
+          "bonus": 2200000,
+          "penalty": 500000,
+          "totalSalary": 7300000
+        },
+        {
+          "month": "2025-12",
+          "baseSalary": 3700000,
+          "kpiAmount": 1200000,
+          "bonus": 900000,
+          "penalty": 100000,
+          "totalSalary": 5700000
+        }
+      ],
+      "id": "9bc0"
+    },
+    {
+      "employeeId": "2",
+      "year": 2026,
+      "monthly": [
+        {
+          "month": "2026-01",
+          "baseSalary": 7985623,
+          "kpiAmount": 5989217,
+          "bonus": 7,
+          "penalty": 850045,
+          "totalSalary": 13124802,
+          "status": "rejected",
+          "paymentDate": "2026-01-26",
+          "paymentMethod": "bank",
+          "comment": "Тфтфтавпролыдж"
+        },
+        {
+          "month": "2026-02",
+          "baseSalary": 0,
+          "kpiAmount": 0,
+          "bonus": 0,
+          "penalty": 0,
+          "totalSalary": 0,
+          "status": "reviewed",
+          "paymentDate": "2026-02-26",
+          "comment": ""
+        },
+        {
+          "month": "2026-03",
+          "baseSalary": 0,
+          "kpiAmount": 0,
+          "bonus": 0,
+          "penalty": 0,
+          "totalSalary": 0,
+          "status": "reviewed",
+          "paymentDate": "2026-03-26",
+          "comment": ""
+        },
+        {
+          "month": "2026-04",
+          "baseSalary": 0,
+          "kpiAmount": 0,
+          "bonus": 0,
+          "penalty": 0,
+          "totalSalary": 0,
+          "status": "reviewed",
+          "paymentDate": "2026-04-26",
+          "comment": ""
+        },
+        {
+          "month": "2026-05",
+          "baseSalary": 0,
+          "kpiAmount": 0,
+          "bonus": 0,
+          "penalty": 0,
+          "totalSalary": 0,
+          "status": "reviewed",
+          "paymentDate": "2026-05-26",
+          "comment": ""
+        },
+        {
+          "month": "2026-06",
+          "baseSalary": 0,
+          "kpiAmount": 0,
+          "bonus": 0,
+          "penalty": 0,
+          "totalSalary": 0,
+          "status": "reviewed",
+          "paymentDate": "2026-06-26",
+          "comment": ""
+        },
+        {
+          "month": "2026-07",
+          "baseSalary": 0,
+          "kpiAmount": 0,
+          "bonus": 0,
+          "penalty": 0,
+          "totalSalary": 0,
+          "status": "reviewed",
+          "paymentDate": "2026-07-26",
+          "comment": ""
+        },
+        {
+          "month": "2026-08",
+          "baseSalary": 0,
+          "kpiAmount": 0,
+          "bonus": 0,
+          "penalty": 0,
+          "totalSalary": 0,
+          "status": "reviewed",
+          "paymentDate": "2026-08-26",
+          "comment": ""
+        },
+        {
+          "month": "2026-09",
+          "baseSalary": 0,
+          "kpiAmount": 0,
+          "bonus": 0,
+          "penalty": 0,
+          "totalSalary": 0,
+          "status": "reviewed",
+          "paymentDate": "2026-09-26",
+          "comment": ""
+        },
+        {
+          "month": "2026-10",
+          "baseSalary": 0,
+          "kpiAmount": 0,
+          "bonus": 0,
+          "penalty": 0,
+          "totalSalary": 0,
+          "status": "reviewed",
+          "paymentDate": "2026-10-26",
+          "comment": ""
+        },
+        {
+          "month": "2026-11",
+          "baseSalary": 0,
+          "kpiAmount": 0,
+          "bonus": 0,
+          "penalty": 0,
+          "totalSalary": 0,
+          "status": "reviewed",
+          "paymentDate": "2026-11-26",
+          "comment": ""
+        },
+        {
+          "month": "2026-12",
+          "baseSalary": 0,
+          "kpiAmount": 0,
+          "bonus": 0,
+          "penalty": 0,
+          "totalSalary": 0,
+          "status": "reviewed",
+          "paymentDate": "2026-12-26",
+          "comment": ""
+        }
+      ],
+      "id": "a503"
+    }
+  ],
+  "tasks": [
+    {
+      "id": "1073",
+      "taskName": "dilshod",
+      "employeeName": "Jasmina Aliyeva",
+      "deadline": "2025-11-06",
+      "status": "in progress"
+    },
+    {
+      "id": "f964",
+      "taskName": "vazifani qil",
+      "employeeName": "Sherzod Rasulov",
+      "deadline": "2025-12-02",
+      "status": "in progress"
+    },
+    {
+      "id": "5582",
+      "taskName": "hoshim",
+      "employeeName": "Nodira Usmonova",
+      "deadline": "2026-01-30",
+      "status": "pending"
+    },
+    {
+      "id": "9df1",
+      "taskName": "logs",
+      "employeeName": "Malika Tursunova",
+      "deadline": "2026-01-30",
+      "status": "pending"
+    },
+    {
+      "id": "9611",
+      "taskName": "tasks",
+      "employeeName": "Nodira Usmonova",
+      "deadline": "2026-02-28",
+      "status": "done"
+    },
+    {
+      "id": "bfdc",
+      "taskName": "sdvasdv",
+      "employeeName": "Malika Tursunova",
+      "deadline": "2026-02-20",
+      "status": "pending"
+    },
+    {
+      "id": "5ab3",
+      "taskName": "olam terish",
+      "employeeName": "Sherzod Rasulov",
+      "deadline": "2026-02-20",
+      "status": "pending"
+    },
+    {
+      "id": "f792",
+      "taskName": "Task",
+      "employeeName": "Abdulloh Abdumalikov",
+      "deadline": "2026-02-12",
+      "status": "done"
+    },
+    {
+      "id": "5bb2",
+      "taskName": "[jfhjfsfsfhisgffsgufugssg fkhfgdfgsl",
+      "employeeName": "Sherzod Rasulov",
+      "deadline": "2026-02-20",
+      "status": "completed"
+    }
+  ],
+  "logs": [
+    {
+      "id": "ae06",
+      "userName": "Abdulloh Abdumalikov",
+      "action": "delete",
+      "date": "2026-02-23T04:19:19.079Z",
+      "page": "EMPLOYEES"
+    },
+    {
+      "id": "4c4c",
+      "userName": "Abdulloh Abdumalikov",
+      "action": "update",
+      "date": "2026-02-23T04:56:14.048Z",
+      "page": "FINANCE"
+    },
+    {
+      "id": "cc87",
+      "userName": "Abdulloh Abdumalikov",
+      "action": "update",
+      "date": "2026-02-23T04:56:19.857Z",
+      "page": "FINANCE"
+    },
+    {
+      "id": "8e75",
+      "userName": "Abdulloh Abdumalikov",
+      "action": "update",
+      "date": "2026-02-23T04:57:12.046Z",
+      "page": "FINANCE"
+    },
+    {
+      "id": "1ccc",
+      "userName": "Abdulloh Abdumalikov",
+      "action": "update",
+      "date": "2026-02-23T05:02:38.777Z",
+      "page": "FINANCE"
+    },
+    {
+      "id": "bca5",
+      "userName": "Abdulloh Abdumalikov",
+      "action": "update",
+      "date": "2026-02-23T05:09:12.692Z",
+      "page": "FINANCE"
+    },
+    {
+      "id": "41fb",
+      "userName": "Abdulloh Abdumalikov",
+      "action": "update",
+      "date": "2026-02-23T05:09:16.841Z",
+      "page": "FINANCE"
+    },
+    {
+      "id": "fefd",
+      "userName": "Abdulloh Abdumalikov",
+      "action": "update",
+      "date": "2026-02-23T05:09:21.027Z",
+      "page": "FINANCE"
+    },
+    {
+      "id": "6513",
+      "userName": "Abdulloh Abdumalikov",
+      "action": "update",
+      "date": "2026-02-23T05:09:24.403Z",
+      "page": "FINANCE"
+    },
+    {
+      "id": "f862",
+      "userName": "Abdulloh Abdumalikov",
+      "action": "update",
+      "date": "2026-02-23T05:16:57.439Z",
+      "page": "FINANCE"
+    },
+    {
+      "id": "9d0d",
+      "userName": "Abdulloh Abdumalikov",
+      "action": "update",
+      "date": "2026-02-23T05:17:41.088Z",
+      "page": "EMPLOYEES"
+    },
+    {
+      "id": "63bb",
+      "userName": "Abdulloh Abdumalikov",
+      "action": "update",
+      "date": "2026-02-23T05:17:44.820Z",
+      "page": "EMPLOYEES"
+    },
+    {
+      "id": "a264",
+      "userName": "Abdulloh Abdumalikov",
+      "action": "update",
+      "date": "2026-02-23T05:17:59.279Z",
+      "page": "EMPLOYEES"
+    },
+    {
+      "id": "dc4e",
+      "userName": "Abdulloh Abdumalikov",
+      "action": "update",
+      "date": "2026-02-23T05:18:05.124Z",
+      "page": "EMPLOYEES"
+    },
+    {
+      "id": "4fe7",
+      "userName": "Abdulloh Abdumalikov",
+      "action": "UPDATE",
+      "date": "2026-02-23T05:21:50.665Z",
+      "page": "SETTINGS"
+    },
+    {
+      "id": "5df4",
+      "userName": "Abdulloh Abdumalikov",
+      "action": "update",
+      "date": "2026-02-23T05:30:26.226Z",
+      "page": "FINANCE"
+    },
+    {
+      "id": "34e0",
+      "userName": "Abdulloh Abdumalikov",
+      "action": "delete",
+      "date": "2026-02-23T05:46:10.397Z",
+      "page": "EMPLOYEES"
+    },
+    {
+      "id": "7b1d",
+      "userName": "Abdulloh Abdumalikov",
+      "action": "DELETE",
+      "date": "2026-02-23T05:49:24.798Z",
+      "page": "TASKS"
+    },
+    {
+      "id": "f387",
+      "userName": "Abdulloh Abdumalikov",
+      "action": "delete",
+      "date": "2026-02-23T05:51:49.556Z",
+      "page": "EMPLOYEES"
+    },
+    {
+      "id": "d0e9",
+      "userName": "Abdulloh Abdumalikov",
+      "action": "create",
+      "date": "2026-02-23T05:53:03.554Z",
+      "page": "EMPLOYEES"
+    },
+    {
+      "id": "fa02",
+      "userName": "Abdulloh Abdumalikov",
+      "action": "update",
+      "date": "2026-02-25T05:40:56.584Z",
+      "page": "EMPLOYEES"
+    },
+    {
+      "id": "1a61",
+      "userName": "Abdulloh Abdumalikov",
+      "action": "update",
+      "date": "2026-02-25T05:41:33.773Z",
+      "page": "EMPLOYEES"
+    },
+    {
+      "id": "f92f",
+      "userName": "Abdulloh Abdumalikov",
+      "action": "update",
+      "date": "2026-02-25T05:42:16.140Z",
+      "page": "EMPLOYEES"
+    },
+    {
+      "id": "aa36",
+      "userName": "Abdulloh Abdumalikov",
+      "action": "update",
+      "date": "2026-02-25T05:42:21.847Z",
+      "page": "EMPLOYEES"
+    },
+    {
+      "id": "acc8",
+      "userName": "Abdulloh Abdumalikov",
+      "action": "update",
+      "date": "2026-02-25T05:44:32.058Z",
+      "page": "EMPLOYEES"
+    },
+    {
+      "id": "1f3a",
+      "userName": "Abdulloh Abdumalikov",
+      "action": "create",
+      "date": "2026-02-25T05:45:36.484Z",
+      "page": "EMPLOYEES"
+    },
+    {
+      "id": "10d2",
+      "userName": "Abdulloh Abdumalikov",
+      "action": "CREATE",
+      "date": "2026-02-27T01:26:41.283Z",
+      "page": "TASKS"
+    },
+    {
+      "id": "b9d2",
+      "userName": "Abdulloh Abdumalikov",
+      "action": "DELETE",
+      "date": "2026-02-27T02:24:32.990Z",
+      "page": "TASKS"
+    },
+    {
+      "id": "a5c6",
+      "userName": "Abdulloh Abdumalikov",
+      "action": "UPDATE",
+      "date": "2026-02-27T02:41:21.097Z",
+      "page": "COMPLAINTS"
+    },
+    {
+      "id": "610b",
+      "userName": "Abdulloh Abdumalikov",
+      "action": "UPDATE",
+      "date": "2026-02-27T02:41:22.057Z",
+      "page": "COMPLAINTS"
+    },
+    {
+      "id": "aad1",
+      "userName": "Abdulloh Abdumalikov",
+      "action": "UPDATE",
+      "date": "2026-02-27T02:41:22.437Z",
+      "page": "COMPLAINTS"
+    },
+    {
+      "id": "6c5a",
+      "userName": "Abdulloh Abdumalikov",
+      "action": "UPDATE",
+      "date": "2026-02-27T02:41:22.838Z",
+      "page": "COMPLAINTS"
+    },
+    {
+      "id": "a8cc",
+      "userName": "Abdulloh Abdumalikov",
+      "action": "UPDATE",
+      "date": "2026-02-27T02:41:23.236Z",
+      "page": "COMPLAINTS"
+    },
+    {
+      "id": "0071",
+      "userName": "Abdulloh Abdumalikov",
+      "action": "UPDATE",
+      "date": "2026-02-27T02:41:23.975Z",
+      "page": "COMPLAINTS"
+    },
+    {
+      "id": "bcc0",
+      "userName": "Abdulloh Abdumalikov",
+      "action": "UPDATE",
+      "date": "2026-02-27T02:41:24.316Z",
+      "page": "COMPLAINTS"
+    },
+    {
+      "id": "34ce",
+      "userName": "Abdulloh Abdumalikov",
+      "action": "UPDATE",
+      "date": "2026-02-27T02:41:24.613Z",
+      "page": "COMPLAINTS"
+    },
+    {
+      "id": "88e6",
+      "userName": "Abdulloh Abdumalikov",
+      "action": "UPDATE",
+      "date": "2026-02-27T02:41:24.940Z",
+      "page": "COMPLAINTS"
+    },
+    {
+      "id": "6104",
+      "userName": "Abdulloh Abdumalikov",
+      "action": "UPDATE",
+      "date": "2026-02-27T02:41:25.197Z",
+      "page": "COMPLAINTS"
+    },
+    {
+      "id": "dd24",
+      "userName": "Abdulloh Abdumalikov",
+      "action": "UPDATE",
+      "date": "2026-02-27T02:41:25.845Z",
+      "page": "COMPLAINTS"
+    },
+    {
+      "id": "e3cc",
+      "userName": "Abdulloh Abdumalikov",
+      "action": "UPDATE",
+      "date": "2026-02-27T02:41:26.131Z",
+      "page": "COMPLAINTS"
+    },
+    {
+      "id": "128a",
+      "userName": "Abdulloh Abdumalikov",
+      "action": "UPDATE",
+      "date": "2026-02-27T02:41:26.257Z",
+      "page": "COMPLAINTS"
+    },
+    {
+      "id": "94e7",
+      "userName": "Abdulloh Abdumalikov",
+      "action": "UPDATE",
+      "date": "2026-02-27T02:41:26.657Z",
+      "page": "COMPLAINTS"
+    },
+    {
+      "id": "9d9d",
+      "userName": "Abdulloh Abdumalikov",
+      "action": "UPDATE",
+      "date": "2026-02-27T02:41:28.155Z",
+      "page": "COMPLAINTS"
+    },
+    {
+      "id": "7797",
+      "userName": "Abdulloh Abdumalikov",
+      "action": "UPDATE",
+      "date": "2026-02-27T02:41:28.556Z",
+      "page": "COMPLAINTS"
+    },
+    {
+      "id": "de51",
+      "userName": "Abdulloh Abdumalikov",
+      "action": "UPDATE",
+      "date": "2026-02-27T02:41:28.614Z",
+      "page": "COMPLAINTS"
+    },
+    {
+      "id": "887b",
+      "userName": "Abdulloh Abdumalikov",
+      "action": "UPDATE",
+      "date": "2026-02-27T02:41:42.008Z",
+      "page": "COMPLAINTS"
+    },
+    {
+      "id": "4ffa",
+      "userName": "Abdulloh Abdumalikov",
+      "action": "UPDATE",
+      "date": "2026-02-27T02:41:47.620Z",
+      "page": "COMPLAINTS"
+    },
+    {
+      "id": "a7e6",
+      "userName": "Abdulloh Abdumalikov",
+      "action": "UPDATE",
+      "date": "2026-02-27T02:41:54.106Z",
+      "page": "COMPLAINTS"
+    },
+    {
+      "id": "a298",
+      "userName": "Abdulloh Abdumalikov",
+      "action": "UPDATE",
+      "date": "2026-02-27T04:01:00.549Z",
+      "page": "COMPLAINTS"
+    },
+    {
+      "id": "592d",
+      "userName": "Abdulloh Abdumalikov",
+      "action": "UPDATE",
+      "date": "2026-02-27T04:01:01.863Z",
+      "page": "COMPLAINTS"
+    },
+    {
+      "id": "9b21",
+      "userName": "Abdulloh Abdumalikov",
+      "action": "DELETE",
+      "date": "2026-02-27T05:47:36.411Z",
+      "page": "TASKS"
+    }
+  ],
+  "resignationLeaves": [
+    {
+      "id": "1",
+      "employeeId": 101,
+      "employeeName": "Abdulaziz Karimov",
+      "employeeEmail": "abdulaziz@gmail.com",
+      "department": "Frontend",
+      "position": "Frontend Developer",
+      "reason": "Personal reasons",
+      "description": "I would like to resign due to personal matters.",
+      "appliedDate": "2026-02-10",
+      "lastWorkingDate": "2026-02-25",
+      "noticePeriod": 15,
+      "status": "approved",
+      "approvedBy": null,
+      "approvedDate": null,
+      "rejectionReason": null,
+      "exitInterview": false,
+      "handoverCompleted": false,
+      "createdAt": "2026-02-10T09:00:00Z",
+      "updatedAt": "2026-02-10T09:00:00Z"
+    },
+    {
+      "id": "c7d7",
+      "department": "men ketoman",
+      "position": "a4",
+      "reason": "",
+      "description": "",
+      "today": "2026-02-23",
+      "yesterday": "2026-02-22",
+      "status": "pending"
+    },
+    {
+      "id": "0984",
+      "department": "men ketoman",
+      "position": "abduloh halaqid berypti",
+      "reason": "abduloh ketttttttttt",
+      "description": "men ketim\n",
+      "today": "2026-02-23",
+      "yesterday": "2026-02-22",
+      "status": "pending"
+    }
+  ],
+  "vacations": [
+    {
+      "employeeId": "EMP003",
+      "employeeName": "Rustam K.",
+      "destination": "Italy",
+      "startDate": "2026-01-05",
+      "endDate": "2026-01-15",
+      "purpose": "tourism",
+      "status": "pending",
+      "id": "20c0"
+    },
+    {
+      "employeeId": "EMP004",
+      "employeeName": "Nilufar A.",
+      "destination": "Maldives",
+      "startDate": "2026-02-10",
+      "endDate": "2026-02-20",
+      "purpose": "relaxation",
+      "status": "approved",
+      "id": "e4b3"
+    }
+  ],
+  "announcements": [
+    {
+      "id": "a1f3c9b2-7d44-4c1a-9f77-11aa22bb33cc",
+      "title": "Yangi O‘quv Semestri Boshlandi",
+      "text": "Hurmatli talabalar! 2026-yil bahorgi semestr rasman boshlandi. Dars jadvali yangilandi va tizimga joylandi.",
+      "date": "2026-02-01T08:00:00.000Z",
+      "status": "Active"
+    },
+    {
+      "id": "b2e4d0c3-8a55-4d2b-8e88-22bb33cc44dd",
+      "title": "Texnik Profilaktika Ishlari",
+      "text": "Serverlarda texnik profilaktika ishlari olib borilishi sababli tizim 16-fevral kuni soat 02:00 dan 04:00 gacha ishlamasligi mumkin.",
+      "date": "2026-02-14T12:30:00.000Z",
+      "status": "Active"
+    },
+    {
+      "id": "c3f5e1d4-9b66-4e3c-7f99-33cc44dd55ee",
+      "title": "Stipendiya Natijalari E'lon Qilindi",
+      "text": "2026-yil yanvar oyi uchun stipendiya natijalari e'lon qilindi. Natijalarni shaxsiy kabinet orqali ko‘rishingiz mumkin.",
+      "date": "2026-01-28T09:15:00.000Z",
+      "status": "Active"
+    },
+    {
+      "id": "d4a6f2e5-0c77-4f4d-6a10-44dd55ee66ff",
+      "title": "Sport Musobaqalari",
+      "text": "Universitet miqyosida futbol va voleybol bo‘yicha musobaqalar tashkil etiladi. Ro‘yxatdan o‘tish 20-fevralgacha davom etadi.",
+      "date": "2026-02-10T10:45:00.000Z",
+      "status": "Active"
+    },
+    {
+      "id": "e5b7a3f6-1d88-405e-5b21-55ee66ff77aa",
+      "title": "Kutubxona Ish Vaqti O‘zgardi",
+      "text": "Kutubxona ish vaqti 08:00 dan 20:00 gacha uzaytirildi. Dam olish kunlari ham xizmat ko‘rsatadi.",
+      "date": "2026-01-22T14:00:00.000Z",
+      "status": "Active"
+    },
+    {
+      "id": "f6c8b4a7-2e99-416f-4c32-66ff77aa88bb",
+      "title": "Grant Tanlovi",
+      "text": "Xorijiy grant dasturlariga hujjat topshirish boshlandi. Batafsil ma’lumot xalqaro aloqalar bo‘limida.",
+      "date": "2026-02-05T11:20:00.000Z",
+      "status": "Active"
+    },
+    {
+      "id": "07d9c5b8-3faa-4270-3d43-77aa88bb99cc",
+      "title": "14-Fevral Bayram Tadbiri",
+      "text": "14-fevral kuni soat 15:00 da madaniyat saroyida bayram tadbiri bo‘lib o‘tadi. Barchani taklif qilamiz!",
+      "date": "2026-02-12T16:00:00.000Z",
+      "status": "Active"
+    },
+    {
+      "id": "18e0d6c9-4abb-4381-2e54-88bb99cc00dd",
+      "title": "Amaliyot Dasturi",
+      "text": "3-bosqich talabalari uchun ishlab chiqarish amaliyoti 1-martdan boshlanadi. Yo‘llanmalar dekanatdan olinadi.",
+      "date": "2026-02-08T13:10:00.000Z",
+      "status": "Inactive"
+    },
+    {
+      "id": "29f1e7da-5bcc-4492-1f65-99cc00dd11ee",
+      "title": "Onlayn Seminar",
+      "text": "Sun’iy intellekt mavzusida onlayn seminar o‘tkaziladi. Ishtirok etish uchun ro‘yxatdan o‘ting.",
+      "date": "2026-02-03T17:25:00.000Z",
+      "status": "Active"
+    },
+    {
+      "id": "3a02f8eb-6cdd-4503-0g76-aadd11ee22ff",
+      "title": "Talabalar Yig‘ilishi",
+      "text": "Fakultet talabalari uchun umumiy yig‘ilish 18-fevral kuni 11:00 da 301-xonada bo‘lib o‘tadi.",
+      "date": "2026-02-15T09:40:00.000Z",
+      "status": "Active"
+    }
+  ],
+  "complaints": [
+    {
+      "id": "CPL003",
+      "employeeId": "EMP007",
+      "employeeName": "Sherzod Rasulov",
+      "title": "Request for New Chair",
+      "description": "My office chair is broken and needs replacement.",
+      "date": "2025-12-19",
+      "status": "pending"
+    },
+    {
+      "id": "CPL002",
+      "employeeId": "EMP006",
+      "employeeName": "Malika Tursunova",
+      "title": "Internet Connectivity Issue",
+      "description": "Internet connection keeps dropping in the design department.",
+      "date": "2025-12-20",
+      "status": "reviewed"
+    },
+    {
+      "id": "CPL002",
+      "employeeId": "EMP006",
+      "employeeName": "Islombek Qodirov",
+      "title": "Internet Connectivity Issue",
+      "description": "Internet connection keeps dropping in the design department.",
+      "date": "2025-12-20",
+      "status": "reviewed"
+    }
+  ],
+  "employeesDeleted": [],
+  "tasksDeleted": [
+    {
+      "id": "a59e",
+      "taskName": "Dashboard",
+      "employeeName": "Islombek Qodirov",
+      "deadline": "2026-01-30",
+      "status": "pending"
+    },
+    {
+      "id": "d964",
+      "taskName": "elshod cjjbfjgvg",
+      "employeeName": "Sherzod Rasulov",
+      "deadline": "2025-12-02",
+      "status": "completed"
+    },
+    {
+      "id": "5396",
+      "taskName": "ilon dnkhfofggf",
+      "employeeName": "Bekzod Shokirov",
+      "deadline": "2026-02-03",
+      "status": "pending"
+    },
+    {
+      "id": "5ab2",
+      "taskName": "[jfhjfsfsfhisgffsgufugssg fkhfgdfgslfbjlskbfklfjkbefkjg",
+      "employeeName": "Sherzod Rasulov",
+      "deadline": "2026-02-20",
+      "status": "pending"
+    }
+  ],
+  "complaintsDeleted": [],
+  "announcementsDeleted": [
+    {
+      "id": "ea9e1f0d-c01b-4f15-87a1-d692701f89f3",
+      "title": "QWERTY",
+      "text": "qwerty",
+      "date": "2026-01-26T06:31:37.487Z",
+      "status": "Active"
+    }
+  ]
+}

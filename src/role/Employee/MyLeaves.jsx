@@ -1,7 +1,7 @@
 import { useState, useEffect, useMemo } from "react";
 import axios from "axios";
 import { FaFileSignature, FaTimes, FaCalendarAlt, FaCheckCircle, FaExclamationCircle } from "react-icons/fa";
-
+import React from "react";
 function MyLeaves() {
   const [data, setData] = useState([]);
   const [selectedYear, setSelectedYear] = useState("2026");
@@ -20,7 +20,8 @@ function MyLeaves() {
     try {
       setLoading(true);
       const res = await axios.get("http://localhost:5000/resignationLeaves");
-      const myData = res.data.filter(item => item.employeeName === user?.fullName);
+      const currentUserName = (user?.name || user?.fullName)?.trim().toLowerCase();
+      const myData = res.data.filter(item => item.employeeName?.trim().toLowerCase() === currentUserName);
       setData(myData);
     } catch (err) {
       console.error(err);
@@ -45,7 +46,7 @@ function MyLeaves() {
     e.preventDefault();
     const newItem = {
       ...form,
-      employeeName: user.fullName,
+      employeeName: user?.name || user?.fullName || "Employee",
       appliedDate: new Date().toISOString().split("T")[0],
       status: "pending",
     };
@@ -81,8 +82,8 @@ function MyLeaves() {
                   key={y}
                   onClick={() => setSelectedYear(y)}
                   className={`px-8 py-2.5 rounded-xl text-sm font-black transition-all ${selectedYear === y
-                      ? "bg-cyan-500 text-slate-950 shadow-lg shadow-cyan-500/20"
-                      : "text-slate-400 hover:text-white"
+                    ? "bg-cyan-500 text-slate-950 shadow-lg shadow-cyan-500/20"
+                    : "text-slate-400 hover:text-white"
                     }`}
                 >
                   {y} Year

@@ -138,9 +138,9 @@ function Sidebar({ isCollapsed }) {
             >
               <div
                 className={`
-                  group relative flex items-center gap-4 px-5 py-3 transition-all duration-300
+                  relative flex items-center gap-4 px-5 py-3 transition-all duration-300
                   ${isActive
-                    ? 'bg-gradient-to-r from-cyan-400/20 to-transparent text-cyan-300 font-semibold rounded-xl border-l-4 border-cyan-400 shadow-[inset_0_0_15px_rgba(34,211,238,0.1)]'
+                    ? 'bg-gradient-to-r from-cyan-400/20 to-transparent text-cyan-300 font-semibold rounded-xl border-l-4 border-cyan-400'
                     : 'text-gray-400 hover:bg-white/5 hover:text-cyan-300 rounded-xl hover:translate-x-1'
                   }
                   ${isCollapsed ? 'justify-center' : ''}
@@ -151,9 +151,7 @@ function Sidebar({ isCollapsed }) {
                 )}
 
                 <span
-                  className={`relative text-2xl flex-shrink-0 transition-transform duration-500 ease-bounce ${isActive
-                      ? 'text-cyan-300 scale-125 drop-shadow-[0_0_8px_rgba(34,211,238,0.8)] animate-bounce'
-                      : 'text-gray-500 group-hover:scale-110 group-hover:-rotate-12 group-hover:text-cyan-200'
+                  className={`relative text-2xl flex-shrink-0 ${isActive ? 'text-cyan-300' : 'text-gray-500'
                     }`}
                 >
                   {item.icon}

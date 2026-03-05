@@ -96,9 +96,8 @@ function EmployeeSidebar({ isCollapsed }) {
       `}
     >
       <h1
-        className={`text-3xl font-bold text-cyan-400 flex items-center gap-3 mb-10 tracking-wide ${
-          isCollapsed ? 'justify-center' : ''
-        }`}
+        className={`text-3xl font-bold text-cyan-400 flex items-center gap-3 mb-10 tracking-wide ${isCollapsed ? 'justify-center' : ''
+          }`}
       >
         <MdDashboard className="text-cyan-300 drop-shadow-[0_0_8px_rgba(34,211,238,0.8)] flex-shrink-0" />
         {!isCollapsed && <span>Adminly</span>}
@@ -115,7 +114,7 @@ function EmployeeSidebar({ isCollapsed }) {
         <FaUserCircle className="text-4xl text-cyan-400 flex-shrink-0" />
         {!isCollapsed && (
           <div className="overflow-hidden">
-            <p className="font-semibold truncate text-white">{user.fullName}</p>
+            <p className="font-semibold truncate text-white">{user?.name}</p>
             <p className="text-sm text-cyan-300 truncate">{user.role}</p>
           </div>
         )}
@@ -132,11 +131,10 @@ function EmployeeSidebar({ isCollapsed }) {
             >
               <div
                 className={`
-                  relative flex items-center gap-4 px-5 py-3 transition-all duration-300
-                  ${
-                    isActive
-                      ? 'bg-gradient-to-r from-cyan-400/20 to-transparent text-cyan-300 font-semibold rounded-xl border-l-4 border-cyan-400'
-                      : 'text-gray-400 hover:bg-white/5 hover:text-cyan-300 rounded-xl hover:translate-x-1'
+                  group relative flex items-center gap-4 px-5 py-3 transition-all duration-300
+                  ${isActive
+                    ? 'bg-gradient-to-r from-cyan-400/20 to-transparent text-cyan-300 font-semibold rounded-xl border-l-4 border-cyan-400 shadow-[inset_0_0_15px_rgba(34,211,238,0.1)]'
+                    : 'text-gray-400 hover:bg-white/5 hover:text-cyan-300 rounded-xl hover:translate-x-1'
                   }
                   ${isCollapsed ? 'justify-center' : ''}
                 `}
@@ -146,9 +144,10 @@ function EmployeeSidebar({ isCollapsed }) {
                 )}
 
                 <span
-                  className={`relative text-2xl flex-shrink-0 ${
-                    isActive ? 'text-cyan-300' : 'text-gray-500'
-                  }`}
+                  className={`relative text-2xl flex-shrink-0 transition-transform duration-500 ease-bounce ${isActive
+                      ? 'text-cyan-300 scale-125 drop-shadow-[0_0_8px_rgba(34,211,238,0.8)] animate-bounce'
+                      : 'text-gray-500 group-hover:scale-110 group-hover:-rotate-12 group-hover:text-cyan-200'
+                    }`}
                 >
                   {item.icon}
                 </span>

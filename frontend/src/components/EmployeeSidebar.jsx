@@ -16,76 +16,69 @@ import {
 } from 'react-icons/md'
 import { FaUserCircle } from 'react-icons/fa'
 
-function Sidebar({ isCollapsed }) {
+function EmployeeSidebar({ isCollapsed }) {
   const location = useLocation()
   const navigate = useNavigate()
-  const [active, setActive] = useState(location.pathname.slice(9))
+  const [active, setActive] = useState(location.pathname.slice(12) || 'home')
 
   useEffect(() => {
-    setActive(location.pathname.slice(9))
+    setActive(location.pathname.slice(12))
   }, [location.pathname])
 
   const menu = [
     {
-      id: 'dashboard',
-      label: 'Dashboard',
+      id: 'home',
+      label: 'Home',
       icon: <MdDashboard />,
-      link: '/manager/dashboard',
+      link: '/employee/myhome',
     },
     {
-      id: 'employees',
-      label: 'Employees',
+      id: 'analitics',
+      label: 'MyAnalitics',
       icon: <MdPeople />,
-      link: '/manager/employees',
+      link: '/employee/myanalitics',
     },
     {
-      id: 'finance',
-      label: 'Finance',
+      id: 'profit',
+      label: 'MyProfit',
       icon: <MdAttachMoney />,
-      link: '/manager/finance',
+      link: '/employee/myprofit',
     },
-    { id: 'tasks', label: 'Tasks', icon: <MdTask />, link: '/manager/tasks' },
+    {
+      id: 'tasks',
+      label: 'MyTasks',
+      icon: <MdTask />,
+      link: '/employee/mytasks',
+    },
     {
       id: 'complaints',
-      label: 'Complaints',
+      label: 'MyComplaints',
       icon: <MdReport />,
-      link: '/manager/complaints',
+      link: '/employee/mycomplaints',
     },
     {
-      id: 'announcemenets',
-      label: 'Announcements',
+      id: 'announcements',
+      label: 'MyAnnouncements',
       icon: <MdAnnouncement />,
-      link: '/manager/announcemenets',
+      link: '/employee/myannouncements',
     },
     {
       id: 'vacations',
-      label: 'Vacations',
+      label: 'MyVacations',
       icon: <MdBeachAccess />,
-      link: '/manager/vacations',
+      link: '/employee/myvacations',
     },
     {
       id: 'leaves',
-      label: 'Leaves',
+      label: 'MyLeaves',
       icon: <MdPersonOff />,
-      link: '/manager/leaves',
+      link: '/employee/myleaves',
     },
     {
-      id: 'archieve',
-      label: 'Archieve',
-      icon: <MdArchive />,
-      link: '/manager/archieve',
-    },
-    {
-      id: 'settings',
-      label: 'Settings',
+      id: 'profile',
+      label: 'MyProfile',
       icon: <MdSettings />,
-      link: '/manager/settings',
-    },
-    {
-      id: 'logs',
-      label: 'Audit Logs',
-      icon: <MdHistory />,
-      link: '/manager/logs',
+      link: '/employee/myprofile',
     },
   ]
 
@@ -103,15 +96,16 @@ function Sidebar({ isCollapsed }) {
       `}
     >
       <h1
-        className={`text-3xl font-bold text-cyan-400 flex items-center gap-3 mb-10 tracking-wide ${isCollapsed ? 'justify-center' : ''
-          }`}
+        className={`text-3xl font-bold text-cyan-400 flex items-center gap-3 mb-10 tracking-wide ${
+          isCollapsed ? 'justify-center' : ''
+        }`}
       >
         <MdDashboard className="text-cyan-300 drop-shadow-[0_0_8px_rgba(34,211,238,0.8)] flex-shrink-0" />
         {!isCollapsed && <span>Adminly</span>}
       </h1>
 
       <div
-        onClick={() => navigate('/manager/settings')}
+        onClick={() => navigate('/employee/myprofile')}
         className={`
           flex items-center gap-3 mb-12 p-4 rounded-2xl bg-white/5 border border-white/10
           shadow-[0_0_20px_rgba(0,0,0,0.6)] cursor-pointer hover:bg-white/10 transition-all
@@ -121,7 +115,7 @@ function Sidebar({ isCollapsed }) {
         <FaUserCircle className="text-4xl text-cyan-400 flex-shrink-0" />
         {!isCollapsed && (
           <div className="overflow-hidden">
-            <p className="font-semibold truncate text-white">{user.name}</p>
+            <p className="font-semibold truncate text-white">{user.fullName}</p>
             <p className="text-sm text-cyan-300 truncate">{user.role}</p>
           </div>
         )}
@@ -138,10 +132,11 @@ function Sidebar({ isCollapsed }) {
             >
               <div
                 className={`
-                  group relative flex items-center gap-4 px-5 py-3 transition-all duration-300
-                  ${isActive
-                    ? 'bg-gradient-to-r from-cyan-400/20 to-transparent text-cyan-300 font-semibold rounded-xl border-l-4 border-cyan-400 shadow-[inset_0_0_15px_rgba(34,211,238,0.1)]'
-                    : 'text-gray-400 hover:bg-white/5 hover:text-cyan-300 rounded-xl hover:translate-x-1'
+                  relative flex items-center gap-4 px-5 py-3 transition-all duration-300
+                  ${
+                    isActive
+                      ? 'bg-gradient-to-r from-cyan-400/20 to-transparent text-cyan-300 font-semibold rounded-xl border-l-4 border-cyan-400'
+                      : 'text-gray-400 hover:bg-white/5 hover:text-cyan-300 rounded-xl hover:translate-x-1'
                   }
                   ${isCollapsed ? 'justify-center' : ''}
                 `}
@@ -151,10 +146,9 @@ function Sidebar({ isCollapsed }) {
                 )}
 
                 <span
-                  className={`relative text-2xl flex-shrink-0 transition-transform duration-500 ease-bounce ${isActive
-                      ? 'text-cyan-300 scale-125 drop-shadow-[0_0_8px_rgba(34,211,238,0.8)] animate-bounce'
-                      : 'text-gray-500 group-hover:scale-110 group-hover:-rotate-12 group-hover:text-cyan-200'
-                    }`}
+                  className={`relative text-2xl flex-shrink-0 ${
+                    isActive ? 'text-cyan-300' : 'text-gray-500'
+                  }`}
                 >
                   {item.icon}
                 </span>
@@ -170,4 +164,4 @@ function Sidebar({ isCollapsed }) {
   )
 }
 
-export default Sidebar
+export default EmployeeSidebar

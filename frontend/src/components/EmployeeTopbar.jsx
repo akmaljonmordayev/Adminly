@@ -53,7 +53,7 @@ function EmployeeTopBar({ onToggle }) {
             ,
           </span>
           <span className="relative">
-            <span className="text-cyan-400">{user?.name}!</span>
+            <span className="text-cyan-400">{user.fullName}!</span>
           </span>
         </h2>
       </div>

@@ -505,7 +505,14 @@
       "taskName": "Code Review",
       "employeeName": "Akmaljon Mordayev",
       "deadline": "2026-02-15",
-      "status": "pending"
+      "status": "in process"
+    },
+    {
+      "taskName": "Fix computers",
+      "employeeName": "Malika Tursunova",
+      "deadline": "2026-03-20",
+      "status": "pending",
+      "id": "2MUQVsO"
     }
   ],
   "logs": [
@@ -606,6 +613,13 @@
       "date": "2026-03-04T09:03:47.683Z",
       "page": "VACATIONS",
       "id": 14
+    },
+    {
+      "userName": "Mohinur Sulaymonqulova",
+      "action": "CREATE",
+      "date": "2026-03-05T20:59:14.430Z",
+      "page": "TASKS",
+      "id": 15
     }
   ],
   "resignationLeaves": [
@@ -677,6 +691,22 @@
       "description": "AC unit in Room 402 is leaking.",
       "date": "2026-02-28",
       "status": "resolved"
+    },
+    {
+      "title": "liFT ISHMALIYAPTI",
+      "description": "ILTIMOS LIFTNI TUZATIB BERILA UMUMAN ISHLAMIYAPTI",
+      "employeeName": "Employee",
+      "date": "2026-03-05",
+      "status": "pending",
+      "id": "fmQVgoT"
+    },
+    {
+      "title": "Table",
+      "description": "The table of this room was broken!",
+      "employeeName": "Employee",
+      "date": "2026-03-05",
+      "status": "pending",
+      "id": "J2kLaZz"
     }
   ],
   "employeesDeleted": [],

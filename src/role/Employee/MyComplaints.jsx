@@ -1,12 +1,18 @@
 import React, { useEffect, useState, useMemo } from "react";
 import axios from "axios";
-import { FaExclamationCircle, FaCheckCircle, FaClock, FaCalendarAlt, FaPlus } from "react-icons/fa";
+import { FaExclamationCircle, FaCheckCircle, FaClock, FaCalendarAlt, FaPlus, FaTimes, FaEdit, FaTrash } from "react-icons/fa";
 
 function MyComplaints() {
   const [allComplaints, setAllComplaints] = useState([]);
   const [selectedYear, setSelectedYear] = useState("2026");
   const [activeFilter, setActiveFilter] = useState("all");
   const [loading, setLoading] = useState(true);
+  const [open, setOpen] = useState(false);
+  const [editId, setEditId] = useState(null);
+  const [form, setForm] = useState({
+    title: "",
+    description: "",
+  });
 
   const user = JSON.parse(localStorage.getItem("user"));
 
@@ -15,8 +21,9 @@ function MyComplaints() {
       try {
         setLoading(true);
         const res = await axios.get("http://localhost:5000/complaints");
-        // Filter by user's full name
-        const userComplaints = res.data.filter(c => c.employeeName === user?.fullName);
+        const currentUserName = (user?.name || user?.fullName)?.trim().toLowerCase();
+        // Filter by user's name
+        const userComplaints = res.data.filter(c => c.employeeName?.trim().toLowerCase() === currentUserName);
         setAllComplaints(userComplaints);
       } catch (err) {
         console.error("Fetch complaints error:", err);
@@ -43,6 +50,62 @@ function MyComplaints() {
     }
   };
 
+  const handleChange = (e) => {
+    setForm({ ...form, [e.target.name]: e.target.value });
+  };
+
+  const submit = async (e) => {
+    e.preventDefault();
+
+    if (editId) {
+      try {
+        const res = await axios.put(`http://localhost:5000/complaints/${editId}`, {
+          ...allComplaints.find(c => c.id === editId),
+          title: form.title,
+          description: form.description,
+        });
+        setAllComplaints(allComplaints.map(c => c.id === editId ? res.data : c));
+        setOpen(false);
+        setEditId(null);
+        setForm({ title: "", description: "" });
+      } catch (err) {
+        console.error("Edit failed:", err);
+      }
+    } else {
+      const newItem = {
+        ...form,
+        employeeName: user?.name || user?.fullName || "Employee",
+        date: new Date().toISOString().split("T")[0],
+        status: "pending",
+      };
+
+      try {
+        const res = await axios.post("http://localhost:5000/complaints", newItem);
+        setAllComplaints([...allComplaints, res.data]);
+        setOpen(false);
+        setForm({ title: "", description: "" });
+      } catch (err) {
+        console.error("Submit failed:", err);
+      }
+    }
+  };
+
+  const handleDelete = async (id) => {
+    if (!window.confirm("Are you sure you want to delete this complaint?")) return;
+    try {
+      await axios.delete(`http://localhost:5000/complaints/${id}`);
+      setAllComplaints(allComplaints.filter(c => c.id !== id));
+    } catch (err) {
+      console.error("Delete failed:", err);
+    }
+  };
+
+  const handleEdit = (item) => {
+    setEditId(item.id);
+    setForm({ title: item.title, description: item.description });
+    setOpen(true);
+  };
+
   if (loading) return <div className="min-h-screen bg-[#020617] flex items-center justify-center text-cyan-400 font-bold animate-pulse">LOADING RECORDS...</div>;
 
   return (
@@ -64,8 +127,8 @@ function MyComplaints() {
                 key={y}
                 onClick={() => setSelectedYear(y)}
                 className={`px-8 py-2.5 rounded-xl text-sm font-black transition-all ${selectedYear === y
-                    ? "bg-rose-500 text-white shadow-lg shadow-rose-500/20"
-                    : "text-slate-400 hover:text-white"
+                  ? "bg-rose-500 text-white shadow-lg shadow-rose-500/20"
+                  : "text-slate-400 hover:text-white"
                   }`}
               >
                 {y} Year
@@ -96,7 +159,7 @@ function MyComplaints() {
               <option value="pending">PENDING</option>
               <option value="resolved">RESOLVED</option>
             </select>
-            <button className="flex items-center gap-2 bg-rose-500 hover:bg-rose-600 px-6 py-4 rounded-xl text-white font-black text-xs uppercase transition-all shadow-lg shadow-rose-500/20">
+            <button onClick={() => { setEditId(null); setForm({ title: "", description: "" }); setOpen(true); }} className="flex items-center gap-2 bg-rose-500 hover:bg-rose-600 px-6 py-4 rounded-xl text-white font-black text-xs uppercase transition-all shadow-lg shadow-rose-500/20">
               <FaPlus /> NEW ISSUE
             </button>
           </div>
@@ -136,9 +199,18 @@ function MyComplaints() {
                     <FaClock className="text-amber-500" /> {item.status === "resolved" ? "CLOSED" : "IN REVIEW"}
                   </div>
                 </div>
-                <button className="text-[10px] font-black text-rose-500 uppercase tracking-[0.2em] group-hover:translate-x-1 transition-transform">
-                  VIEW LOGS →
-                </button>
+                <div className="flex items-center gap-3">
+                  {item.status !== "resolved" && (
+                    <>
+                      <button onClick={() => handleEdit(item)} className="text-slate-400 hover:text-white transition-colors bg-slate-800/50 p-2 rounded-lg">
+                        <FaEdit size={14} />
+                      </button>
+                      <button onClick={() => handleDelete(item.id)} className="text-rose-500/70 hover:text-rose-500 transition-colors bg-rose-500/10 p-2 rounded-lg">
+                        <FaTrash size={14} />
+                      </button>
+                    </>
+                  )}
+                </div>
               </div>
             </div>
           ))}
@@ -150,6 +222,35 @@ function MyComplaints() {
           )}
         </div>
       </div>
+
+      {open && (
+        <div className="fixed inset-0 bg-slate-950/90 backdrop-blur-xl flex items-center justify-center z-50 p-6 overflow-y-auto" onClick={() => setOpen(false)}>
+          <div className="bg-[#0f172a] border border-white/10 w-full max-w-2xl rounded-[3rem] p-12 relative shadow-2xl animate-in zoom-in duration-300" onClick={e => e.stopPropagation()}>
+            <button onClick={() => setOpen(false)} className="absolute top-8 right-8 text-slate-500 hover:text-white transition">
+              <FaTimes size={24} />
+            </button>
+            <h2 className="text-4xl font-black text-white mb-4 italic tracking-tighter uppercase">{editId ? "Edit" : "New"} <span className="text-rose-500">Complaint</span></h2>
+            <p className="text-slate-500 font-bold uppercase tracking-widest text-[10px] opacity-60 mb-10">{editId ? "UPDATE ISSUE DOCUMENTATION" : "FILE A NEW ISSUE DOCUMENTATION"}</p>
+
+            <form onSubmit={submit} className="space-y-6">
+              <div>
+                <label className="text-[10px] font-black text-slate-500 uppercase tracking-widest mb-2 block">Issue Title</label>
+                <input name="title" value={form.title} placeholder="E.G. BROKEN EQUIPMENT" onChange={handleChange} className="w-full bg-slate-950/50 border border-slate-800 p-4 rounded-xl text-white font-bold outline-none focus:border-rose-500 transition-all text-sm uppercase tracking-widest" required />
+              </div>
+
+              <div>
+                <label className="text-[10px] font-black text-slate-500 uppercase tracking-widest mb-2 block">Detailed Description</label>
+                <textarea name="description" value={form.description} placeholder="PROVIDE FULL CONTEXT FOR THE ISSUE..." onChange={handleChange} className="w-full bg-slate-950/50 border border-slate-800 p-4 rounded-xl text-white font-medium outline-none focus:border-rose-500 transition-all text-sm min-h-[150px] resize-none" required />
+              </div>
+
+              <div className="flex justify-between items-center pt-8 border-t border-white/5">
+                <button type="button" onClick={() => setOpen(false)} className="text-slate-500 font-black uppercase text-[10px] tracking-widest hover:text-white transition">DISCARD MOTION</button>
+                <button className="bg-rose-500 hover:bg-rose-600 px-10 py-4 rounded-2xl text-white font-black text-xs uppercase transition-all shadow-lg shadow-rose-500/20">{editId ? "SAVE CHANGES" : "FILE COMPLAINT"}</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

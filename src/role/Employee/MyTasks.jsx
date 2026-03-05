@@ -18,18 +18,19 @@ function MyTasks() {
   const [selectedTask, setSelectedTask] = useState(null);
 
   const user = JSON.parse(localStorage.getItem("user"));
-  const employeeName = user?.fullName?.trim().toLowerCase();
+  const employeeName = user?.name?.trim().toLowerCase();
 
   useEffect(() => {
     const fetchTasks = async () => {
       try {
         const res = await axios.get("http://localhost:5000/tasks");
 
+        const currentUserName = (user?.name || user?.fullName)?.trim().toLowerCase();
+
         const filteredTasks = res.data.filter(
           (task) =>
-            task.employeeName &&
-            task.employeeName.trim().toLowerCase() === employeeName &&
-            task.deadline.startsWith(selectedYear)
+            task.employeeName?.trim().toLowerCase() === currentUserName &&
+            task.deadline?.startsWith(selectedYear)
         );
 
         setTasks(filteredTasks);
@@ -108,8 +109,8 @@ function MyTasks() {
               key={y}
               onClick={() => setSelectedYear(y)}
               className={`px-8 py-2.5 rounded-xl text-sm font-black transition-all ${selectedYear === y
-                  ? "bg-cyan-500 text-slate-950 shadow-lg shadow-cyan-500/20"
-                  : "text-slate-400 hover:text-white"
+                ? "bg-cyan-500 text-slate-950 shadow-lg shadow-cyan-500/20"
+                : "text-slate-400 hover:text-white"
                 }`}
             >
               {y} Year
@@ -202,9 +203,15 @@ function MyTasks() {
         ))}
       </div>
 
-      {!filteredData.length && (
-        <div className="max-w-6xl mx-auto py-32 text-center bg-slate-900/20 border border-dashed border-slate-800 rounded-[3rem]">
-          <p className="text-slate-500 font-bold uppercase tracking-[0.4em]">NO TASKS REGISTERED FOR {selectedYear}</p>
+      {filteredData.length === 0 && (
+        <div className="max-w-6xl mx-auto py-32 flex flex-col items-center justify-center text-center bg-slate-900/20 border border-dashed border-slate-800 rounded-[3rem] mb-20">
+          <div className="w-24 h-24 mb-6 bg-cyan-500/10 rounded-full flex items-center justify-center text-cyan-500/50">
+            <HiOutlineClipboardList size={48} />
+          </div>
+          <h2 className="text-2xl font-black text-white italic tracking-tighter mb-2">ALL CAUGHT UP!</h2>
+          <p className="text-slate-500 font-bold uppercase tracking-[0.2em] text-xs max-w-md mx-auto">
+            CURRENTLY NO TASKS ASSIGNED TO YOU FOR {selectedYear}. ENJOY YOUR FREE TIME OR CHECK BACK LATER.
+          </p>
         </div>
       )}
 
