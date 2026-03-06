@@ -6,6 +6,7 @@ import {
   FaEyeSlash,
 } from 'react-icons/fa'
 import axios from 'axios'
+import { useNotifications } from '../../context/NotificationContext'
 
 function MyProfile() {
   const user = JSON.parse(localStorage.getItem('user'))
@@ -13,11 +14,12 @@ function MyProfile() {
   const [open, setOpen] = useState(false)
   const [inpType, setInpType] = useState(false)
   const [eye, setEye] = useState(false)
+  const { isSoundEnabled, toggleSound, isEmailEnabled, toggleEmail } = useNotifications()
 
   // SETTINGS STATE
   const [settings, setSettings] = useState({
-    notifications: true,
-    emailAlerts: false,
+    notifications: isSoundEnabled,
+    emailAlerts: isEmailEnabled,
     twoFactor: false,
     privateMode: false,
     autoLogout: true,
@@ -85,18 +87,18 @@ function MyProfile() {
   ]
 
   return (
-    <main className="min-h-screen bg-[#020617] p-6 font-sans">
+    <main className="min-h-screen bg-[var(--bg-primary)] p-6 font-sans">
       <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-6">
 
         {/* PROFILE */}
-        <section className="rounded-2xl bg-[#0b1220] border border-cyan-900/50 p-8 shadow-xl flex flex-col justify-between min-h-[550px]">
+        <section className="rounded-2xl bg-[var(--card-bg)] border border-cyan-500/20 p-8 shadow-xl flex flex-col justify-between min-h-[550px] transition-colors">
           <div>
             <div className="flex items-center gap-5 mb-10">
               <div className="w-16 h-16 rounded-xl bg-cyan-600/20 flex items-center justify-center text-cyan-400 text-3xl">
                 <FaUserAlt />
               </div>
               <div>
-                <h2 className="text-white text-2xl font-bold">
+                <h2 className="text-[var(--text-primary)] text-2xl font-bold">
                   {data.fullName}
                 </h2>
                 <p className="text-cyan-500 text-xs font-bold uppercase tracking-widest">
@@ -106,9 +108,9 @@ function MyProfile() {
             </div>
 
             <div className="space-y-5">
-              <div className="flex justify-between border-b border-cyan-900/30 pb-3">
-                <span className="text-cyan-400 text-sm">Email</span>
-                <span className="text-white text-sm">{data.email}</span>
+              <div className="flex justify-between border-b border-cyan-500/10 pb-3">
+                <span className="text-cyan-500 text-sm">Email</span>
+                <span className="text-[var(--text-primary)] text-sm">{data.email}</span>
               </div>
 
               <div className="flex justify-between border-b border-cyan-900/30 pb-3">
@@ -118,18 +120,18 @@ function MyProfile() {
                   readOnly
                   value={data.password}
                   onClick={() => setInpType(!inpType)}
-                  className="text-white text-right bg-transparent outline-none cursor-pointer"
+                  className="text-[var(--text-primary)] text-right bg-transparent outline-none cursor-pointer"
                 />
               </div>
 
-              <div className="flex justify-between border-b border-cyan-900/30 pb-3">
-                <span className="text-cyan-400 text-sm">Hire Date</span>
-                <span className="text-white text-sm">{data.hireDate}</span>
+              <div className="flex justify-between border-b border-cyan-500/10 pb-3">
+                <span className="text-cyan-500 text-sm">Hire Date</span>
+                <span className="text-[var(--text-primary)] text-sm">{data.hireDate}</span>
               </div>
 
 
-              <div className="flex justify-between border-b border-cyan-900/30 pb-3">
-                <span className="text-cyan-400 text-sm">Role</span>
+              <div className="flex justify-between border-b border-cyan-500/10 pb-3">
+                <span className="text-cyan-500 text-sm">Role</span>
                 <span className="text-cyan-300 text-sm font-bold uppercase">
                   {data.role}
                 </span>
@@ -146,33 +148,34 @@ function MyProfile() {
         </section>
 
         {/* SETTINGS (rasmdagidek) */}
-        <section className="rounded-2xl bg-gradient-to-b from-[#020617] via-[#020617] to-[#030b1f] border border-cyan-900/40 p-8 shadow-xl min-h-[550px]">
+        <section className="rounded-2xl bg-[var(--card-bg)] border border-cyan-500/20 p-8 shadow-xl min-h-[550px] transition-colors">
           <div className="space-y-8">
             {settingList.map((item) => (
               <div key={item.key} className="flex items-center justify-between">
-                <span className="text-white text-[15px]">
+                <span className="text-[var(--text-primary)] text-[15px]">
                   {item.label}
                 </span>
 
                 <button
-                  onClick={() =>
+                  onClick={() => {
+                    const newVal = !settings[item.key];
                     setSettings((prev) => ({
                       ...prev,
-                      [item.key]: !prev[item.key],
-                    }))
-                  }
-                  className={`w-16 h-8 flex items-center rounded-full p-1 transition duration-300 ${
-                    settings[item.key]
-                      ? 'bg-cyan-500'
-                      : 'bg-[#1e293b]'
-                  }`}
+                      [item.key]: newVal,
+                    }));
+                    if (item.key === 'notifications') toggleSound(newVal);
+                    if (item.key === 'emailAlerts') toggleEmail(newVal);
+                  }}
+                  className={`w-16 h-8 flex items-center rounded-full p-1 transition duration-300 ${settings[item.key]
+                    ? 'bg-cyan-500'
+                    : 'bg-[#1e293b]'
+                    }`}
                 >
                   <div
-                    className={`w-6 h-6 bg-white rounded-full shadow transform transition duration-300 ${
-                      settings[item.key]
-                        ? 'translate-x-8'
-                        : 'translate-x-0'
-                    }`}
+                    className={`w-6 h-6 bg-white rounded-full shadow transform transition duration-300 ${settings[item.key]
+                      ? 'translate-x-8'
+                      : 'translate-x-0'
+                      }`}
                   />
                 </button>
               </div>
@@ -184,7 +187,7 @@ function MyProfile() {
       {/* MODAL */}
       {open && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-sm p-4">
-          <div className="w-full max-w-md rounded-2xl bg-[#0b1220] border border-cyan-500/30 p-8 relative">
+          <div className="w-full max-w-md rounded-2xl bg-[var(--card-bg)] border border-cyan-500/30 p-8 relative transition-colors">
             <button
               onClick={() => setOpen(false)}
               className="absolute top-4 right-4 text-cyan-400"
@@ -192,7 +195,7 @@ function MyProfile() {
               <FaTimes />
             </button>
 
-            <h2 className="text-white text-xl font-bold mb-6">
+            <h2 className="text-[var(--text-primary)] text-xl font-bold mb-6">
               Update Profile
             </h2>
 
@@ -202,7 +205,7 @@ function MyProfile() {
                 value={newFullname}
                 onChange={(e) => setNewFullname(e.target.value)}
                 placeholder="Full Name"
-                className="w-full bg-[#020617] border border-cyan-900 rounded-lg px-4 py-3 text-white outline-none"
+                className="w-full bg-[var(--bg-primary)] border border-cyan-500/20 rounded-lg px-4 py-3 text-[var(--text-primary)] outline-none focus:border-cyan-500/50 transition-all"
               />
 
               <input
@@ -210,16 +213,16 @@ function MyProfile() {
                 value={newEmail}
                 onChange={(e) => setNewEmail(e.target.value)}
                 placeholder="Email"
-                className="w-full bg-[#020617] border border-cyan-900 rounded-lg px-4 py-3 text-white outline-none"
+                className="w-full bg-[var(--bg-primary)] border border-cyan-900 rounded-lg px-4 py-3 text-[var(--text-primary)] outline-none"
               />
 
-              <div className="flex items-center justify-between bg-[#020617] border border-cyan-900 rounded-lg px-4 py-3">
+              <div className="flex items-center justify-between bg-[var(--bg-primary)] border border-cyan-900 rounded-lg px-4 py-3">
                 <input
                   type={eye ? 'text' : 'password'}
                   value={newPassword}
                   onChange={(e) => setNewPassword(e.target.value)}
                   placeholder="Password"
-                  className="bg-transparent text-white outline-none"
+                  className="bg-transparent text-[var(--text-primary)] outline-none"
                 />
                 <span onClick={() => setEye(!eye)}>
                   {eye ? (

@@ -85,26 +85,26 @@ function Home() {
   const latestAnn = announcements[announcements.length - 1];
 
   if (loading) return (
-    <div className="min-h-screen bg-[#020617] flex items-center justify-center text-cyan-400 font-bold animate-pulse tracking-widest uppercase">
+    <div className="min-h-screen bg-[var(--bg-primary)] flex items-center justify-center text-cyan-500 font-bold animate-pulse tracking-widest uppercase transition-colors duration-300">
       INITIALIZING DASHBOARD...
     </div>
   );
 
   return (
-    <div className="p-10 bg-[#020617] min-h-screen">
+    <div className="p-10 bg-[var(--bg-primary)] min-h-screen transition-colors duration-300">
       <div className="flex justify-between items-center mb-10 max-w-6xl mx-auto">
-        <h1 className="text-3xl font-bold text-white flex items-center gap-3">
-          Welcome back, <span className="text-cyan-400">{user?.name || user?.fullName}</span>
+        <h1 className="text-3xl font-bold text-[var(--text-primary)] flex items-center gap-3 transition-colors">
+          Welcome back, <span className="text-cyan-500">{user?.name || user?.fullName}</span>
         </h1>
 
-        <div className="flex items-center gap-3 bg-white/5 p-1 rounded-2xl border border-white/10">
+        <div className="flex items-center gap-3 bg-cyan-500/5 p-1 rounded-2xl border border-cyan-500/10">
           {["2025", "2026"].map((y) => (
             <button
               key={y}
               onClick={() => setSelectedYear(y)}
               className={`px-6 py-2 rounded-xl text-sm font-bold transition-all ${selectedYear === y
                 ? "bg-cyan-500 text-slate-950 shadow-lg shadow-cyan-500/20"
-                : "text-slate-400 hover:text-white"
+                : "text-[var(--text-secondary)] hover:text-[var(--text-primary)]"
                 }`}
             >
               {y} Year
@@ -121,16 +121,16 @@ function Home() {
 
       <div className="grid lg:grid-cols-2 gap-10 max-w-6xl mx-auto mb-20">
         {/* Real-time Performance Tracking */}
-        <div className="bg-slate-900/40 backdrop-blur-xl border border-slate-800 text-white rounded-[2.5rem] p-10 shadow-2xl flex flex-col justify-between">
+        <div className="bg-[var(--card-bg)] backdrop-blur-xl border border-cyan-500/10 text-[var(--text-primary)] rounded-[2.5rem] p-10 shadow-xl flex flex-col justify-between transition-colors">
           <div>
-            <h2 className="text-xl font-black text-white mb-10 flex items-center gap-3 uppercase tracking-widest italic">
+            <h2 className="text-xl font-black text-[var(--text-primary)] mb-10 flex items-center gap-3 uppercase tracking-widest italic transition-colors">
               <FaCalendarAlt className="text-cyan-500" /> {selectedYear} Performance
             </h2>
 
             <div className="space-y-8">
               <div>
                 <div className="flex justify-between mb-2 items-end">
-                  <span className="text-slate-500 text-[10px] font-black uppercase tracking-widest">Task Completion</span>
+                  <span className="text-[var(--text-secondary)] text-[10px] font-black uppercase tracking-widest">Task Completion</span>
                   <span className="font-extrabold text-purple-400">{taskProgress}%</span>
                 </div>
                 <div className="w-full bg-slate-800/50 h-1.5 rounded-full overflow-hidden">
@@ -140,7 +140,7 @@ function Home() {
 
               <div>
                 <div className="flex justify-between mb-2 items-end">
-                  <span className="text-slate-500 text-[10px] font-black uppercase tracking-widest">Resolution Rate</span>
+                  <span className="text-[var(--text-secondary)] text-[10px] font-black uppercase tracking-widest">Resolution Rate</span>
                   <span className="font-extrabold text-emerald-400">{complaintResolution}%</span>
                 </div>
                 <div className="w-full bg-slate-800/50 h-1.5 rounded-full overflow-hidden">
@@ -150,8 +150,8 @@ function Home() {
 
               <div>
                 <div className="flex justify-between mb-2 items-end">
-                  <span className="text-slate-500 text-[10px] font-black uppercase tracking-widest">Annual Salary Progress</span>
-                  <span className="font-extrabold text-rose-400 italic">Total: {totalEarnings.toLocaleString()} UZS</span>
+                  <span className="text-[var(--text-secondary)] text-[10px] font-black uppercase tracking-widest">Annual Salary Progress</span>
+                  <span className="font-extrabold text-rose-400 italic">Total: {totalEarnings.toLocaleString('en-US')} UZS</span>
                 </div>
                 <div className="w-full bg-slate-800/50 h-1.5 rounded-full overflow-hidden">
                   <div className="bg-gradient-to-r from-rose-600 to-rose-400 h-full transition-all duration-1000" style={{ width: `70%` }}></div>
@@ -163,43 +163,43 @@ function Home() {
           <div className="mt-10 pt-8 border-t border-white/5 flex items-center justify-between">
             <div className="flex items-center gap-2">
               <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></div>
-              <span className="text-[10px] text-slate-500 font-bold uppercase tracking-widest">Live System Status</span>
+              <span className="text-[10px] text-[var(--text-secondary)] font-bold uppercase tracking-widest">Live System Status</span>
             </div>
-            <button className="text-[10px] text-cyan-400 font-black uppercase tracking-widest hover:text-white transition">Full Report →</button>
+            <button className="text-[10px] text-cyan-400 font-black uppercase tracking-widest hover:text-[var(--text-primary)] transition">Full Report →</button>
           </div>
         </div>
 
         {/* Up Next & Latest Announcement */}
         <div className="space-y-8">
           {upcomingTask ? (
-            <div className="bg-gradient-to-br from-indigo-600/20 to-cyan-600/10 border border-cyan-500/20 rounded-[2.5rem] p-8 relative overflow-hidden group hover:border-cyan-500/40 transition-all duration-500 shadow-xl">
-              <div className="absolute top-0 right-0 p-6 opacity-10 group-hover:scale-125 transition-transform duration-700">
+            <div className="bg-gradient-to-br from-cyan-600/10 to-blue-600/5 border border-cyan-500/20 rounded-[2.5rem] p-8 relative overflow-hidden group hover:border-cyan-500/40 transition-all duration-500 shadow-xl">
+              <div className="absolute top-0 right-0 p-6 opacity-10 group-hover:scale-125 transition-transform duration-700 text-cyan-500">
                 <FaTasks size={120} />
               </div>
-              <p className="text-cyan-400 text-[10px] font-black tracking-[.3em] uppercase mb-4">Urgent Action Required</p>
-              <h3 className="text-2xl font-black text-white italic tracking-tighter mb-2">{upcomingTask.taskName}</h3>
-              <p className="text-slate-400 text-sm mb-6 flex items-center gap-2">
+              <p className="text-cyan-500 text-[10px] font-black tracking-[.3em] uppercase mb-4">Urgent Action Required</p>
+              <h3 className="text-2xl font-black text-[var(--text-primary)] italic tracking-tighter mb-2 transition-colors">{upcomingTask.taskName}</h3>
+              <p className="text-[var(--text-secondary)] text-sm mb-6 flex items-center gap-2 transition-colors">
                 <HiOutlineCalendar className="text-rose-500" /> Deadline: {upcomingTask.deadline}
               </p>
-              <button className="bg-white/10 hover:bg-white/20 border border-white/10 px-6 py-2.5 rounded-xl text-[10px] font-black text-white uppercase tracking-widest transition-all">
+              <button className="bg-white/10 hover:bg-white/20 border border-cyan-500/10 px-6 py-2.5 rounded-xl text-[10px] font-black text-[var(--text-primary)] uppercase tracking-widest transition-all">
                 Mark as Active
               </button>
             </div>
           ) : (
-            <div className="bg-slate-900/40 border border-slate-800 rounded-[2.5rem] p-8 text-center py-16">
-              <p className="text-slate-500 font-black text-[10px] uppercase tracking-[.4em]">All Tasks Clear</p>
+            <div className="bg-[var(--card-bg)]/40 border border-cyan-500/10 rounded-[2.5rem] p-8 text-center py-16">
+              <p className="text-[var(--text-secondary)] font-black text-[10px] uppercase tracking-[.4em]">All Tasks Clear</p>
             </div>
           )}
 
           {latestAnn && (
-            <div className="bg-[#0f172a] border border-slate-800 rounded-[2.5rem] p-8 hover:shadow-2xl transition-all duration-500 group">
+            <div className="bg-[var(--card-bg)] border border-cyan-500/10 rounded-[2.5rem] p-8 hover:shadow-2xl transition-all duration-500 group">
               <div className="flex items-center gap-4 mb-6">
                 <div className="w-10 h-10 bg-rose-500/10 rounded-xl flex items-center justify-center text-rose-500">
                   <FaBullhorn />
                 </div>
-                <h4 className="text-sm font-black text-white uppercase tracking-widest italic truncate">{latestAnn.title}</h4>
+                <h4 className="text-sm font-black text-[var(--text-primary)] uppercase tracking-widest italic truncate transition-colors">{latestAnn.title}</h4>
               </div>
-              <p className="text-slate-400 text-sm line-clamp-2 mb-6 leading-relaxed italic">
+              <p className="text-[var(--text-secondary)] text-sm line-clamp-2 mb-6 leading-relaxed italic transition-colors">
                 "{latestAnn.text}"
               </p>
               <div className="flex justify-between items-center">

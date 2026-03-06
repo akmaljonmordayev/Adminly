@@ -90,8 +90,8 @@ function EmployeeSidebar({ isCollapsed }) {
   return (
     <aside
       className={`
-        min-h-screen flex flex-col transition-all duration-300 border-r border-white/5 
-        bg-gradient-to-b from-[#020617] to-[#020617ee] shadow-[6px_0_30px_rgba(2,6,23,0.9)]
+        min-h-screen flex flex-col transition-all duration-300 border-r border-cyan-500/10 
+        bg-[var(--bg-secondary)] shadow-xl
         ${isCollapsed ? 'w-20 p-4' : 'w-[280px] p-6'}
       `}
     >
@@ -106,15 +106,15 @@ function EmployeeSidebar({ isCollapsed }) {
       <div
         onClick={() => navigate('/employee/myprofile')}
         className={`
-          flex items-center gap-3 mb-12 p-4 rounded-2xl bg-white/5 border border-white/10
-          shadow-[0_0_20px_rgba(0,0,0,0.6)] cursor-pointer hover:bg-white/10 transition-all
+          flex items-center gap-3 mb-12 p-4 rounded-2xl bg-cyan-500/5 border border-cyan-500/10
+          shadow-md cursor-pointer hover:bg-cyan-500/10 transition-all
           ${isCollapsed ? 'justify-center' : ''}
         `}
       >
         <FaUserCircle className="text-4xl text-cyan-400 flex-shrink-0" />
         {!isCollapsed && (
           <div className="overflow-hidden">
-            <p className="font-semibold truncate text-white">{user?.name}</p>
+            <p className="font-semibold truncate text-[var(--text-primary)]">{user?.name}</p>
             <p className="text-sm text-cyan-300 truncate">{user.role}</p>
           </div>
         )}
@@ -145,14 +145,14 @@ function EmployeeSidebar({ isCollapsed }) {
 
                 <span
                   className={`relative text-2xl flex-shrink-0 transition-transform duration-500 ease-bounce ${isActive
-                      ? 'text-cyan-300 scale-125 drop-shadow-[0_0_8px_rgba(34,211,238,0.8)] animate-bounce'
-                      : 'text-gray-500 group-hover:scale-110 group-hover:-rotate-12 group-hover:text-cyan-200'
+                    ? 'text-cyan-300 scale-125 drop-shadow-[0_0_8px_rgba(34,211,238,0.8)] animate-bounce'
+                    : 'text-gray-500 group-hover:scale-110 group-hover:-rotate-12 group-hover:text-cyan-200'
                     }`}
                 >
                   {item.icon}
                 </span>
                 {!isCollapsed && (
-                  <span className="relative text-md">{item.label}</span>
+                  <span className="relative text-md text-[var(--text-secondary)] group-hover:text-[var(--text-primary)] transition-colors">{item.label}</span>
                 )}
               </div>
             </Link>

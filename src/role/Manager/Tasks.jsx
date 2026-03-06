@@ -1,267 +1,490 @@
 import React, { useEffect, useState, useMemo, useCallback } from 'react'
 import { toast, ToastContainer } from 'react-toastify'
-import { DatePicker, ConfigProvider, theme } from 'antd'
+import { DatePicker, ConfigProvider, theme, Modal, Select, Input } from 'antd'
 import axios from 'axios'
 import dayjs from 'dayjs'
 import 'react-toastify/dist/ReactToastify.css'
-import { HiOutlineClipboardList, HiOutlineUser, HiOutlineCalendar, HiOutlineTrash, HiOutlinePencilAlt, HiOutlineSave, HiOutlineX } from 'react-icons/hi'
-import { FiSearch, FiChevronDown, FiPlus, FiClock, FiCheckCircle, FiLoader } from 'react-icons/fi'
+import {
+  FiSearch, FiPlus, FiClock, FiCheckCircle, FiLoader,
+  FiEdit2, FiTrash2, FiUser, FiCalendar,
+  FiFilter, FiArrowRight, FiCheck, FiCheckSquare
+} from 'react-icons/fi'
+import { useTheme } from '../../context/ThemeContext'
 
 const API_URL = 'http://localhost:5000/tasks'
 
 const STATUS_CONFIG = {
-  pending: { dot: 'bg-amber-400 shadow-amber-400/50', badge: 'text-amber-300 border-amber-400/20 bg-gradient-to-r from-amber-500/10 to-amber-600/5' },
-  'in progress': { dot: 'bg-cyan-400 shadow-cyan-400/50', badge: 'text-cyan-300 border-cyan-400/20 bg-gradient-to-r from-cyan-500/10 to-cyan-600/5' },
-  done: { dot: 'bg-emerald-400 shadow-emerald-400/50', badge: 'text-emerald-300 border-emerald-400/20 bg-gradient-to-r from-emerald-500/10 to-emerald-600/5' },
+  pending: {
+    color: 'amber',
+    icon: <FiClock />,
+    bg: 'bg-amber-500/10',
+    text: 'text-amber-400',
+    border: 'border-amber-500/20'
+  },
+  'in progress': {
+    color: 'cyan',
+    icon: <FiLoader className="animate-spin-slow" />,
+    bg: 'bg-cyan-500/10',
+    text: 'text-cyan-400',
+    border: 'border-cyan-500/20'
+  },
+  done: {
+    color: 'emerald',
+    icon: <FiCheckCircle />,
+    bg: 'bg-emerald-500/10',
+    text: 'text-emerald-400',
+    border: 'border-emerald-500/20'
+  },
 }
 
 function Tasks() {
+  const { isDarkMode } = useTheme()
   const [tasks, setTasks] = useState([])
   const [employees, setEmployees] = useState([])
-  const [taskName, setTaskName] = useState('')
-  const [employeeName, setEmployeeName] = useState('')
-  const [deadline, setDeadline] = useState('')
-  const [editingId, setEditingId] = useState(null)
-  const [editTaskName, setEditTaskName] = useState('')
-  const [editEmployeeName, setEditEmployeeName] = useState('')
-  const [editDeadline, setEditDeadline] = useState('')
+  const [loading, setLoading] = useState(true)
+
+  // State for Create/Edit Modal
+  const [isModalOpen, setIsModalOpen] = useState(false)
+  const [editingTask, setEditingTask] = useState(null)
+  const [formData, setFormData] = useState({
+    taskName: '',
+    employeeName: '',
+    deadline: '',
+    status: 'pending'
+  })
+
+  // Filters State
   const [search, setSearch] = useState('')
-  const [sortOrder, setSortOrder] = useState('')
   const [statusFilter, setStatusFilter] = useState('all')
   const [selectedYear, setSelectedYear] = useState('all')
-  const [showForm, setShowForm] = useState(false)
-  const user = JSON.parse(localStorage.getItem('user')) || { name: 'Admin' }
+  const [sortBy, setSortBy] = useState('newest')
 
-  const fetchTasks = useCallback(async () => { try { const res = await axios.get(API_URL); setTasks(res.data) } catch { toast.error('Failed to load tasks') } }, [])
-  const fetchEmployees = useCallback(async () => { try { const res = await axios.get('http://localhost:5000/employees'); setEmployees(res.data) } catch { } }, [])
-  useEffect(() => { fetchTasks(); fetchEmployees() }, [fetchTasks, fetchEmployees])
+  const fetchTasks = useCallback(async () => {
+    setLoading(true)
+    try {
+      const res = await axios.get(API_URL)
+      setTasks(res.data || [])
+    } catch {
+      toast.error('Failed to load tasks')
+    } finally {
+      setLoading(false)
+    }
+  }, [])
 
-  const fullnames = useMemo(() => employees.map((e) => e.fullName), [employees])
-  const availableYears = useMemo(() => [...new Set(tasks.map((t) => t.deadline?.substring(0, 4)).filter(Boolean))].sort((a, b) => b.localeCompare(a)), [tasks])
+  const fetchEmployees = useCallback(async () => {
+    try {
+      const res = await axios.get('http://localhost:5000/employees')
+      setEmployees(res.data || [])
+    } catch { }
+  }, [])
+
+  useEffect(() => {
+    fetchTasks()
+    fetchEmployees()
+  }, [fetchTasks, fetchEmployees])
+
+  const availableYears = useMemo(() => {
+    const years = [...new Set(tasks.map((t) => t.deadline?.substring(0, 4)).filter(Boolean))]
+    return years.sort((a, b) => b.localeCompare(a))
+  }, [tasks])
 
   const filteredTasks = useMemo(() => {
-    let f = tasks.filter((t) => {
-      const s = t.taskName?.toLowerCase().includes(search.toLowerCase()) || t.employeeName?.toLowerCase().includes(search.toLowerCase())
-      const st = statusFilter === 'all' || t.status?.toLowerCase() === statusFilter
-      const y = selectedYear === 'all' || t.deadline?.startsWith(selectedYear)
-      return s && st && y
+    let result = tasks.filter((t) => {
+      const matchSearch = (t.taskName || '').toLowerCase().includes(search.toLowerCase()) ||
+        (t.employeeName || '').toLowerCase().includes(search.toLowerCase())
+      const matchStatus = statusFilter === 'all' || (t.status || '').toLowerCase() === statusFilter
+      const matchYear = selectedYear === 'all' || (t.deadline || '').startsWith(selectedYear)
+      return matchSearch && matchStatus && matchYear
     })
-    return f.sort((a, b) => {
-      if (sortOrder === 'A-Z') return (a.taskName || '').localeCompare(b.taskName || '')
-      if (sortOrder === 'Z-A') return (b.taskName || '').localeCompare(a.taskName || '')
-      if (sortOrder === 'DATE-ASC') return dayjs(a.deadline).valueOf() - dayjs(b.deadline).valueOf()
-      if (sortOrder === 'DATE-DESC') return dayjs(b.deadline).valueOf() - dayjs(a.deadline).valueOf()
+
+    return result.sort((a, b) => {
+      if (sortBy === 'name-asc') return (a.taskName || '').localeCompare(b.taskName || '')
+      if (sortBy === 'name-desc') return (b.taskName || '').localeCompare(a.taskName || '')
+      if (sortBy === 'oldest') return dayjs(a.deadline).valueOf() - dayjs(b.deadline).valueOf()
+      if (sortBy === 'newest') return dayjs(b.deadline).valueOf() - dayjs(a.deadline).valueOf()
       return 0
     })
-  }, [tasks, search, statusFilter, selectedYear, sortOrder])
+  }, [tasks, search, statusFilter, selectedYear, sortBy])
 
-  const statusCounts = useMemo(() => {
-    const yf = selectedYear === 'all' ? tasks : tasks.filter((t) => t.deadline?.startsWith(selectedYear))
-    return { all: yf.length, pending: yf.filter((t) => t.status?.toLowerCase() === 'pending').length, 'in progress': yf.filter((t) => t.status?.toLowerCase() === 'in progress').length, done: yf.filter((t) => t.status?.toLowerCase() === 'done').length }
-  }, [tasks, selectedYear])
-
-  const addTask = async () => {
-    if (!taskName || !employeeName || !deadline) { toast.error("Barcha maydonlarni to'ldiring"); return }
-    try {
-      await axios.post(API_URL, { taskName, employeeName, deadline, status: 'pending' })
-      toast.success("Task qo'shildi")
-      await axios.post('http://localhost:5000/logs', { userName: user.name, action: 'CREATE', date: new Date().toISOString(), page: 'TASKS' })
-      setTaskName(''); setEmployeeName(''); setDeadline(''); setShowForm(false); fetchTasks()
-    } catch { toast.error('Failed') }
+  const handleOpenCreate = () => {
+    setEditingTask(null)
+    setFormData({ taskName: '', employeeName: '', deadline: '', status: 'pending' })
+    setIsModalOpen(true)
   }
 
-  const deleteTask = async (id) => {
-    if (!window.confirm('Delete?')) return
+  const handleOpenEdit = (task) => {
+    setEditingTask(task)
+    setFormData({
+      taskName: task.taskName || '',
+      employeeName: task.employeeName || '',
+      deadline: task.deadline || '',
+      status: task.status || 'pending'
+    })
+    setIsModalOpen(true)
+  }
+
+  const handleSubmitPopup = async (e) => {
+    if (e) e.preventDefault();
+
+    if (!formData.taskName || !formData.employeeName || !formData.deadline) {
+      toast.warning("Barcha maydonlarni to'ldiring")
+      return
+    }
+
+    try {
+      const rawUserString = localStorage.getItem('user');
+      let userName = 'Admin';
+      if (rawUserString && rawUserString !== 'undefined') {
+        try {
+          userName = JSON.parse(rawUserString)?.name || 'Admin';
+        } catch (e) { }
+      }
+
+      if (editingTask) {
+        await axios.put(`${API_URL}/${editingTask.id}`, formData)
+        toast.success("Vazifa yangilandi")
+        await axios.post('http://localhost:5000/logs', {
+          userName, action: 'UPDATE', date: new Date().toISOString(), page: 'TASKS'
+        })
+      } else {
+        await axios.post(API_URL, formData)
+        toast.success("Yangi vazifa yaratildi")
+        await axios.post('http://localhost:5000/logs', {
+          userName, action: 'CREATE', date: new Date().toISOString(), page: 'TASKS'
+        })
+      }
+      setIsModalOpen(false)
+      fetchTasks()
+    } catch (err) {
+      console.error('Submission error:', err)
+      toast.error('Xatolik yuz berdi')
+    }
+  }
+
+  const handleDelete = async (id) => {
+    if (!window.confirm('Haqiqatdan ham o\'chirmoqchimisiz?')) return
     try {
       const res = await axios.get(`${API_URL}/${id}`)
       await axios.post('http://localhost:5000/tasksDeleted', res.data)
       await axios.delete(`${API_URL}/${id}`)
-      toast.info("O'chirildi va arxivlandi")
-      await axios.post('http://localhost:5000/logs', { userName: user.name, action: 'DELETE', date: new Date().toISOString(), page: 'TASKS' })
+      toast.info("Vazifa arxivlandi")
+
+      const rawUserString = localStorage.getItem('user');
+      let userName = 'Admin';
+      if (rawUserString && rawUserString !== 'undefined') {
+        try {
+          userName = JSON.parse(rawUserString)?.name || 'Admin';
+        } catch (e) { }
+      }
+
+      await axios.post('http://localhost:5000/logs', {
+        userName, action: 'DELETE', date: new Date().toISOString(), page: 'TASKS'
+      })
       fetchTasks()
-    } catch { toast.error('Delete failed') }
+    } catch {
+      toast.error('O\'chirishda xatolik')
+    }
   }
 
-  const updateStatus = async (id, status) => {
-    try { const t = tasks.find((t) => t.id === id); await axios.put(`${API_URL}/${id}`, { ...t, status }); setTasks((prev) => prev.map((t) => (t.id === id ? { ...t, status } : t))) } catch { toast.error('Error') }
+  const quickUpdateStatus = async (id, newStatus) => {
+    try {
+      const task = tasks.find(t => t.id === id)
+      await axios.put(`${API_URL}/${id}`, { ...task, status: newStatus })
+      setTasks(prev => prev.map(t => t.id === id ? { ...t, status: newStatus } : t))
+      toast.success(`${newStatus} holatiga o'tkazildi`)
+    } catch {
+      toast.error('Xatolik yuz berdi')
+    }
   }
-
-  const saveEdit = async (id) => {
-    try { const t = tasks.find((t) => t.id === id); await axios.put(`${API_URL}/${id}`, { ...t, taskName: editTaskName, employeeName: editEmployeeName, deadline: editDeadline }); toast.success('Saqlandi'); setEditingId(null); fetchTasks() } catch { toast.error('Error') }
-  }
-
-  const isOverdue = (dl, st) => st !== 'done' && dayjs(dl).isBefore(dayjs(), 'day')
 
   return (
-    <ConfigProvider theme={{ algorithm: theme.darkAlgorithm }}>
-      <div className="min-h-screen bg-[#020617] text-slate-200 font-sans relative">
-        <div className="fixed inset-0 overflow-hidden pointer-events-none">
-          <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-cyan-900/10 blur-[120px] rounded-full animate-float" />
-          <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-blue-900/10 blur-[120px] rounded-full animate-float" style={{ animationDelay: '2s' }} />
+    <ConfigProvider theme={{ algorithm: isDarkMode ? theme.darkAlgorithm : theme.defaultAlgorithm }}>
+      <div className="min-h-screen bg-[var(--bg-primary)] text-[var(--text-primary)] transition-colors duration-500 overflow-x-hidden">
+
+        {/* Decorative Circles */}
+        <div className="fixed inset-0 pointer-events-none overflow-hidden">
+          <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-cyan-500/10 blur-[150px] rounded-full -translate-y-1/2 translate-x-1/2" />
+          <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-purple-500/10 blur-[150px] rounded-full translate-y-1/2 -translate-x-1/2" />
         </div>
 
-        <div className="relative z-10 p-4 md:p-8 max-w-[1500px] mx-auto">
-          <header className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-10 animate-fadeInUp">
-            <div>
-              <h1 className="text-4xl md:text-5xl font-black tracking-tighter">
-                <span className="bg-gradient-to-r from-cyan-400 via-blue-400 to-indigo-400 bg-clip-text text-transparent">TASKS</span>
-              </h1>
-              <p className="text-slate-600 text-xs font-medium mt-1.5 tracking-wider uppercase">Create, assign & track team tasks</p>
+        <div className="relative z-10 p-6 md:p-10 max-w-[1600px] mx-auto">
+
+          {/* Header */}
+          <header className="flex flex-col lg:flex-row lg:items-center justify-between gap-8 mb-12">
+            <div className="space-y-1">
+              <div className="flex items-center gap-3">
+                <div className="w-12 h-12 rounded-2xl bg-gradient-to-tr from-cyan-500 to-blue-600 flex items-center justify-center shadow-lg shadow-cyan-500/20">
+                  <FiCheckSquare className="text-white text-2xl" />
+                </div>
+                <h1 className="text-4xl font-black italic tracking-tighter uppercase">
+                  Operation <span className="bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">Tasks</span>
+                </h1>
+              </div>
+              <p className="text-[var(--text-secondary)] text-[10px] font-black uppercase tracking-[0.4em] opacity-40">Command Center Workflow</p>
             </div>
-            <div className="flex items-center gap-3">
-              <div className="flex items-center gap-2 glass rounded-2xl p-1.5">
-                <button onClick={() => setSelectedYear('all')} className={`px-4 py-2 rounded-xl text-sm font-bold transition-all duration-300 ${selectedYear === 'all' ? 'bg-gradient-to-r from-cyan-500 to-blue-500 text-white shadow-lg shadow-cyan-500/25' : 'text-slate-500 hover:text-white hover:bg-white/5'}`}>All</button>
-                {availableYears.map((y) => (
-                  <button key={y} onClick={() => setSelectedYear(y)} className={`px-4 py-2 rounded-xl text-sm font-bold transition-all duration-300 ${selectedYear === y ? 'bg-gradient-to-r from-cyan-500 to-blue-500 text-white shadow-lg shadow-cyan-500/25' : 'text-slate-500 hover:text-white hover:bg-white/5'}`}>{y}</button>
+
+            <div className="flex flex-wrap items-center gap-4">
+              <div className="glass-strong p-1.5 rounded-2xl flex items-center gap-1 border border-white/5">
+                {['all', ...availableYears.slice(0, 3)].map(year => (
+                  <button
+                    key={year}
+                    onClick={() => setSelectedYear(year)}
+                    className={`px-5 py-2 rounded-xl text-[10px] font-black uppercase tracking-widest transition-all ${selectedYear === year ? 'bg-cyan-500 text-white' : 'text-[var(--text-secondary)] hover:bg-white/5'}`}
+                  >
+                    {year}
+                  </button>
                 ))}
               </div>
-              <button onClick={() => setShowForm(!showForm)} className="px-5 py-2.5 bg-gradient-to-r from-cyan-500 to-blue-500 text-white rounded-xl font-bold flex items-center gap-2 transition-all shadow-lg shadow-cyan-500/20 active:scale-95 hover:shadow-xl hover:shadow-cyan-500/30">
-                <FiPlus size={16} /><span className="hidden md:inline">New Task</span>
+
+              <button
+                onClick={handleOpenCreate}
+                className="px-6 py-3 bg-gradient-to-r from-cyan-500 to-blue-600 text-white rounded-2xl font-black text-[11px] uppercase tracking-widest flex items-center gap-2 shadow-2xl shadow-cyan-500/30 hover:-translate-y-0.5 transition-all"
+              >
+                <FiPlus size={18} /> New Objective
               </button>
             </div>
           </header>
 
-          {/* Status Cards */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-10 animate-fadeInUp stagger-1 opacity-0">
-            {[
-              { key: 'all', label: 'Total', icon: <HiOutlineClipboardList />, gradient: 'from-cyan-500/15 to-blue-500/5', iconColor: 'text-cyan-400', borderColor: 'border-cyan-500/20 hover:border-cyan-400/40' },
-              { key: 'pending', label: 'Pending', icon: <FiClock />, gradient: 'from-amber-500/15 to-orange-500/5', iconColor: 'text-amber-400', borderColor: 'border-amber-500/20 hover:border-amber-400/40' },
-              { key: 'in progress', label: 'In Progress', icon: <FiLoader />, gradient: 'from-cyan-500/15 to-indigo-500/5', iconColor: 'text-cyan-400', borderColor: 'border-cyan-500/20 hover:border-cyan-400/40' },
-              { key: 'done', label: 'Completed', icon: <FiCheckCircle />, gradient: 'from-emerald-500/15 to-green-500/5', iconColor: 'text-emerald-400', borderColor: 'border-emerald-500/20 hover:border-emerald-400/40' },
-            ].map((s) => (
-              <button key={s.key} onClick={() => setStatusFilter(s.key)} className={`relative overflow-hidden rounded-2xl p-5 border transition-all duration-500 text-left group cursor-pointer ${s.borderColor} ${statusFilter === s.key ? 'ring-1 ring-white/10 bg-[#0a1128]' : 'bg-[#060d1f]'}`}>
-                <div className={`absolute inset-0 bg-gradient-to-br ${s.gradient} opacity-50 group-hover:opacity-100 transition-opacity duration-500`} />
-                <div className="noise absolute inset-0 rounded-2xl" />
-                <div className="relative flex items-center gap-3">
-                  <div className={`w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center ${s.iconColor} border border-white/5`}>{s.icon}</div>
-                  <div><p className="text-[9px] font-black uppercase tracking-[0.2em] text-slate-600">{s.label}</p><p className="text-2xl font-black text-white">{statusCounts[s.key]}</p></div>
-                </div>
-              </button>
-            ))}
+          {/* Stats */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+            <StatCard label="Total Force" value={tasks.length} sub="Active Missions" color="blue" icon={<FiCheckSquare />} />
+            <StatCard label="Pending" value={tasks.filter(t => (t.status || '').toLowerCase() === 'pending').length} sub="Awaiting Action" color="amber" icon={<FiClock />} />
+            <StatCard label="Active Ops" value={tasks.filter(t => (t.status || '').toLowerCase() === 'in progress').length} sub="In Development" color="cyan" icon={<FiLoader className="animate-spin-slow" />} />
+            <StatCard label="Resolved" value={tasks.filter(t => (t.status || '').toLowerCase() === 'done').length} sub="Secured Goals" color="emerald" icon={<FiCheckCircle />} />
           </div>
 
-          {/* Create Form */}
-          {showForm && (
-            <div className="glass-strong rounded-[2rem] p-6 mb-10 animate-fadeInScale">
-              <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-                <div className="space-y-1.5">
-                  <p className="text-[9px] font-black text-cyan-500 tracking-[0.2em] uppercase ml-1">Task Title</p>
-                  <input placeholder="What needs to be done?" value={taskName} onChange={(e) => setTaskName(e.target.value)}
-                    className="w-full bg-[#060d1f] border border-white/[0.06] rounded-xl px-4 py-3 focus:border-cyan-500/40 outline-none transition-all placeholder:text-slate-700 text-sm" />
-                </div>
-                <div className="space-y-1.5">
-                  <p className="text-[9px] font-black text-cyan-500 tracking-[0.2em] uppercase ml-1">Assignee</p>
-                  <select value={employeeName} onChange={(e) => setEmployeeName(e.target.value)}
-                    className="w-full bg-[#060d1f] border border-white/[0.06] rounded-xl px-4 py-3 focus:border-cyan-500/40 outline-none transition-all appearance-none cursor-pointer text-sm">
-                    <option disabled value="">Select Employee</option>
-                    {fullnames.map((n) => <option key={n} value={n}>{n}</option>)}
-                  </select>
-                </div>
-                <div className="space-y-1.5">
-                  <p className="text-[9px] font-black text-cyan-500 tracking-[0.2em] uppercase ml-1">Deadline</p>
-                  <DatePicker className="w-full h-[46px] bg-[#060d1f] border-white/[0.06] rounded-xl hover:border-cyan-500/40" onChange={(d, ds) => setDeadline(ds)} />
-                </div>
-                <div className="flex items-end">
-                  <button onClick={addTask} className="w-full h-[46px] bg-gradient-to-r from-cyan-500 to-blue-500 text-white rounded-xl font-bold flex items-center justify-center gap-2 transition-all shadow-lg shadow-cyan-500/20 active:scale-95 text-sm">
-                    <FiPlus size={14} /> CREATE
-                  </button>
-                </div>
+          {/* Table Controls */}
+          <div className="glass-strong rounded-[2.5rem] p-6 mb-10 border border-white/5 shadow-2xl">
+            <div className="flex flex-col md:flex-row gap-6 items-center">
+              <div className="relative flex-1 group w-full">
+                <FiSearch className="absolute left-5 top-1/2 -translate-y-1/2 text-[var(--text-secondary)]" />
+                <input
+                  type="text"
+                  placeholder="Search Mission Protocol..."
+                  value={search}
+                  onChange={(e) => setSearch(e.target.value)}
+                  className="w-full bg-[var(--bg-primary)] border border-white/10 rounded-2xl py-4 pl-14 pr-6 outline-none focus:border-cyan-500/30 transition-all text-sm font-medium"
+                />
               </div>
+
+              <div className="flex items-center gap-3 w-full md:w-auto">
+                <select
+                  value={statusFilter}
+                  onChange={(e) => setStatusFilter(e.target.value)}
+                  className="flex-1 md:w-40 bg-[var(--bg-primary)] border border-white/10 rounded-2xl py-4 px-6 outline-none appearance-none cursor-pointer text-[10px] font-black uppercase text-[var(--text-secondary)]"
+                >
+                  <option value="all">All Status</option>
+                  <option value="pending">Pending</option>
+                  <option value="in progress">Active</option>
+                  <option value="done">Completed</option>
+                </select>
+
+                <select
+                  value={sortBy}
+                  onChange={(e) => setSortBy(e.target.value)}
+                  className="flex-1 md:w-40 bg-[var(--bg-primary)] border border-white/10 rounded-2xl py-4 px-6 outline-none appearance-none cursor-pointer text-[10px] font-black uppercase text-[var(--text-secondary)]"
+                >
+                  <option value="newest">Latest</option>
+                  <option value="oldest">Oldest</option>
+                  <option value="name-asc">A-Z</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          {/* Loader / Grid */}
+          {loading ? (
+            <div className="py-20 text-center flex flex-col items-center">
+              <div className="w-12 h-12 border-4 border-cyan-500/20 border-t-cyan-500 rounded-full animate-spin mb-4" />
+              <p className="text-[10px] font-black uppercase tracking-widest opacity-40">Syncing Intelligence...</p>
+            </div>
+          ) : filteredTasks.length === 0 ? (
+            <div className="py-24 glass rounded-[3rem] border border-dashed border-white/10 text-center">
+              <h3 className="text-xl font-bold text-[var(--text-secondary)]">No Strategic Data</h3>
+            </div>
+          ) : (
+            <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-6">
+              {filteredTasks.map((task, i) => (
+                <TaskItem
+                  key={task.id}
+                  task={task}
+                  onEdit={() => handleOpenEdit(task)}
+                  onDelete={() => handleDelete(task.id)}
+                  onStatusChange={(s) => quickUpdateStatus(task.id, s)}
+                />
+              ))}
             </div>
           )}
-
-          {/* Search */}
-          <div className="grid grid-cols-1 md:grid-cols-12 gap-3 mb-8 animate-fadeInUp stagger-2 opacity-0">
-            <div className="md:col-span-6 relative group">
-              <FiSearch className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-600 group-focus-within:text-cyan-400 transition-colors" />
-              <input className="w-full glass rounded-2xl py-3.5 pl-12 pr-6 outline-none focus:border-cyan-500/40 transition-all placeholder:text-slate-700 text-sm" type="search" value={search} onChange={(e) => setSearch(e.target.value)} placeholder="Search tasks..." />
-            </div>
-            <div className="md:col-span-3 relative">
-              <select value={sortOrder} onChange={(e) => setSortOrder(e.target.value)} className="w-full glass rounded-2xl py-3.5 px-5 outline-none focus:border-cyan-500/40 cursor-pointer appearance-none text-slate-400 text-sm">
-                <option className="bg-[#060d1f]" value="">Default</option><option className="bg-[#060d1f]" value="A-Z">A → Z</option><option className="bg-[#060d1f]" value="Z-A">Z → A</option>
-              </select>
-              <FiChevronDown className="absolute right-4 top-1/2 -translate-y-1/2 text-slate-600 pointer-events-none" />
-            </div>
-            <div className="md:col-span-3 relative">
-              <select value={sortOrder} onChange={(e) => setSortOrder(e.target.value)} className="w-full glass rounded-2xl py-3.5 px-5 outline-none focus:border-cyan-500/40 cursor-pointer appearance-none text-slate-400 text-sm">
-                <option className="bg-[#060d1f]" value="">Date</option><option className="bg-[#060d1f]" value="DATE-ASC">Oldest</option><option className="bg-[#060d1f]" value="DATE-DESC">Newest</option>
-              </select>
-              <FiChevronDown className="absolute right-4 top-1/2 -translate-y-1/2 text-slate-600 pointer-events-none" />
-            </div>
-          </div>
-
-          {/* Task Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-5">
-            {filteredTasks.length === 0 ? (
-              <div className="col-span-full text-center py-28 bg-[#060d1f] rounded-[2rem] border border-dashed border-white/[0.06] animate-fadeInScale">
-                <div className="w-16 h-16 mx-auto mb-5 rounded-2xl bg-white/[0.02] border border-white/5 flex items-center justify-center"><HiOutlineClipboardList className="text-2xl text-slate-700" /></div>
-                <p className="text-slate-600 font-bold text-lg">No tasks found</p>
-                <p className="text-slate-700 text-sm mt-1">Create a new task or adjust filters</p>
-              </div>
-            ) : (
-              filteredTasks.map((task, i) => {
-                const status = task.status?.toLowerCase() || 'pending'
-                const config = STATUS_CONFIG[status] || STATUS_CONFIG.pending
-                const overdue = isOverdue(task.deadline, status)
-
-                return (
-                  <div key={task.id} className={`group relative overflow-hidden rounded-2xl border transition-all duration-500 flex flex-col hover:-translate-y-1 hover:shadow-xl animate-fadeInUp opacity-0 ${overdue ? 'border-red-500/20' : 'border-white/[0.04] hover:border-white/10'}`} style={{ animationDelay: `${i * 0.06}s` }}>
-                    <div className="absolute inset-0 bg-gradient-to-br from-[#0a1128] to-[#060d1f] group-hover:from-[#0d1630] group-hover:to-[#0a1128] transition-all duration-500" />
-                    <div className="noise absolute inset-0" />
-                    <div className="relative p-6 flex flex-col flex-1">
-                      <div className="flex items-center justify-between mb-4">
-                        <span className={`inline-flex items-center gap-1.5 text-[10px] font-black uppercase tracking-wider px-3 py-1 rounded-full border ${config.badge}`}>
-                          <span className={`w-1.5 h-1.5 rounded-full ${config.dot}`} />{status}
-                        </span>
-                        {overdue && <span className="text-[10px] font-black text-red-400 bg-red-400/10 px-2.5 py-0.5 rounded-full border border-red-400/20">OVERDUE</span>}
-                      </div>
-
-                      {editingId === task.id ? (
-                        <div className="space-y-3 flex-1">
-                          <input value={editTaskName} onChange={(e) => setEditTaskName(e.target.value)} className="w-full bg-[#060d1f] border border-cyan-500/20 rounded-xl px-3 py-2 text-sm outline-none focus:border-cyan-500/40" />
-                          <select value={editEmployeeName} onChange={(e) => setEditEmployeeName(e.target.value)} className="w-full bg-[#060d1f] border border-cyan-500/20 rounded-xl px-3 py-2 text-sm outline-none">{fullnames.map((n) => <option key={n} value={n}>{n}</option>)}</select>
-                          <DatePicker className="w-full" value={editDeadline ? dayjs(editDeadline) : null} onChange={(d, ds) => setEditDeadline(ds)} />
-                        </div>
-                      ) : (
-                        <div className="flex-1">
-                          <h3 className="text-lg font-bold text-white mb-4 group-hover:text-cyan-400 transition-colors leading-tight">{task.taskName}</h3>
-                          <div className="space-y-2">
-                            <div className="flex items-center gap-2.5 text-slate-500">
-                              <div className="w-7 h-7 rounded-lg bg-white/5 flex items-center justify-center flex-shrink-0"><HiOutlineUser className="text-cyan-400/70 text-sm" /></div>
-                              <span className="text-sm font-medium truncate">{task.employeeName}</span>
-                            </div>
-                            <div className="flex items-center gap-2.5 text-slate-500">
-                              <div className="w-7 h-7 rounded-lg bg-white/5 flex items-center justify-center flex-shrink-0"><HiOutlineCalendar className={`text-sm ${overdue ? 'text-red-400' : 'text-cyan-400/70'}`} /></div>
-                              <span className={`text-sm font-medium ${overdue ? 'text-red-400' : ''}`}>{task.deadline}</span>
-                            </div>
-                          </div>
-                        </div>
-                      )}
-
-                      <div className="flex gap-2 mt-5 pt-4 border-t border-white/[0.04]">
-                        <select value={task.status} onChange={(e) => updateStatus(task.id, e.target.value)} className="flex-1 bg-white/[0.03] border border-white/[0.04] rounded-xl px-3 py-2 text-[10px] font-black uppercase outline-none hover:bg-white/[0.06] transition-all cursor-pointer">
-                          <option className="bg-[#060d1f]" value="pending">PENDING</option><option className="bg-[#060d1f]" value="in progress">IN PROGRESS</option><option className="bg-[#060d1f]" value="done">DONE</option>
-                        </select>
-                        <div className="flex gap-1.5">
-                          {editingId === task.id ? (
-                            <><button onClick={() => saveEdit(task.id)} className="w-9 h-9 bg-emerald-500/10 text-emerald-400 rounded-xl flex items-center justify-center hover:bg-emerald-500 hover:text-black transition-all"><HiOutlineSave size={14} /></button>
-                              <button onClick={() => setEditingId(null)} className="w-9 h-9 bg-white/5 text-slate-500 rounded-xl flex items-center justify-center hover:bg-white/10 transition-all"><HiOutlineX size={14} /></button></>
-                          ) : (
-                            <button onClick={() => { setEditingId(task.id); setEditTaskName(task.taskName); setEditEmployeeName(task.employeeName); setEditDeadline(task.deadline) }} className="w-9 h-9 bg-blue-500/10 text-blue-400 rounded-xl flex items-center justify-center hover:bg-blue-500 hover:text-white transition-all"><HiOutlinePencilAlt size={14} /></button>
-                          )}
-                          <button onClick={() => deleteTask(task.id)} className="w-9 h-9 bg-red-500/[0.06] text-red-400/70 rounded-xl flex items-center justify-center hover:bg-red-500 hover:text-white transition-all"><HiOutlineTrash size={14} /></button>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                )
-              })
-            )}
-          </div>
         </div>
-        <ToastContainer position="bottom-right" autoClose={2500} theme="dark" toastClassName="!bg-[#0a1128] !border !border-white/10 !rounded-2xl !shadow-2xl" />
+
+        {/* Create / Edit Modal */}
+        <Modal
+          title={null}
+          open={isModalOpen}
+          onCancel={() => setIsModalOpen(false)}
+          footer={null}
+          centered
+          width={600}
+          className="premium-task-modal"
+          destroyOnClose
+        >
+          <div className="glass-strong rounded-[2.5rem] border border-white/10 shadow-3xl p-8 relative overflow-hidden">
+            <div className="relative z-10">
+              <div className="flex items-center gap-3 mb-8">
+                <div className="w-10 h-10 rounded-xl bg-cyan-500/10 flex items-center justify-center text-cyan-400 border border-cyan-500/20">
+                  {editingTask ? <FiEdit2 /> : <FiPlus />}
+                </div>
+                <div>
+                  <h3 className="text-sm font-black uppercase tracking-widest text-white">{editingTask ? 'Update Objective' : 'New Tactical Deployment'}</h3>
+                  <p className="text-[9px] font-black text-cyan-500 uppercase tracking-widest opacity-60">Operations Protocol v3.0</p>
+                </div>
+              </div>
+
+              <form onSubmit={handleSubmitPopup} className="space-y-6">
+                <div className="space-y-2">
+                  <label className="text-[9px] font-black text-[var(--text-secondary)] uppercase tracking-widest ml-1">Task Identification</label>
+                  <Input
+                    value={formData.taskName}
+                    onChange={(e) => setFormData({ ...formData, taskName: e.target.value })}
+                    placeholder="Enter objective name..."
+                    className="w-full bg-white/5 border-white/10 rounded-2xl py-3.5 px-5 text-sm"
+                  />
+                </div>
+
+                <div className="grid grid-cols-2 gap-4">
+                  <div className="space-y-2">
+                    <label className="text-[9px] font-black text-[var(--text-secondary)] uppercase tracking-widest ml-1">Assigned Unit</label>
+                    <Select
+                      showSearch
+                      placeholder="Select lead..."
+                      className="w-full h-[48px] premium-select-field"
+                      value={formData.employeeName || undefined}
+                      onChange={(v) => setFormData({ ...formData, employeeName: v })}
+                    >
+                      {employees.map(emp => (
+                        <Select.Option key={emp.id} value={emp.fullName}>{emp.fullName}</Select.Option>
+                      ))}
+                    </Select>
+                  </div>
+                  <div className="space-y-2">
+                    <label className="text-[9px] font-black text-[var(--text-secondary)] uppercase tracking-widest ml-1">Termination Date</label>
+                    <DatePicker
+                      className="w-full bg-white/5 border-white/10 rounded-2xl py-3.5 px-5 text-sm"
+                      value={formData.deadline ? dayjs(formData.deadline) : null}
+                      onChange={(d, ds) => setFormData({ ...formData, deadline: ds })}
+                    />
+                  </div>
+                </div>
+
+                <div className="space-y-2">
+                  <label className="text-[9px] font-black text-[var(--text-secondary)] uppercase tracking-widest ml-1">Current Readiness</label>
+                  <div className="flex gap-2">
+                    {Object.keys(STATUS_CONFIG).map(s => (
+                      <button
+                        type="button"
+                        key={s}
+                        onClick={() => setFormData({ ...formData, status: s })}
+                        className={`flex-1 py-3 rounded-2xl text-[10px] font-black uppercase tracking-tighter border transition-all ${formData.status === s ? 'bg-cyan-500 border-cyan-400 text-white shadow-lg shadow-cyan-500/20' : 'bg-white/5 border-white/5 text-white/40 hover:bg-white/10'}`}
+                      >
+                        {s}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+
+                <button
+                  type="submit"
+                  className="w-full py-5 rounded-[2rem] bg-gradient-to-r from-cyan-500 to-blue-600 text-white font-black text-xs uppercase tracking-[0.3em] shadow-2xl shadow-cyan-500/20 hover:scale-[1.01] transition-all mt-4"
+                >
+                  {editingTask ? 'Apply Matrix Update' : 'Initialize Objective'}
+                </button>
+              </form>
+            </div>
+            {/* Background glow in modal */}
+            <div className="absolute top-0 right-0 w-32 h-32 bg-cyan-500/20 blur-3xl rounded-full translate-x-12 -translate-y-12" />
+          </div>
+        </Modal>
+
+        <ToastContainer position="bottom-right" theme="dark" />
+
+        <style dangerouslySetInnerHTML={{
+          __html: `
+          .premium-task-modal .ant-modal-content { background: transparent !important; box-shadow: none !important; padding: 0 !important; }
+          .premium-select-field .ant-select-selector { 
+            background: rgba(255,255,255,0.05) !important; 
+            border: 1px solid rgba(255,255,255,0.1) !important; 
+            border-radius: 1rem !important;
+            height: 48px !important;
+          }
+          .animate-spin-slow { animation: spin 4s linear infinite; }
+          @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+        `}} />
       </div>
     </ConfigProvider>
+  )
+}
+
+function StatCard({ label, value, sub, color, icon }) {
+  const colors = {
+    blue: 'text-blue-400',
+    amber: 'text-amber-400',
+    cyan: 'text-cyan-400',
+    emerald: 'text-emerald-400',
+  }
+  return (
+    <div className="glass-strong rounded-3xl p-6 border border-white/5 relative group hover:scale-[1.02] transition-all">
+      <div className="flex items-center justify-between mb-4">
+        <div className={`w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center text-xl ${colors[color]}`}>{icon}</div>
+        <span className="text-2xl font-black text-white">{value}</span>
+      </div>
+      <p className="text-[10px] font-black uppercase tracking-widest text-[var(--text-secondary)]">{label}</p>
+      <p className="text-[8px] font-bold text-[var(--text-secondary)] opacity-30 uppercase mt-1">{sub}</p>
+    </div>
+  )
+}
+
+function TaskItem({ task, onEdit, onDelete, onStatusChange }) {
+  const status = (task.status || 'pending').toLowerCase()
+  const config = STATUS_CONFIG[status] || STATUS_CONFIG.pending
+  const overdue = status !== 'done' && dayjs(task.deadline).isBefore(dayjs(), 'day')
+
+  return (
+    <div className="glass-strong rounded-[2rem] border border-white/5 hover:border-cyan-500/30 transition-all duration-500 flex flex-col p-6 group">
+      <div className="flex items-start justify-between mb-6">
+        <span className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[9px] font-black uppercase tracking-widest border ${config.bg} ${config.text} ${config.border}`}>
+          {config.icon} {status}
+        </span>
+        <div className="flex gap-1 opacity-0 group-hover:opacity-100 transition-all">
+          <button onClick={onEdit} className="w-8 h-8 rounded-lg bg-white/5 flex items-center justify-center text-cyan-400 hover:bg-white/10"><FiEdit2 size={12} /></button>
+          <button onClick={onDelete} className="w-8 h-8 rounded-lg bg-white/5 flex items-center justify-center text-red-400 hover:bg-white/10"><FiTrash2 size={12} /></button>
+        </div>
+      </div>
+
+      <div className="space-y-4 mb-6">
+        <h3 className="text-lg font-black leading-tight text-white group-hover:text-cyan-400 transition-colors uppercase italic truncate">{task.taskName}</h3>
+        <div className="space-y-2">
+          <div className="flex items-center gap-3 text-white/40 text-[11px] font-bold uppercase">
+            <FiUser size={13} className="text-cyan-500/50" /> {task.employeeName}
+          </div>
+          <div className="flex items-center gap-3 text-white/40 text-[11px] font-bold uppercase">
+            <FiCalendar size={13} className={overdue ? 'text-red-500/50' : 'text-cyan-500/50'} />
+            <span className={overdue ? 'text-red-400' : ''}>{task.deadline}</span>
+          </div>
+        </div>
+      </div>
+
+      <div className="mt-auto pt-4 border-t border-white/5 flex items-center justify-between">
+        <p className="text-[9px] font-black text-white/10 uppercase tracking-widest">Protocol 01</p>
+        {status !== 'done' && (
+          <button
+            onClick={() => onStatusChange(status === 'pending' ? 'in progress' : 'done')}
+            className="px-4 py-2 rounded-xl bg-cyan-500/10 text-cyan-400 text-[9px] font-black uppercase tracking-widest flex items-center gap-2 hover:bg-cyan-500 hover:text-white transition-all"
+          >
+            {status === 'pending' ? 'Start' : 'Finish'} <FiArrowRight size={10} />
+          </button>
+        )}
+      </div>
+    </div>
   )
 }
 

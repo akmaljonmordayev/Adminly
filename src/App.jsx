@@ -86,6 +86,7 @@ function App() {
           <Route path="announcemenets" element={<Announcements />} />
 
           <Route path="archieve" element={<Archieve />}>
+            <Route index element={<Navigate to="employeesArchieve" replace />} />
             <Route path="tasksArchieve" element={<TasksArchieve />} />
             <Route path="complaintsArchieve" element={<ComplaintsArchieve />} />
             <Route

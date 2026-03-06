@@ -1,3 +1,4 @@
+import { useTheme } from '../../context/ThemeContext';
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import {
@@ -7,15 +8,26 @@ import {
   FiActivity,
   FiRefreshCw,
   FiTrash2,
+  FiAlertCircle,
+  FiMessageSquare
 } from "react-icons/fi";
 import { toast, ToastContainer } from "react-toastify";
 
 function ComplaintsArchieve() {
+  const { isDarkMode } = useTheme();
   const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   const getData = async () => {
-    let res = await axios.get("http://localhost:5000/complaintsDeleted");
-    setData(res.data);
+    setLoading(true);
+    try {
+      let res = await axios.get("http://localhost:5000/complaintsDeleted");
+      setData(res.data);
+    } catch (err) {
+      toast.error("Failed to fetch archive");
+    } finally {
+      setLoading(false);
+    }
   };
 
   useEffect(() => {
@@ -23,140 +35,137 @@ function ComplaintsArchieve() {
   }, []);
 
   const handleRestore = async (item) => {
-    let ress = await axios.post("http://localhost:5000/complaints", { ...item });
-    let res = await axios.delete(
-      `http://localhost:5000/complaintsDeleted/${item.id}`
-    );
-    if (ress.status == 200 && res.status == 200) {
-      toast.success("Complaint successfully restored to the  complaints page");
+    try {
+      await axios.post("http://localhost:5000/complaints", { ...item });
+      await axios.delete(`http://localhost:5000/complaintsDeleted/${item.id}`);
+      toast.success("Complaint successfully restored");
+      getData();
+    } catch (err) {
+      toast.error("Restore failed");
     }
-    getData();
   };
 
   const handleDeleteForever = async (id) => {
-    if (!window.confirm("Rostdan ham bu ma'lumotni o'chirmoqchimisiz?")) return;
-
-    let res = await axios.delete(
-      `http://localhost:5000/complaintsDeleted/${id}`,
-      {
-        method: "DELETE",
-      }
-    );
-
-    if (res.status == 200) {
-      toast.success("Succeffuly deleted from archieve");
+    if (!window.confirm("Delete this complaint permanently?")) return;
+    try {
+      await axios.delete(`http://localhost:5000/complaintsDeleted/${id}`);
+      toast.error("Permanently deleted");
       getData();
+    } catch (err) {
+      toast.error("Delete failed");
     }
   };
 
   const statusStyles = {
-    pending: "bg-yellow-400/10 text-yellow-400 border-yellow-400/30",
-    reviewed: "bg-blue-400/10 text-blue-400 border-blue-400/30",
-    resolved: "bg-green-400/10 text-green-400 border-green-400/30",
+    pending: "bg-amber-400/10 text-amber-400 border-amber-400/20",
+    reviewed: "bg-blue-400/10 text-blue-400 border-blue-400/20",
+    resolved: "bg-emerald-400/10 text-emerald-400 border-emerald-400/20",
   };
 
-  return (
-    <div className="min-h-screen">
-      <h1 className="text-3xl font-bold text-white mb-12 tracking-wide">
-        Archived Complaints
-      </h1>
+  if (loading) return (
+    <div className="flex flex-col items-center justify-center min-h-[400px]">
+      <div className="w-12 h-12 border-2 border-red-500/10 border-t-red-500 rounded-full animate-spin"></div>
+      <p className="mt-4 text-[10px] font-black uppercase tracking-[0.3em] text-red-500/60 animate-pulse">Syncing History...</p>
+    </div>
+  )
 
-      {data.length === 0 && (
-        <div className="text-center text-gray-400 mt-32">
-          <FiClipboard className="mx-auto text-4xl mb-4 opacity-40" />
-          Archive bo‘sh
+  return (
+    <div className="w-full">
+      <div className="flex flex-wrap items-center justify-between mb-8 gap-4">
+        <div>
+          <h2 className="text-2xl font-black text-[var(--text-primary)] tracking-tight uppercase">Complaints <span className="text-red-400 italic">History</span></h2>
+          <p className="text-[var(--text-secondary)] text-xs font-medium mt-1">Found {data.length} archived reports</p>
+        </div>
+
+        <div className="flex items-center gap-2">
+          <div className="bg-red-500/10 border border-red-500/20 px-4 py-2 rounded-2xl flex items-center gap-2 shadow-lg shadow-red-500/5">
+            <div className="w-2 h-2 rounded-full bg-red-400 animate-pulse" />
+            <span className="text-red-400 font-black text-xs uppercase tracking-widest">{data.length} Archived</span>
+          </div>
+        </div>
+      </div>
+
+      {data.length === 0 ? (
+        <div className="py-24 text-center border border-dashed border-white/5 rounded-[3rem] bg-white/[0.02]">
+          <div className="w-20 h-20 mx-auto mb-6 rounded-[2rem] bg-red-500/5 flex items-center justify-center text-red-400/30 border border-red-500/10">
+            <FiMessageSquare size={48} />
+          </div>
+          <h3 className="text-xl font-bold text-[var(--text-primary)] tracking-tight">Archive is Empty</h3>
+          <p className="text-[var(--text-secondary)] text-xs mt-2 uppercase tracking-widest font-black opacity-40">No deleted complaint records found</p>
+        </div>
+      ) : (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {data.map((item, i) => (
+            <div
+              key={item.id}
+              className="group relative glass-strong rounded-[2.5rem] border border-white/5 overflow-hidden hover:border-red-500/30 transition-all duration-500 hover:shadow-2xl hover:shadow-red-500/10 hover:-translate-y-1 animate-fadeInScale"
+              style={{ animationDelay: `${i * 0.05}s` }}
+            >
+              <div className="absolute top-0 left-0 w-full h-[100px] bg-gradient-to-br from-red-600/10 to-transparent group-hover:from-red-600/20 transition-all duration-500" />
+
+              <div className="p-7 relative z-10 flex flex-col h-full">
+                <div className="flex justify-between items-start mb-6">
+                  <div className="w-12 h-12 rounded-2xl bg-red-500/10 flex items-center justify-center text-red-400 border border-red-500/20">
+                    <FiMessageSquare size={24} />
+                  </div>
+                  <div className="flex gap-2">
+                    <button
+                      onClick={() => handleRestore(item)}
+                      className="w-10 h-10 rounded-2xl bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 flex items-center justify-center hover:bg-emerald-500 hover:text-white transition-all active:scale-95"
+                    >
+                      <FiRefreshCw size={20} />
+                    </button>
+                    <button
+                      onClick={() => handleDeleteForever(item.id)}
+                      className="w-10 h-10 rounded-2xl bg-red-500/10 text-red-400 border border-red-500/20 flex items-center justify-center hover:bg-red-500 hover:text-white transition-all active:scale-95"
+                    >
+                      <FiTrash2 size={20} />
+                    </button>
+                  </div>
+                </div>
+
+                <div className="space-y-4 mb-6">
+                  <h3 className="text-lg font-black text-[var(--text-primary)] group-hover:text-red-400 transition-colors uppercase leading-tight">{item.title}</h3>
+                  <div className="grid grid-cols-1 gap-3">
+                    <div className="flex items-center gap-3 bg-white/5 p-3 rounded-2xl border border-white/5">
+                      <div className="w-8 h-8 rounded-xl bg-red-500/10 flex items-center justify-center text-red-400"><FiUser size={18} /></div>
+                      <div>
+                        <p className="text-[9px] font-black text-red-500 uppercase tracking-widest leading-none mb-1">Reporter</p>
+                        <p className="text-xs font-bold text-[var(--text-primary)]">{item.employeeName}</p>
+                      </div>
+                    </div>
+                    <div className="flex items-center gap-3 bg-white/5 p-3 rounded-2xl border border-white/5">
+                      <div className="w-8 h-8 rounded-xl bg-cyan-500/10 flex items-center justify-center text-cyan-400"><FiCalendar size={18} /></div>
+                      <div>
+                        <p className="text-[9px] font-black text-cyan-500 uppercase tracking-widest leading-none mb-1">Date Logged</p>
+                        <p className="text-xs font-bold text-[var(--text-primary)]">{item.date}</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="mt-auto pt-4 border-t border-white/5 flex items-center justify-between">
+                  <div className="flex items-center gap-2">
+                    <span className={`px-3 py-1 rounded-full border text-[10px] font-black uppercase tracking-widest ${statusStyles[item.status?.toLowerCase()] || "bg-white/5 text-[var(--text-secondary)] border-white/10"}`}>
+                      {item.status}
+                    </span>
+                  </div>
+                  <div className="flex items-center gap-1.5 text-[10px] font-bold text-[var(--text-secondary)] opacity-50 uppercase tracking-tighter">
+                    <FiAlertCircle /> Archived
+                  </div>
+                </div>
+              </div>
+            </div>
+          ))}
         </div>
       )}
-      <ToastContainer />
-      <div className="grid gap-8 sm:grid-cols-2 xl:grid-cols-3">
-        {data.map((item) => (
-          <div
-            key={item.id}
-            className="
-              group relative rounded-1xl
-              bg-[#0b1220]/80 backdrop-blur-xl
-              border border-white/10
-              p-7
-              transition-all duration-300
-              hover:-translate-y-1
-              hover:shadow-[0_30px_80px_rgba(0,0,0,0.6)]
-              hover:border-cyan-400/30
-              rounded-4xl
-            "
-          >
-            <div className="flex items-start gap-4 mb-8 ">
-              <div className="w-14 h-14 rounded-2xl bg-cyan-400/10 flex items-center justify-center">
-                <FiClipboard className="text-cyan-400 text-xl" />
-              </div>
 
-              <div>
-                <h3 className="text-lg font-semibold text-white">
-                  {item.title}
-                </h3>
-                <p className="text-xs uppercase tracking-widest text-gray-500">
-                  Complaint
-                </p>
-              </div>
-            </div>
-
-            <div className="space-y-6 text-xl">
-              <div className="flex items-center gap-3">
-                <FiUser className="text-gray-400" />
-                <span>{item.employeeName}</span>
-              </div>
-
-              <div className="flex items-center gap-3">
-                <FiCalendar className="text-gray-400" />
-                <span>{item.date}</span>
-              </div>
-
-              <div className="flex items-center gap-3">
-                <FiActivity className="text-gray-400" />
-                <span
-                  className={`px-3 py-1 rounded-full border text-xs font-medium ${
-                    statusStyles[item.status?.toLowerCase()] ||
-                    "bg-gray-500/10 text-gray-300 border-gray-500/20"
-                  }`}
-                >
-                  {item.status}
-                </span>
-              </div>
-            </div>
-
-            <div className="my-8 h-px bg-white/10" />
-
-            <div className="flex gap-3">
-              <button
-                onClick={() => handleRestore(item)}
-                className="
-                  flex-1 h-11 rounded-xl
-                  bg-cyan-500/10 text-cyan-400
-                  hover:bg-cyan-500/20
-                  flex items-center justify-center gap-2
-                  text-sm font-medium
-                  transition
-                "
-              >
-                <FiRefreshCw />
-                Restore
-              </button>
-
-              <button
-                onClick={() => handleDeleteForever(item.id)}
-                className="
-                  h-11 w-11 rounded-xl
-                  bg-red-500/10 text-red-400
-                  hover:bg-red-500/20
-                  flex items-center justify-center
-                  transition
-                "
-              >
-                <FiTrash2 />
-              </button>
-            </div>
-          </div>
-        ))}
-      </div>
+      <ToastContainer
+        theme={isDarkMode ? 'dark' : 'light'}
+        position="bottom-right"
+        autoClose={2500}
+        toastClassName="!rounded-2xl !bg-[var(--bg-secondary)] !border !border-white/5 !shadow-2xl"
+      />
     </div>
   );
 }

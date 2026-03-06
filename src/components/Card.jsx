@@ -83,7 +83,7 @@ function Card({ title, value, icon, color }) {
       className={`
         group relative min-w-0 w-full
         rounded-2xl overflow-hidden
-        bg-[#0a1128] border ${c.border}
+        bg-[var(--card-bg)] border ${c.border}
         shadow-xl ${c.glow}
         hover:shadow-2xl
         hover:scale-[1.02] hover:-translate-y-0.5
@@ -101,18 +101,23 @@ function Card({ title, value, icon, color }) {
       <div className="noise absolute inset-0" />
 
       {/* Content */}
-      <div className="relative p-4 flex justify-between items-start h-[110px]">
-        <div className="flex flex-col justify-between h-full">
-          <p className="text-[9px] font-black text-slate-500 uppercase tracking-[0.2em] leading-none">
-            {title}
-          </p>
-          <h2 className={`text-3xl font-black text-white ${c.valueShadow} transition-all`}>
-            {value}
-          </h2>
+      <div className="relative p-5 flex flex-col justify-between h-[130px]">
+        <div className="flex justify-between items-start gap-3">
+          <div className="flex-1 min-w-0">
+            <p className={`text-[12px] font-black ${c.iconText} uppercase tracking-[0.2em] leading-tight mb-1 drop-shadow-sm`}>
+              {title}
+            </p>
+            <div className={`w-10 h-[3px] bg-gradient-to-r ${c.line} rounded-full mt-1.5 opacity-40`} />
+          </div>
+          <div className={`w-12 h-12 flex items-center justify-center shrink-0 ${c.iconBg} ${c.iconText} text-xl rounded-xl border border-white/5 shadow-lg group-hover:scale-110 transition-transform duration-300 relative z-10`}>
+            {icon}
+          </div>
         </div>
 
-        <div className={`${c.iconBg} ${c.iconText} text-xl p-3 rounded-xl border border-white/5 shadow-lg group-hover:scale-110 transition-transform duration-300`}>
-          {icon}
+        <div className="mt-auto">
+          <h2 className={`text-3xl xl:text-4xl font-black text-[var(--text-primary)] ${c.valueShadow} transition-all truncate`}>
+            {value}
+          </h2>
         </div>
       </div>
 

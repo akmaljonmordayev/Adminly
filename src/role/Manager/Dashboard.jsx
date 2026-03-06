@@ -1,23 +1,21 @@
+import { useTheme } from '../../context/ThemeContext';
 import React, { useState, useEffect } from 'react'
 import Card from '../../components/Card'
 import {
-  FaUsers,
-  FaTasks,
-  FaBullhorn,
-  FaExclamationCircle,
-  FaSignOutAlt,
-  FaHistory,
-  FaUmbrellaBeach,
-} from 'react-icons/fa'
+  FiUsers, FiCheckSquare, FiZap, FiAlertCircle,
+  FiLogOut, FiClock, FiCompass, FiTrendingUp
+} from 'react-icons/fi'
 import axios from 'axios'
 import { Bar, Pie } from 'react-chartjs-2'
 
 const formatUZS = (num) => {
   if (!num && num !== 0) return "0 so'm"
-  return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ') + " so'm"
+  return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',') + " so'm"
 }
 
 function Dashboard() {
+  const { isDarkMode } = useTheme();
+  // ... (previous state variables stay same)
   const [allEmployees, setAllEmployees] = useState([])
   const [allTasks, setAllTasks] = useState([])
   const [allComplaints, setAllComplaints] = useState([])
@@ -130,7 +128,7 @@ function Dashboard() {
           'rgba(168, 85, 247, 0.8)',
         ],
         hoverBackgroundColor: ['#06b6d4', '#22c55e', '#ef4444', '#a855f7'],
-        borderColor: 'rgba(2, 6, 23, 0.8)',
+        borderColor: isDarkMode ? 'rgba(2, 6, 23, 0.8)' : 'rgba(255, 255, 255, 0.8)',
         borderWidth: 3,
         hoverOffset: 8,
       },
@@ -138,7 +136,7 @@ function Dashboard() {
   }
 
   return (
-    <div className="min-h-screen bg-[#020617] relative">
+    <div className="min-h-screen bg-[var(--bg-primary)] relative transition-colors duration-300">
       {/* Background orbs */}
       <div className="fixed inset-0 overflow-hidden pointer-events-none">
         <div className="absolute top-[-8%] left-[10%] w-[35%] h-[35%] bg-cyan-900/15 blur-[120px] rounded-full animate-float" />
@@ -151,10 +149,10 @@ function Dashboard() {
         <div className="flex flex-wrap justify-between items-center gap-4 mb-8 max-w-[1600px] mx-auto animate-fadeInUp">
           <div>
             <h1 className="text-3xl font-black tracking-tighter">
-              <span className="bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">OVERVIEW</span>
-              <span className="text-white ml-2">DASHBOARD</span>
+              <span className="bg-gradient-to-r from-cyan-500 to-blue-500 bg-clip-text text-transparent">OVERVIEW</span>
+              <span className="text-[var(--text-primary)] ml-2 transition-colors duration-300">DASHBOARD</span>
             </h1>
-            <p className="text-slate-600 text-xs font-medium mt-1 tracking-wider uppercase">Real-time analytics & statistics</p>
+            <p className="text-[var(--text-secondary)] text-xs font-medium mt-1 tracking-wider uppercase">Real-time analytics & statistics</p>
           </div>
 
           <div className="flex items-center gap-2 glass rounded-2xl p-1.5">
@@ -163,8 +161,8 @@ function Dashboard() {
                 key={y}
                 onClick={() => setSelectedYear(y)}
                 className={`px-6 py-2 rounded-xl text-sm font-bold transition-all duration-300 ${selectedYear === y
-                  ? "bg-gradient-to-r from-cyan-500 to-blue-500 text-white shadow-lg shadow-cyan-500/25"
-                  : "text-slate-500 hover:text-white hover:bg-white/5"
+                  ? "bg-gradient-to-r from-cyan-500 to-blue-500 text-[var(--text-primary)] shadow-lg shadow-cyan-500/25"
+                  : "text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-cyan-500/5"
                   }`}
               >
                 {y}
@@ -177,13 +175,13 @@ function Dashboard() {
         <div className="max-w-[1600px] mx-auto mb-10">
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-7 gap-4">
             {[
-              { title: "EMPLOYEES", value: allEmployees.length, icon: <FaUsers />, color: "cyan", delay: "stagger-1" },
-              { title: "TASKS", value: filteredTasks.length, icon: <FaTasks />, color: "purple", delay: "stagger-2" },
-              { title: "COMPLAINTS", value: filteredComplaints.length, icon: <FaExclamationCircle />, color: "red", delay: "stagger-3" },
-              { title: "ANNOUNCEMENTS", value: filteredAnnouncements.length, icon: <FaBullhorn />, color: "blue", delay: "stagger-4" },
-              { title: "VACATIONS", value: filteredVacations.length, icon: <FaUmbrellaBeach />, color: "green", delay: "stagger-5" },
-              { title: "RESIGNATIONS", value: filteredLeaves.length, icon: <FaSignOutAlt />, color: "slate", delay: "stagger-6" },
-              { title: "LOGS", value: filteredLogs.length, icon: <FaHistory />, color: "lime", delay: "stagger-7" },
+              { title: "EMPLOYEES", value: allEmployees.length, icon: <FiUsers />, color: "cyan", delay: "stagger-1" },
+              { title: "TASKS", value: filteredTasks.length, icon: <FiCheckSquare />, color: "purple", delay: "stagger-2" },
+              { title: "COMPLAINTS", value: filteredComplaints.length, icon: <FiAlertCircle />, color: "red", delay: "stagger-3" },
+              { title: "ANNOUNCEMENTS", value: filteredAnnouncements.length, icon: <FiZap />, color: "blue", delay: "stagger-4" },
+              { title: "VACATIONS", value: filteredVacations.length, icon: <FiCompass />, color: "green", delay: "stagger-5" },
+              { title: "RESIGNATIONS", value: filteredLeaves.length, icon: <FiLogOut />, color: "slate", delay: "stagger-6" },
+              { title: "LOGS", value: filteredLogs.length, icon: <FiClock />, color: "lime", delay: "stagger-7" },
             ].map((card) => (
               <div key={card.title} className={`animate-fadeInUp opacity-0 ${card.delay}`}>
                 <Card title={card.title} value={card.value} icon={card.icon} color={card.color} />
@@ -200,11 +198,11 @@ function Dashboard() {
             <div className="noise absolute inset-0 rounded-[2rem]" />
             <div className="relative h-full glass-strong rounded-[2rem] p-8 flex flex-col">
               <div className="flex items-center justify-between mb-6">
-                <h2 className="text-slate-400 text-xs font-black uppercase tracking-[0.2em] flex items-center gap-3">
+                <h2 className="text-[var(--text-secondary)] text-xs font-black uppercase tracking-[0.2em] flex items-center gap-3">
                   <span className="w-2.5 h-2.5 rounded-full bg-gradient-to-r from-cyan-500 to-blue-500 shadow-lg shadow-cyan-500/30" />
                   Administrative Data · {selectedYear}
                 </h2>
-                <span className="text-[10px] font-bold text-slate-600 bg-white/5 px-3 py-1 rounded-full">LIVE</span>
+                <span className="text-[10px] font-bold text-[var(--text-secondary)] bg-cyan-500/5 px-3 py-1 rounded-full">LIVE</span>
               </div>
               <div className="flex-1 min-h-0">
                 <Bar data={barChartData} options={{
@@ -213,23 +211,31 @@ function Dashboard() {
                   plugins: {
                     legend: { display: false },
                     tooltip: {
-                      backgroundColor: 'rgba(15, 23, 42, 0.95)',
-                      borderColor: 'rgba(6, 182, 212, 0.2)',
+                      backgroundColor: isDarkMode ? 'rgba(15, 23, 42, 0.95)' : 'rgba(255, 255, 255, 0.95)',
+                      borderColor: isDarkMode ? 'rgba(6, 182, 212, 0.2)' : 'rgba(6, 182, 212, 0.4)',
                       borderWidth: 1,
                       cornerRadius: 12,
                       padding: 12,
+                      titleColor: isDarkMode ? '#f8fafc' : '#1e293b',
+                      bodyColor: isDarkMode ? '#94a3b8' : '#475569',
                       titleFont: { weight: 'bold', size: 13 },
                       bodyFont: { size: 12 },
                     },
                   },
                   scales: {
                     y: {
-                      ticks: { color: '#475569', font: { size: 11 } },
-                      grid: { color: 'rgba(255,255,255,0.03)' },
+                      ticks: {
+                        color: isDarkMode ? '#94a3b8' : '#64748b',
+                        font: { size: 11, weight: '500' }
+                      },
+                      grid: { color: isDarkMode ? 'rgba(255,255,255,0.03)' : 'rgba(0,0,0,0.03)' },
                       border: { display: false },
                     },
                     x: {
-                      ticks: { color: '#475569', font: { size: 11, weight: 'bold' } },
+                      ticks: {
+                        color: isDarkMode ? '#94a3b8' : '#64748b',
+                        font: { size: 10, weight: 'bold' }
+                      },
                       grid: { display: false },
                       border: { display: false },
                     },
@@ -245,36 +251,38 @@ function Dashboard() {
             <div className="noise absolute inset-0 rounded-[2rem]" />
             <div className="relative h-full glass-strong rounded-[2rem] p-8 flex flex-col">
               <div className="flex items-center justify-between mb-6">
-                <h2 className="text-slate-400 text-xs font-black uppercase tracking-[0.2em] flex items-center gap-3">
+                <h2 className="text-[var(--text-secondary)] text-xs font-black uppercase tracking-[0.2em] flex items-center gap-3">
                   <span className="w-2.5 h-2.5 rounded-full bg-gradient-to-r from-purple-500 to-pink-500 shadow-lg shadow-purple-500/30" />
                   Financial Overview · {selectedYear}
                 </h2>
-                <span className="text-[10px] font-bold text-slate-600 bg-white/5 px-3 py-1 rounded-full">UZS</span>
+                <span className="text-[10px] font-bold text-[var(--text-secondary)] bg-cyan-500/5 px-3 py-1 rounded-full">UZS</span>
               </div>
               <div className="flex-1 min-h-0 relative">
                 <Pie data={financeChartData} options={{
                   responsive: true,
                   maintainAspectRatio: false,
-                  cutout: '20%',
+                  cutout: '65%',
                   plugins: {
                     legend: {
-                      position: 'right',
+                      position: 'bottom',
                       labels: {
-                        color: '#94a3b8',
-                        font: { weight: 'bold', size: 12 },
-                        padding: 16,
+                        color: isDarkMode ? '#94a3b8' : '#64748b',
+                        font: { weight: '800', size: 10, family: 'Inter' },
+                        padding: 20,
                         usePointStyle: true,
-                        pointStyleWidth: 10,
+                        pointStyle: 'circle',
                       },
                     },
                     tooltip: {
-                      backgroundColor: 'rgba(15, 23, 42, 0.95)',
-                      borderColor: 'rgba(168, 85, 247, 0.2)',
+                      backgroundColor: isDarkMode ? 'rgba(15, 23, 42, 0.98)' : 'rgba(255, 255, 255, 0.98)',
+                      borderColor: isDarkMode ? 'rgba(168, 85, 247, 0.3)' : 'rgba(168, 85, 247, 0.5)',
                       borderWidth: 1,
-                      cornerRadius: 12,
-                      padding: 12,
+                      cornerRadius: 16,
+                      padding: 16,
+                      titleColor: isDarkMode ? '#f8fafc' : '#1e293b',
+                      bodyColor: isDarkMode ? '#cbd5e1' : '#475569',
                       callbacks: {
-                        label: (ctx) => ` ${ctx.label}: ${formatUZS(ctx.raw)}`,
+                        label: (ctx) => `  ${ctx.label}: ${formatUZS(ctx.raw)}`,
                       },
                     },
                   },

@@ -1,3 +1,4 @@
+import { useTheme } from '../../context/ThemeContext';
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import { toast, ToastContainer } from 'react-toastify'
@@ -9,10 +10,13 @@ import {
   HiOutlineStatusOnline,
   HiOutlineRefresh,
   HiOutlineTrash,
+  HiOutlineClock
 } from 'react-icons/hi'
+import { FiCheckCircle, FiClock, FiAlertCircle } from 'react-icons/fi'
 
 function TasksArchieve() {
   const tasksArchiveUrl = 'http://localhost:5000/tasksDeleted'
+  const { isDarkMode } = useTheme();
   const [data, setData] = useState([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
@@ -37,13 +41,6 @@ function TasksArchieve() {
     fetchTasksArchive()
   }, [])
 
-  if (loading)
-    return (
-      <div className="flex items-center justify-center min-h-[400px]">
-        <div className="w-10 h-10 border-2 border-cyan-500/20 border-t-cyan-500 rounded-full animate-spin"></div>
-      </div>
-    )
-
   const restoreTask = async (task) => {
     try {
       await axios.post('http://localhost:5000/tasks', task)
@@ -56,6 +53,7 @@ function TasksArchieve() {
   }
 
   const deleteTask = async (id) => {
+    if (!window.confirm('Delete this task permanently?')) return
     try {
       await axios.delete(`http://localhost:5000/tasksDeleted/${id}`)
       toast.error('Task permanently deleted')
@@ -65,117 +63,109 @@ function TasksArchieve() {
     }
   }
 
+  if (loading) return (
+    <div className="flex flex-col items-center justify-center min-h-[400px]">
+      <div className="w-12 h-12 border-2 border-purple-500/10 border-t-purple-500 rounded-full animate-spin"></div>
+      <p className="mt-4 text-[10px] font-black uppercase tracking-[0.3em] text-purple-500/60 animate-pulse">Syncing Tasks...</p>
+    </div>
+  )
+
   return (
     <div className="w-full">
-      {/* Header */}
-      <div className="flex items-center justify-between mb-8">
-        <h2 className="text-2xl font-bold text-white tracking-tight">
-          Archived Tasks
-        </h2>
-        <div className="bg-cyan-500/10 border border-cyan-500/20 px-4 py-1.5 rounded-full">
-          <span className="text-cyan-400 font-mono text-sm font-bold">
-            {data.length}
-          </span>
+      <div className="flex flex-wrap items-center justify-between mb-8 gap-4">
+        <div>
+          <h2 className="text-2xl font-black text-[var(--text-primary)] tracking-tight uppercase">Tasks <span className="text-purple-400 italic">History</span></h2>
+          <p className="text-[var(--text-secondary)] text-xs font-medium mt-1">Found {data.length} archived tasks</p>
+        </div>
+
+        <div className="flex items-center gap-2">
+          <div className="bg-purple-500/10 border border-purple-500/20 px-4 py-2 rounded-2xl flex items-center gap-2 shadow-lg shadow-purple-500/5">
+            <div className="w-2 h-2 rounded-full bg-purple-400 animate-pulse" />
+            <span className="text-purple-400 font-black text-xs uppercase tracking-widest">{data.length} Archived</span>
+          </div>
         </div>
       </div>
 
-      {/* Grid Layout */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {data.map((delTask) => (
-          <div
-            key={delTask.id}
-            className="relative bg-[#0b1220] border border-white/10 rounded-[30px] p-6 shadow-2xl overflow-hidden group hover:border-white/20 transition-none"
-          >
-            {/* Shisha effekti jilosi */}
-            <div className="absolute -top-10 -right-10 w-32 h-32 bg-cyan-500/5 blur-3xl pointer-events-none"></div>
+      {data.length === 0 ? (
+        <div className="py-24 text-center border border-dashed border-white/5 rounded-[3rem] bg-white/[0.02]">
+          <div className="w-20 h-20 mx-auto mb-6 rounded-[2rem] bg-purple-500/5 flex items-center justify-center text-purple-400/30 border border-purple-500/10">
+            <HiOutlineClipboardList size={48} />
+          </div>
+          <h3 className="text-xl font-bold text-[var(--text-primary)] tracking-tight">Archive is Empty</h3>
+          <p className="text-[var(--text-secondary)] text-xs mt-2 uppercase tracking-widest font-black opacity-40">No deleted task data available</p>
+        </div>
+      ) : (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {data.map((delTask, i) => (
+            <div
+              key={delTask.id}
+              className="group relative glass-strong rounded-[2.5rem] border border-white/5 overflow-hidden hover:border-purple-500/30 transition-all duration-500 hover:shadow-2xl hover:shadow-purple-500/10 hover:-translate-y-1 animate-fadeInScale"
+              style={{ animationDelay: `${i * 0.05}s` }}
+            >
+              <div className="absolute top-0 left-0 w-full h-[100px] bg-gradient-to-br from-purple-600/10 to-transparent group-hover:from-purple-600/20 transition-all duration-500" />
 
-            <div className="space-y-4">
-              {/* Vazifa nomi */}
-              <div className="flex items-start gap-3">
-                <div className="mt-1 p-2 bg-white/5 rounded-xl border border-white/10 text-cyan-400">
-                  <HiOutlineClipboardList className="text-xl" />
-                </div>
-                <div className="flex-1">
-                  <h3 className="text-white font-bold text-lg leading-tight">
-                    {delTask.taskName}
-                  </h3>
-                  <p className="text-gray-500 text-[10px] uppercase tracking-widest mt-1 font-bold">
-                    Task Name
-                  </p>
-                </div>
-              </div>
-
-              {/* Ma'lumotlar ro'yxati */}
-              <div className="space-y-3 pt-2">
-                {/* Xodim */}
-                <div className="flex items-center gap-3 text-gray-300">
-                  <HiOutlineUser className="text-gray-500 text-lg" />
-                  <div className="flex flex-col">
-                    <span className="text-sm font-medium">
-                      {delTask.employeeName}
-                    </span>
-                    <span className="text-[10px] text-gray-500 uppercase">
-                      Assigned Employee
-                    </span>
+              <div className="p-7 relative z-10 flex flex-col h-full">
+                <div className="flex justify-between items-start mb-6">
+                  <div className="w-12 h-12 rounded-2xl bg-purple-500/10 flex items-center justify-center text-purple-400 border border-purple-500/20">
+                    <HiOutlineClipboardList size={24} />
                   </div>
-                </div>
-
-                {/* Deadline */}
-                <div className="flex items-center gap-3 text-gray-300">
-                  <HiOutlineCalendar className="text-gray-500 text-lg" />
-                  <div className="flex flex-col">
-                    <span className="text-sm font-medium">
-                      {delTask.deadline}
-                    </span>
-                    <span className="text-[10px] text-gray-500 uppercase">
-                      Deadline Date
-                    </span>
-                  </div>
-                </div>
-
-                {/* Status */}
-                <div className="flex items-center gap-3 text-gray-300">
-                  <HiOutlineStatusOnline className="text-gray-500 text-lg" />
-                  <div className="flex flex-col">
-                    <span
-                      className={`text-sm font-bold ${
-                        delTask.status === 'pending'
-                          ? 'text-orange-400'
-                          : 'text-green-400'
-                      }`}
+                  <div className="flex gap-2">
+                    <button
+                      onClick={() => restoreTask(delTask)}
+                      className="w-10 h-10 rounded-2xl bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 flex items-center justify-center hover:bg-emerald-500 hover:text-white transition-all active:scale-95"
                     >
-                      {delTask.status.charAt(0).toUpperCase() +
-                        delTask.status.slice(1)}
-                    </span>
-                    <span className="text-[10px] text-gray-500 uppercase">
-                      Current Status
-                    </span>
+                      <HiOutlineRefresh size={20} />
+                    </button>
+                    <button
+                      onClick={() => deleteTask(delTask.id)}
+                      className="w-10 h-10 rounded-2xl bg-red-500/10 text-red-400 border border-red-500/20 flex items-center justify-center hover:bg-red-500 hover:text-white transition-all active:scale-95"
+                    >
+                      <HiOutlineTrash size={20} />
+                    </button>
                   </div>
                 </div>
-              </div>
 
-              {/* Action Buttons */}
-              <div className="flex gap-2 pt-6 border-t border-white/5 mt-4">
-                <button
-                  onClick={() => restoreTask(delTask)}
-                  className="flex-1 flex items-center justify-center gap-2 py-3 bg-white/5 hover:bg-cyan-500/20 text-gray-400 hover:text-cyan-400 rounded-2xl border border-white/5 transition-none font-bold text-xs uppercase tracking-widest"
-                >
-                  <HiOutlineRefresh className="text-lg" />
-                  Restore
-                </button>
+                <div className="space-y-4 mb-6">
+                  <h3 className="text-lg font-black text-[var(--text-primary)] group-hover:text-purple-400 transition-colors uppercase leading-tight">{delTask.taskName}</h3>
+                  <div className="grid grid-cols-1 gap-3">
+                    <div className="flex items-center gap-3 bg-white/5 p-3 rounded-2xl border border-white/5">
+                      <div className="w-8 h-8 rounded-xl bg-purple-500/10 flex items-center justify-center text-purple-400"><HiOutlineUser size={18} /></div>
+                      <div>
+                        <p className="text-[9px] font-black text-purple-500 uppercase tracking-widest leading-none mb-1">Assigned To</p>
+                        <p className="text-xs font-bold text-[var(--text-primary)]">{delTask.employeeName}</p>
+                      </div>
+                    </div>
+                    <div className="flex items-center gap-3 bg-white/5 p-3 rounded-2xl border border-white/5">
+                      <div className="w-8 h-8 rounded-xl bg-cyan-500/10 flex items-center justify-center text-cyan-400"><HiOutlineCalendar size={18} /></div>
+                      <div>
+                        <p className="text-[9px] font-black text-cyan-500 uppercase tracking-widest leading-none mb-1">Deadline</p>
+                        <p className="text-xs font-bold text-[var(--text-primary)]">{delTask.deadline}</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
 
-                <button
-                  onClick={() => deleteTask(delTask.id)}
-                  className="p-3 bg-white/5 hover:bg-red-500/20 text-gray-500 hover:text-red-400 rounded-2xl border border-white/5 transition-none"
-                >
-                  <HiOutlineTrash className="text-lg" />
-                </button>
+                <div className="mt-auto pt-4 border-t border-white/5 flex items-center justify-between">
+                  <div className="flex items-center gap-2">
+                    <span className={`w-2 h-2 rounded-full ${delTask.status === 'pending' ? 'bg-amber-400 shadow-[0_0_8px_#fbbf24]' : 'bg-emerald-400 shadow-[0_0_8px_#34d399]'}`} />
+                    <span className="text-[10px] font-black text-[var(--text-secondary)] uppercase tracking-widest">{delTask.status}</span>
+                  </div>
+                  <div className="flex items-center gap-1.5 text-[10px] font-bold text-[var(--text-secondary)] opacity-50 uppercase tracking-tighter">
+                    <HiOutlineClock /> Archived
+                  </div>
+                </div>
               </div>
             </div>
-          </div>
-        ))}
-      </div>
-      <ToastContainer position="top-right" autoClose={3000} theme="dark" />
+          ))}
+        </div>
+      )}
+
+      <ToastContainer
+        theme={isDarkMode ? 'dark' : 'light'}
+        position="bottom-right"
+        autoClose={2500}
+        toastClassName="!rounded-2xl !bg-[var(--bg-secondary)] !border !border-white/5 !shadow-2xl"
+      />
     </div>
   )
 }

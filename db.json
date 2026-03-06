@@ -27,6 +27,13 @@
       "email": "akmaljonmordayev@gmail.com",
       "password": "1234",
       "role": "employee"
+    },
+    {
+      "id": "5",
+      "name": "Test Manager",
+      "email": "testmanager@admin.com",
+      "password": "password123",
+      "role": "manager"
     }
   ],
   "employees": [
@@ -513,6 +520,20 @@
       "deadline": "2026-03-20",
       "status": "pending",
       "id": "2MUQVsO"
+    },
+    {
+      "taskName": "UXLA",
+      "employeeName": "Akmaljon Mordayev",
+      "deadline": "2026-03-31",
+      "status": "pending",
+      "id": "mRoFtVC"
+    },
+    {
+      "taskName": "Updated Task",
+      "employeeName": "Malika Tursunova",
+      "deadline": "2026-03-06",
+      "status": "pending",
+      "id": "fIVUKcU"
     }
   ],
   "logs": [
@@ -620,6 +641,41 @@
       "date": "2026-03-05T20:59:14.430Z",
       "page": "TASKS",
       "id": 15
+    },
+    {
+      "userName": "Mohinur Sulaymonqulova",
+      "action": "CREATE",
+      "date": "2026-03-05T22:08:52.433Z",
+      "page": "TASKS",
+      "id": 16
+    },
+    {
+      "userName": "Test Manager",
+      "action": "CREATE",
+      "date": "2026-03-05T23:17:21.783Z",
+      "page": "TASKS",
+      "id": 17
+    },
+    {
+      "userName": "Test Manager",
+      "action": "UPDATE",
+      "date": "2026-03-05T23:17:59.421Z",
+      "page": "TASKS",
+      "id": 18
+    },
+    {
+      "userName": "Test Manager",
+      "action": "UPDATE",
+      "date": "2026-03-05T23:18:56.980Z",
+      "page": "TASKS",
+      "id": 19
+    },
+    {
+      "userName": "Test Manager",
+      "action": "UPDATE",
+      "date": "2026-03-05T23:19:37.721Z",
+      "page": "TASKS",
+      "id": 20
     }
   ],
   "resignationLeaves": [
@@ -719,6 +775,24 @@
       "date": "Jan 10, 2026",
       "status": "Active",
       "id": "29cd28be-d8ac-47af-afa9-bbf84f1195fb"
+    }
+  ],
+  "notifications": [
+    {
+      "id": "1",
+      "userId": "1",
+      "title": "Xush kelibsiz!",
+      "message": "Bugungi vazifalarni ko'rib chiqing.",
+      "type": "info",
+      "date": "2026-03-05T08:00:00Z"
+    },
+    {
+      "id": "2",
+      "userId": "1",
+      "title": "KPI Yangilandi",
+      "message": "Sizning fevral oyi KPI ko'rsatkichingiz 95% ga yetdi.",
+      "type": "success",
+      "date": "2026-03-05T09:30:00Z"
     }
   ]
 }

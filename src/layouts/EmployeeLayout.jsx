@@ -10,7 +10,7 @@ function MainLayOut() {
   }
 
   return (
-    <div className="flex h-screen bg-[#020617] overflow-hidden">
+    <div className="flex h-screen bg-[var(--bg-primary)] overflow-hidden transition-colors duration-300">
       <div
         className={`
           ${isCollapsed ? 'w-20' : 'w-[280px]'} 

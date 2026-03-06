@@ -11,35 +11,25 @@ function Register() {
   const [name, setName] = useState('')
   const [password, setPassword] = useState('')
   const [email, setEmail] = useState('')
+  const [selectedRole, setSelectedRole] = useState('employee')
   const [open, setOpen] = useState(false)
-
-  const [data, setData] = useState([])
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
-
   const navigate = useNavigate()
-
-  useEffect(() => {
-    const getUsers = async () => {
-      try {
-        const res = await axios.get('http://localhost:5000/users')
-        setData(res.data)
-      } catch (err) {
-        console.log(err)
-      }
-    }
-    getUsers()
-  }, [])
 
   const onSubmitted = async (e) => {
     e.preventDefault()
     setLoading(true)
     setError('')
     try {
-      const res = await axios.get('http://localhost:5000/users')
-      const users = res.data
+      const [usersRes, employeesRes] = await Promise.all([
+        axios.get('http://localhost:5000/users'),
+        axios.get('http://localhost:5000/employees')
+      ])
 
-      const existUser = users.find((u) => u.email === email)
+      const allUsers = [...usersRes.data, ...employeesRes.data]
+
+      const existUser = allUsers.find((u) => u.email === email)
 
       if (existUser) {
         toast.error('Sizda allaqachon account bor')
@@ -49,18 +39,29 @@ function Register() {
         return
       }
 
-      const lastId =
-        users.length > 0 ? Number(users[users.length - 1].id) + 1 : 1
-
-      const newUser = {
-        id: String(lastId),
-        name,
-        email,
-        password,
-        role: 'manager',
+      if (selectedRole === 'manager') {
+        const lastId = usersRes.data.length > 0 ? Number(usersRes.data[usersRes.data.length - 1].id) + 1 : 1
+        const newUser = {
+          id: String(lastId),
+          name,
+          email,
+          password,
+          role: 'manager',
+        }
+        await axios.post('http://localhost:5000/users', newUser)
+      } else {
+        const lastId = employeesRes.data.length > 0 ? Number(employeesRes.data[employeesRes.data.length - 1].id) + 1 : 1
+        const newEmployee = {
+          id: String(lastId),
+          fullName: name,
+          email,
+          password,
+          role: 'employee',
+          hireDate: new Date().toISOString().split('T')[0],
+          status: 'active'
+        }
+        await axios.post('http://localhost:5000/employees', newEmployee)
       }
-
-      await axios.post('http://localhost:5000/users', newUser)
 
       toast.success('Account muvaffaqiyatli yaratildi')
 
@@ -82,24 +83,24 @@ function Register() {
 
   return (
     <>
-      <div className="min-h-screen flex items-center justify-center bg-[#050b14]">
+      <div className="min-h-screen flex items-center justify-center bg-[var(--bg-primary)]">
         <div
-          className="relative w-[900px] h-[500px] rounded-xl overflow-hidden 
-          bg-linear-to-br from-[#0b1220] to-[#050b14]
-          shadow-[0_0_40px_rgba(0,255,255,0.25)]
-          border border-cyan-400/30 flex"
+          className="relative w-[900px] min-h-[580px] py-10 rounded-xl overflow-hidden 
+          bg-[var(--bg-secondary)]
+          shadow-2xl
+          border border-cyan-500/20 flex items-center"
         >
           <div
             className="rotate-20 w-150 h-200 relative -top-50 -left-35 flex items-center justify-center
             bg-linear-to-br from-cyan-500/20 to-blue-600/20 clip-path-diagonal"
           >
-            <h1 className="text-left -rotate-20 relative top-1 left-10 text-4xl font-bold text-white">
+            <h1 className="text-left -rotate-20 relative top-1 left-10 text-4xl font-bold text-[var(--text-primary)]">
               CREATE <br /> ACCOUNT
             </h1>
           </div>
 
           <div className="w-1/2 p-10 flex flex-col justify-center">
-            <h2 className="text-center text-4xl font-semibold text-white mb-8">
+            <h2 className="text-center text-4xl font-semibold text-[var(--text-primary)] mb-8">
               Sign Up
             </h2>
 
@@ -110,11 +111,11 @@ function Register() {
                   value={email}
                   required
                   onChange={(e) => setEmail(e.target.value)}
-                  className="peer w-full bg-transparent border-b border-cyan-400/40
-                  text-white py-3 pr-10 outline-none focus:border-cyan-400"
+                  className="peer w-full bg-transparent border-b border-cyan-500/40
+                  text-[var(--text-primary)] py-3 pr-10 outline-none focus:border-cyan-400"
                 />
                 <label
-                  className="absolute left-0 top-3 text-gray-400 text-sm
+                  className="absolute left-0 top-3 text-[var(--text-secondary)] text-sm
                   transition-all peer-focus:-top-4 peer-focus:text-xs
                   peer-focus:text-cyan-400 peer-valid:-top-4 peer-valid:text-xs"
                 >
@@ -129,11 +130,11 @@ function Register() {
                   value={password}
                   required
                   onChange={(e) => setPassword(e.target.value)}
-                  className="peer w-full bg-transparent border-b border-cyan-400/40
-                  text-white py-3 pr-10 outline-none focus:border-cyan-400"
+                  className="peer w-full bg-transparent border-b border-cyan-500/40
+                  text-[var(--text-primary)] py-3 pr-10 outline-none focus:border-cyan-400"
                 />
                 <label
-                  className="absolute left-0 top-3 text-gray-400 text-sm
+                  className="absolute left-0 top-3 text-[var(--text-secondary)] text-sm
                   transition-all peer-focus:-top-4 peer-focus:text-xs
                   peer-focus:text-cyan-400 peer-valid:-top-4 peer-valid:text-xs"
                 >
@@ -159,11 +160,11 @@ function Register() {
                   value={name}
                   required
                   onChange={(e) => setName(e.target.value)}
-                  className="peer w-full bg-transparent border-b border-cyan-400/40
-                  text-white py-3 pr-10 outline-none focus:border-cyan-400"
+                  className="peer w-full bg-transparent border-b border-cyan-500/40
+                  text-[var(--text-primary)] py-3 pr-10 outline-none focus:border-cyan-400"
                 />
                 <label
-                  className="absolute left-0 top-3 text-gray-400 text-sm
+                  className="absolute left-0 top-3 text-[var(--text-secondary)] text-sm
                   transition-all peer-focus:-top-4 peer-focus:text-xs
                   peer-focus:text-cyan-400 peer-valid:-top-4 peer-valid:text-xs"
                 >
@@ -172,16 +173,39 @@ function Register() {
                 <FaUser className="absolute right-2 top-1/2 -translate-y-1/2 text-cyan-400" />
               </span>
 
+              <div className="flex gap-4 mt-6">
+                <button
+                  type="button"
+                  onClick={() => setSelectedRole('employee')}
+                  className={`flex-1 py-3 rounded-xl border font-black uppercase tracking-[0.2em] text-[10px] transition-all duration-300 ${selectedRole === 'employee'
+                    ? 'bg-cyan-500/20 border-cyan-400 text-cyan-400 shadow-[0_0_15px_rgba(34,211,238,0.2)] scale-105'
+                    : 'bg-transparent border-cyan-400/20 text-slate-500 hover:border-cyan-400/50 hover:text-cyan-200'
+                    }`}
+                >
+                  Employee
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setSelectedRole('manager')}
+                  className={`flex-1 py-3 rounded-xl border font-black uppercase tracking-[0.2em] text-[10px] transition-all duration-300 ${selectedRole === 'manager'
+                    ? 'bg-cyan-500/20 border-cyan-400 text-cyan-400 shadow-[0_0_15px_rgba(34,211,238,0.2)] scale-105'
+                    : 'bg-transparent border-cyan-400/20 text-slate-500 hover:border-cyan-400/50 hover:text-cyan-200'
+                    }`}
+                >
+                  Manager
+                </button>
+              </div>
+
               <button
                 disabled={loading}
                 className="w-full py-2 rounded-full bg-linear-to-b
-                from-cyan-500 to-black text-white font-semibold hover:opacity-90"
+                from-cyan-500 to-black text-[var(--text-primary)] font-semibold hover:opacity-90"
               >
                 {loading ? 'Loading...' : 'Create account'}
               </button>
             </form>
 
-            <div className="flex justify-center gap-2 mt-6 text-sm text-gray-400">
+            <div className="flex justify-center gap-2 mt-6 text-sm text-[var(--text-secondary)]">
               <p>Already have an account?</p>
               <Link to="/auth/signin" className="text-cyan-400 hover:underline">
                 Sign In
