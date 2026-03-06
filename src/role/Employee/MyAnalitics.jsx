@@ -26,7 +26,7 @@ const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', '
 
 const formatUZS = (num) => {
   if (!num && num !== 0) return "0 so'm"
-  return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ') + " so'm"
+  return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',') + " so'm"
 }
 
 export default function EmployeeAnalytics() {
@@ -105,21 +105,21 @@ export default function EmployeeAnalytics() {
   }, [chartDataAPI])
 
   return (
-    <div className="min-h-screen bg-[#020617] p-8">
+    <div className="min-h-screen bg-[var(--bg-primary)] p-8">
       <div className="max-w-7xl mx-auto">
         <div className="flex justify-between items-center mb-10">
-          <h1 className="text-4xl font-black text-white italic tracking-tighter">
+          <h1 className="text-4xl font-black text-[var(--text-primary)] italic tracking-tighter">
             PROFIT <span className="text-cyan-400">ANALYTICS</span>
           </h1>
 
-          <div className="flex items-center gap-3 bg-white/5 p-1 rounded-2xl border border-white/10">
+          <div className="flex items-center gap-3 bg-cyan-500/5 p-1 rounded-2xl border border-cyan-500/10">
             {['2025', '2026'].map((y) => (
               <button
                 key={y}
                 onClick={() => setSelectedYear(y)}
                 className={`px-6 py-2 rounded-xl text-sm font-bold transition-all ${selectedYear === y
-                    ? "bg-cyan-500 text-slate-950 shadow-lg shadow-cyan-500/20"
-                    : "text-slate-400 hover:text-white"
+                  ? "bg-cyan-500 text-slate-950 shadow-lg shadow-cyan-500/20"
+                  : "text-[var(--text-secondary)] hover:text-[var(--text-primary)]"
                   }`}
               >
                 {y} Year
@@ -129,11 +129,11 @@ export default function EmployeeAnalytics() {
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-12">
-          <div className="lg:col-span-2 bg-slate-900/40 backdrop-blur-xl border border-slate-800 rounded-[2.5rem] p-8 h-[500px]">
+          <div className="lg:col-span-2 bg-[var(--card-bg)]/40 backdrop-blur-xl border border-cyan-500/10 rounded-[2.5rem] p-8 h-[500px]">
             <div className="flex justify-between items-center mb-6">
-              <h2 className="text-xl font-bold text-white uppercase tracking-widest text-sm opacity-50">Monthly Profit Trends</h2>
+              <h2 className="text-xl font-bold text-[var(--text-primary)] uppercase tracking-widest text-sm opacity-50">Monthly Profit Trends</h2>
               <div className="text-right">
-                <p className="text-[10px] text-slate-500 font-bold uppercase tracking-widest">Total Net Profit</p>
+                <p className="text-[10px] text-[var(--text-secondary)] font-bold uppercase tracking-widest">Total Net Profit</p>
                 <p className="text-2xl font-black text-cyan-400">{formatUZS(total)}</p>
               </div>
             </div>
@@ -153,8 +153,8 @@ export default function EmployeeAnalytics() {
             </div>
           </div>
 
-          <div className="bg-slate-900/40 backdrop-blur-xl border border-slate-800 rounded-[2.5rem] p-8 h-[500px] flex flex-col">
-            <h2 className="text-xl font-bold text-white uppercase tracking-widest text-sm opacity-50 mb-8 text-center">Structure Breakdown</h2>
+          <div className="bg-[var(--card-bg)]/40 backdrop-blur-xl border border-cyan-500/10 rounded-[2.5rem] p-8 h-[500px] flex flex-col">
+            <h2 className="text-xl font-bold text-[var(--text-primary)] uppercase tracking-widest text-sm opacity-50 mb-8 text-center">Structure Breakdown</h2>
             <div className="flex-1 min-h-0">
               <Pie
                 data={pieData}
@@ -171,8 +171,8 @@ export default function EmployeeAnalytics() {
         </div>
 
         {!chartDataAPI && (
-          <div className="text-center py-20 bg-slate-900/20 border border-dashed border-slate-800 rounded-[2rem]">
-            <p className="text-slate-500 font-bold uppercase tracking-[0.3em]">No data records found for {selectedYear}</p>
+          <div className="text-center py-20 bg-[var(--card-bg)]/20 border border-dashed border-cyan-500/10 rounded-[2rem]">
+            <p className="text-[var(--text-secondary)] font-bold uppercase tracking-[0.3em]">No data records found for {selectedYear}</p>
           </div>
         )}
       </div>

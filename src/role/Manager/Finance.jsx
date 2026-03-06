@@ -1,3 +1,4 @@
+import { useTheme } from '../../context/ThemeContext';
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import { ToastContainer, toast } from 'react-toastify'
@@ -36,13 +37,14 @@ const columns = [
 
 const formatUZS = (num) => {
   if (!num && num !== 0) return "0 so'm"
-  return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ') + " so'm"
+  return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',') + " so'm"
 }
 
 const API_BASE = 'http://localhost:5000'
 const YEARS = ['2025', '2026']
 
 function Finance() {
+  const { isDarkMode } = useTheme();
   const [employees, setEmployees] = useState([])
   const [financeData, setFinanceData] = useState([])
   const [mergedData, setMergedData] = useState([])
@@ -169,8 +171,8 @@ function Finance() {
     unpaid: { bg: 'bg-rose-500/10', text: 'text-rose-400', border: 'border-rose-500/20', dot: 'bg-rose-500', icon: <FaClock /> },
     reviewed: { bg: 'bg-blue-500/10', text: 'text-blue-400', border: 'border-blue-500/20', dot: 'bg-blue-500', icon: <FaCheckCircle /> },
     paid: { bg: 'bg-emerald-500/10', text: 'text-emerald-400', border: 'border-emerald-500/20', dot: 'bg-emerald-400', icon: <FaCheckCircle /> },
-    pending: { bg: 'bg-amber-500/10', text: 'text-amber-400', border: 'border-amber-500/20', dot: 'bg-amber-500', icon: <FaClock /> },
-    rejected: { bg: 'bg-slate-500/10', text: 'text-slate-400', border: 'border-slate-500/20', dot: 'bg-slate-500', icon: <FaMinusCircle /> },
+    pending: { bg: 'bg-[var(--card-bg)]mber-500/10', text: 'text-amber-400', border: 'border-amber-500/20', dot: 'bg-[var(--card-bg)]mber-500', icon: <FaClock /> },
+    rejected: { bg: 'bg-slate-500/10', text: 'text-[var(--text-secondary)]', border: 'border-slate-500/20', dot: 'bg-slate-500', icon: <FaMinusCircle /> },
   }
 
   const METHOD_ICONS = {
@@ -180,7 +182,7 @@ function Finance() {
   }
 
   return (
-    <div className="w-full min-h-screen bg-[#020617] font-sans tracking-tight relative">
+    <div className="w-full min-h-screen bg-[var(--bg-primary)] font-sans tracking-tight relative transition-colors duration-300">
       {/* Background orbs */}
       <div className="fixed inset-0 overflow-hidden pointer-events-none">
         <div className="absolute top-[-10%] left-[5%] w-[35%] h-[35%] bg-cyan-900/10 blur-[120px] rounded-full animate-float" />
@@ -191,10 +193,10 @@ function Finance() {
         <header className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-8 mb-12 animate-fadeInUp">
           <div>
             <h1 className="text-4xl md:text-5xl font-black tracking-tighter mb-2">
-              <span className="bg-gradient-to-r from-cyan-400 via-blue-400 to-purple-400 bg-clip-text text-transparent">FINANCE</span>
-              <span className="text-white ml-2">ENGINE</span>
+              <span className="bg-gradient-to-r from-cyan-500 via-blue-500 to-purple-500 bg-clip-text text-transparent">FINANCE</span>
+              <span className="text-[var(--text-primary)] ml-2 transition-colors">ENGINE</span>
             </h1>
-            <p className="text-slate-600 text-xs font-medium tracking-wider uppercase">
+            <p className="text-[var(--text-secondary)] text-xs font-medium tracking-wider uppercase">
               Payroll management & performance tracking
             </p>
           </div>
@@ -203,27 +205,27 @@ function Finance() {
             <select
               value={selectedYear}
               onChange={(e) => setSelectedYear(e.target.value)}
-              className="appearance-none bg-[#060d1f] px-6 py-3 rounded-xl text-cyan-400 font-black text-[10px] uppercase tracking-[0.2em] outline-none border border-white/[0.06] transition-all cursor-pointer hover:border-cyan-500/30"
+              className="appearance-none bg-[var(--bg-secondary)] px-6 py-3 rounded-xl text-cyan-500 font-black text-[10px] uppercase tracking-[0.2em] outline-none border border-cyan-500/10 transition-all cursor-pointer hover:border-cyan-500/30"
             >
               {YEARS.map((y) => (
-                <option key={y} value={y} className="bg-[#060d1f]">{y} YEAR</option>
+                <option key={y} value={y} className="bg-[var(--bg-secondary)]">{y} YEAR</option>
               ))}
             </select>
 
             <select
               value={selectedMonth}
               onChange={(e) => setSelectedMonth(e.target.value)}
-              className="appearance-none bg-[#060d1f] px-6 py-3 rounded-xl text-cyan-400 font-black text-[10px] uppercase tracking-[0.2em] outline-none border border-white/[0.06] transition-all cursor-pointer hover:border-cyan-500/30"
+              className="appearance-none bg-[var(--bg-secondary)] px-6 py-3 rounded-xl text-cyan-500 font-black text-[10px] uppercase tracking-[0.2em] outline-none border border-cyan-500/10 transition-all cursor-pointer hover:border-cyan-500/30"
             >
               {monthsList.map((m) => (
-                <option key={m.value} value={m.value} className="bg-[#060d1f]">{m.label.toUpperCase()}</option>
+                <option key={m.value} value={m.value} className="bg-[var(--bg-secondary)]">{m.label.toUpperCase()}</option>
               ))}
             </select>
           </div>
         </header>
 
-        <div className="relative group overflow-hidden rounded-[2rem] border border-white/[0.04] animate-fadeInUp stagger-1 opacity-0">
-          <div className="absolute inset-0 bg-gradient-to-b from-[#0a1128] to-[#060d1f]" />
+        <div className="relative group overflow-hidden rounded-[2rem] border border-cyan-500/10 animate-fadeInUp stagger-1 opacity-0 transition-colors">
+          <div className="absolute inset-0 bg-[var(--bg-secondary)] shadow-xl" />
           <div className="noise absolute inset-0 rounded-[2rem]" />
           <div className="absolute top-0 right-0 p-10 opacity-5 pointer-events-none">
             <FaCoins size={300} className="text-cyan-500" />
@@ -232,9 +234,9 @@ function Finance() {
           <div className="overflow-x-auto no-scrollbar relative z-10">
             <table className="w-full text-left border-collapse">
               <thead>
-                <tr className="bg-slate-950/50">
+                <tr className="bg-[var(--bg-secondary)]/50">
                   {columns.map((col, idx) => (
-                    <th key={idx} className="p-8 text-[10px] font-black uppercase tracking-[0.3em] text-slate-500/70 border-b border-white/5">
+                    <th key={idx} className="p-8 text-[10px] font-black uppercase tracking-[0.3em] text-[var(--text-secondary)]/70 border-b border-cyan-500/10">
                       <div className="flex items-center gap-2">
                         <span className="text-cyan-500/50">{col.icon}</span>
                         {col.label}
@@ -246,16 +248,16 @@ function Finance() {
               <tbody className="divide-y divide-white/5">
                 {mergedData.map((row) => (
                   <tr key={row.id} className="group hover:bg-cyan-500/[0.02] transition-all duration-300">
-                    <td className="p-8 font-mono text-[10px] text-slate-600">#{row.userId}</td>
+                    <td className="p-8 font-mono text-[10px] text-[var(--text-secondary)]">#{row.userId}</td>
                     <td className="p-8">
                       <div className="flex flex-col">
-                        <span className="text-white font-black italic tracking-tight text-lg">{row.fullName}</span>
-                        <span className="text-[10px] text-slate-500 font-bold uppercase tracking-widest">ACTIVE EMPLOYEE</span>
+                        <span className="text-[var(--text-primary)] font-black italic tracking-tight text-lg transition-colors">{row.fullName}</span>
+                        <span className="text-[10px] text-[var(--text-secondary)] font-bold uppercase tracking-widest">ACTIVE EMPLOYEE</span>
                       </div>
                     </td>
-                    <td className="p-8 font-bold text-slate-200 whitespace-nowrap">{formatUZS(row.baseSalary)}</td>
+                    <td className="p-8 font-bold text-[var(--text-primary)] whitespace-nowrap transition-colors">{formatUZS(row.baseSalary)}</td>
                     <td className="p-8">
-                      <span className="bg-slate-950/50 ring-1 ring-slate-800 px-3 py-1.5 rounded-lg text-xs font-black text-cyan-400">
+                      <span className="bg-[var(--bg-secondary)]/50 ring-1 ring-slate-800 px-3 py-1.5 rounded-lg text-xs font-black text-cyan-400">
                         {row.kpiPercent}%
                       </span>
                     </td>
@@ -278,24 +280,24 @@ function Finance() {
                         {row.status}
                       </div>
                     </td>
-                    <td className="p-8 text-[10px] font-black text-slate-500 uppercase tracking-widest">
+                    <td className="p-8 text-[10px] font-black text-[var(--text-secondary)] uppercase tracking-widest">
                       {row.paymentDate ? row.paymentDate.split('-').reverse().join('.') : '---'}
                     </td>
                     <td className="p-8">
                       <div className="flex items-center gap-3">
                         {METHOD_ICONS[row.paymentMethod]}
-                        <span className="text-[10px] uppercase font-black text-slate-400 tracking-widest">{row.paymentMethod}</span>
+                        <span className="text-[10px] uppercase font-black text-[var(--text-secondary)] tracking-widest">{row.paymentMethod}</span>
                       </div>
                     </td>
                     <td className="p-8 max-w-[200px]">
-                      <p className="text-[11px] font-medium text-slate-500 leading-relaxed italic truncate group-hover:whitespace-normal group-hover:overflow-visible transition-all">
+                      <p className="text-[11px] font-medium text-[var(--text-secondary)] leading-relaxed italic truncate group-hover:whitespace-normal group-hover:overflow-visible transition-all">
                         {row.comment || 'No administrative notes...'}
                       </p>
                     </td>
                     <td className="p-8">
                       <button
                         onClick={() => { setEditData(row); setUserCard(true); }}
-                        className="flex items-center gap-2 px-6 py-3 rounded-xl bg-slate-950 border border-slate-800 hover:border-cyan-500 hover:bg-cyan-500 hover:text-slate-950 transition-all duration-500 text-[10px] font-black uppercase tracking-widest"
+                        className="flex items-center gap-2 px-6 py-3 rounded-xl bg-[var(--bg-secondary)] border border-cyan-500/10 hover:border-cyan-500 hover:bg-cyan-500 hover:text-slate-950 transition-all duration-500 text-[10px] font-black uppercase tracking-widest"
                       >
                         <FaEdit /> MODIFY
                       </button>
@@ -309,22 +311,22 @@ function Finance() {
 
         {/* MODAL REDESIGN */}
         {userCard && editData && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center p-6 bg-black/70 backdrop-blur-sm animate-fadeInScale">
+          <div className="fixed inset-0 z-[1000] flex items-center justify-center p-6 bg-black/70 backdrop-blur-sm animate-fadeInScale">
             <div className="glass-strong w-full max-w-2xl rounded-[2rem] shadow-2xl flex flex-col max-h-[92vh] overflow-hidden">
               <div className="px-12 py-10 flex justify-between items-start shrink-0 relative overflow-hidden">
                 <div className="absolute top-0 right-0 p-10 opacity-5 pointer-events-none">
                   <FaWallet size={150} className="text-cyan-500" />
                 </div>
                 <div className="relative z-10">
-                  <h2 className="text-3xl font-black text-white italic tracking-tighter mb-2">
+                  <h2 className="text-3xl font-black text-[var(--text-primary)] italic tracking-tighter mb-2 transition-colors">
                     {editData.fullName.toUpperCase()}
                   </h2>
                   <div className="flex items-center gap-3">
                     <span className="text-[10px] font-black bg-cyan-500/10 text-cyan-400 px-3 py-1 rounded-lg tracking-widest">#{editData.userId}</span>
-                    <span className="text-[10px] font-black text-slate-500 uppercase tracking-widest">{selectedMonth}-{selectedYear} FISCAL DATA</span>
+                    <span className="text-[10px] font-black text-[var(--text-secondary)] uppercase tracking-widest">{selectedMonth}-{selectedYear} FISCAL DATA</span>
                   </div>
                 </div>
-                <button onClick={() => setUserCard(false)} className="bg-slate-800/50 p-4 rounded-2xl text-slate-400 hover:text-white transition-all relative z-10 hover:rotate-90 duration-300">
+                <button onClick={() => setUserCard(false)} className="bg-slate-800/50 p-4 rounded-2xl text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-all relative z-10 hover:rotate-90 duration-300">
                   <FaMinusCircle size={20} />
                 </button>
               </div>
@@ -338,7 +340,7 @@ function Finance() {
                     { label: 'Penalty Deductions', key: 'penalty', icon: <FaMinusCircle /> },
                   ].map((f) => (
                     <div key={f.key} className="space-y-3">
-                      <label className="text-[10px] uppercase font-black text-slate-500 tracking-[0.2em] flex items-center gap-2">
+                      <label className="text-[10px] uppercase font-black text-[var(--text-secondary)] tracking-[0.2em] flex items-center gap-2">
                         <span className="text-cyan-500/50">{f.icon}</span> {f.label}
                       </label>
                       <div className="relative">
@@ -346,32 +348,32 @@ function Finance() {
                           type="number"
                           value={editData[f.key]}
                           onChange={(e) => handleInputChange(f.key, e.target.value)}
-                          className="w-full bg-slate-950 border border-slate-800 hover:border-slate-700 p-5 rounded-[1.5rem] outline-none focus:border-cyan-500 transition-all text-white font-black text-lg"
+                          className="w-full bg-[var(--bg-primary)] border border-cyan-500/20 hover:border-cyan-500/40 p-5 rounded-[1.5rem] outline-none focus:border-cyan-500 transition-all text-[var(--text-primary)] font-black text-lg"
                         />
                       </div>
                     </div>
                   ))}
                 </div>
 
-                <div className="h-px bg-white/5 w-full" />
+                <div className="h-px bg-cyan-500/5 w-full" />
 
                 <div className="grid grid-cols-2 gap-8">
                   <div className="space-y-3">
-                    <label className="text-[10px] uppercase font-black text-slate-500 tracking-[0.2em]">Processing Status</label>
+                    <label className="text-[10px] uppercase font-black text-[var(--text-secondary)] tracking-[0.2em]">Processing Status</label>
                     <select
                       value={editData.status}
                       onChange={(e) => handleInputChange('status', e.target.value)}
-                      className="w-full bg-slate-950 border border-slate-800 p-5 rounded-[1.5rem] outline-none text-cyan-400 text-xs font-black uppercase tracking-widest cursor-pointer hover:border-cyan-500 transition-all appearance-none"
+                      className="w-full bg-[var(--bg-secondary)] border border-cyan-500/10 p-5 rounded-[1.5rem] outline-none text-cyan-400 text-xs font-black uppercase tracking-widest cursor-pointer hover:border-cyan-500 transition-all appearance-none"
                     >
                       {Object.keys(STATUS_CONFIG).map((sk) => (<option key={sk} value={sk}>{sk.toUpperCase()}</option>))}
                     </select>
                   </div>
                   <div className="space-y-3">
-                    <label className="text-[10px] uppercase font-black text-slate-500 tracking-[0.2em]">Settlement Method</label>
+                    <label className="text-[10px] uppercase font-black text-[var(--text-secondary)] tracking-[0.2em]">Settlement Method</label>
                     <select
                       value={editData.paymentMethod}
                       onChange={(e) => handleInputChange('paymentMethod', e.target.value)}
-                      className="w-full bg-slate-950 border border-slate-800 p-5 rounded-[1.5rem] outline-none text-cyan-400 text-xs font-black uppercase tracking-widest cursor-pointer hover:border-cyan-500 transition-all appearance-none"
+                      className="w-full bg-[var(--bg-secondary)] border border-cyan-500/10 p-5 rounded-[1.5rem] outline-none text-cyan-400 text-xs font-black uppercase tracking-widest cursor-pointer hover:border-cyan-500 transition-all appearance-none"
                     >
                       <option value="bank">BANK TRANSFER</option>
                       <option value="cash">CASH LIQUIDITY</option>
@@ -381,35 +383,35 @@ function Finance() {
                 </div>
 
                 <div className="space-y-3">
-                  <label className="text-[10px] uppercase font-black text-slate-500 tracking-[0.2em]">Scheduled Release Date</label>
+                  <label className="text-[10px] uppercase font-black text-[var(--text-secondary)] tracking-[0.2em]">Scheduled Release Date</label>
                   <input
                     type="date"
                     value={editData.paymentDate}
                     onChange={(e) => handleInputChange('paymentDate', e.target.value)}
-                    className="w-full bg-slate-950 border border-slate-800 p-5 rounded-[1.5rem] outline-none text-white text-sm font-bold cursor-pointer focus:border-cyan-500 transition-all"
+                    className="w-full bg-[var(--bg-secondary)] border border-cyan-500/10 p-5 rounded-[1.5rem] outline-none text-[var(--text-primary)] text-sm font-bold cursor-pointer focus:border-cyan-500 transition-all"
                   />
                 </div>
 
                 <div className="space-y-3">
-                  <label className="text-[10px] uppercase font-black text-slate-500 tracking-[0.2em]">Administrative Observations</label>
+                  <label className="text-[10px] uppercase font-black text-[var(--text-secondary)] tracking-[0.2em]">Administrative Observations</label>
                   <textarea
                     value={editData.comment}
                     onChange={(e) => handleInputChange('comment', e.target.value)}
-                    className="w-full bg-slate-950 border border-slate-800 p-6 rounded-[1.5rem] outline-none text-slate-300 text-sm min-h-[140px] resize-none focus:border-cyan-500 transition-all font-medium leading-relaxed"
+                    className="w-full bg-[var(--bg-secondary)] border border-cyan-500/10 p-6 rounded-[1.5rem] outline-none text-slate-300 text-sm min-h-[140px] resize-none focus:border-cyan-500 transition-all font-medium leading-relaxed"
                     placeholder="Enter internal payroll notes..."
                   />
                 </div>
               </div>
 
-              <div className="px-12 py-10 bg-slate-900/60 border-t border-white/5 flex flex-col md:flex-row items-center justify-between gap-8 shrink-0">
+              <div className="px-12 py-10 bg-[var(--card-bg)]/60 border-t border-cyan-500/10 flex flex-col md:flex-row items-center justify-between gap-8 shrink-0">
                 <div>
-                  <p className="text-[10px] uppercase font-black text-slate-500 tracking-[0.3em] mb-2">Final Net Disbursement</p>
+                  <p className="text-[10px] uppercase font-black text-[var(--text-secondary)] tracking-[0.3em] mb-2">Final Net Disbursement</p>
                   <p className="text-4xl font-black text-cyan-400 italic tracking-tighter">
                     {formatUZS(editData.totalSalary || 0)}
                   </p>
                 </div>
                 <div className="flex gap-4 w-full md:w-auto">
-                  <button onClick={() => setUserCard(false)} className="flex-1 md:flex-none px-10 py-5 rounded-[1.5rem] bg-slate-800 hover:bg-slate-700 text-[10px] font-black text-white uppercase tracking-widest transition-all">
+                  <button onClick={() => setUserCard(false)} className="flex-1 md:flex-none px-10 py-5 rounded-[1.5rem] bg-slate-800 hover:bg-slate-700 text-[10px] font-black text-[var(--text-primary)] uppercase tracking-widest transition-all">
                     DISCARD
                   </button>
                   <button onClick={handleSave} disabled={loading} className="flex-1 md:flex-none px-12 py-5 rounded-[1.5rem] bg-cyan-500 hover:bg-cyan-600 text-slate-950 text-[10px] font-black uppercase tracking-widest transition-all disabled:opacity-50 shadow-2xl shadow-cyan-500/20">
@@ -421,7 +423,7 @@ function Finance() {
           </div>
         )}
       </div>
-      <ToastContainer theme="dark" position="bottom-right" autoClose={2500} toastClassName="!bg-[#0a1128] !border !border-white/10 !rounded-2xl !shadow-2xl" />
+      <ToastContainer theme={document.documentElement.classList.contains('dark') ? "dark" : "light"} position="bottom-right" autoClose={2500} />
     </div>
   )
 }

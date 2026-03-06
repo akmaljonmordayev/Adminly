@@ -11,12 +11,12 @@ function NotFound() {
     : "/auth/signin";
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-[#0f172a] px-4 font-sans selection:bg-cyan-500/30">
+    <div className="min-h-screen flex items-center justify-center bg-[var(--card-bg)] px-4 font-sans selection:bg-cyan-500/30">
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-cyan-500/10 rounded-full blur-[120px]"></div>
       </div>
 
-      <div className="relative z-10 w-full max-w-lg rounded-[2.5rem] border border-white/10 bg-[#1e293b]/40 backdrop-blur-xl p-10 text-center shadow-2xl">
+      <div className="relative z-10 w-full max-w-lg rounded-[2.5rem] border border-cyan-500/10 bg-[#1e293b]/40 backdrop-blur-xl p-10 text-center shadow-2xl">
         <h1 className="text-[120px] font-black leading-none tracking-tighter text-transparent bg-clip-text bg-gradient-to-b from-cyan-400 to-blue-600 drop-shadow-[0_0_15px_rgba(34,211,238,0.5)]">
           404
         </h1>
@@ -25,7 +25,7 @@ function NotFound() {
           Sahifa topilmadi
         </div>
 
-        <p className="mt-6 text-[16px] text-slate-400 leading-relaxed">
+        <p className="mt-6 text-[16px] text-[var(--text-secondary)] leading-relaxed">
           Siz qidirayotgan sahifa mavjud emas yoki o‘chirilgan.
         </p>
 

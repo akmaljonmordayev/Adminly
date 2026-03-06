@@ -1,3 +1,4 @@
+import { useTheme } from '../../context/ThemeContext';
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import { toast, ToastContainer } from 'react-toastify'
@@ -8,12 +9,15 @@ import {
   HiOutlineCalendar,
   HiOutlineTrash,
   HiOutlineRefresh,
-  HiOutlineDotsVertical,
+  HiOutlineMail,
+  HiOutlineCurrencyDollar,
+  HiOutlineCreditCard
 } from 'react-icons/hi'
+import { FiUser, FiMoreVertical, FiAlertCircle, FiClock } from 'react-icons/fi'
 
 function EmployeesArchieve() {
   const employeeArchiveUrl = 'http://localhost:5000/employeesDeleted'
-
+  const { isDarkMode } = useTheme();
   const [data, setData] = useState([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
@@ -38,19 +42,10 @@ function EmployeesArchieve() {
     fetchEmployeeArchive()
   }, [])
 
-  if (loading)
-    return (
-      <div className="flex flex-col items-center justify-center min-h-[400px]">
-        <div className="w-10 h-10 border-2 border-cyan-500/20 border-t-cyan-500 rounded-full animate-spin"></div>
-      </div>
-    )
-
   const restoreEmployee = async (employee) => {
     try {
       await axios.post('http://localhost:5000/employees', employee)
-      await axios.delete(
-        `http://localhost:5000/employeesDeleted/${employee.id}`,
-      )
+      await axios.delete(`http://localhost:5000/employeesDeleted/${employee.id}`)
       toast.success('Employee restored successfully')
       fetchEmployeeArchive()
     } catch {
@@ -59,6 +54,7 @@ function EmployeesArchieve() {
   }
 
   const deleteForever = async (id) => {
+    if (!window.confirm('This action cannot be undone. Delete forever?')) return
     try {
       await axios.delete(`http://localhost:5000/employeesDeleted/${id}`)
       toast.error('Employee permanently deleted')
@@ -68,106 +64,118 @@ function EmployeesArchieve() {
     }
   }
 
+  if (loading) return (
+    <div className="flex flex-col items-center justify-center min-h-[400px]">
+      <div className="w-12 h-12 border-2 border-cyan-500/10 border-t-cyan-500 rounded-full animate-spin"></div>
+      <p className="mt-4 text-[10px] font-black uppercase tracking-[0.3em] text-cyan-500/60 animate-pulse">Syncing Archive...</p>
+    </div>
+  )
+
   return (
     <div className="w-full">
-      <div className="flex items-center justify-between mb-6 px-2">
+      {/* Search & Count area */}
+      <div className="flex flex-wrap items-center justify-between mb-8 gap-4">
         <div>
-          <h2 className="text-xl font-bold text-white tracking-tight">
-            Archived Employees
-          </h2>
-          <p className="text-gray-500 text-xs mt-1">
-            Manage deleted employee records
-          </p>
+          <h2 className="text-2xl font-black text-[var(--text-primary)] tracking-tight uppercase">Employees <span className="text-cyan-400 italic">History</span></h2>
+          <p className="text-[var(--text-secondary)] text-xs font-medium mt-1">Found {data.length} archived records</p>
         </div>
-        <div className="bg-white/5 border border-white/10 px-4 py-2 rounded-2xl">
-          <span className="text-cyan-400 font-mono text-sm">{data.length}</span>
+
+        <div className="flex items-center gap-2">
+          <div className="bg-cyan-500/10 border border-cyan-500/20 px-4 py-2 rounded-2xl flex items-center gap-2 shadow-lg shadow-cyan-500/5">
+            <div className="w-2 h-2 rounded-full bg-cyan-400 animate-pulse" />
+            <span className="text-cyan-400 font-black text-xs uppercase tracking-widest">{data.length} Records</span>
+          </div>
         </div>
       </div>
 
-      <div className="overflow-x-auto custom-scrollbar">
-        <table className="w-full border-separate border-spacing-y-2.5">
-          <thead>
-            <tr className="text-gray-500 text-[11px] uppercase tracking-[0.1em]">
-              <th className="px-6 py-3 text-left font-semibold">
-                Employee Information
-              </th>
-              <th className="px-6 py-3 text-left font-semibold">
-                Month / Payment
-              </th>
-              <th className="px-6 py-3 text-left font-semibold">Amount</th>
-              <th className="px-6 py-3 text-right font-semibold">Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            {data.map((delEmployee) => (
-              <tr
-                key={delEmployee.id}
-                className="group bg-[#0b1220] hover:bg-white/[0.04] border border-white/5 shadow-xl transition-none"
-              >
-                <td className="px-6 py-4 rounded-l-[20px] border-y border-l border-white/5">
-                  <div className="flex items-center gap-3">
-                    <div className="w-11 h-11 rounded-full bg-gradient-to-tr from-gray-800 to-gray-700 flex items-center justify-center border border-white/10 group-hover:border-cyan-500/30 transition-none overflow-hidden">
-                      <HiOutlineUserCircle className="text-3xl text-gray-400 group-hover:text-cyan-400 transition-none" />
-                    </div>
-                    <div className="flex flex-col">
-                      <span className="text-white font-medium text-[15px] leading-tight">
-                        {delEmployee.fullName}
-                      </span>
-                      <span className="text-gray-500 text-[12px]">
-                        {delEmployee.email}
-                      </span>
+      {data.length === 0 ? (
+        <div className="py-24 text-center border border-dashed border-white/5 rounded-[3rem] bg-white/[0.02]">
+          <div className="w-20 h-20 mx-auto mb-6 rounded-[2rem] bg-cyan-500/5 flex items-center justify-center text-cyan-400/30 border border-cyan-500/10">
+            <HiOutlineUserCircle size={48} />
+          </div>
+          <h3 className="text-xl font-bold text-[var(--text-primary)] tracking-tight">Archive is Empty</h3>
+          <p className="text-[var(--text-secondary)] text-xs mt-2 uppercase tracking-widest font-black opacity-40">No deleted employee data available</p>
+        </div>
+      ) : (
+        <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6">
+          {data.map((delEmployee, i) => (
+            <div
+              key={delEmployee.id}
+              className="group relative glass-strong rounded-[2.5rem] border border-white/5 overflow-hidden hover:border-cyan-500/30 transition-all duration-500 hover:shadow-2xl hover:shadow-cyan-500/10 hover:-translate-y-1 animate-fadeInScale"
+              style={{ animationDelay: `${i * 0.05}s` }}
+            >
+              {/* Card Header Background */}
+              <div className="absolute top-0 left-0 w-full h-[120px] bg-gradient-to-br from-cyan-600/10 to-transparent group-hover:from-cyan-600/20 transition-all duration-500" />
+
+              <div className="p-7 relative z-10 flex flex-col h-full">
+                {/* Top Info */}
+                <div className="flex justify-between items-start mb-6">
+                  <div className="w-16 h-16 rounded-[1.8rem] bg-gradient-to-br from-cyan-500 to-blue-600 p-[2px] shadow-xl group-hover:scale-110 transition-transform duration-500">
+                    <div className="w-full h-full rounded-[1.7rem] bg-[var(--bg-secondary)] flex items-center justify-center text-cyan-400">
+                      <FiUser size={32} />
                     </div>
                   </div>
-                </td>
-
-                <td className="px-6 py-4 border-y border-white/5">
-                  <div className="flex flex-col">
-                    <span className="text-gray-300 text-sm font-medium">
-                      {delEmployee.month}
-                    </span>
-                    <span className="text-gray-500 text-[11px] font-mono">
-                      {delEmployee.paymentDate}
-                    </span>
-                  </div>
-                </td>
-
-                <td className="px-6 py-4 border-y border-white/5 text-sm">
-                  <div className="flex flex-col font-mono">
-                    <span className="text-white font-bold">
-                      ${delEmployee.totalSalary}
-                    </span>
-                    <span className="text-[10px] text-gray-500 uppercase">
-                      {delEmployee.paymentMethod}
-                    </span>
-                  </div>
-                </td>
-
-                <td className="px-6 py-4 rounded-r-[20px] border-y border-r border-white/5 text-right">
-                  <div className="flex items-center justify-end gap-2">
+                  <div className="flex gap-2">
                     <button
                       onClick={() => restoreEmployee(delEmployee)}
+                      className="w-10 h-10 rounded-2xl bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 flex items-center justify-center hover:bg-emerald-500 hover:text-white transition-all active:scale-95"
                       title="Restore"
-                      className="cursor-pointer p-2.5 bg-white/5 hover:bg-cyan-500/20 text-gray-400 hover:text-cyan-400 rounded-[12px] border border-white/5 hover:border-cyan-500/30 transition-none shadow-sm"
                     >
-                      <HiOutlineRefresh className="text-lg" />
+                      <HiOutlineRefresh size={20} />
                     </button>
-
                     <button
                       onClick={() => deleteForever(delEmployee.id)}
-                      title="Permanently delete"
-                      className="p-2.5 cursor-pointer bg-white/5 hover:bg-red-500/20 text-gray-400 hover:text-red-400 rounded-[12px] border border-white/5 hover:border-red-500/30 transition-none shadow-sm"
+                      className="w-10 h-10 rounded-2xl bg-red-500/10 text-red-400 border border-red-500/20 flex items-center justify-center hover:bg-red-500 hover:text-white transition-all active:scale-95"
+                      title="Delete Permanently"
                     >
-                      <HiOutlineTrash className="text-lg" />
+                      <HiOutlineTrash size={20} />
                     </button>
                   </div>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
+                </div>
 
-      <ToastContainer position="top-right" autoClose={3000} theme="dark" />
+                {/* Body */}
+                <div className="space-y-4 mb-8">
+                  <div>
+                    <h3 className="text-xl font-black text-[var(--text-primary)] group-hover:text-cyan-400 transition-colors uppercase italic">{delEmployee.fullName}</h3>
+                    <div className="flex items-center gap-1.5 text-[var(--text-secondary)] text-[11px] mt-1 font-bold">
+                      <HiOutlineMail className="text-cyan-500" /> {delEmployee.email}
+                    </div>
+                  </div>
+
+                  <div className="grid grid-cols-2 gap-3 pt-2">
+                    <div className="bg-white/5 p-4 rounded-3xl border border-white/5">
+                      <p className="text-[9px] font-black text-cyan-500 uppercase tracking-widest mb-1">Salary Point</p>
+                      <p className="text-sm font-black text-[var(--text-primary)] font-mono">${delEmployee.totalSalary || '0'}</p>
+                    </div>
+                    <div className="bg-white/5 p-4 rounded-3xl border border-white/5">
+                      <p className="text-[9px] font-black text-purple-500 uppercase tracking-widest mb-1">Last Cycle</p>
+                      <p className="text-sm font-black text-[var(--text-primary)] uppercase">{delEmployee.month || 'N/A'}</p>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Footer Info */}
+                <div className="mt-auto pt-4 border-t border-white/5 flex items-center justify-between">
+                  <div className="flex items-center gap-2">
+                    <HiOutlineCalendar className="text-cyan-500" />
+                    <span className="text-[10px] font-black text-[var(--text-secondary)] uppercase">{delEmployee.paymentDate || 'No Date'}</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <span className="text-[9px] font-black px-2.5 py-1 rounded-full bg-white/5 text-[var(--text-secondary)] uppercase tracking-widest border border-white/5">{delEmployee.paymentMethod || 'CASH'}</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
+
+      <ToastContainer
+        theme={isDarkMode ? 'dark' : 'light'}
+        position="bottom-right"
+        autoClose={2500}
+        toastClassName="!rounded-2xl !bg-[var(--bg-secondary)] !border !border-white/5 !shadow-2xl"
+      />
     </div>
   )
 }
